@@ -29,9 +29,9 @@
  
  const var NONOTE = -1;
  
- 
- 
- 
+
+
+
  
  namespace KeyboardColors{
  	const var KEYSWITCHES = Colours.withAlpha(Colours.red, 0.5);
@@ -203,7 +203,6 @@ for(i = 0; i < NUMOFSTRINGS; i++){
   
  // connecting with fret markers on the UI
  
- const var NOTESPERSTRING = 22;
  Globals.g_NUMOFSTRINGS = 6;
  Globals.g_pitchBendOffset = 0;
  
@@ -405,7 +404,7 @@ for(i = 0; i < NUMOFSTRINGS; i++){
  //setting up fretMarkers
  
  var fretImages = [];
- for (var str = 0; str < Globals.g_NUMOFSTRINGS; str++){
+ for (var str = 0; str < NUMOFSTRINGS; str++){
  	
  	var row = [];
  	
@@ -416,12 +415,41 @@ for(i = 0; i < NUMOFSTRINGS; i++){
  }
  
  
- for (var i = 0; i < Globals.g_NUMOFSTRINGS; i++){
+ for (var i = 0; i < NUMOFSTRINGS; i++){
  	for (var j = 0; j < NOTESPERSTRING; j++){
  		fretImages[i][j].set("fileName", "{PROJECT_FOLDER}PlayingMode_FretIndicator.png");
- 		fretImages[i][j].set("visible", false);
+ 		fretImages[i][j].set("visible", true);
  	}
  }
+ 
+ 
+ const var String1Fret0Marker = Content.getComponent("String1Fret0Marker");
+ 
+ /*const var stringFretMarkerStartYs = [];
+ const var stringFretMarkerEndYs = [];
+ stringFretMarkerStartYs.reserve(NUMOFSTRINGS);
+ for(i = 0; i < NUMOFSTRINGS; i++){
+ 	stringFretMarkerStartYs.push(0);
+ 	stringFretMarkerEndYs.push(0);
+ }
+ 
+ Console.print(fretImages[0].length);
+ 
+for(i = 0; i < NUMOFSTRINGS; i++){
+	stringFretMarkerStartYs[i] = fretImages[i][0].get("y");
+	stringFretMarkerEndYs[i] = fretImages[i][NOTESPERSTRING - 1].get("y");
+}*/
+
+
+// yeah just get the current y values of the images bruh
+
+inline function distributeFretMarkersVertically(stringToDistribute, fretImagesToDistribute){
+	local numOfFrets = fretImagesToDistribute.length;
+	
+	for(var j = 0; j < numOfFrets; j++){
+		
+	}
+}
  
  
  inline function updateStringRRLabels()
