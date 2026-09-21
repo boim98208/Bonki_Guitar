@@ -443,13 +443,33 @@ for(i = 0; i < NUMOFSTRINGS; i++){
 
 // yeah just get the current y values of the images bruh
 
-inline function distributeFretMarkersVertically(stringToDistribute, fretImagesToDistribute){
-	local numOfFrets = fretImagesToDistribute.length;
+inline function distributeFretMarkersVertically(stringToDistribute, fretImages){
+	local numOfFrets = fretImages[stringToDistribute].length;
+	local fretsOfStringToDistribute = fretImages[stringToDistribute];
+	local firstFretMarker = fretsOfStringToDistribute[0];
+	local lastFretMarker = 	fretsOfStringToDistribute[fretsOfStringToDistribute.length - 1];
+	local yValOfPrevFret;
+	local yValOfNextFret;
 	
-	for(var j = 0; j < numOfFrets; j++){
+	local vertDistBetweenEachFret;
+	local vertDistBetweenFirstAndLastFret;
+	
+	
+	vertDistBetweenFirstAndLastFret = lastFretMarker.get("y") - firstFretMarker.get("y");
+	
+	vertDistBetweenEachFret = vertDistBetweenFirstAndLastFret / (numOfFrets - 1);
+	
+	
+	
+	for(var j = 1; j < numOfFrets - 1; j++){
+		yValOfPrevFret = fretsOfStringToDistribute[j - 1].get("y");
+		yValOfNextFret = yValOfPrevFret + vertDistBetweenEachFret;
+		fretsOfStringToDistribute[j].set("y", yValOfNextFret);
 		
 	}
 }
+ 
+ distributeFretMarkersVertically(StringType.STRING1, fretImages);
  
  
  inline function updateStringRRLabels()

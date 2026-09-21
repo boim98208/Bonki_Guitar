@@ -637,79 +637,79 @@
                     <Component type="ScriptImage" id="String1Fret0Marker" x="204" y="20" width="11"
                                height="40" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret1Marker" x="211" y="11" width="11"
+                    <Component type="ScriptImage" id="String1Fret1Marker" x="211" y="19" width="11"
                                height="40" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret2Marker" x="250" y="11" width="11"
+                    <Component type="ScriptImage" id="String1Fret2Marker" x="250" y="18" width="11"
                                height="40" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret3Marker" x="285" y="10" width="11"
+                    <Component type="ScriptImage" id="String1Fret3Marker" x="285" y="17" width="11"
                                height="40" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret4Marker" x="320" y="12" width="11"
+                    <Component type="ScriptImage" id="String1Fret4Marker" x="320" y="17" width="11"
                                height="40" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret5Marker" x="351" y="14" width="11"
+                    <Component type="ScriptImage" id="String1Fret5Marker" x="351" y="16" width="11"
                                height="40" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret6Marker" x="382" y="13" width="11"
+                    <Component type="ScriptImage" id="String1Fret6Marker" x="382" y="15" width="11"
                                height="40" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret7Marker" x="409" y="13" width="11"
+                    <Component type="ScriptImage" id="String1Fret7Marker" x="409" y="15" width="11"
                                height="40" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret8Marker" x="434" y="15" width="11"
+                    <Component type="ScriptImage" id="String1Fret8Marker" x="434" y="14" width="11"
                                height="40" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret9Marker" x="459" y="15" width="11"
+                    <Component type="ScriptImage" id="String1Fret9Marker" x="459" y="13" width="11"
                                height="40" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret10Marker" x="481" y="17" width="11"
+                    <Component type="ScriptImage" id="String1Fret10Marker" x="481" y="13" width="11"
                                height="40" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret11Marker" x="504" y="16" width="11"
+                    <Component type="ScriptImage" id="String1Fret11Marker" x="504" y="12" width="11"
                                height="40" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret12Marker" x="527" y="19" width="11"
+                    <Component type="ScriptImage" id="String1Fret12Marker" x="527" y="11" width="11"
                                height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret13Marker" x="546" y="19" width="11"
+                    <Component type="ScriptImage" id="String1Fret13Marker" x="546" y="11" width="11"
                                height="40" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret14Marker" x="565" y="18" width="11"
+                    <Component type="ScriptImage" id="String1Fret14Marker" x="565" y="10" width="11"
                                height="40" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret15Marker" x="582" y="17" width="11"
+                    <Component type="ScriptImage" id="String1Fret15Marker" x="582" y="9" width="11"
                                height="40" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret16Marker" x="598" y="26" width="11"
+                    <Component type="ScriptImage" id="String1Fret16Marker" x="598" y="9" width="11"
                                height="40" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret17Marker" x="614" y="25" width="11"
+                    <Component type="ScriptImage" id="String1Fret17Marker" x="614" y="8" width="11"
                                height="40" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret18Marker" x="629" y="24" width="11"
+                    <Component type="ScriptImage" id="String1Fret18Marker" x="629" y="7" width="11"
                                height="35" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret19Marker" x="643" y="23" width="11"
+                    <Component type="ScriptImage" id="String1Fret19Marker" x="643" y="7" width="11"
                                height="40" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret20Marker" x="655" y="23" width="11"
+                    <Component type="ScriptImage" id="String1Fret20Marker" x="655" y="6" width="11"
                                height="40" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret21Marker" x="667" y="22" width="11"
+                    <Component type="ScriptImage" id="String1Fret21Marker" x="667" y="5" width="11"
                                height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret22Marker" x="679" y="21" width="11"
+                    <Component type="ScriptImage" id="String1Fret22Marker" x="679" y="5" width="11"
                                height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret23Marker" x="690" y="21" width="11"
+                    <Component type="ScriptImage" id="String1Fret23Marker" x="690" y="4" width="11"
                                height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret24Marker" x="702" y="20" width="11"
+                    <Component type="ScriptImage" id="String1Fret24Marker" x="702" y="3" width="11"
                                height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
-                    <Component type="ScriptImage" id="String1Fret25Marker" x="701" y="9" width="11"
+                    <Component type="ScriptImage" id="String1Fret25Marker" x="700" y="3" width="11"
                                height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text=""/>
                   </Component>
