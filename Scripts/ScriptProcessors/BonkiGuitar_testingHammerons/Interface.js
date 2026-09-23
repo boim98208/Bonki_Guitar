@@ -203,7 +203,6 @@ for(i = 0; i < NUMOFSTRINGS; i++){
   
  // connecting with fret markers on the UI
  
- Globals.g_NUMOFSTRINGS = 6;
  Globals.g_pitchBendOffset = 0;
  
  
@@ -422,6 +421,14 @@ for(i = 0; i < NUMOFSTRINGS; i++){
  	}
  }
  
+ const var fretImageGroups = [];
+ fretImageGroups.reserve(NUMOFSTRINGS);
+ for(i = 0; i < NUMOFSTRINGS; i++){
+	 fretImageGroups.push(Content.getComponent("String" + (i + 1) + "FretMarkers"));
+ }
+ 
+ Console.print(fretImageGroups[0].getId());
+ 
  
  const var String1Fret0Marker = Content.getComponent("String1Fret0Marker");
  
@@ -443,33 +450,114 @@ for(i = 0; i < NUMOFSTRINGS; i++){
 
 // yeah just get the current y values of the images bruh
 
+inline function distributeFretMarkersHorizontally(fretToDistribute, fretImages, fretImageGroups){
+	local numOfStrings = fretImages.length;
+	local highestFret = fretImages[0][fretToDistribute];
+	local lowestFret = fretImages[numOfStrings - 1][fretToDistribute];
+	local highestFretImageGroup = fretImageGroups[0];
+	local lowestFretImageGroup = fretImageGroups[numOfStrings - 1];
+	
+	
+	local yValOfHighestFretImageGroup = highestFretImageGroup.get("y"); 
+	local yValOfLowestFretImageGroup = lowestFretImageGroup.get("y"); 
+	
+	local yValOfHighestFret = highestFret.get("y");
+	local yValOfLowestFret = lowestFret.get("y");
+
+	
+	
+	local xValOfHighestFretImageGroup = highestFretImageGroup.get("x"); 
+	local xValOfLowestFretImageGroup = lowestFretImageGroup.get("x"); 
+	
+	
+	local xValOfHighestFret = highestFret.get("x");
+	local xValOfLowestFret = lowestFret.get("x");
+	
+	
+	local fretImageToMove;
+	local xValOfNextFret;
+	local yValOfNextFret;
+	
+	local yValOfNextFretGroup;
+	local xValOfNextFretGroup;
+	
+	local fretImageToMoveGroup;
+	
+	local horiDistBetweenEachFretPerY;
+	local horiDistBetweenLowestAndHighestFret;
+	
+	
+	horiDistBetweenLowestAndHighestFret = (xValOfHighestFret + xValOfHighestFretImageGroup) - (xValOfLowestFret + xValOfLowestFretImageGroup);
+	
+	Console.print(horiDistBetweenLowestAndHighestFret);
+	
+	horiDistBetweenEachFretPerY = horiDistBetweenLowestAndHighestFret / ((yValOfLowestFret + yValOfLowestFretImageGroup) - (yValOfHighestFret + yValOfHighestFretImageGroup));
+
+	
+	
+	for(var j = 1; j < numOfStrings - 1; j++){
+		fretImageToMove = fretImages[j][fretToDistribute];
+		fretImageToMoveGroup = fretImageGroups[j];
+		yValOfNextFret = fretImageToMove.get("y");
+		yValOfNextFretGroup = fretImageToMoveGroup.get("y");
+		xValOfNextFretGroup = fretImageToMoveGroup.get("x");
+		
+		// each sub-most parantheses is a way to translate to the absolute positioning instead of being relative to the parent panels
+		
+		xValOfNextFret = ( (xValOfLowestFret + xValOfLowestFretImageGroup) + (horiDistBetweenEachFretPerY * ((yValOfLowestFret + yValOfLowestFretImageGroup) - (yValOfNextFret + yValOfNextFretGroup))) ) - xValOfNextFretGroup;
+		
+
+		
+		Console.print(xValOfNextFret);
+		
+		fretImageToMove.set("x", xValOfNextFret);
+		
+	}
+	
+	
+}
+
+
 inline function distributeFretMarkersVertically(stringToDistribute, fretImages){
 	local numOfFrets = fretImages[stringToDistribute].length;
 	local fretsOfStringToDistribute = fretImages[stringToDistribute];
 	local firstFretMarker = fretsOfStringToDistribute[0];
 	local lastFretMarker = 	fretsOfStringToDistribute[fretsOfStringToDistribute.length - 1];
-	local yValOfPrevFret;
+	local xValOfNextFret;
 	local yValOfNextFret;
+	local xValOfFirstFret = firstFretMarker.get("x");
+	local xValOfLastFret = lastFretMarker.get("x");
+	local yValOfFirstFret = firstFretMarker.get("y");
+	local yValOfLastFret = lastFretMarker.get("y");
 	
-	local vertDistBetweenEachFret;
+	local vertDistBetweenEachFretPerX;
 	local vertDistBetweenFirstAndLastFret;
 	
 	
-	vertDistBetweenFirstAndLastFret = lastFretMarker.get("y") - firstFretMarker.get("y");
+	vertDistBetweenFirstAndLastFret = yValOfLastFret - yValOfFirstFret;
 	
-	vertDistBetweenEachFret = vertDistBetweenFirstAndLastFret / (numOfFrets - 1);
+	vertDistBetweenEachFretPerX = vertDistBetweenFirstAndLastFret / (xValOfLastFret - xValOfFirstFret);
 	
 	
 	
 	for(var j = 1; j < numOfFrets - 1; j++){
-		yValOfPrevFret = fretsOfStringToDistribute[j - 1].get("y");
-		yValOfNextFret = yValOfPrevFret + vertDistBetweenEachFret;
+		xValOfNextFret = fretsOfStringToDistribute[j].get("x");
+		yValOfNextFret = yValOfFirstFret + (vertDistBetweenEachFretPerX * (xValOfNextFret - xValOfFirstFret));
+		
 		fretsOfStringToDistribute[j].set("y", yValOfNextFret);
 		
 	}
 }
  
- distributeFretMarkersVertically(StringType.STRING1, fretImages);
+ 
+ for (i = 0; i < NUMOFSTRINGS; i++){
+ distributeFretMarkersVertically(i, fretImages);
+ }
+ 
+ for (i = 0; i < NOTESPERSTRING; i++){
+ distributeFretMarkersHorizontally(i, fretImages, fretImageGroups);
+ }
+ 
  
  
  inline function updateStringRRLabels()
@@ -508,7 +596,7 @@ inline function distributeFretMarkersVertically(stringToDistribute, fretImages){
  
  inline function hideAll()
  {
-     for (var i = 0; i < Globals.g_NUMOFSTRINGS; i++)
+     for (var i = 0; i < NUMOFSTRINGS; i++)
          for (var j = 0; j < NOTESPERSTRING; j++)
              fretImages[i][j].set("visible", false);
  }
@@ -1295,7 +1383,7 @@ Content.getComponent("StrumSpeedKnob").setControlCallback(onStrumSpeedKnobContro
  Engine.setKeyColour(FORCEFRETMODEKEYSWITCH, KeyboardColors.FORCEFRETHAND);
  Engine.setKeyColour(AUTOFRETMODEKEYSWITCH, KeyboardColors.FORCEFRETHAND);
  
- 
+ hideAll();
  
  
  function onNoteOn()
