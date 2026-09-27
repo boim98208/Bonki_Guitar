@@ -1,9 +1,9 @@
  //keyswitches
- const var SUSTAINKEYSWITCHNOTE = 36; //C3 in cakewalk
- const var MUTEKEYSWITCHNOTE = 37;
- const var HARMONICKEYSWITCHNOTE = 38;
- const var TREMOLOKEYSWITCHNOTE = 39;
- const var SFXKEYSWITCHNOTE = 40;
+ const var SUSTAINKEYSWITCHNOTE = 35; //C3 in cakewalk
+ const var MUTEKEYSWITCHNOTE = 36;
+ const var HARMONICKEYSWITCHNOTE = 37;
+ const var TREMOLOKEYSWITCHNOTE = 38;
+ const var SFXKEYSWITCHNOTE = 39;
  
  const var legatoKeySwitchNote = 49; //Db4 in cakewalk
  
@@ -16,8 +16,8 @@
  const var AUTOFRETMODEKEYSWITCH = 50;
  const var FORCEFRETMODEKEYSWITCH = 51;
  
- const var NOTESPERSTRING = 22;
- const var NUMOFSTRINGS = 6;
+ const var NOTESPERSTRING = 25;
+ const var NUMOFSTRINGS = 8;
  
  
  namespace PerformanceType

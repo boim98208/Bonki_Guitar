@@ -272,6 +272,8 @@ inline function playString(stringToPlay){
 	
 	if(!Globals.g_strummingModeOn){
 	Globals.g_stringActiveRRs[stringToPlay] = getActiveRRPlayed(stringToPlay);
+	
+	Console.print(stringChannelToSend);
 		stringNoteId[stringToPlay] = Synth.addNoteOn(stringChannelToSend, Message.getNoteNumber(), Message.getVelocity(), 0);
 		notePlayedMethod[stringToPlay] = StringPlayingMethod.pianoRoll;
 		incrementRR(stringToPlay);
@@ -436,8 +438,12 @@ inline function stringWithClosestNote(notePlayed, currentHandPos){
 	local distToCompare;
 	
 	for(i = NUMOFSTRINGS - 1; i > -1; i--){
+		Console.print(i);
+	
 		if(stringNote[i] == -1 && isBetweenIncl(notePlayed, OPENSTRINGNOTES[i], OPENSTRINGNOTES[i] + NOTESPERSTRING)){
 		
+		
+		Console.print("string " + i + " has an open string note of " + OPENSTRINGNOTES[i]);
 		
 		// the - 2 fixes it for some reason. It seems that without it the system just straight up misses notes
 		
@@ -582,6 +588,7 @@ inline function naturalFretting2_2_1(notePlayed, currentHandPos)
 	stringToPlay = stringWithClosestNote(notePlayed, currentHandPos);
 	stringNote[stringToPlay] = notePlayed;
 	Globals.g_stringPerformance[stringToPlay] = Globals.g_currArticulationPlaying;
+	
 	playString(stringToPlay);
 	
 	

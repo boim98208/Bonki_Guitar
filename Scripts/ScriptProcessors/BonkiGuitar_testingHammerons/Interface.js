@@ -300,12 +300,13 @@ for(i = 0; i < NUMOFSTRINGS; i++){
  Content.getComponent("FrettingEngineComboBox").setControlCallback(onFrettingEngineComboBoxControl);
  
  
- const var StringRRLabel = [Content.getComponent("String1RRLabel"),
-                            Content.getComponent("String2RRLabel"),
-                            Content.getComponent("String3RRLabel"),
-                            Content.getComponent("String4RRLabel"),
-                            Content.getComponent("String5RRLabel"),
-                            Content.getComponent("String6RRLabel")];
+ const var StringRRLabel = [];
+ 
+ StringRRLabel.reserve(NUMOFSTRINGS);
+                            
+for(i = 0; i < NUMOFSTRINGS; i++){
+	StringRRLabel.push(Content.getComponent("String" + (i + 1) + "RRLabel"));
+}
  
  
  const var DebugPanel = Content.getComponent("DebugPanel");
@@ -489,8 +490,6 @@ inline function distributeFretMarkersHorizontally(fretToDistribute, fretImages, 
 	
 	horiDistBetweenLowestAndHighestFret = (xValOfHighestFret + xValOfHighestFretImageGroup) - (xValOfLowestFret + xValOfLowestFretImageGroup);
 	
-	Console.print(horiDistBetweenLowestAndHighestFret);
-	
 	horiDistBetweenEachFretPerY = horiDistBetweenLowestAndHighestFret / ((yValOfLowestFret + yValOfLowestFretImageGroup) - (yValOfHighestFret + yValOfHighestFretImageGroup));
 
 	
@@ -507,8 +506,6 @@ inline function distributeFretMarkersHorizontally(fretToDistribute, fretImages, 
 		xValOfNextFret = ( (xValOfLowestFret + xValOfLowestFretImageGroup) + (horiDistBetweenEachFretPerY * ((yValOfLowestFret + yValOfLowestFretImageGroup) - (yValOfNextFret + yValOfNextFretGroup))) ) - xValOfNextFretGroup;
 		
 
-		
-		Console.print(xValOfNextFret);
 		
 		fretImageToMove.set("x", xValOfNextFret);
 		
@@ -550,6 +547,7 @@ inline function distributeFretMarkersVertically(stringToDistribute, fretImages){
 }
  
  
+ /*
  for (i = 0; i < NUMOFSTRINGS; i++){
  distributeFretMarkersVertically(i, fretImages);
  }
@@ -557,12 +555,12 @@ inline function distributeFretMarkersVertically(stringToDistribute, fretImages){
  for (i = 0; i < NOTESPERSTRING; i++){
  distributeFretMarkersHorizontally(i, fretImages, fretImageGroups);
  }
- 
+ */
  
  
  inline function updateStringRRLabels()
  {
- 	//looks like there's a way do global arrays. Look into later
+
  
  /*	StringRRLabel[0].set("text", Globals.g_string1ActiveRR);
  	StringRRLabel[1].set("text", Globals.g_string2ActiveRR);
@@ -580,12 +578,14 @@ inline function distributeFretMarkersVertically(stringToDistribute, fretImages){
  	
  	for(i = 0; i < Globals.g_stringActiveRRs.length; i++){
 	 	
-	 	if(Globals.g_stringActiveRRs[i] == NO_NOTE)
+	 	/*if(Globals.g_stringActiveRRs[i] == NO_NOTE)
 	 		StringRRLabel[i].set("text", "Not Playing");
 	 	else
 	 	{
 	 	//	StringRRLabel[i].set("text", Globals.g_stringActiveRRs[i]);
-	 	}
+	 	}*/
+	 	
+
  	}
  	
  
@@ -1388,6 +1388,9 @@ Content.getComponent("StrumSpeedKnob").setControlCallback(onStrumSpeedKnobContro
  
  function onNoteOn()
 {
+	
+	Console.print("are you even playing");
+
 	
 
 	local notePlayed = Message.getNoteNumber();
