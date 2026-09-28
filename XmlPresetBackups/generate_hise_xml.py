@@ -1138,7 +1138,14 @@ def generate_hise_xml(num_strings, num_frets, fret_spacing, rr_spacing, articula
                                       Gain="1.0", Balance="0.0", VoiceLimit="256.0", KillFadeTime="20.0", IconColour="0")
         guitar_child_processors = ET.SubElement(guitar_container, "ChildProcessors")
         
-        ET.SubElement(guitar_child_processors, "Processor", Type="MidiProcessorChain", ID="Midi Processor", Bypassed="0").append(ET.Element("ChildProcessors"))
+        guitar_midi = ET.SubElement(guitar_child_processors, "Processor", Type="MidiProcessorChain", ID="Midi Processor", Bypassed="0")
+        guitar_midi_children = ET.SubElement(guitar_midi, "ChildProcessors")
+        if side == "Right":
+            right_muter = ET.SubElement(guitar_midi_children, "Processor", Type="MidiMuter", ID="RightContainerMute", Bypassed="0")
+            ET.SubElement(right_muter, "ChildProcessors")
+            right_muter_content = ET.SubElement(right_muter, "Content")
+            ET.SubElement(right_muter_content, "Control", type="ScriptButton", id="ignoreButton", value="1.0")
+            ET.SubElement(right_muter_content, "Control", type="ScriptButton", id="fixStuckNotes", value="1.0")
         ET.SubElement(guitar_child_processors, "Processor", Type="ModulatorChain", ID="GainModulation", Bypassed="0", Intensity="1.0").append(ET.Element("ChildProcessors"))
         ET.SubElement(guitar_child_processors, "Processor", Type="ModulatorChain", ID="PitchModulation", Bypassed="1", Intensity="0.0").append(ET.Element("ChildProcessors"))
         
@@ -1173,7 +1180,16 @@ def generate_hise_xml(num_strings, num_frets, fret_spacing, rr_spacing, articula
             
             ET.SubElement(art_child_processors, "Processor", Type="ModulatorChain", ID="GainModulation", Bypassed="0", Intensity="1.0").append(ET.Element("ChildProcessors"))
             ET.SubElement(art_child_processors, "Processor", Type="ModulatorChain", ID="PitchModulation", Bypassed="1", Intensity="0.0").append(ET.Element("ChildProcessors"))
-            ET.SubElement(art_child_processors, "Processor", Type="EffectChain", ID="FX", Bypassed="0").append(ET.Element("ChildProcessors"))
+            art_fx = ET.SubElement(art_child_processors, "Processor", Type="EffectChain", ID="FX", Bypassed="0")
+            art_fx_children = ET.SubElement(art_fx, "ChildProcessors")
+            art_gain = ET.SubElement(art_fx_children, "Processor", Type="SimpleGain", ID=f"{side}{art}Gain", Bypassed="0", 
+                                     Gain="0.0", Delay="0.0", Width="100.0", Balance="0.0", InvertPolarity="0.0")
+            sg_children = ET.SubElement(art_gain, "ChildProcessors")
+            ET.SubElement(sg_children, "Processor", Type="ModulatorChain", ID="Gain Modulation", Bypassed="0", Intensity="1.0").append(ET.Element("ChildProcessors"))
+            ET.SubElement(sg_children, "Processor", Type="ModulatorChain", ID="Delay Modulation", Bypassed="0", Intensity="1.0").append(ET.Element("ChildProcessors"))
+            ET.SubElement(sg_children, "Processor", Type="ModulatorChain", ID="Width Modulation", Bypassed="0", Intensity="1.0").append(ET.Element("ChildProcessors"))
+            ET.SubElement(sg_children, "Processor", Type="ModulatorChain", ID="Pan Modulation", Bypassed="0", Intensity="1.0").append(ET.Element("ChildProcessors"))
+            ET.SubElement(art_gain, "RoutingMatrix", NumSourceChannels="2", Channel0="0", Send0="-1", Channel1="1", Send1="-1")
             
             # Strings Iteration (Descending)
             for string in range(num_strings, 0, -1):
@@ -1236,6 +1252,37 @@ def generate_hise_xml(num_strings, num_frets, fret_spacing, rr_spacing, articula
                     pitch_bend = ET.SubElement(sampler_pitch_children, "Processor", Type="PitchWheel", ID="PitchBendModulator", Bypassed="0", 
                                                Intensity="0.1666666716337204", Bipolar="1", UseTable="0.0", Inverted="0.0", SmoothTime="20.0")
                     ET.SubElement(pitch_bend, "ChildProcessors")
+                    if not is_release:
+                        is_first = (side == 'Left' and string == num_strings and art == articulations[0])
+                        prefix = 'Source' if is_first else ''
+                        vib_lfo = ET.SubElement(sampler_pitch_children, 'Processor', Type='LFO', ID=f'{prefix}VibratoLFO', Bypassed='0', 
+                                                Intensity='0.01416666712611914', Bipolar='0', Frequency='11.33972263336182', FadeIn='3000.0', 
+                                                WaveformType='1.0', Legato='1.0', TempoSync='0.0', SmoothingTime='20.0', LoopEnabled='1.0', 
+                                                PhaseOffset='0.0', SyncToMasterClock='0.0', IgnoreNoteOn='0.0', CustomWaveform='', 
+                                                StepData='64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+.')
+                        vib_lfo_children = ET.SubElement(vib_lfo, 'ChildProcessors')
+                        
+                        int_mod_chain = ET.SubElement(vib_lfo_children, 'Processor', Type='ModulatorChain', ID='LFO Intensity Mod', Bypassed='0', Intensity='1.0')
+                        int_mod_children = ET.SubElement(int_mod_chain, 'ChildProcessors')
+                        vib_int_mod = ET.SubElement(int_mod_children, 'Processor', Type='LFO', ID=f'{prefix}VibratoLFOIntensityMod', Bypassed='0', 
+                                                    Intensity='0.1700000017881393', Frequency='11.33972263336182', FadeIn='3000.0', WaveformType='1.0', 
+                                                    Legato='1.0', TempoSync='0.0', SmoothingTime='20.0', LoopEnabled='1.0', PhaseOffset='0.0', 
+                                                    SyncToMasterClock='0.0', IgnoreNoteOn='0.0', CustomWaveform='', 
+                                                    StepData='64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+.')
+                        vib_int_mod_children = ET.SubElement(vib_int_mod, 'ChildProcessors')
+                        ET.SubElement(vib_int_mod_children, 'Processor', Type='ModulatorChain', ID='LFO Intensity Mod', Bypassed='0', Intensity='1.0').append(ET.Element('ChildProcessors'))
+                        ET.SubElement(vib_int_mod_children, 'Processor', Type='ModulatorChain', ID='LFO Frequency Mod', Bypassed='0', Intensity='1.0').append(ET.Element('ChildProcessors'))
+                        
+                        freq_mod_chain = ET.SubElement(vib_lfo_children, 'Processor', Type='ModulatorChain', ID='LFO Frequency Mod', Bypassed='0', Intensity='1.0')
+                        freq_mod_children = ET.SubElement(freq_mod_chain, 'ChildProcessors')
+                        vib_freq_mod = ET.SubElement(freq_mod_children, 'Processor', Type='LFO', ID=f'{prefix}VibratoLFOFreqMod', Bypassed='0', 
+                                                     Intensity='0.1700000017881393', Frequency='11.33972263336182', FadeIn='3000.0', WaveformType='1.0', 
+                                                     Legato='1.0', TempoSync='0.0', SmoothingTime='20.0', LoopEnabled='1.0', PhaseOffset='0.0', 
+                                                     SyncToMasterClock='0.0', IgnoreNoteOn='0.0', CustomWaveform='', 
+                                                     StepData='64....f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+....9C...3O...f+.')
+                        vib_freq_mod_children = ET.SubElement(vib_freq_mod, 'ChildProcessors')
+                        ET.SubElement(vib_freq_mod_children, 'Processor', Type='ModulatorChain', ID='LFO Intensity Mod', Bypassed='0', Intensity='1.0').append(ET.Element('ChildProcessors'))
+                        ET.SubElement(vib_freq_mod_children, 'Processor', Type='ModulatorChain', ID='LFO Frequency Mod', Bypassed='0', Intensity='1.0').append(ET.Element('ChildProcessors'))
                     
                     # Standard FX, Sample Start, and Group Fade chains
                     sampler_fx = ET.SubElement(sampler_child_processors, "Processor", Type="EffectChain", ID="FX", Bypassed="0")
