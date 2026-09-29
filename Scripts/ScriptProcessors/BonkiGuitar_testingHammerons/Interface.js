@@ -1389,7 +1389,6 @@ Content.getComponent("StrumSpeedKnob").setControlCallback(onStrumSpeedKnobContro
  function onNoteOn()
 {
 	
-	Console.print("are you even playing");
 
 	
 
@@ -1452,6 +1451,17 @@ function onController()
 
 	
 	hideAll();
+	
+	for(var stringToCheck = 0; stringToCheck < NUMOFSTRINGS; stringToCheck++){
+		if(Globals.g_stringNotes[stringToCheck] != NONOTE){
+			
+			Console.print(stringToCheck);
+
+			fretImgToControl = fretImages[stringToCheck][Globals.g_stringNotes[stringToCheck] - OPENSTRINGNOTES[stringToCheck]];
+			displayFret(fretImgToControl, stringToCheck);
+		}
+}
+	
 
 	if(Globals.g_stringNotes[StringType.STRING6] != NONOTE){
 		fretImgToControl = fretImages[StringType.STRING6][ Globals.g_stringNotes[StringType.STRING6] - OPENSTRING6NOTE];

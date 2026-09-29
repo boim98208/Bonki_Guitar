@@ -18,17 +18,6 @@ include("KeyswitchConstants.js");
 var legatoKeySwitchPlaying = false;
  
 
-
- const var NoteIdLabels = [Content.getComponent("noteId1"),
-                    Content.getComponent("noteId2"),
-                    Content.getComponent("noteId3"),
-                    Content.getComponent("noteId4"),
-                    Content.getComponent("noteId5"),
-                    Content.getComponent("noteId6")];
- 
- 
- 
- 
  var legatoKeySwitchPlaying = false;
  
  // setting up keyswitches to mute samplers
@@ -64,7 +53,9 @@ const var tremoloSamplerName = "Tremolo";
 const var AllSusMuters = createAllMutersArray(susSamplerName);
 const var AllMuteMuters = createAllMutersArray(muteSamplerName);
 const var AllHarmonicMuters = createAllMutersArray(harmonicSamplerName);
-const var AllTremoloMuters = createAllMutersArray(tremoloSamplerName);
+
+// I'll need to do some reworking for anything timestretching
+//const var AllTremoloMuters = createAllMutersArray(tremoloSamplerName);
  
  
 
@@ -241,21 +232,8 @@ Message.setAllNotesOffCallback(resetNotes);
 
 // GUI TO HELP ME DEBUG
 
-inline function onButton1Control(component, value)
-{
-	Console.print("~~~ NOTES CORRELATING TO THE STRINGS ~~~");
 
-	for(var i = 0; i < NUMOFSTRINGS; i++){
-		Console.print("String " + (i + 1) + ": " + stringNote[i] +" | legato: " + stringNote[i + StringType.LEGATOOFFSET]);
-	}
-	
-	
-/*	for(var i = 0; i < NUMOFSTRINGS; i++){
-			Console.print("String " + (i + 1) + ": " + notesToTest[i] +" | legato: " + stringNote[i + StringType.LEGATOOFFSET]);
-		}*/
-};
 
-Content.getComponent("Button1").setControlCallback(onButton1Control);
 
 
 
@@ -861,6 +839,8 @@ inline function createAllRightArticSamplerArray(articName, lowBound, highBound){
 	
 }
 
+
+
 const var legDownSamplerLowestStringNum = 1;
 const var legDownSamplerHighestStringNum = NUMOFSTRINGS;
 
@@ -887,13 +867,13 @@ const var AllSusLeftSamplers = createAllLeftArticSamplerArray(susSamplerName, su
 const var AllSusRightSamplers = createAllRightArticSamplerArray(susSamplerName, susSamplerLowestStringNum, susSamplerHighestStringNum);
 
  
-const var AllLegDownLeftSamplers = createAllLeftArticSamplerArray(legDownSamplerName, legDownSamplerLowestStringNum, legDownSamplerHighestStringNum);
+//const var AllLegDownLeftSamplers = createAllLeftArticSamplerArray(legDownSamplerName, legDownSamplerLowestStringNum, legDownSamplerHighestStringNum);
 
-const var AllLegDownRightSamplers = createAllRightArticSamplerArray(legDownSamplerName, legDownSamplerLowestStringNum, legDownSamplerHighestStringNum);
+//const var AllLegDownRightSamplers = createAllRightArticSamplerArray(legDownSamplerName, legDownSamplerLowestStringNum, legDownSamplerHighestStringNum);
 
-const var AllLegUpLeftSamplers = createAllLeftArticSamplerArray(legUpSamplerName, legUpSamplerLowestStringNum, legUpSamplerHighestStringNum);
+//const var AllLegUpLeftSamplers = createAllLeftArticSamplerArray(legUpSamplerName, legUpSamplerLowestStringNum, legUpSamplerHighestStringNum);
 
-const var AllLegUpRightSamplers = createAllRightArticSamplerArray(legUpSamplerName, legUpSamplerLowestStringNum, legUpSamplerHighestStringNum);
+//const var AllLegUpRightSamplers = createAllRightArticSamplerArray(legUpSamplerName, legUpSamplerLowestStringNum, legUpSamplerHighestStringNum);
 
 
  
@@ -908,9 +888,9 @@ const var AllLegUpRightSamplers = createAllRightArticSamplerArray(legUpSamplerNa
  
 
 
-const var AllTremoloLeftSamplers = createAllLeftArticSamplerArray(tremoloSamplerName, tremoloSamplerLowestStringNum, tremoloSamplerHighestStringNum);
+//const var AllTremoloLeftSamplers = createAllLeftArticSamplerArray(tremoloSamplerName, tremoloSamplerLowestStringNum, tremoloSamplerHighestStringNum);
 
-const var AllTremoloRightSamplers = createAllRightArticSamplerArray(tremoloSamplerName, tremoloSamplerLowestStringNum, tremoloSamplerHighestStringNum);
+//const var AllTremoloRightSamplers = createAllRightArticSamplerArray(tremoloSamplerName, tremoloSamplerLowestStringNum, tremoloSamplerHighestStringNum);
 
 
 // skipping SFX samplers for now. Do later
@@ -1009,11 +989,11 @@ for(i = 0; i < PerformanceType.NUMOFPERFORMANCES; i++){
 // I'd rather do this manually but the functions are bugging out on me for some reason
 // will need to look into getNumActiveGroups and getRRGroupsForMessage
 
-numOfRRs[PerformanceType.SUSTAIN] = 6;
-numOfRRs[PerformanceType.MUTE] = 6;
-numOfRRs[PerformanceType.HARMONIC] = 2;
-numOfRRs[PerformanceType.LEGATOUP] = 6;
-numOfRRs[PerformanceType.LEGATODOWN] = 6;
+numOfRRs[PerformanceType.SUSTAIN] = 1;
+numOfRRs[PerformanceType.MUTE] = 1;
+numOfRRs[PerformanceType.HARMONIC] = 1;
+numOfRRs[PerformanceType.LEGATOUP] = 1;
+numOfRRs[PerformanceType.LEGATODOWN] = 1;
 
 // Make sure any sampler that only has 1 RR does transposition trick to not go down to mono
 numOfRRs[PerformanceType.TREMOLO] = 1;

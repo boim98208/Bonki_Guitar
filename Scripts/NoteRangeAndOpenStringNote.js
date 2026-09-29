@@ -11,7 +11,7 @@
  
  const var NUMOFSTRINGS = 8;
  const var LOWESTNOTE = OPENSTRING8NOTE;
- const var HIGHESTNOTE = 97;
+ const var HIGHESTNOTE = 100;
  
  
  

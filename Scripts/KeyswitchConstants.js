@@ -1,20 +1,20 @@
  //keyswitches
- const var SUSTAINKEYSWITCHNOTE = 35; //C3 in cakewalk
- const var MUTEKEYSWITCHNOTE = 36;
- const var HARMONICKEYSWITCHNOTE = 37;
- const var TREMOLOKEYSWITCHNOTE = 38;
- const var SFXKEYSWITCHNOTE = 39;
+ const var SUSTAINKEYSWITCHNOTE = 24; //C3 in cakewalk
+ const var MUTEKEYSWITCHNOTE = 25;
+ const var HARMONICKEYSWITCHNOTE = 26;
+ const var TREMOLOKEYSWITCHNOTE = 27;
+ const var SFXKEYSWITCHNOTE = 28;
  
- const var legatoKeySwitchNote = 49; //Db4 in cakewalk
+ const var legatoKeySwitchNote = 37; //Db4 in cakewalk
  
  const var FIRSTKEYSWITCH = SUSTAINKEYSWITCHNOTE;
  const var LASTKEYSWITCH = SFXKEYSWITCHNOTE;
  
- const var FIRSTPERCUSSION = 23;
- const var LASTPERCUSSION = 31;
+ const var FIRSTPERCUSSION = 10;
+ const var LASTPERCUSSION = 20;
  
- const var AUTOFRETMODEKEYSWITCH = 50;
- const var FORCEFRETMODEKEYSWITCH = 51;
+ const var AUTOFRETMODEKEYSWITCH = 38;
+ const var FORCEFRETMODEKEYSWITCH = 39;
  
  const var NOTESPERSTRING = 25;
  const var NUMOFSTRINGS = 8;
@@ -28,6 +28,7 @@
  	const var MUTE = 3;
  	const var HARMONIC = 4;
  	const var TREMOLO = 5;
+ 	
  	const var SFX = 6;
  	
  	const var NUMOFPERFORMANCES = 7;
@@ -59,7 +60,7 @@ namespace StrummingKeyswitches{
 	const var downStrumKeyswitch = 108; // C7 in HISE
 	const var upStrumKeyswitch = 109;
 	
-	const var individualStrumKeyswitches = [110, 111, 112, 113, 114, 115];
+	const var individualStrumKeyswitches = [110, 111, 112, 113, 114, 115, 116, 117];
 	
 	const var lowIndivStrumKeyswitch = individualStrumKeyswitches[0];
 	
