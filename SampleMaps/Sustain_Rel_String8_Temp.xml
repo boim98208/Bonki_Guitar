@@ -4,98 +4,98 @@
            MicPositions=";">
   <sample Root="40" LoKey="40" HiKey="46" LoVel="0" HiVel="127" RRGroup="1"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_E1_RR1.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197242" LoopXFade="0" LoopStart="197242"
           SampleEnd="255332"/>
   <sample Root="40" LoKey="40" HiKey="46" LoVel="0" HiVel="127" RRGroup="2"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_E1_RR2.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197171" LoopXFade="0" LoopStart="197171"
           SampleEnd="248283"/>
   <sample Root="52" LoKey="52" HiKey="53" LoVel="0" HiVel="127" RRGroup="1"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_E2_RR1.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197223" LoopXFade="0" LoopStart="197223"
           SampleEnd="253425"/>
   <sample Root="52" LoKey="52" HiKey="53" LoVel="0" HiVel="127" RRGroup="2"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_E2_RR2.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197252" LoopXFade="0" LoopStart="197252"
           LoopEnd="255332" SampleEnd="256310"/>
   <sample Root="64" LoKey="64" HiKey="64" LoVel="0" HiVel="127" RRGroup="1"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_E3_RR1.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197242" LoopXFade="0" LoopStart="197242"
           SampleEnd="255323"/>
   <sample Root="64" LoKey="64" HiKey="64" LoVel="0" HiVel="127" RRGroup="2"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_E3_RR2.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197226" LoopXFade="0" LoopStart="197226"
           SampleEnd="253743"/>
   <sample Root="54" LoKey="54" HiKey="55" LoVel="0" HiVel="127" RRGroup="1"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_F#2_RR1.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197222" LoopXFade="0" LoopStart="197222"
           SampleEnd="253362"/>
   <sample Root="54" LoKey="54" HiKey="55" LoVel="0" HiVel="127" RRGroup="2"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_F#2_RR2.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197243" LoopXFade="0" LoopStart="197243"
           LoopEnd="255332" SampleEnd="255403"/>
   <sample Root="56" LoKey="56" HiKey="56" LoVel="0" HiVel="127" RRGroup="1"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_G#2_RR1.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197232" LoopXFade="0" LoopStart="197232"
           SampleEnd="254386"/>
   <sample Root="56" LoKey="56" HiKey="56" LoVel="0" HiVel="127" RRGroup="2"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_G#2_RR2.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197229" LoopXFade="0" LoopStart="197229"
           SampleEnd="254066"/>
   <sample Root="57" LoKey="57" HiKey="58" LoVel="0" HiVel="127" RRGroup="1"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_A2_RR1.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197248" LoopXFade="0" LoopStart="197248"
           LoopEnd="255332" SampleEnd="255960"/>
   <sample Root="57" LoKey="57" HiKey="58" LoVel="0" HiVel="127" RRGroup="2"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_A2_RR2.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197240" LoopXFade="0" LoopStart="197240"
           SampleEnd="255192"/>
   <sample Root="47" LoKey="47" HiKey="48" LoVel="0" HiVel="127" RRGroup="1"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_B1_RR1.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197245" LoopXFade="0" LoopStart="197245"
           LoopEnd="255332" SampleEnd="255666"/>
   <sample Root="47" LoKey="47" HiKey="48" LoVel="0" HiVel="127" RRGroup="2"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_B1_RR2.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197238" LoopXFade="0" LoopStart="197238"
           SampleEnd="254920"/>
   <sample Root="59" LoKey="59" HiKey="60" LoVel="0" HiVel="127" RRGroup="1"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_B2_RR1.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197250" LoopXFade="0" LoopStart="197250"
           LoopEnd="255332" SampleEnd="256189"/>
   <sample Root="59" LoKey="59" HiKey="60" LoVel="0" HiVel="127" RRGroup="2"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_B2_RR2.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197233" LoopXFade="0" LoopStart="197233"
           SampleEnd="254472"/>
   <sample Root="49" LoKey="49" HiKey="50" LoVel="0" HiVel="127" RRGroup="1"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_C#2_RR1.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197226" LoopXFade="0" LoopStart="197226"
           SampleEnd="253716"/>
   <sample Root="49" LoKey="49" HiKey="50" LoVel="0" HiVel="127" RRGroup="2"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_C#2_RR2.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197246" LoopXFade="0" LoopStart="197246"
           LoopEnd="255332" SampleEnd="255730"/>
   <sample Root="61" LoKey="61" HiKey="61" LoVel="0" HiVel="127" RRGroup="1"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_C#3_RR1.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197237" LoopXFade="0" LoopStart="197237"
           SampleEnd="254811"/>
   <sample Root="61" LoKey="61" HiKey="61" LoVel="0" HiVel="127" RRGroup="2"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_C#3_RR2.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197229" LoopXFade="0" LoopStart="197229"
           SampleEnd="254043"/>
   <sample Root="51" LoKey="51" HiKey="51" LoVel="0" HiVel="127" RRGroup="1"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_D#2_RR1.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197235" LoopXFade="0" LoopStart="197235"
           SampleEnd="254613"/>
   <sample Root="51" LoKey="51" HiKey="51" LoVel="0" HiVel="127" RRGroup="2"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_D#2_RR2.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197250" LoopXFade="0" LoopStart="197250"
           LoopEnd="255332" SampleEnd="256109"/>
   <sample Root="62" LoKey="62" HiKey="63" LoVel="0" HiVel="127" RRGroup="1"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_D3_RR1.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197231" LoopXFade="0" LoopStart="197231"
           SampleEnd="254255"/>
   <sample Root="62" LoKey="62" HiKey="63" LoVel="0" HiVel="127" RRGroup="2"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_D3_RR2.wav"
-          Duplicate="1" SampleStart="194689" LoopXFade="0" LoopStart="194689"
+          Duplicate="1" SampleStart="197241" LoopXFade="0" LoopStart="197241"
           SampleEnd="255279"/>
 </samplemap>

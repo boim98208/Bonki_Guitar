@@ -10,10 +10,17 @@
  //Emulated releases didn't go as well as planned. But I'll keep it here for now
  Globals.g_emulatedReleasesOn = false;
  
+ 
 include("NoteRangeAndOpenStringNote.js");
 
 include("KeyswitchConstants.js");
 
+
+Globals.g_stringPerformance = [];
+Globals.g_stringPerformance.reserve(NUMOFSTRINGS * 2);
+for(var i = 0; i < NUMOFSTRINGS * 2; i++){
+	Globals.g_stringPerformance.push(PerformanceType.SUSTAIN);
+}
 
 var legatoKeySwitchPlaying = false;
  
@@ -250,6 +257,10 @@ inline function playString(stringToPlay){
 	
 	if(!Globals.g_strummingModeOn){
 	Globals.g_stringActiveRRs[stringToPlay] = getActiveRRPlayed(stringToPlay);
+		
+		if(stringChannelToSend < 1 || stringChannelToSend > 16){
+			return false;
+		}
 	
 		stringNoteId[stringToPlay] = Synth.addNoteOn(stringChannelToSend, Message.getNoteNumber(), Message.getVelocity(), 0);
 		notePlayedMethod[stringToPlay] = StringPlayingMethod.pianoRoll;
@@ -432,7 +443,15 @@ inline function stringWithClosestNote(notePlayed, currentHandPos){
 		}
 	}
 	
+	// setting up debugging possibly
+	
+	if(currString > 16){
+		return 16;
+	}else{
+	
 	return currString;
+	
+	}
 	
 	
 }

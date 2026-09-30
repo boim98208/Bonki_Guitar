@@ -44,9 +44,9 @@
  
  
  Globals.g_stringPerformance = [];
- Globals.g_stringPerformance.reserve(NUMOFSTRINGS);
- for(var i = 0; i < NUMOFSTRINGS; i++){
- 	Globals.g_stringPerformance[i] = PerformanceType.SUSTAIN;
+ Globals.g_stringPerformance.reserve(NUMOFSTRINGS * 2);
+ for(var i = 0; i < NUMOFSTRINGS * 2; i++){
+ 	Globals.g_stringPerformance.push(PerformanceType.SUSTAIN);
  }
  
  
@@ -191,9 +191,9 @@
  Globals.g_string1ActiveRR = "not playing";
  
  Globals.g_stringActiveRRs = [];
- Globals.g_stringActiveRRs.reserve(NUMOFSTRINGS);
+ Globals.g_stringActiveRRs.reserve(NUMOFSTRINGS * 2);
 
-for(i = 0; i < NUMOFSTRINGS; i++){
+for(i = 0; i < NUMOFSTRINGS * 2; i++){
 	Globals.g_stringActiveRRs.push(NO_NOTE);
 }
 
@@ -767,9 +767,9 @@ inline function distributeFretMarkersVertically(stringToDistribute, fretImages){
  	}
  
  	if(stringToForce != -1){
- 		whatToForce = ForceStringImages[stringToForce];
+ 	//	whatToForce = ForceStringImages[stringToForce];
  	
- 		whatToForce.set("visible", true);
+ 	//	whatToForce.set("visible", true);
  	}
  }
  
