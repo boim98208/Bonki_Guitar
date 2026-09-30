@@ -987,7 +987,7 @@ for(i = 0; i < PerformanceType.NUMOFPERFORMANCES; i++){
 // will need to look into getNumActiveGroups and getRRGroupsForMessage
 
 numOfRRs[PerformanceType.SUSTAIN] = 8;
-numOfRRs[PerformanceType.MUTE] = 7;
+numOfRRs[PerformanceType.MUTE] = 8;
 numOfRRs[PerformanceType.HARMONIC] = 1;
 numOfRRs[PerformanceType.LEGATOUP] = 1;
 numOfRRs[PerformanceType.LEGATODOWN] = 1;
@@ -1008,7 +1008,7 @@ for(i = 0; i < PerformanceType.NUMOFPERFORMANCES; i++){
 const var randomRRsToGoThrough = [];
 randomRRsToGoThrough.reserve(PerformanceType.NUMOFPERFORMANCES);
 
-for(i = 0; i < numOfRRs[i]; i++){
+for(i = 0; i < numOfRRs.length; i++){
 	randomRRsToGoThrough.push([]);
 	randomRRsToGoThrough[i].reserve(numOfRRs[i]);
 	
@@ -1016,6 +1016,8 @@ for(i = 0; i < numOfRRs[i]; i++){
 		randomRRsToGoThrough[i].push(j + 1);
 	}
 }
+
+
 
 inline function linearRR_incrementSamplersRR(stringPlaying){
 
@@ -1082,7 +1084,7 @@ inline function randomRR_incrementSamplersRR(stringPlaying){
 	rightSamplerToIncrement = AllRightSamplers[currArticulation][stringToPlay];
 	leftSamplerToIncrement = AllLeftSamplers[currArticulation][stringToPlay];
 	
-	Console.print(rightSamplerToIncrement.getId());
+
 	
 	
 	if(numOfRRs[currArticulation] >= 3){
@@ -1096,13 +1098,15 @@ inline function randomRR_incrementSamplersRR(stringPlaying){
 		shuffleArray(randomRRsToGoThrough[currArticulation]);
 		
 		while(randomRRsToGoThrough[currArticulation][0] == lastRRPlayed){
-		Console.print("are you coming here a lot");
+
 		
 		// avoid the exact same sample to play twice
 		shuffleArray(randomRRsToGoThrough[currArticulation]);
 		}
 		
 	}
+	
+
 	
 	RRForLeftSampler = randomRRsToGoThrough[currArticulation][randomRRCounters[currArticulation]];
 
@@ -1226,8 +1230,6 @@ inline function singleNoteStrum(notesToStrum, noteIdsToUpdate, noteVelocity)
 				numOfStringToStrum = i;
 			}
 		}
-		
-		Console.print(numOfStringToStrum);
 		
 	midiChannelToPlay = stringEnumToMidiChannel(numOfStringToStrum);
 	noteToStrum = notesToStrum[numOfStringToStrum];

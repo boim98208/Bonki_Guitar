@@ -862,6 +862,16 @@ inline function distributeFretMarkersVertically(stringToDistribute, fretImages){
  
  const var VibratoLFOFreqMods = Synth.getAllModulators("VibratoLFOFreqMod")
  
+ const var SourceSusRelAHDSR = Synth.getModulator("SourceSusRelAHDSR");
+ const var SusRelAHDSR = Synth.getAllModulators("SusRelAHDSR");
+ 
+ const var SourceMuteRelAHDSR = Synth.getModulator("SourceMuteRelAHDSR");
+ const var MuteRelAHDSR = Synth.getAllModulators("MuteRelAHDSR");
+ 
+ 
+ copyModulatorParams(SourceMuteRelAHDSR, MuteRelAHDSR);
+ 
+ copyModulatorParams(SourceSusRelAHDSR, SusRelAHDSR);
  
  copyModulatorParams(SourcePitchBendModulator, PitchBendModulators);
  
@@ -1457,8 +1467,6 @@ function onController()
 	
 	for(var stringToCheck = 0; stringToCheck < NUMOFSTRINGS; stringToCheck++){
 		if(Globals.g_stringNotes[stringToCheck] != NONOTE){
-			
-			Console.print(stringToCheck);
 
 			fretImgToControl = fretImages[stringToCheck][Globals.g_stringNotes[stringToCheck] - OPENSTRINGNOTES[stringToCheck]];
 			displayFret(fretImgToControl, stringToCheck);

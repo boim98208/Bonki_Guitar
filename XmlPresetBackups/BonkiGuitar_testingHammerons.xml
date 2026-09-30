@@ -70,10 +70,10 @@
                              height="54" parentComponent="StringFretMarkersPnl" itemColour="0"
                              itemColour2="0" textColour="16777215" bgColour="16777215">
                     <Component type="ScriptImage" id="String8Fret0Marker" x="193" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret1Marker" x="211" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret2Marker" x="250" y="20" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -88,7 +88,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret6Marker" x="382" y="22" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret7Marker" x="409" y="23" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -1391,10 +1391,10 @@
                     </Processor>
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
-                        <Processor Type="AHDSR" ID="SusRelAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
-                                   EcoMode="1.0">
+                        <Processor Type="AHDSR" ID="SourceSusRelAHDSR" Bypassed="0" Monophonic="0.0"
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.4705882668495178"
+                                   DecayCurve="0.0" Attack="33.26164245605469" AttackLevel="0.0"
+                                   Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -1618,9 +1618,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusRelAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
-                                   EcoMode="1.0">
+                                   Intensity="1.0" AttackCurve="0.4705882668495178" DecayCurve="0.0"
+                                   Attack="33.26164245605469" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -1844,9 +1844,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusRelAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
-                                   EcoMode="1.0">
+                                   Intensity="1.0" AttackCurve="0.4705882668495178" DecayCurve="0.0"
+                                   Attack="33.26164245605469" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -2070,9 +2070,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusRelAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
-                                   EcoMode="1.0">
+                                   Intensity="1.0" AttackCurve="0.4705882668495178" DecayCurve="0.0"
+                                   Attack="33.26164245605469" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -2296,9 +2296,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusRelAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
-                                   EcoMode="1.0">
+                                   Intensity="1.0" AttackCurve="0.4705882668495178" DecayCurve="0.0"
+                                   Attack="33.26164245605469" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -2522,9 +2522,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusRelAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
-                                   EcoMode="1.0">
+                                   Intensity="1.0" AttackCurve="0.4705882668495178" DecayCurve="0.0"
+                                   Attack="33.26164245605469" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -2748,9 +2748,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusRelAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
-                                   EcoMode="1.0">
+                                   Intensity="1.0" AttackCurve="0.4705882668495178" DecayCurve="0.0"
+                                   Attack="33.26164245605469" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -2974,9 +2974,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusRelAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
-                                   EcoMode="1.0">
+                                   Intensity="1.0" AttackCurve="0.4705882668495178" DecayCurve="0.0"
+                                   Attack="33.26164245605469" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -3244,10 +3244,10 @@
                     </Processor>
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
-                        <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
+                        <Processor Type="AHDSR" ID="SourceMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -3472,8 +3472,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -3698,8 +3698,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -3924,8 +3924,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -4150,8 +4150,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -4376,8 +4376,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -4602,8 +4602,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -4828,8 +4828,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -8403,9 +8403,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusRelAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.4705882668495178"
+                                   DecayCurve="0.0" Attack="33.26164245605469" AttackLevel="0.0"
+                                   Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -8630,9 +8630,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusRelAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.4705882668495178"
+                                   DecayCurve="0.0" Attack="33.26164245605469" AttackLevel="0.0"
+                                   Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -8857,9 +8857,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusRelAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.4705882668495178"
+                                   DecayCurve="0.0" Attack="33.26164245605469" AttackLevel="0.0"
+                                   Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -9084,9 +9084,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusRelAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.4705882668495178"
+                                   DecayCurve="0.0" Attack="33.26164245605469" AttackLevel="0.0"
+                                   Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -9311,9 +9311,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusRelAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.4705882668495178"
+                                   DecayCurve="0.0" Attack="33.26164245605469" AttackLevel="0.0"
+                                   Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -9538,9 +9538,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusRelAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.4705882668495178"
+                                   DecayCurve="0.0" Attack="33.26164245605469" AttackLevel="0.0"
+                                   Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -9765,9 +9765,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusRelAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.4705882668495178"
+                                   DecayCurve="0.0" Attack="33.26164245605469" AttackLevel="0.0"
+                                   Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -9992,9 +9992,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusRelAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.4705882668495178"
+                                   DecayCurve="0.0" Attack="33.26164245605469" AttackLevel="0.0"
+                                   Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -10266,8 +10266,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -10493,8 +10493,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -10720,8 +10720,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -10947,8 +10947,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -11174,8 +11174,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -11401,8 +11401,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -11628,8 +11628,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -11855,8 +11855,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -12170,9 +12170,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusRelAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
-                                   EcoMode="1.0">
+                                   Intensity="1.0" AttackCurve="0.4705882668495178" DecayCurve="0.0"
+                                   Attack="33.26164245605469" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -12396,9 +12396,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusRelAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
-                                   EcoMode="1.0">
+                                   Intensity="1.0" AttackCurve="0.4705882668495178" DecayCurve="0.0"
+                                   Attack="33.26164245605469" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -12622,9 +12622,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusRelAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
-                                   EcoMode="1.0">
+                                   Intensity="1.0" AttackCurve="0.4705882668495178" DecayCurve="0.0"
+                                   Attack="33.26164245605469" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -12848,9 +12848,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusRelAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
-                                   EcoMode="1.0">
+                                   Intensity="1.0" AttackCurve="0.4705882668495178" DecayCurve="0.0"
+                                   Attack="33.26164245605469" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -13074,9 +13074,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusRelAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
-                                   EcoMode="1.0">
+                                   Intensity="1.0" AttackCurve="0.4705882668495178" DecayCurve="0.0"
+                                   Attack="33.26164245605469" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -13300,9 +13300,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusRelAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
-                                   EcoMode="1.0">
+                                   Intensity="1.0" AttackCurve="0.4705882668495178" DecayCurve="0.0"
+                                   Attack="33.26164245605469" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -13526,9 +13526,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusRelAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
-                                   EcoMode="1.0">
+                                   Intensity="1.0" AttackCurve="0.4705882668495178" DecayCurve="0.0"
+                                   Attack="33.26164245605469" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -13752,9 +13752,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusRelAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
-                                   EcoMode="1.0">
+                                   Intensity="1.0" AttackCurve="0.4705882668495178" DecayCurve="0.0"
+                                   Attack="33.26164245605469" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -14024,8 +14024,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -14250,8 +14250,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -14476,8 +14476,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -14702,8 +14702,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -14928,8 +14928,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -15154,8 +15154,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -15380,8 +15380,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -15606,8 +15606,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -19181,9 +19181,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusRelAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.4705882668495178"
+                                   DecayCurve="0.0" Attack="33.26164245605469" AttackLevel="0.0"
+                                   Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -19408,9 +19408,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusRelAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.4705882668495178"
+                                   DecayCurve="0.0" Attack="33.26164245605469" AttackLevel="0.0"
+                                   Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -19635,9 +19635,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusRelAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.4705882668495178"
+                                   DecayCurve="0.0" Attack="33.26164245605469" AttackLevel="0.0"
+                                   Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -19862,9 +19862,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusRelAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.4705882668495178"
+                                   DecayCurve="0.0" Attack="33.26164245605469" AttackLevel="0.0"
+                                   Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -20089,9 +20089,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusRelAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.4705882668495178"
+                                   DecayCurve="0.0" Attack="33.26164245605469" AttackLevel="0.0"
+                                   Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -20316,9 +20316,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusRelAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.4705882668495178"
+                                   DecayCurve="0.0" Attack="33.26164245605469" AttackLevel="0.0"
+                                   Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -20543,9 +20543,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusRelAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.4705882668495178"
+                                   DecayCurve="0.0" Attack="33.26164245605469" AttackLevel="0.0"
+                                   Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -20770,9 +20770,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusRelAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.4705882668495178"
+                                   DecayCurve="0.0" Attack="33.26164245605469" AttackLevel="0.0"
+                                   Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -21044,8 +21044,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -21271,8 +21271,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -21498,8 +21498,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -21725,8 +21725,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -21952,8 +21952,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -22179,8 +22179,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -22406,8 +22406,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -22633,8 +22633,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="237.8019866943359" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="151.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
