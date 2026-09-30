@@ -159,14 +159,15 @@ const var NUMOFKEYSWITCHES = 4;
  //variables to correspond with the Fretdisplay
  
  //please refactor this later to all just be an array
- Globals.g_stringNote1 = NO_NOTE;
- Globals.g_stringNote2 = NO_NOTE;
- Globals.g_stringNote3 = NO_NOTE;
- Globals.g_stringNote4 = NO_NOTE;
- Globals.g_stringNote5 = NO_NOTE;
- Globals.g_stringNote6 = NO_NOTE;
  Globals.g_handPositionFret = 0;
- Globals.g_stringNotes = [NO_NOTE, NO_NOTE, NO_NOTE, NO_NOTE, NO_NOTE, NO_NOTE, NO_NOTE, NO_NOTE, NO_NOTE, NO_NOTE, NO_NOTE, NO_NOTE];
+ Globals.g_stringNotes = [];
+ Globals.g_stringNotes.reserve(NUMOFSTRINGS * 2);
+ 
+ for(i = 0; i < NUMOFSTRINGS * 2; i++){
+	 Globals.g_stringNotes.push(-1);
+ }
+ 
+ 
 
 
  /*
@@ -419,6 +420,8 @@ inline function updateGlobalStringNote(stringToUpdate, notePlayed, RRPlayed){
 The main logic for the "Natural" fretting mode in polyphony
 */
 inline function stringWithClosestNote(notePlayed, currentHandPos){
+	
+	// there's still something going on with string selection that makes it just go beyond 1 and 16 even when there's no avialable string
 	
 	local currString = StringType.NOSTRING;
 	//arbitrary big number to replace later
