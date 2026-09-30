@@ -38,6 +38,7 @@
      const var STRING6 = 5;
      const var STRING7 = 6;
      const var STRING8 = 7;
+     const var LOWESTSTRING = StringType.STRING8;
      const var LEGATOOFFSET = NUMOFSTRINGS;
      
      const var STRING1LEG = 8;

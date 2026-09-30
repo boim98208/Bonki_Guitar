@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<samplemap ID="Sustain_String8" RRGroupAmount="8.0" MicPositions=";" CrossfadeGamma="1.0">
+  <sample Root="56" LoKey="56" HiKey="57" LoVel="0" HiVel="127" RRGroup="3"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_G#2_RR03_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="56" LoKey="56" HiKey="57" LoVel="0" HiVel="127" RRGroup="2"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_G#2_RR02_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="56" LoKey="56" HiKey="57" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_G#2_RR01_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="44" LoKey="44" HiKey="45" LoVel="0" HiVel="127" RRGroup="7"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_G#1_RR07_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="44" LoKey="44" HiKey="45" LoVel="0" HiVel="127" RRGroup="6"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_G#1_RR06_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="44" LoKey="44" HiKey="45" LoVel="0" HiVel="127" RRGroup="5"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_G#1_RR05_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="44" LoKey="44" HiKey="45" LoVel="0" HiVel="127" RRGroup="4"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_G#1_RR04_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="44" LoKey="44" HiKey="45" LoVel="0" HiVel="127" RRGroup="3"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_G#1_RR03_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="44" LoKey="44" HiKey="45" LoVel="0" HiVel="127" RRGroup="2"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_G#1_RR02_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="44" LoKey="44" HiKey="45" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_G#1_RR01_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="54" LoKey="54" HiKey="55" LoVel="0" HiVel="127" RRGroup="7"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_F#2_RR07_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="54" LoKey="54" HiKey="55" LoVel="0" HiVel="127" RRGroup="6"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_F#2_RR06_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="54" LoKey="54" HiKey="55" LoVel="0" HiVel="127" RRGroup="5"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_F#2_RR05_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="54" LoKey="54" HiKey="55" LoVel="0" HiVel="127" RRGroup="4"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_F#2_RR04_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="54" LoKey="54" HiKey="55" LoVel="0" HiVel="127" RRGroup="3"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_F#2_RR03_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="54" LoKey="54" HiKey="55" LoVel="0" HiVel="127" RRGroup="2"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_F#2_RR02_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="54" LoKey="54" HiKey="55" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_F#2_RR01_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="42" LoKey="42" HiKey="43" LoVel="0" HiVel="127" RRGroup="7"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_F#1_RR07_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="42" LoKey="42" HiKey="43" LoVel="0" HiVel="127" RRGroup="6"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_F#1_RR06_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="42" LoKey="42" HiKey="43" LoVel="0" HiVel="127" RRGroup="5"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_F#1_RR05_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="42" LoKey="42" HiKey="43" LoVel="0" HiVel="127" RRGroup="4"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_F#1_RR04_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="42" LoKey="42" HiKey="43" LoVel="0" HiVel="127" RRGroup="3"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_F#1_RR03_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="42" LoKey="42" HiKey="43" LoVel="0" HiVel="127" RRGroup="2"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_F#1_RR02_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="42" LoKey="42" HiKey="43" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_F#1_RR01_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="64" LoKey="64" HiKey="64" LoVel="0" HiVel="127" RRGroup="7"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_E3_RR07_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="64" LoKey="64" HiKey="64" LoVel="0" HiVel="127" RRGroup="6"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_E3_RR06_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="64" LoKey="64" HiKey="64" LoVel="0" HiVel="127" RRGroup="5"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_E3_RR05_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="64" LoKey="64" HiKey="64" LoVel="0" HiVel="127" RRGroup="4"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_E3_RR04_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="64" LoKey="64" HiKey="64" LoVel="0" HiVel="127" RRGroup="3"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_E3_RR03_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="64" LoKey="64" HiKey="64" LoVel="0" HiVel="127" RRGroup="2"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_E3_RR02_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="64" LoKey="64" HiKey="64" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_E3_RR01_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="52" LoKey="52" HiKey="53" LoVel="0" HiVel="127" RRGroup="7"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_E2_RR07_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="52" LoKey="52" HiKey="53" LoVel="0" HiVel="127" RRGroup="6"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_E2_RR06_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="52" LoKey="52" HiKey="53" LoVel="0" HiVel="127" RRGroup="5"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_E2_RR05_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="52" LoKey="52" HiKey="53" LoVel="0" HiVel="127" RRGroup="4"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_E2_RR04_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="52" LoKey="52" HiKey="53" LoVel="0" HiVel="127" RRGroup="3"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_E2_RR03_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="52" LoKey="52" HiKey="53" LoVel="0" HiVel="127" RRGroup="2"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_E2_RR02_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="52" LoKey="52" HiKey="53" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_E2_RR01_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="40" LoKey="40" HiKey="41" LoVel="0" HiVel="127" RRGroup="7"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_E1_RR07_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="40" LoKey="40" HiKey="41" LoVel="0" HiVel="127" RRGroup="6"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_E1_RR06_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="40" LoKey="40" HiKey="41" LoVel="0" HiVel="127" RRGroup="5"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_E1_RR05_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="40" LoKey="40" HiKey="41" LoVel="0" HiVel="127" RRGroup="4"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_E1_RR04_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="40" LoKey="40" HiKey="41" LoVel="0" HiVel="127" RRGroup="3"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_E1_RR03_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="40" LoKey="40" HiKey="41" LoVel="0" HiVel="127" RRGroup="2"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_E1_RR02_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="40" LoKey="40" HiKey="41" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_E1_RR01_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="62" LoKey="62" HiKey="63" LoVel="0" HiVel="127" RRGroup="7"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_D3_RR07_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="62" LoKey="62" HiKey="63" LoVel="0" HiVel="127" RRGroup="6"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_D3_RR06_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="62" LoKey="62" HiKey="63" LoVel="0" HiVel="127" RRGroup="5"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_D3_RR05_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="62" LoKey="62" HiKey="63" LoVel="0" HiVel="127" RRGroup="4"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_D3_RR04_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="62" LoKey="62" HiKey="63" LoVel="0" HiVel="127" RRGroup="3"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_D3_RR03_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="62" LoKey="62" HiKey="63" LoVel="0" HiVel="127" RRGroup="2"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_D3_RR02_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="62" LoKey="62" HiKey="63" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_D3_RR01_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="50" LoKey="50" HiKey="51" LoVel="0" HiVel="127" RRGroup="7"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_D2_RR07_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="50" LoKey="50" HiKey="51" LoVel="0" HiVel="127" RRGroup="6"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_D2_RR06_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="50" LoKey="50" HiKey="51" LoVel="0" HiVel="127" RRGroup="5"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_D2_RR05_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="50" LoKey="50" HiKey="51" LoVel="0" HiVel="127" RRGroup="4"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_D2_RR04_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="50" LoKey="50" HiKey="51" LoVel="0" HiVel="127" RRGroup="3"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_D2_RR03_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="50" LoKey="50" HiKey="51" LoVel="0" HiVel="127" RRGroup="2"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_D2_RR02_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="50" LoKey="50" HiKey="51" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_D2_RR01_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="60" LoKey="60" HiKey="61" LoVel="0" HiVel="127" RRGroup="6"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_C3_RR06_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="60" LoKey="60" HiKey="61" LoVel="0" HiVel="127" RRGroup="5"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_C3_RR05_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="60" LoKey="60" HiKey="61" LoVel="0" HiVel="127" RRGroup="4"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_C3_RR04_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="60" LoKey="60" HiKey="61" LoVel="0" HiVel="127" RRGroup="3"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_C3_RR03_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="60" LoKey="60" HiKey="61" LoVel="0" HiVel="127" RRGroup="2"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_C3_RR02_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="60" LoKey="60" HiKey="61" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_C3_RR01_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="48" LoKey="48" HiKey="49" LoVel="0" HiVel="127" RRGroup="7"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_C2_RR07_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="48" LoKey="48" HiKey="49" LoVel="0" HiVel="127" RRGroup="6"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_C2_RR06_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="48" LoKey="48" HiKey="49" LoVel="0" HiVel="127" RRGroup="5"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_C2_RR05_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="48" LoKey="48" HiKey="49" LoVel="0" HiVel="127" RRGroup="4"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_C2_RR04_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="48" LoKey="48" HiKey="49" LoVel="0" HiVel="127" RRGroup="3"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_C2_RR03_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="48" LoKey="48" HiKey="49" LoVel="0" HiVel="127" RRGroup="2"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_C2_RR02_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="48" LoKey="48" HiKey="49" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_C2_RR01_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="58" LoKey="58" HiKey="59" LoVel="0" HiVel="127" RRGroup="7"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_A#2_RR07_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="58" LoKey="58" HiKey="59" LoVel="0" HiVel="127" RRGroup="6"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_A#2_RR06_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="58" LoKey="58" HiKey="59" LoVel="0" HiVel="127" RRGroup="5"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_A#2_RR05_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="58" LoKey="58" HiKey="59" LoVel="0" HiVel="127" RRGroup="4"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_A#2_RR04_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="58" LoKey="58" HiKey="59" LoVel="0" HiVel="127" RRGroup="3"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_A#2_RR03_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="58" LoKey="58" HiKey="59" LoVel="0" HiVel="127" RRGroup="2"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_A#2_RR02_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="58" LoKey="58" HiKey="59" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_A#2_RR01_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="46" LoKey="46" HiKey="47" LoVel="0" HiVel="127" RRGroup="7"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_A#1_RR07_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="46" LoKey="46" HiKey="47" LoVel="0" HiVel="127" RRGroup="6"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_A#1_RR06_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="46" LoKey="46" HiKey="47" LoVel="0" HiVel="127" RRGroup="5"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_A#1_RR05_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="46" LoKey="46" HiKey="47" LoVel="0" HiVel="127" RRGroup="4"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_A#1_RR04_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="46" LoKey="46" HiKey="47" LoVel="0" HiVel="127" RRGroup="3"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_A#1_RR03_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="46" LoKey="46" HiKey="47" LoVel="0" HiVel="127" RRGroup="2"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_A#1_RR02_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="46" LoKey="46" HiKey="47" LoVel="0" HiVel="127" RRGroup="1"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_A#1_RR01_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="56" LoKey="56" HiKey="57" LoVel="0" HiVel="127" RRGroup="7"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_G#2_RR07_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="56" LoKey="56" HiKey="57" LoVel="0" HiVel="127" RRGroup="6"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_G#2_RR06_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="56" LoKey="56" HiKey="57" LoVel="0" HiVel="127" RRGroup="5"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_G#2_RR05_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="56" LoKey="56" HiKey="57" LoVel="0" HiVel="127" RRGroup="4"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Sustain_String8_Dynamic1_Tuned_G#2_RR04_XTail1.wav"
+          Duplicate="1"/>
+  <sample Root="50" LoKey="50" HiKey="51" LoVel="0" HiVel="127" RRGroup="8"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Sustain_String8_Dynamic1_Tuned_D2_Tail1.wav"
+          Duplicate="1"/>
+  <sample Root="48" LoKey="48" HiKey="49" LoVel="0" HiVel="127" RRGroup="8"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Sustain_String8_Dynamic1_Tuned_C2_Tail1.wav"
+          Duplicate="1"/>
+  <sample Root="46" LoKey="46" HiKey="47" LoVel="0" HiVel="127" RRGroup="8"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Sustain_String8_Dynamic1_Tuned_A#1_Tail1.wav"
+          Duplicate="1"/>
+  <sample Root="44" LoKey="44" HiKey="45" LoVel="0" HiVel="127" RRGroup="8"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Sustain_String8_Dynamic1_Tuned_G#1_Tail1.wav"
+          Duplicate="1"/>
+  <sample Root="42" LoKey="42" HiKey="43" LoVel="0" HiVel="127" RRGroup="8"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Sustain_String8_Dynamic1_Tuned_F#1_Tail1.wav"
+          Duplicate="1"/>
+  <sample Root="40" LoKey="40" HiKey="41" LoVel="0" HiVel="127" RRGroup="8"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Sustain_String8_Dynamic1_Tuned_E1_Tail1.wav"
+          Duplicate="1"/>
+  <sample Root="64" LoKey="64" HiKey="64" LoVel="0" HiVel="127" RRGroup="8"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Sustain_String8_Dynamic1_Tuned_E3_Tail1.wav"
+          Duplicate="1"/>
+  <sample Root="62" LoKey="62" HiKey="63" LoVel="0" HiVel="127" RRGroup="8"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Sustain_String8_Dynamic1_Tuned_D3_Tail1.wav"
+          Duplicate="1"/>
+  <sample Root="60" LoKey="60" HiKey="61" LoVel="0" HiVel="127" RRGroup="8"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Sustain_String8_Dynamic1_Tuned_C3_Tail1.wav"
+          Duplicate="1"/>
+  <sample Root="58" LoKey="58" HiKey="59" LoVel="0" HiVel="127" RRGroup="8"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Sustain_String8_Dynamic1_Tuned_A#2_Tail1.wav"
+          Duplicate="1"/>
+  <sample Root="56" LoKey="56" HiKey="57" LoVel="0" HiVel="127" RRGroup="8"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Sustain_String8_Dynamic1_Tuned_G#2_Tail1.wav"
+          Duplicate="1"/>
+  <sample Root="54" LoKey="54" HiKey="55" LoVel="0" HiVel="127" RRGroup="8"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Sustain_String8_Dynamic1_Tuned_F#2_Tail1.wav"
+          Duplicate="1"/>
+  <sample Root="52" LoKey="52" HiKey="53" LoVel="0" HiVel="127" RRGroup="8"
+          FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Sustain_String8_Dynamic1_Tuned_E2_Tail1.wav"
+          Duplicate="1"/>
+</samplemap>

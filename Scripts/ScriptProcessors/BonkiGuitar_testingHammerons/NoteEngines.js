@@ -251,7 +251,6 @@ inline function playString(stringToPlay){
 	if(!Globals.g_strummingModeOn){
 	Globals.g_stringActiveRRs[stringToPlay] = getActiveRRPlayed(stringToPlay);
 	
-	Console.print(stringChannelToSend);
 		stringNoteId[stringToPlay] = Synth.addNoteOn(stringChannelToSend, Message.getNoteNumber(), Message.getVelocity(), 0);
 		notePlayedMethod[stringToPlay] = StringPlayingMethod.pianoRoll;
 		incrementRR(stringToPlay);
@@ -416,12 +415,10 @@ inline function stringWithClosestNote(notePlayed, currentHandPos){
 	local distToCompare;
 	
 	for(i = NUMOFSTRINGS - 1; i > -1; i--){
-		Console.print(i);
+
 	
 		if(stringNote[i] == -1 && isBetweenIncl(notePlayed, OPENSTRINGNOTES[i], OPENSTRINGNOTES[i] + NOTESPERSTRING)){
 		
-		
-		Console.print("string " + i + " has an open string note of " + OPENSTRINGNOTES[i]);
 		
 		// the - 2 fixes it for some reason. It seems that without it the system just straight up misses notes
 		
@@ -593,9 +590,9 @@ inline function naturalFretting2_2_1(notePlayed, currentHandPos)
 	         }
 		}
 		
-		if(stringToPlay == StringType.STRING6){
-			if(notePlayed < currentHandPos + OPENSTRING6NOTE){
-				newHandPos = notePlayed - OPENSTRING6NOTE;
+		if(stringToPlay == StringType.LOWESTSTRING){
+			if(notePlayed < currentHandPos + OPENSTRINGNOTES[StringType.LOWESTSTRING]){
+				newHandPos = notePlayed - OPENSTRINGNOTES[StringType.LOWESTSTRING];
 				return newHandPos;
 			
 			}
@@ -989,8 +986,8 @@ for(i = 0; i < PerformanceType.NUMOFPERFORMANCES; i++){
 // I'd rather do this manually but the functions are bugging out on me for some reason
 // will need to look into getNumActiveGroups and getRRGroupsForMessage
 
-numOfRRs[PerformanceType.SUSTAIN] = 1;
-numOfRRs[PerformanceType.MUTE] = 1;
+numOfRRs[PerformanceType.SUSTAIN] = 8;
+numOfRRs[PerformanceType.MUTE] = 7;
 numOfRRs[PerformanceType.HARMONIC] = 1;
 numOfRRs[PerformanceType.LEGATOUP] = 1;
 numOfRRs[PerformanceType.LEGATODOWN] = 1;
@@ -1005,7 +1002,7 @@ for(i = 0; i < PerformanceType.NUMOFPERFORMANCES; i++){
 	randomRRCounters.push(0);
 }
 
-Console.print(randomRRCounters[0]);
+
 
 
 const var randomRRsToGoThrough = [];
@@ -1085,6 +1082,8 @@ inline function randomRR_incrementSamplersRR(stringPlaying){
 	rightSamplerToIncrement = AllRightSamplers[currArticulation][stringToPlay];
 	leftSamplerToIncrement = AllLeftSamplers[currArticulation][stringToPlay];
 	
+	Console.print(rightSamplerToIncrement.getId());
+	
 	
 	if(numOfRRs[currArticulation] >= 3){
 	
@@ -1097,6 +1096,8 @@ inline function randomRR_incrementSamplersRR(stringPlaying){
 		shuffleArray(randomRRsToGoThrough[currArticulation]);
 		
 		while(randomRRsToGoThrough[currArticulation][0] == lastRRPlayed){
+		Console.print("are you coming here a lot");
+		
 		// avoid the exact same sample to play twice
 		shuffleArray(randomRRsToGoThrough[currArticulation]);
 		}
@@ -1104,11 +1105,14 @@ inline function randomRR_incrementSamplersRR(stringPlaying){
 	}
 	
 	RRForLeftSampler = randomRRsToGoThrough[currArticulation][randomRRCounters[currArticulation]];
+
 	
 	RRForRightSampler = (RRForLeftSampler % numOfRRs[currArticulation]) + 1;
 	
 	rightSamplerToIncrement.asSampler().setActiveGroup(RRForRightSampler);
+	
 	leftSamplerToIncrement.asSampler().setActiveGroup(RRForLeftSampler);
+	
 	
 	}else{
 		

@@ -218,6 +218,9 @@ for(i = 0; i < NUMOFSTRINGS; i++){
  
  inline function onDoubleTrackingBtnControl(component, value)
  {
+	
+
+
  	if(value){
  		LeftGuitarGain.setAttribute(LeftGuitarGain.Balance, -100.0);
  	
