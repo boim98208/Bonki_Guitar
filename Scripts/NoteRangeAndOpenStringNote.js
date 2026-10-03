@@ -17,7 +17,7 @@
  
  const var NO_NOTE = -1;
  
- const var NOTESPERSTRING = 26;
+ const var NOTESPERSTRING = 25;
  
  const var OPENSTRINGNONOTE = POSINFINITY;
  

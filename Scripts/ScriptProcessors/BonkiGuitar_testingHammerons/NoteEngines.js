@@ -303,6 +303,7 @@ inline function getActiveRRPlayed(stringToPlay){
 	local currArticulation = Globals.g_currArticulationPlaying;
 	local currRandomRRCounter = randomRRCounters[currArticulation];
 	
+	
 	if(Globals.g_currRRBehaviour == RRBehaviour.LINEAR){
 		return linearRRCounter;
 	}else if(Globals.g_currRRBehaviour == RRBehaviour.RANDOM){
@@ -330,40 +331,9 @@ inline function updateGlobalStringNote(stringToUpdate, notePlayed, RRPlayed){
  
 
  
- inline function updateGlobals(){
- 
- 	if(stringNote[StringType.STRING1LEG] == NO_NOTE)
-		Globals.g_stringNote1 = stringNote[StringType.STRING1];
-	else
-		Globals.g_stringNote1 = stringNote[StringType.STRING1LEG];
-		
-	if(stringNote[StringType.STRING2LEG] == NO_NOTE)
-		Globals.g_stringNote2 = stringNote[StringType.STRING2];
-	else
-		Globals.g_stringNote2 = stringNote[StringType.STRING2LEG];
-		
-	if(stringNote[StringType.STRING3LEG] == NO_NOTE)
-		Globals.g_stringNote3 = stringNote[StringType.STRING3];
-	else
-		Globals.g_stringNote3 = stringNote[StringType.STRING3LEG];
-		
-	if(stringNote[StringType.STRING4LEG] == NO_NOTE)
-		Globals.g_stringNote4 = stringNote[StringType.STRING4];
-	else{
-		Globals.g_stringNote4 = stringNote[StringType.STRING4LEG];
-		}
-		
-	if(stringNote[StringType.STRING5LEG] == NO_NOTE)
-		Globals.g_stringNote5 = stringNote[StringType.STRING5];
-	else
-		Globals.g_stringNote5 = stringNote[StringType.STRING5LEG];
-		
-	if(stringNote[StringType.STRING6LEG] == NO_NOTE)
-		Globals.g_stringNote6 = stringNote[StringType.STRING6];
-	else
-		Globals.g_stringNote6 = stringNote[StringType.STRING6LEG];
 
- }
+ 
+
  
  inline function isPolyphonyPlaying(){
 	 return Synth.getNumPressedKeys() > 1;
@@ -431,7 +401,7 @@ inline function stringWithClosestNote(notePlayed, currentHandPos){
 	for(i = NUMOFSTRINGS - 1; i > -1; i--){
 
 	
-		if(stringNote[i] == -1 && isBetweenIncl(notePlayed, OPENSTRINGNOTES[i], OPENSTRINGNOTES[i] + NOTESPERSTRING)){
+		if(stringNote[i] == -1 && isBetweenIncl(notePlayed, OPENSTRINGNOTES[i], OPENSTRINGNOTES[i] + NOTESPERSTRING - 1)){
 		
 		
 		// the - 2 fixes it for some reason. It seems that without it the system just straight up misses notes
@@ -506,7 +476,7 @@ inline function forceStringLogic(notePlayed, currentHandPos, fretSpaceToChange)
 	
 	stringNote[Globals.g_forcedString] = notePlayed; 
 	
-	updateGlobals(); 
+
 	playString(Globals.g_forcedString);
 	Globals.g_stringPerformance[Globals.g_forcedString] = Globals.g_currArticulationPlaying;
 	
@@ -588,8 +558,6 @@ inline function naturalFretting2_2_1(notePlayed, currentHandPos)
 	
 	playString(stringToPlay);
 	
-	
-	updateGlobals();
 	
 	
 	//when there's polyphony, virtual guitarist moves hand to wherever the biggest change in pos is
@@ -682,7 +650,6 @@ inline function melodyFretting1_0_0(notePlayed, currentHandPos)
 	stringNote[stringToPlay] = notePlayed;
 	playString(stringToPlay);
 	
-	updateGlobals();
 	
 	
 	//when there's polyphony, virtual guitarist moves hand to wherever the biggest change in pos is
@@ -766,7 +733,6 @@ inline function melodyFretting1_0_0(notePlayed, currentHandPos)
 	 	 	 	stringNote[i] = notePlayed;
 				stringNote[i + StringType.LEGATOOFFSET] = notePlayed;
 	 	 	 	 playString(i + StringType.LEGATOOFFSET);
-	 	 	 	 updateGlobals();
 	 	 	 	 return isNoteInRange;
 	 	  	 }
  	 	
@@ -1018,9 +984,9 @@ numOfRRs[PerformanceType.LEGATODOWN] = 1;
 numOfRRs[PerformanceType.TREMOLO] = 1;
 
 const var randomRRCounters = [];
-randomRRCounters.reserve(PerformanceType.NUMOFPERFORMANCES);
+randomRRCounters.reserve(PerformanceType.NUMOFPERFORMANCES * 2);
 
-for(i = 0; i < PerformanceType.NUMOFPERFORMANCES; i++){
+for(i = 0; i < PerformanceType.NUMOFPERFORMANCES * 2; i++){
 	randomRRCounters.push(0);
 }
 
@@ -1762,7 +1728,7 @@ function onNoteOff()
 		NoteIdLabels[i].set("text", stringNoteId[i]);
 	}
     
-    updateGlobals();
+
 }function onController()
 {
 	

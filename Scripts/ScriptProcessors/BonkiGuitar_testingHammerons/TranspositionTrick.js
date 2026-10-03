@@ -3,13 +3,33 @@
  include("NoteRangeAndOpenStringNote.js");function onNoteOn()
 {
 	local noteNumber = Message.getNoteNumber();
+	local stringToPlay = Message.getChannel();
+	local stringEnumToPlay = stringToPlay - 1;
+	local OpenNoteOfStringPlayed = OPENSTRINGNOTES[stringEnumToPlay];
+	local highestNoteOfStringPlayed = OpenNoteOfStringPlayed + NOTESPERSTRING;
+	
+	
+
 	
 	if(noteNumber >= LOWESTNOTE && noteNumber <= HIGHESTNOTE){
-		Message.setTransposeAmount(2);
-		Message.setCoarseDetune(-2);
+		if(noteNumber >= highestNoteOfStringPlayed - NOTEPITCHSPREAD){
+
+		
+			Message.setTransposeAmount(-NOTEPITCHSPREAD);
+			Message.setCoarseDetune(NOTEPITCHSPREAD);
+		}else{
+			
+
+		
+	
+		Message.setTransposeAmount(NOTEPITCHSPREAD);
+		Message.setCoarseDetune(-NOTEPITCHSPREAD);
+		}
 	}else{
+	
 		Message.ignoreEvent(true);
 	}
+	
 }
  function onNoteOff()
 {
