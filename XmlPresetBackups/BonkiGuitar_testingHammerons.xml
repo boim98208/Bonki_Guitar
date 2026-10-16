@@ -27,19 +27,19 @@
             <Control type="ScriptSlider" id="SustainModulatorsSustain" value="0.0"/>
             <Control type="ScriptSlider" id="SustainModulatorsRelease" value="151.0"/>
             <Control type="ScriptButton" id="PurgeSustainBtn" value="1.0"/>
-            <Control type="ScriptSlider" id="SustainModulatorsVolume" value="151.0"/>
+            <Control type="ScriptSlider" id="SustainModulatorsVolume" value="-3.869999885559082"/>
             <Control type="ScriptSlider" id="MuteModulatorsAttack" value="0.0"/>
             <Control type="ScriptSlider" id="MuteModulatorsDecay" value="0.0"/>
             <Control type="ScriptSlider" id="MuteModulatorsMute" value="0.0"/>
             <Control type="ScriptSlider" id="MuteModulatorsRelease" value="628.1900024414062"/>
             <Control type="ScriptButton" id="PurgeMuteBtn" value="1.0"/>
-            <Control type="ScriptSlider" id="MuteModulatorsVolume" value="151.0"/>
+            <Control type="ScriptSlider" id="MuteModulatorsVolume" value="0.0"/>
             <Control type="ScriptSlider" id="HarmonicModulatorsAttack" value="0.0"/>
             <Control type="ScriptSlider" id="HarmonicModulatorsDecay" value="0.0"/>
             <Control type="ScriptSlider" id="HarmonicModulatorsHarmonic" value="0.0"/>
             <Control type="ScriptSlider" id="HarmonicModulatorsRelease" value="151.0"/>
             <Control type="ScriptButton" id="PurgeHarmonicBtn" value="1.0"/>
-            <Control type="ScriptSlider" id="HarmonicModulatorsVolume" value="151.0"/>
+            <Control type="ScriptSlider" id="HarmonicModulatorsVolume" value="0.0"/>
             <Control type="ScriptButton" id="EnableTremStretchButton" value="0.0"/>
             <Control type="ScriptSlider" id="TremoloModulatorsAttack" value="0.0"/>
             <Control type="ScriptSlider" id="TremoloModulatorsDecay" value="0.0"/>
@@ -47,7 +47,7 @@
             <Control type="ScriptSlider" id="TremoloModulatorsRelease" value="90.30000305175781"/>
             <Control type="ScriptSlider" id="TremoloTimestretchKnob" value="1.0"/>
             <Control type="ScriptButton" id="PurgeTremoloBtn" value="1.0"/>
-            <Control type="ScriptSlider" id="TremoloModulatorsVolume" value="151.0"/>
+            <Control type="ScriptSlider" id="TremoloModulatorsVolume" value="0.0"/>
             <Control type="ScriptSlider" id="SFXModulatorsAttack" value="0.0"/>
             <Control type="ScriptSlider" id="SFXModulatorsDecay" value="0.0"/>
             <Control type="ScriptSlider" id="SFXModulatorsSFX" value="0.0"/>
@@ -962,9 +962,9 @@
                              scaleFactor="0.5" defaultValue="1.0"/>
                   <Component type="ScriptSlider" id="SustainModulatorsVolume" x="735" y="7"
                              filmstripImage="{PROJECT_FOLDER}General_Knob_Filmstrip.png" numStrips="100.0"
-                             scaleFactor="0.25" max="20000.0" mouseSensitivity="0.5" showValuePopup="Left"
-                             middlePosition="150.0" parentComponent="SustainModulatorsPnl"
-                             width="52" mode="Time" defaultValue="151.0" macroControl="No MacroControl"/>
+                             scaleFactor="0.25" max="0.0" mouseSensitivity="0.5" showValuePopup="Left"
+                             middlePosition="-4" parentComponent="SustainModulatorsPnl" width="52"
+                             mode="Decibel" macroControl="No MacroControl" min="-100.0"/>
                 </Component>
                 <Component type="ScriptPanel" id="MuteModulatorsPnl" x="7" y="206" width="1000"
                            height="60" parentComponent="ArticulationBG" itemColour="0" itemColour2="0"
@@ -994,9 +994,9 @@
                              height="30" parentComponent="MuteModulatorsPnl" text="Bruh" filmstripImage="{PROJECT_FOLDER}Articulation_PurgeButton_Filmstrip.png"
                              scaleFactor="0.5" defaultValue="1.0"/>
                   <Component type="ScriptSlider" id="MuteModulatorsVolume" x="735" y="7" filmstripImage="{PROJECT_FOLDER}General_Knob_Filmstrip.png"
-                             numStrips="100.0" scaleFactor="0.25" max="20000.0" mouseSensitivity="0.5"
-                             showValuePopup="Left" middlePosition="150.0" parentComponent="MuteModulatorsPnl"
-                             width="52" mode="Time" defaultValue="151.0" macroControl="No MacroControl"/>
+                             numStrips="100.0" scaleFactor="0.25" max="0.0" mouseSensitivity="0.5"
+                             showValuePopup="Left" middlePosition="-4" parentComponent="MuteModulatorsPnl"
+                             width="52" mode="Decibel" macroControl="No MacroControl" min="-100.0"/>
                 </Component>
                 <Component type="ScriptPanel" id="HarmonicModulatorsPnl" x="14" y="266"
                            width="1000" height="60" parentComponent="ArticulationBG" itemColour="0"
@@ -1031,9 +1031,9 @@
                              scaleFactor="0.5" defaultValue="1.0"/>
                   <Component type="ScriptSlider" id="HarmonicModulatorsVolume" x="735" y="7"
                              filmstripImage="{PROJECT_FOLDER}General_Knob_Filmstrip.png" numStrips="100.0"
-                             scaleFactor="0.25" max="20000.0" mouseSensitivity="0.5" showValuePopup="Left"
-                             middlePosition="150.0" parentComponent="HarmonicModulatorsPnl"
-                             width="52" mode="Time" defaultValue="151.0" macroControl="No MacroControl"/>
+                             scaleFactor="0.25" max="0.0" mouseSensitivity="0.5" showValuePopup="Left"
+                             middlePosition="-4" parentComponent="HarmonicModulatorsPnl" width="52"
+                             mode="Decibel" macroControl="No MacroControl" min="-100.0"/>
                 </Component>
                 <Component type="ScriptPanel" id="TremoloModulatorsPnl" x="20" y="325" width="1000"
                            height="60" parentComponent="ArticulationBG" itemColour="0" itemColour2="0"
@@ -1078,9 +1078,9 @@
                              scaleFactor="0.5" defaultValue="1.0"/>
                   <Component type="ScriptSlider" id="TremoloModulatorsVolume" x="735" y="7"
                              filmstripImage="{PROJECT_FOLDER}General_Knob_Filmstrip.png" numStrips="100.0"
-                             scaleFactor="0.25" max="20000.0" mouseSensitivity="0.5" showValuePopup="Left"
-                             middlePosition="150.0" parentComponent="TremoloModulatorsPnl"
-                             width="52" mode="Time" defaultValue="151.0" macroControl="No MacroControl"/>
+                             scaleFactor="0.25" max="0.0" mouseSensitivity="0.5" showValuePopup="Left"
+                             middlePosition="-4" parentComponent="TremoloModulatorsPnl" width="52"
+                             mode="Decibel" macroControl="No MacroControl" min="-100.0"/>
                 </Component>
                 <Component type="ScriptPanel" id="SFXModulatorsPnl" x="29" y="387" width="952"
                            height="60" parentComponent="ArticulationBG" itemColour="0" itemColour2="0"
@@ -1109,9 +1109,9 @@
                              filmstripImage="{PROJECT_FOLDER}Articulation_PurgeButton_Filmstrip.png"
                              scaleFactor="0.5" defaultValue="1.0"/>
                   <Component type="ScriptSlider" id="SFXModulatorsVolume" x="735" y="7" filmstripImage="{PROJECT_FOLDER}General_Knob_Filmstrip.png"
-                             numStrips="100.0" scaleFactor="0.25" max="20000.0" mouseSensitivity="0.5"
-                             showValuePopup="Left" middlePosition="150.0" parentComponent="SFXModulatorsPnl"
-                             width="52" mode="Time" defaultValue="151.0" macroControl="No MacroControl"/>
+                             numStrips="100.0" scaleFactor="0.25" max="0.0" mouseSensitivity="0.5"
+                             showValuePopup="Left" middlePosition="-4" parentComponent="SFXModulatorsPnl"
+                             width="52" mode="Decibel" macroControl="No MacroControl" min="-100.0"/>
                 </Component>
                 <Component type="ScriptButton" id="NextPageBtn" x="50" y="80" width="25"
                            height="28" parentComponent="ArticulationBG" isMomentary="1"
@@ -1245,8 +1245,8 @@
                 </Processor>
                 <Processor Type="EffectChain" ID="FX" Bypassed="0">
                   <ChildProcessors>
-                    <Processor Type="SimpleGain" ID="LeftSusGain" Bypassed="0" Gain="0.0" Delay="0.0"
-                               Width="100.0" Balance="0.0" InvertPolarity="0.0">
+                    <Processor Type="SimpleGain" ID="LeftSusGain" Bypassed="0" Gain="-3.87000036239624"
+                               Delay="0.0" Width="100.0" Balance="0.0" InvertPolarity="0.0">
                       <ChildProcessors>
                         <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
                           <ChildProcessors/>
@@ -12029,8 +12029,8 @@
                 </Processor>
                 <Processor Type="EffectChain" ID="FX" Bypassed="0">
                   <ChildProcessors>
-                    <Processor Type="SimpleGain" ID="RightSusGain" Bypassed="0" Gain="0.0" Delay="0.0"
-                               Width="100.0" Balance="0.0" InvertPolarity="0.0">
+                    <Processor Type="SimpleGain" ID="RightSusGain" Bypassed="0" Gain="-3.87000036239624"
+                               Delay="0.0" Width="100.0" Balance="0.0" InvertPolarity="0.0">
                       <ChildProcessors>
                         <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
                           <ChildProcessors/>

@@ -949,7 +949,6 @@ inline function distributeFretMarkersVertically(stringToDistribute, fretImages){
  AHDSRAttributes[AHDSRIndices.release] = SampleAHDSR.Release;
  
  
- 
  const var SustainAHDSRKnobs = [Content.getComponent("SustainModulatorsAttack"),
                                 Content.getComponent("SustainModulatorsDecay"),
                                 Content.getComponent("SustainModulatorsSustain"),
@@ -958,6 +957,16 @@ inline function distributeFretMarkersVertically(stringToDistribute, fretImages){
  const var SusAHDSRModulators = Synth.getAllModulators("SusAHDSR");
  
  
+ const var RightSusGain = Synth.getEffect("RightSusGain");
+ const var LeftSusGain = Synth.getEffect("LeftSusGain");
+ 
+ inline function onSustainModulatorsVolumeControl(component, value)
+ {
+ 	RightSusGain.setAttribute(RightSusGain.Gain, value);
+ 	LeftSusGain.setAttribute(LeftSusGain.Gain, value);
+ };
+ 
+ Content.getComponent("SustainModulatorsVolume").setControlCallback(onSustainModulatorsVolumeControl);
  
  
  inline function onSustainAHDSRControl(component, value)
@@ -990,6 +999,17 @@ inline function distributeFretMarkersVertically(stringToDistribute, fretImages){
  
  const var MuteAHDSRModulators = Synth.getAllModulators("MuteAHDSR");
  
+ const var RightMuteGain = Synth.getEffect("RightMuteGain");
+ const var LeftMuteGain = Synth.getEffect("LeftMuteGain");
+ 
+ inline function onMuteModulatorsVolumeControl(component, value)
+ {
+ 	RightMuteGain.setAttribute(RightMuteGain.Gain, value);
+ 	LeftMuteGain.setAttribute(LeftMuteGain.Gain, value);
+ };
+ 
+ Content.getComponent("MuteModulatorsVolume").setControlCallback(onMuteModulatorsVolumeControl);
+ 
  
  inline function onMuteAHDSRControl(component, value)
  {
@@ -1014,9 +1034,16 @@ inline function distributeFretMarkersVertically(stringToDistribute, fretImages){
                              Content.getComponent("HarmonicModulatorsHarmonic"),
                              Content.getComponent("HarmonicModulatorsRelease")];
  
+ const var RightHarmonicGain = Synth.getEffect("RightHarmonicGain");
+ const var LeftHarmonicGain = Synth.getEffect("LeftHarmonicGain");
  
- const var HarmonicAHDSRModulators = Synth.getAllModulators("HarmonicAHDSR");
+ inline function onHarmonicModulatorsVolumeControl(component, value)
+ {
+ 	RightHarmonicGain.setAttribute(RightHarmonicGain.Gain, value);
+ 	LeftHarmonicGain.setAttribute(LeftHarmonicGain.Gain, value);
+ };
  
+ Content.getComponent("HarmonicModulatorsVolume").setControlCallback(onHarmonicModulatorsVolumeControl);
  
  inline function onHarmonicAHDSRControl(component, value)
  {
@@ -1050,6 +1077,17 @@ inline function distributeFretMarkersVertically(stringToDistribute, fretImages){
   
   
   const var TremoloAHDSRModulators = Synth.getAllModulators("TremoloAHDSR");
+  
+const var RightTremoloGain = Synth.getEffect("RightTremoloGain");
+const var LeftTremoloGain = Synth.getEffect("LeftTremoloGain");
+
+inline function onTremoloModulatorsVolumeControl(component, value)
+{
+	RightTremoloGain.setAttribute(RightTremoloGain.Gain, value);
+	LeftTremoloGain.setAttribute(LeftTremoloGain.Gain, value);
+};
+
+Content.getComponent("TremoloModulatorsVolume").setControlCallback(onTremoloModulatorsVolumeControl);
   
   
   inline function onTremoloAHDSRControl(component, value)
