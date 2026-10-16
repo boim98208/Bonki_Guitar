@@ -9,8 +9,8 @@
         <Processor Type="ScriptProcessor" ID="Interface" Bypassed="0">
           <ChildProcessors/>
           <Content>
-            <Control type="ScriptSlider" id="HandPositionFretForceKnob" value="-1"/>
-            <Control type="ScriptSlider" id="StringForceKnob" value="8.0"/>
+            <Control type="ScriptSlider" id="HandPositionFretForceKnob" value="1.0"/>
+            <Control type="ScriptSlider" id="StringForceKnob" value="5.0"/>
             <Control type="ScriptComboBox" id="FrettingEngineComboBox" value="1.0"/>
             <Control type="ScriptButton" id="ResetGlobalRRButton" value="0.0"/>
             <Control type="ScriptSlider" id="IRMixKnob" value="0.0"/>
@@ -30,7 +30,7 @@
             <Control type="ScriptSlider" id="MuteModulatorsAttack" value="0.0"/>
             <Control type="ScriptSlider" id="MuteModulatorsDecay" value="0.0"/>
             <Control type="ScriptSlider" id="MuteModulatorsMute" value="0.0"/>
-            <Control type="ScriptSlider" id="MuteModulatorsRelease" value="151.0"/>
+            <Control type="ScriptSlider" id="MuteModulatorsRelease" value="628.1900024414062"/>
             <Control type="ScriptButton" id="PurgeMuteBtn" value="1.0"/>
             <Control type="ScriptSlider" id="HarmonicModulatorsAttack" value="0.0"/>
             <Control type="ScriptSlider" id="HarmonicModulatorsDecay" value="0.0"/>
@@ -70,34 +70,34 @@
                              height="54" parentComponent="StringFretMarkersPnl" itemColour="0"
                              itemColour2="0" textColour="16777215" bgColour="16777215">
                     <Component type="ScriptImage" id="String8Fret0Marker" x="193" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret1Marker" x="211" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret2Marker" x="250" y="20" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret3Marker" x="285" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret4Marker" x="320" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret5Marker" x="351" y="22" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
-                               parentComponent="String8FretMarkers" text=""/>
+                               parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret6Marker" x="382" y="22" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret7Marker" x="409" y="23" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret8Marker" x="434" y="23" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret9Marker" x="459" y="24" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret10Marker" x="481" y="24" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -106,34 +106,34 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret12Marker" x="527" y="25" width="11"
-                               height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret13Marker" x="546" y="25" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret14Marker" x="565" y="25" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret15Marker" x="582" y="25" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret16Marker" x="598" y="26" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
-                               parentComponent="String8FretMarkers" text="" visible="0"/>
-                    <Component type="ScriptImage" id="String8Fret17Marker" x="614" y="26" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
+                    <Component type="ScriptImage" id="String8Fret17Marker" x="614" y="26" width="11"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret18Marker" x="629" y="26" width="11"
-                               height="35" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="35" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret19Marker" x="643" y="26" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret20Marker" x="655" y="27" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret21Marker" x="667" y="27" width="11"
-                               height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret22Marker" x="679" y="27" width="11"
                                height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -152,10 +152,10 @@
                              height="54" parentComponent="StringFretMarkersPnl" itemColour="0"
                              itemColour2="0" textColour="16777215" bgColour="16777215">
                     <Component type="ScriptImage" id="String7Fret0Marker" x="194" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret1Marker" x="212" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret2Marker" x="251" y="21" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -167,8 +167,8 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret5Marker" x="351" y="22" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
-                               parentComponent="String7FretMarkers" text=""/>
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret6Marker" x="382" y="22" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
@@ -179,13 +179,13 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret9Marker" x="459" y="23" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret10Marker" x="481" y="23" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret11Marker" x="503" y="23" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret12Marker" x="526" y="24" width="11"
                                height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -194,7 +194,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret14Marker" x="563" y="24" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret15Marker" x="580" y="24" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -206,7 +206,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret18Marker" x="627" y="25" width="11"
-                               height="35" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="35" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret19Marker" x="641" y="25" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -234,7 +234,7 @@
                              height="54" parentComponent="StringFretMarkersPnl" itemColour="0"
                              itemColour2="0" textColour="16777215" bgColour="16777215">
                     <Component type="ScriptImage" id="String6Fret0Marker" x="196" y="19" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret1Marker" x="215" y="19" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -246,40 +246,40 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret4Marker" x="321" y="19" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret5Marker" x="351" y="19" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
-                               parentComponent="String6FretMarkers" text=""/>
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret6Marker" x="382" y="20" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret7Marker" x="409" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret8Marker" x="434" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret9Marker" x="459" y="20" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret10Marker" x="481" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret11Marker" x="503" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret12Marker" x="525" y="20" width="11"
-                               height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret13Marker" x="544" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret14Marker" x="562" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret15Marker" x="579" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret16Marker" x="595" y="21" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -288,7 +288,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret18Marker" x="626" y="21" width="11"
-                               height="35" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="35" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret19Marker" x="640" y="21" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -316,25 +316,25 @@
                              height="54" parentComponent="StringFretMarkersPnl" itemColour="0"
                              itemColour2="0" textColour="16777215" bgColour="16777215">
                     <Component type="ScriptImage" id="String5Fret0Marker" x="197" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret1Marker" x="216" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret2Marker" x="254" y="21" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret3Marker" x="288" y="21" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
-                               parentComponent="String5FretMarkers" text=""/>
+                               parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret4Marker" x="321" y="21" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret5Marker" x="352" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret6Marker" x="382" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret7Marker" x="409" y="21" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -343,19 +343,19 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret9Marker" x="459" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
-                               parentComponent="String5FretMarkers" text="" visible="0"/>
-                    <Component type="ScriptImage" id="String5Fret10Marker" x="481" y="21" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
-                    <Component type="ScriptImage" id="String5Fret11Marker" x="503" y="21" width="11"
+                    <Component type="ScriptImage" id="String5Fret10Marker" x="481" y="21" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               parentComponent="String5FretMarkers" text="" visible="0"/>
+                    <Component type="ScriptImage" id="String5Fret11Marker" x="503" y="21" width="11"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret12Marker" x="524" y="21" width="11"
-                               height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret13Marker" x="543" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret14Marker" x="561" y="21" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -364,7 +364,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret16Marker" x="594" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret17Marker" x="609" y="21" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -398,10 +398,10 @@
                              height="54" parentComponent="StringFretMarkersPnl" itemColour="0"
                              itemColour2="0" textColour="16777215" bgColour="16777215">
                     <Component type="ScriptImage" id="String4Fret0Marker" x="199" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret1Marker" x="218" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret2Marker" x="255" y="20" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -419,19 +419,19 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret7Marker" x="409" y="19" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret8Marker" x="434" y="19" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret9Marker" x="459" y="18" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret10Marker" x="481" y="18" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret11Marker" x="502" y="18" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret12Marker" x="523" y="18" width="11"
                                height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -449,7 +449,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret17Marker" x="608" y="17" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret18Marker" x="623" y="17" width="11"
                                height="35" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -495,7 +495,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret5Marker" x="353" y="18" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret6Marker" x="382" y="18" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -738,22 +738,22 @@
                 <Component type="ScriptPanel" id="FretBorderPanel" x="210" y="250" itemColour="0"
                            itemColour2="0" textColour="16777215" bgColour="16777215" width="500"
                            parentComponent="PlayingModeBG">
-                  <Component type="ScriptImage" id="FretBorderLow" x="0" y="25" parentComponent="FretBorderPanel"
+                  <Component type="ScriptImage" id="FretBorderLow" x="237" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder.png" scale="0.25"
                              height="15" width="10" text="FretBorderLowForced"/>
-                  <Component type="ScriptImage" id="FretBorderLowForced" x="0" y="25" parentComponent="FretBorderPanel"
+                  <Component type="ScriptImage" id="FretBorderLowForced" x="237" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder_Forced.png"
                              scale="0.25" height="15" width="10" visible="0"/>
-                  <Component type="ScriptImage" id="FretBorderHigh" x="132" y="25" parentComponent="FretBorderPanel"
+                  <Component type="ScriptImage" id="FretBorderHigh" x="338" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder.png" scale="0.25"
                              height="15" width="10" text="FretBorderLowForced"/>
-                  <Component type="ScriptImage" id="FretBorderHighForced" x="132" y="25" parentComponent="FretBorderPanel"
+                  <Component type="ScriptImage" id="FretBorderHighForced" x="338" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder_Forced.png"
                              scale="0.25" height="15" width="10" visible="0"/>
-                  <Component type="ScriptImage" id="FretBorderCenter" x="66" y="23" parentComponent="FretBorderPanel"
+                  <Component type="ScriptImage" id="FretBorderCenter" x="287" y="23" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandCenter.png" height="15"
                              width="15" text="FretBorderLowForced" scale="0.4000000059604645"/>
-                  <Component type="ScriptImage" id="FretBorderCenterForced" x="66" y="23"
+                  <Component type="ScriptImage" id="FretBorderCenterForced" x="287" y="23"
                              parentComponent="FretBorderPanel" fileName="{PROJECT_FOLDER}PlayingMode_HandCenter_Forced.png"
                              height="15" width="15" text="FretBorderLowForced" scale="0.4000000059604645"
                              visible="0"/>
@@ -894,7 +894,7 @@
                 <Component type="ScriptImage" id="NerdDetails_BG" x="3" y="3" width="597"
                            height="100" parentComponent="DebugPanel" fileName="{PROJECT_FOLDER}PlayingMode_NerdDetails_BG.png"/>
                 <Component type="ScriptLabel" id="handPositionFretLabel" x="388" y="9" width="39"
-                           fontSize="20.0" height="13" text="1" parentComponent="DebugPanel"
+                           fontSize="20.0" height="13" text="9" parentComponent="DebugPanel"
                            textColour="4278190080"/>
                 <Component type="ScriptLabel" id="String1RRLabel" x="498" y="50" width="100"
                            height="21" parentComponent="DebugPanel" text="-1" textColour="4278190080"
@@ -909,10 +909,10 @@
                            height="21" parentComponent="DebugPanel" text="-1" textColour="4278190080"
                            fontSize="16.0"/>
                 <Component type="ScriptLabel" id="String5RRLabel" x="105" y="50" width="100"
-                           height="21" parentComponent="DebugPanel" text="4" textColour="4278190080"
+                           height="21" parentComponent="DebugPanel" text="-1" textColour="4278190080"
                            fontSize="16.0"/>
                 <Component type="ScriptLabel" id="String6RRLabel" x="4" y="50" width="100"
-                           height="21" parentComponent="DebugPanel" text="8" textColour="4278190080"
+                           height="21" parentComponent="DebugPanel" text="-1" textColour="4278190080"
                            fontSize="16.0"/>
                 <Component type="ScriptLabel" id="String7RRLabel" x="4" y="50" width="100"
                            height="21" parentComponent="DebugPanel" text="-1" textColour="4278190080"
@@ -1258,7 +1258,7 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
                                    Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="38.04982376098633"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -1388,7 +1388,7 @@
                           <ChildProcessors/>
                           <Content>
                             <Control type="ScriptButton" id="TimeAttenuate" value="1.0"/>
-                            <Control type="ScriptSlider" id="Time" value="7.099999904632568"/>
+                            <Control type="ScriptSlider" id="Time" value="2.799999952316284"/>
                             <Control type="ScriptTable" id="TimeTable" value="0.0" data="48...............vOhHhH8....9S9.VoODQD49fqGE8C...vO...f+....9C...vO"/>
                           </Content>
                         </Processor>
@@ -2367,11 +2367,11 @@
                 <Processor Type="StreamingSampler" ID="LeftString3SusSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" Group0Table="" Group1Table=""
                            Group2Table="" Group3Table="" Group4Table="" Group5Table="" Group6Table=""
-                           Group7Table="" SampleMapID="">
+                           Group7Table="" SampleMapID="Sustain_String3">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -3045,7 +3045,7 @@
               </ChildProcessors>
               <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
             </Processor>
-            <Processor Type="SynthChain" ID="LeftMuteContainer" Bypassed="0" Gain="1.0"
+            <Processor Type="SynthChain" ID="LeftMuteContainer" Bypassed="0" Gain="0.5559042692184448"
                        Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0">
               <ChildProcessors>
                 <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
@@ -3112,7 +3112,7 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
                                    Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="628.1900024414062"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -3251,8 +3251,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SourceMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -3338,7 +3338,7 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
                                    Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="628.1900024414062"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -3477,8 +3477,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -3564,7 +3564,7 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
                                    Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="628.1900024414062"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -3703,8 +3703,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -3790,7 +3790,7 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
                                    Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="628.1900024414062"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -3929,8 +3929,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -4016,7 +4016,7 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
                                    Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="628.1900024414062"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -4155,8 +4155,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -4220,11 +4220,11 @@
                 <Processor Type="StreamingSampler" ID="LeftString3MuteSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" Group0Table="" Group1Table=""
                            Group2Table="" Group3Table="" Group4Table="" Group5Table="" Group6Table=""
-                           Group7Table="" SampleMapID="">
+                           Group7Table="" SampleMapID="Mute_String3">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -4242,7 +4242,7 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
                                    Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="628.1900024414062"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -4381,8 +4381,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -4468,7 +4468,7 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
                                    Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="628.1900024414062"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -4607,8 +4607,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -4694,7 +4694,7 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
                                    Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="628.1900024414062"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -4833,8 +4833,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -10132,7 +10132,7 @@
                         <Processor Type="AHDSR" ID="PowerChordMuteAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
                                    Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Release="628.1900024414062" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -10271,8 +10271,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -10359,7 +10359,7 @@
                         <Processor Type="AHDSR" ID="PowerChordMuteAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
                                    Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Release="628.1900024414062" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -10498,8 +10498,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -10586,7 +10586,7 @@
                         <Processor Type="AHDSR" ID="PowerChordMuteAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
                                    Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Release="628.1900024414062" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -10725,8 +10725,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -10813,7 +10813,7 @@
                         <Processor Type="AHDSR" ID="PowerChordMuteAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
                                    Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Release="628.1900024414062" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -10952,8 +10952,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -11040,7 +11040,7 @@
                         <Processor Type="AHDSR" ID="PowerChordMuteAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
                                    Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Release="628.1900024414062" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -11179,8 +11179,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -11267,7 +11267,7 @@
                         <Processor Type="AHDSR" ID="PowerChordMuteAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
                                    Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Release="628.1900024414062" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -11406,8 +11406,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -11494,7 +11494,7 @@
                         <Processor Type="AHDSR" ID="PowerChordMuteAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
                                    Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Release="628.1900024414062" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -11633,8 +11633,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -11721,7 +11721,7 @@
                         <Processor Type="AHDSR" ID="PowerChordMuteAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
                                    Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Release="628.1900024414062" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -11860,8 +11860,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -13150,11 +13150,11 @@
                 <Processor Type="StreamingSampler" ID="RightString3SusSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" Group0Table="" Group1Table=""
                            Group2Table="" Group3Table="" Group4Table="" Group5Table="" Group6Table=""
-                           Group7Table="" SampleMapID="">
+                           Group7Table="" SampleMapID="Sustain_String3">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -13828,7 +13828,7 @@
               </ChildProcessors>
               <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
             </Processor>
-            <Processor Type="SynthChain" ID="RightMuteContainer" Bypassed="0" Gain="1.0"
+            <Processor Type="SynthChain" ID="RightMuteContainer" Bypassed="0" Gain="0.5559042692184448"
                        Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0">
               <ChildProcessors>
                 <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
@@ -13895,7 +13895,7 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
                                    Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="628.1900024414062"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -14034,8 +14034,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -14121,7 +14121,7 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
                                    Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="628.1900024414062"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -14260,8 +14260,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -14347,7 +14347,7 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
                                    Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="628.1900024414062"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -14486,8 +14486,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -14573,7 +14573,7 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
                                    Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="628.1900024414062"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -14712,8 +14712,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -14799,7 +14799,7 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
                                    Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="628.1900024414062"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -14938,8 +14938,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -15003,11 +15003,11 @@
                 <Processor Type="StreamingSampler" ID="RightString3MuteSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" Group0Table="" Group1Table=""
                            Group2Table="" Group3Table="" Group4Table="" Group5Table="" Group6Table=""
-                           Group7Table="" SampleMapID="">
+                           Group7Table="" SampleMapID="Mute_String3">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -15025,7 +15025,7 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
                                    Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="628.1900024414062"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -15164,8 +15164,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -15251,7 +15251,7 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
                                    Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="628.1900024414062"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -15390,8 +15390,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -15477,7 +15477,7 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
                                    Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="628.1900024414062"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -15616,8 +15616,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="MuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -20915,7 +20915,7 @@
                         <Processor Type="AHDSR" ID="PowerChordMuteAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
                                    Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Release="628.1900024414062" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -21054,8 +21054,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -21142,7 +21142,7 @@
                         <Processor Type="AHDSR" ID="PowerChordMuteAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
                                    Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Release="628.1900024414062" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -21281,8 +21281,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -21369,7 +21369,7 @@
                         <Processor Type="AHDSR" ID="PowerChordMuteAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
                                    Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Release="628.1900024414062" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -21508,8 +21508,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -21596,7 +21596,7 @@
                         <Processor Type="AHDSR" ID="PowerChordMuteAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
                                    Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Release="628.1900024414062" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -21735,8 +21735,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -21823,7 +21823,7 @@
                         <Processor Type="AHDSR" ID="PowerChordMuteAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
                                    Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Release="628.1900024414062" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -21962,8 +21962,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -22050,7 +22050,7 @@
                         <Processor Type="AHDSR" ID="PowerChordMuteAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
                                    Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Release="628.1900024414062" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -22189,8 +22189,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -22277,7 +22277,7 @@
                         <Processor Type="AHDSR" ID="PowerChordMuteAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
                                    Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Release="628.1900024414062" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -22416,8 +22416,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -22504,7 +22504,7 @@
                         <Processor Type="AHDSR" ID="PowerChordMuteAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
                                    Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Release="628.1900024414062" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -22643,8 +22643,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordMuteRelAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.2000000029802322"
-                                   DecayCurve="1.0" Attack="280.0" AttackLevel="0.0" Hold="10.0"
-                                   Decay="1079.0" Sustain="-100.0" Release="20.0" EcoMode="1.0">
+                                   DecayCurve="1.0" Attack="11.0" AttackLevel="0.0" Hold="10.0"
+                                   Decay="1079.0" Sustain="-100.0" Release="204.0" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
