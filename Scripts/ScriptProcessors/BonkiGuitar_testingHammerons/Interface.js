@@ -3,7 +3,7 @@
  Globals.g_handPositionFret = 0;
  Globals.g_strumSpeed = 1;
  
- 
+ reg midiChannel;
  reg i = 0;
  
  
@@ -601,9 +601,10 @@ inline function distributeFretMarkersVertically(stringToDistribute, fretImages){
  
  inline function hideAll()
  {
-     for (var i = 0; i < NUMOFSTRINGS; i++)
-         for (var j = 0; j < NOTESPERSTRING; j++)
-             fretImages[i][j].set("visible", false);
+     for (var a = 0; a < NUMOFSTRINGS; a++)
+         for (var b = 0; b < NOTESPERSTRING; b++){
+             fretImages[a][b].set("visible", false);
+             }
  }
  
  inline function hideString(stringNum){
@@ -1441,27 +1442,11 @@ Content.getComponent("StrumSpeedKnob").setControlCallback(onStrumSpeedKnobContro
 function onController()
 {
 	
-	//script to move fret markers. Implement later if needed
-
-	/*
-
-	var normalized = 0;
-	var raw = 0;
-	
-	if (Message.getControllerNumber() == 128)
-	    {
-	        raw = Message.getControllerValue();  // 0 to 16383, center = 8192
-	
-	        // Normalize to -1.0 to +1.0
-	        normalized = (raw - 8192) / 8192.0;
-	
-	        // Convert to pixel offset
-	        Globals.g_pitchBendOffset = normalized * MAX_BEND_PIXELS;
-			Console.print(Globals.g_pitchBendOffset);
-
-	    }
-	    
-	    */
+	// once midi guitar mode comes in, put an if statement to do that
+		
+		for (midiChannel = 1; midiChannel <= 16; midiChannel++){
+			Synth.addController(midiChannel, Message.getControllerNumber(), Message.getControllerValue(), 0);
+			}
 	    
 
 	    

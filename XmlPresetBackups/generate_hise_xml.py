@@ -1250,8 +1250,8 @@ def generate_hise_xml(num_strings, num_frets, fret_spacing, rr_spacing, articula
                     ET.SubElement(rel_trigger, "ChildProcessors")
                     rel_content = ET.SubElement(rel_trigger, "Content")
                     ET.SubElement(rel_content, "Control", type="ScriptButton", id="TimeAttenuate", value="1.0")
-                    ET.SubElement(rel_content, "Control", type="ScriptSlider", id="Time", value="4.699999809265137")
-                    ET.SubElement(rel_content, "Control", type="ScriptTable", id="TimeTable", value="0.0", data="36...............vOUUUU9....9S9.VoO...f+....9C...vO")
+                    ET.SubElement(rel_content, "Control", type="ScriptSlider", id="Time", value="4.0")
+                    ET.SubElement(rel_content, "Control", type="ScriptTable", id="TimeTable", value="0.0", data="36...............vO...v8....9iHamuO...f+.....fwJGxO")
                 
                 # Gain Modulation (AHDSR + Velocity)
                 sampler_gain = ET.SubElement(sampler_child_processors, "Processor", Type="ModulatorChain", ID="GainModulation", Bypassed="0", Intensity="1.0")
