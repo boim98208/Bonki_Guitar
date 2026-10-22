@@ -271,6 +271,8 @@ inline function playString(stringToPlay){
 	
 	
 	Globals.g_stringNotes[stringToPlay] = Message.getNoteNumber();
+	Console.print(Globals.g_stringNotes[stringToPlay]);
+	
 	
 	
 	// adding 1 because the enum starts on 0 but channels start on 1
@@ -468,17 +470,18 @@ inline function forceStringLogic(notePlayed, currentHandPos, fretSpaceToChange)
 
 	local newFretFromForceString;
 	local distanceBetweenForceAndAutoFret;
+	
 
 	if(isBetweenIncl(notePlayed, OPENSTRINGNOTES[Globals.g_forcedString], OPENSTRINGNOTES[Globals.g_forcedString] + (NOTESPERSTRING - 1)) && stringNote[Globals.g_forcedString] == -1)
 	{
 	
-	
+
 	
 	stringNote[Globals.g_forcedString] = notePlayed; 
-	
-
 	playString(Globals.g_forcedString);
 	Globals.g_stringPerformance[Globals.g_forcedString] = Globals.g_currArticulationPlaying;
+	
+
 	
 	newFretFromForceString = notePlayed - OPENSTRINGNOTES[Globals.g_forcedString];
 	distanceBetweenForceAndAutoFret = Math.abs(newFretFromForceString - currentHandPos);
@@ -542,6 +545,7 @@ inline function naturalFretting2_2_1(notePlayed, currentHandPos)
 	
 		if(isBetweenIncl(notePlayed, forceStringLowBound, forceStringHighBound) && stringNote[Globals.g_forcedString] == -1)
 		{
+
 		
 			return forceStringLogic(notePlayed, currentHandPos, fretSpaceToChange);
 			
@@ -1647,6 +1651,8 @@ inline function randomAddOrSub(deviation){
 		
 	}
 	
+
+	
 	
 
 	
@@ -1681,16 +1687,16 @@ function onNoteOff()
 			eventIdListIndexToRemoveId = eventIds.getIndex(releasedNoteId);
 			
 			
-			    for (i = 0; i < NUMOFSTRINGS && !noteFound; i++)
+			    for (i = 0; i < NUMOFSTRINGS; i++)
 				{
-				    if (stringNote[i] == releasedNote)
+				    if (!Synth.isKeyDown(stringNote[i]))
 				    {
 
 						if(notePlayedMethod[i] == StringPlayingMethod.pianoRoll){
 						noteOffStringSound(i, stringNote, stringNoteId);
 						}
 				        noteOffStringHolder(i, stringNote, stringNoteId);
-				        noteFound = true;
+
 				    }
 				    
 				}

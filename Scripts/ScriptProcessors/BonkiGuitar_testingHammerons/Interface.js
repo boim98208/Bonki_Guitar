@@ -827,7 +827,7 @@ inline function distributeFretMarkersVertically(stringToDistribute, fretImages){
  	
  	  
  	
- 		dryGain = dryGain - 6;
+ 		dryGain = dryGain - 6 ;
  	ConvolutionReverb1.setAttribute(ConvolutionReverb1.DryGain, dryGain);
  	ConvolutionReverb1.setAttribute(ConvolutionReverb1.WetGain, wetGain);
  };
