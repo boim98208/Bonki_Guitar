@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="NeuralAmpModeller" Version="0.0.0" AllowCompilation="1" ShowComments="0">
+  <Node FactoryPath="container.chain" ID="NeuralAmpModeller" Bypassed="0"
+        Name="NeuralAmpModeller" ShowParameters="0">
+    <Nodes>
+      <Node ID="matrix1" FactoryPath="routing.matrix" Bypassed="0" Name="matrix1">
+        <Properties>
+          <Property ID="EmbeddedData" Value="72.3o8BJ+RKIy7R22DKonLqfAFY0uRyM37KsnjS04LRLu7RMmhAJFiLw.CL.kuAf3CjKCAmZdo.ly+ABfJogv3CRR3bX..HkDhj"/>
+        </Properties>
+        <Parameters/>
+      </Node>
+      <Node ID="neural1" FactoryPath="math.neural" Bypassed="0" Name="neural1">
+        <Properties>
+          <Property ID="Model" Value="SinMix Best Amp Sim"/>
+          <Property ID="HpfFreq" Value="5 Hz"/>
+        </Properties>
+        <Parameters/>
+      </Node>
+      <Node ID="convolution" FactoryPath="filters.convolution" Bypassed="1"
+            Name="convolution">
+        <ComplexData>
+          <AudioFiles>
+            <AudioFile Index="-1" EmbeddedData="{PROJECT_FOLDER}RhythmCabIR.wav" MinValue="0"
+                       MaxValue="8192"/>
+          </AudioFiles>
+        </ComplexData>
+        <Parameters>
+          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Gate" Value="1.0"/>
+          <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="1.0" ID="Predelay"
+                     TextToValueConverter="Time" Value="0.0"/>
+          <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                     SkewFactor="5.422270774841309" ID="Damping" TextToValueConverter="Decibel"
+                     Value="0.0"/>
+          <Parameter MinValue="20.0" MaxValue="20000.0" StepSize="1.0" SkewFactor="0.2299045622348785"
+                     ID="HiCut" TextToValueConverter="Frequency" Value="20000.0"/>
+          <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Multithread"
+                     Value="0.0"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>

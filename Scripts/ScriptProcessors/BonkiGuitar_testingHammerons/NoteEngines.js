@@ -271,7 +271,6 @@ inline function playString(stringToPlay){
 	
 	
 	Globals.g_stringNotes[stringToPlay] = Message.getNoteNumber();
-	Console.print(Globals.g_stringNotes[stringToPlay]);
 	
 	
 	

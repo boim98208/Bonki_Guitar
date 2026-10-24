@@ -202,6 +202,7 @@ for(i = 0; i < NUMOFSTRINGS * 2; i++){
  
  Synth.deferCallbacks(true);
   Content.makeFrontInterface(1020, 600);
+include("AltarFXWiring.js");
   
  // connecting with fret markers on the UI
  
@@ -228,16 +229,19 @@ for(i = 0; i < NUMOFSTRINGS * 2; i++){
  	
  		RightContainerMute.setAttribute("Bypass", false);
  		RightGuitarGain.setAttribute(RightGuitarGain.Gain, 0.0);
- 	}else{
+		AltarFX.setMonoProcessing(false);
+	}else{
  		
  		LeftGuitarGain.setAttribute(LeftGuitarGain.Balance, 0.0);
  	
  		RightContainerMute.setAttribute("Bypass", true);
  		RightGuitarGain.setAttribute(RightGuitarGain.Gain, -100.0);
- 	}
+		AltarFX.setMonoProcessing(true);
+	}
  };
  
  Content.getComponent("DoubleTrackingBtn").setControlCallback(onDoubleTrackingBtnControl);
+AltarFX.setMonoProcessing(Content.getComponent("DoubleTrackingBtn").getValue() == 0);
  
  
  inline function onStrummingModeEnableBtnControl(component, value)

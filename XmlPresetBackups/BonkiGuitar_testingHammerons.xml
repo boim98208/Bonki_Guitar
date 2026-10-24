@@ -6,19 +6,19 @@
   <ChildProcessors>
     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
       <ChildProcessors>
-        <Processor Type="ScriptProcessor" ID="Interface" Bypassed="0">
+        <Processor Type="ScriptProcessor" ID="Interface" Bypassed="0" NumAudioFiles="2">
           <ChildProcessors/>
           <Content>
-            <Control type="ScriptSlider" id="HandPositionFretForceKnob" value="7.0"/>
-            <Control type="ScriptSlider" id="StringForceKnob" value="8.0"/>
+            <Control type="ScriptSlider" id="HandPositionFretForceKnob" value="17.0"/>
+            <Control type="ScriptSlider" id="StringForceKnob" value="1.0"/>
             <Control type="ScriptComboBox" id="FrettingEngineComboBox" value="1.0"/>
             <Control type="ScriptButton" id="ResetGlobalRRButton" value="0.0"/>
-            <Control type="ScriptSlider" id="IRMixKnob" value="0.9900000095367432"/>
+            <Control type="ScriptSlider" id="IRMixKnob" value="0.0"/>
             <Control type="ScriptComboBox" id="cmbIr" value="1.0"/>
             <Control type="ScriptSlider" id="VibratoDepthKnob" value="0.0"/>
             <Control type="ScriptSlider" id="VibratoFreqKnob" value="8.5"/>
             <Control type="ScriptSlider" id="PitchBendRangeKnob" value="2.0"/>
-            <Control type="ScriptButton" id="DoubleTrackingBtn" value="1.0"/>
+            <Control type="ScriptButton" id="DoubleTrackingBtn" value="0.0"/>
             <Control type="ScriptButton" id="StrummingModeEnableBtn" value="0.0"/>
             <Control type="ScriptSlider" id="StrumSpeedKnob" value="127.0"/>
             <Control type="ScriptButton" id="EnableStrumSpeedWithVelBtn" value="0.0"/>
@@ -56,6 +56,92 @@
             <Control type="ScriptSlider" id="SFXModulatorsVolume" value="151.0"/>
             <Control type="ScriptButton" id="NextPageBtn" value="0.0"/>
             <Control type="ScriptButton" id="PrevPageBtn" value="0.0"/>
+            <Control type="ScriptButton" id="btnModularA" value="0"/>
+            <Control type="ScriptButton" id="btnBypassModularA" value="1.0"/>
+            <Control type="ScriptButton" id="btnModularB" value="0"/>
+            <Control type="ScriptButton" id="btnBypassModularB" value="0.0"/>
+            <Control type="ScriptButton" id="btnModularC" value="1"/>
+            <Control type="ScriptButton" id="btnBypassModularC" value="0.0"/>
+            <Control type="ScriptButton" id="btnModularD" value="0"/>
+            <Control type="ScriptButton" id="btnBypassModularD" value="1.0"/>
+            <Control type="ScriptButton" id="btnModularE" value="0"/>
+            <Control type="ScriptButton" id="btnBypassModularE" value="1.0"/>
+            <Control type="ScriptButton" id="btnModularF" value="0"/>
+            <Control type="ScriptButton" id="btnBypassModularF" value="1.0"/>
+            <Control type="ScriptButton" id="btnModularG" value="0"/>
+            <Control type="ScriptButton" id="btnBypassModularG" value="1.0"/>
+            <Control type="ScriptSlider" id="knbOverdriveMode" value="0.0"/>
+            <Control type="ScriptSlider" id="knbOverdriveDrive" value="1.300000071525574"/>
+            <Control type="ScriptSlider" id="knbOverdriveTone" value="0.7299999594688416"/>
+            <Control type="ScriptSlider" id="knbOverdriveFoldAmount" value="1.0"/>
+            <Control type="ScriptSlider" id="knbOverdriveBits" value="8.0"/>
+            <Control type="ScriptSlider" id="knbOverdriveSRReduction" value="16.0"/>
+            <Control type="ScriptSlider" id="knbOverdriveCircuitBend" value="0.0"/>
+            <Control type="ScriptSlider" id="knbOverdriveMix" value="1.0"/>
+            <Control type="ScriptSlider" id="knbOverdriveOutputGain" value="0.0"/>
+            <Control type="ScriptSlider" id="knbAmpMode" value="1.0"/>
+            <Control type="ScriptSlider" id="knbAmpInput" value="31.00000190734863"/>
+            <Control type="ScriptSlider" id="knbAmpLow" value="1.788139343261719e-7"/>
+            <Control type="ScriptSlider" id="knbAmpMid" value="-1.399999856948853"/>
+            <Control type="ScriptSlider" id="knbAmpHigh" value="-5.099999904632568"/>
+            <Control type="ScriptSlider" id="knbAmpPresence" value="1.200000166893005"/>
+            <Control type="ScriptSlider" id="knbAmpOutput" value="-12.69999980926514"/>
+            <Control type="ScriptComboBox" id="cmbAmpCleanToneStackMode" value="1.0"/>
+            <Control type="ScriptComboBox" id="cmbAmpDirtyToneStackMode" value="2.0"/>
+            <Control type="ScriptComboBox" id="cmbAmpDirtyDistortionMode" value="2.0"/>
+            <Control type="ScriptSlider" id="knbCabMix" value="0.0"/>
+            <Control type="ScriptSlider" id="knbCabAGain" value="1.490116119384766e-6"/>
+            <Control type="ScriptSlider" id="knbCabAPan" value="-2.235174179077148e-8"/>
+            <Control type="ScriptSlider" id="knbCabAAxis" value="0.0"/>
+            <Control type="ScriptSlider" id="knbCabADistance" value="20000.0"/>
+            <Control type="ScriptSlider" id="knbCabADelay" value="0.0"/>
+            <Control type="ScriptSlider" id="knbCabBGain" value="1.490116119384766e-6"/>
+            <Control type="ScriptSlider" id="knbCabBPan" value="-2.235174179077148e-8"/>
+            <Control type="ScriptSlider" id="knbCabBAxis" value="0.0"/>
+            <Control type="ScriptSlider" id="knbCabBDistance" value="20000.0"/>
+            <Control type="ScriptSlider" id="knbCabBDelay" value="0.0"/>
+            <Control type="ScriptButton" id="btnBrowseCabA" value="1.0"/>
+            <Control type="ScriptButton" id="btnBrowseCabB" value="1.0"/>
+            <Control type="ScriptSlider" id="knbReverbMix" value="0.5"/>
+            <Control type="ScriptSlider" id="knbReverbPreDelay" value="0.0"/>
+            <Control type="ScriptSlider" id="knbReverbRoomSize" value="0.5"/>
+            <Control type="ScriptSlider" id="knbReverbDecay" value="0.5"/>
+            <Control type="ScriptSlider" id="knbReverbDampingFrequency" value="2500.0"/>
+            <Control type="ScriptSlider" id="knbReverbChorusDepth" value="0.300000011920929"/>
+            <Control type="ScriptSlider" id="knbDelayMode" value="0.0"/>
+            <Control type="ScriptSlider" id="knbDelayMix" value="0.5"/>
+            <Control type="ScriptSlider" id="knbDelayDelayTime" value="0.5"/>
+            <Control type="ScriptSlider" id="knbDelayFeedback" value="0.5"/>
+            <Control type="ScriptSlider" id="knbDelayDamping" value="2600.0"/>
+            <Control type="ScriptSlider" id="knbDelayModulation" value="0.300000011920929"/>
+            <Control type="ScriptSlider" id="knbDelayStereoWidth" value="0.5"/>
+            <Control type="ScriptSlider" id="knbChorusMix" value="0.5"/>
+            <Control type="ScriptSlider" id="knbChorusVoices" value="2.0"/>
+            <Control type="ScriptSlider" id="knbChorusRate" value="2.0"/>
+            <Control type="ScriptSlider" id="knbChorusDepth" value="0.5"/>
+            <Control type="ScriptSlider" id="knbChorusFeedback" value="0.2000000029802322"/>
+            <Control type="ScriptSlider" id="knbChorusDelayTime" value="10.0"/>
+            <Control type="ScriptSlider" id="knbChorusTone" value="2600.0"/>
+            <Control type="ScriptSlider" id="knbRingmodMode" value="0.0"/>
+            <Control type="ScriptSlider" id="knbRingmodMix" value="0.5"/>
+            <Control type="ScriptSlider" id="knbRingmodFrequency" value="1000.0"/>
+            <Control type="ScriptSlider" id="knbRingmodDepth" value="0.5"/>
+            <Control type="ScriptSlider" id="knbRingmodLFORate" value="1.5"/>
+            <Control type="ScriptSlider" id="knbRingmodLFODepth" value="0.5"/>
+            <Control type="ScriptSlider" id="knbRingmodFilterFrequency" value="2600.0"/>
+            <Control type="ScriptButton" id="btnSaveFXPreset" value="1.0"/>
+            <Control type="ScriptButton" id="btnLoadFXPreset" value="1.0"/>
+            <Control type="ScriptButton" id="btnPreEQ" value="0"/>
+            <Control type="ScriptButton" id="btnBypassPreEQ" value="1.0"/>
+            <Control type="ScriptButton" id="btnPostEQ" value="0"/>
+            <Control type="ScriptButton" id="btnBypassPostEQ" value="1.0"/>
+            <Control type="ScriptSlider" id="knbGateThreshold" value="-100.0"/>
+            <Control type="ScriptSlider" id="knbGateAttack" value="25.0"/>
+            <Control type="ScriptSlider" id="knbGateRelease" value="40.0"/>
+            <Control type="ScriptSlider" id="knbTranspose" value="0.0"/>
+            <Control type="ScriptSlider" id="knbOctave" value="0.0"/>
+            <Control type="ScriptSlider" id="knbChugStrength" value="0.0"/>
+            <Control type="ScriptSlider" id="knbPickStrength" value="0.0"/>
             <Control type="ScriptButton" id="ShowPlayingModeButton" value="0"/>
             <Control type="ScriptButton" id="ShowArticulationsButton" value="0"/>
             <Control type="ScriptButton" id="ShowDebugPanelButton" value="0"/>
@@ -187,7 +273,7 @@
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret9Marker" x="459" y="23" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
-                               parentComponent="String7FretMarkers" text=""/>
+                               parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret10Marker" x="481" y="23" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
@@ -740,22 +826,22 @@
                 <Component type="ScriptPanel" id="FretBorderPanel" x="210" y="250" itemColour="0"
                            itemColour2="0" textColour="16777215" bgColour="16777215" width="500"
                            parentComponent="PlayingModeBG">
-                  <Component type="ScriptImage" id="FretBorderLow" x="132" y="25" parentComponent="FretBorderPanel"
+                  <Component type="ScriptImage" id="FretBorderLow" x="355" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder.png" scale="0.25"
                              height="15" width="10" text="FretBorderLowForced"/>
-                  <Component type="ScriptImage" id="FretBorderLowForced" x="132" y="25" parentComponent="FretBorderPanel"
+                  <Component type="ScriptImage" id="FretBorderLowForced" x="355" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder_Forced.png"
                              scale="0.25" height="15" width="10"/>
-                  <Component type="ScriptImage" id="FretBorderHigh" x="260" y="25" parentComponent="FretBorderPanel"
+                  <Component type="ScriptImage" id="FretBorderHigh" x="428" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder.png" scale="0.25"
                              height="15" width="10" text="FretBorderLowForced"/>
-                  <Component type="ScriptImage" id="FretBorderHighForced" x="260" y="25" parentComponent="FretBorderPanel"
+                  <Component type="ScriptImage" id="FretBorderHighForced" x="428" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder_Forced.png"
                              scale="0.25" height="15" width="10"/>
-                  <Component type="ScriptImage" id="FretBorderCenter" x="196" y="23" parentComponent="FretBorderPanel"
+                  <Component type="ScriptImage" id="FretBorderCenter" x="391" y="23" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandCenter.png" height="15"
                              width="15" text="FretBorderLowForced" scale="0.4000000059604645"/>
-                  <Component type="ScriptImage" id="FretBorderCenterForced" x="196" y="23"
+                  <Component type="ScriptImage" id="FretBorderCenterForced" x="391" y="23"
                              parentComponent="FretBorderPanel" fileName="{PROJECT_FOLDER}PlayingMode_HandCenter_Forced.png"
                              height="15" width="15" text="FretBorderLowForced" scale="0.4000000059604645"/>
                   <Component type="ScriptImage" id="FretBorderLowForcedRef" x="496" y="25"
@@ -819,7 +905,7 @@
                   <Component type="ScriptSlider" id="IRMixKnob" x="30" y="30" width="125"
                              height="30" parentComponent="DSPPanel" middlePosition="0.5"/>
                   <Component type="ScriptComboBox" id="cmbIr" x="170" y="40" width="131" height="21"
-                             parentComponent="DSPPanel" text="Load Impulse" items="&#10;AggressiveIRActual1&#10;AggressiveIRActual2&#10;AL-Antera&#10;AL-Cifra&#10;AL-Crypta&#10;AL-Errata&#10;AL-Obscura&#10;AL-Sigila&#10;AL-Silica&#10;AL-Spectera&#10;AL-Subvera&#10;AL-Vespera&#10;hidden/_click&#10;hidden/_dirac&#10;hidden/_testAudio&#10;hidden/_testAudioChug&#10;RhythmCabIR"
+                             parentComponent="DSPPanel" text="Load Impulse" items="&#10;AggressiveIRActual1&#10;AggressiveIRActual2&#10;Cabs/AL-Antera&#10;Cabs/AL-Cifra&#10;Cabs/AL-Crypta&#10;Cabs/AL-Errata&#10;Cabs/AL-Obscura&#10;Cabs/AL-Sigila&#10;Cabs/AL-Silica&#10;Cabs/AL-Spectera&#10;Cabs/AL-Subvera&#10;Cabs/AL-Vespera&#10;hidden/_click&#10;hidden/_dirac&#10;hidden/_testAudio&#10;hidden/_testAudioChug&#10;RhythmCabIR"
                              max="17"/>
                 </Component>
                 <Component type="ScriptPanel" id="VibratoPnl" x="120" y="140" width="150"
@@ -1126,7 +1212,593 @@
                            itemColour="16777215" editable="0"/>
               </Component>
               <Component type="ScriptImage" id="FXRackBG" x="0" y="-60" width="1020" height="600"
-                         fileName="{PROJECT_FOLDER}Empty_BG.png" scale="0.699999988079071"/>
+                         fileName="{PROJECT_FOLDER}Empty_BG.png" scale="0.699999988079071">
+                <Component type="ScriptPanel" id="pnlModularNav" x="20" y="359" width="960"
+                           height="45" itemColour="0" itemColour2="0" parentComponent="FXRackBG">
+                  <Component type="ScriptButton" id="btnModularA" x="0" y="5" width="95" height="32"
+                             text="Overdrive" parentComponent="pnlModularNav"/>
+                  <Component type="ScriptButton" id="btnBypassModularA" x="98" y="11" width="28"
+                             height="20" text="BP" parentComponent="pnlModularNav" tooltip="Bypass Overdrive"/>
+                  <Component type="ScriptButton" id="btnModularB" x="138" y="5" width="95"
+                             height="32" text="Amp" parentComponent="pnlModularNav"/>
+                  <Component type="ScriptButton" id="btnBypassModularB" x="236" y="11" width="28"
+                             height="20" text="BP" parentComponent="pnlModularNav" tooltip="Bypass Amp"/>
+                  <Component type="ScriptButton" id="btnModularC" x="276" y="5" width="95"
+                             height="32" text="Cab" parentComponent="pnlModularNav"/>
+                  <Component type="ScriptButton" id="btnBypassModularC" x="374" y="11" width="28"
+                             height="20" text="BP" parentComponent="pnlModularNav" tooltip="Bypass Cab"/>
+                  <Component type="ScriptButton" id="btnModularD" x="414" y="5" width="95"
+                             height="32" text="Reverb" parentComponent="pnlModularNav"/>
+                  <Component type="ScriptButton" id="btnBypassModularD" x="512" y="11" width="28"
+                             height="20" text="BP" parentComponent="pnlModularNav" tooltip="Bypass Reverb"/>
+                  <Component type="ScriptButton" id="btnModularE" x="552" y="5" width="95"
+                             height="32" text="Delay" parentComponent="pnlModularNav"/>
+                  <Component type="ScriptButton" id="btnBypassModularE" x="650" y="11" width="28"
+                             height="20" text="BP" parentComponent="pnlModularNav" tooltip="Bypass Delay"/>
+                  <Component type="ScriptButton" id="btnModularF" x="690" y="5" width="95"
+                             height="32" text="Chorus" parentComponent="pnlModularNav"/>
+                  <Component type="ScriptButton" id="btnBypassModularF" x="788" y="11" width="28"
+                             height="20" text="BP" parentComponent="pnlModularNav" tooltip="Bypass Chorus"/>
+                  <Component type="ScriptButton" id="btnModularG" x="828" y="5" width="95"
+                             height="32" text="Ringmod" parentComponent="pnlModularNav"/>
+                  <Component type="ScriptButton" id="btnBypassModularG" x="926" y="11" width="28"
+                             height="20" text="BP" parentComponent="pnlModularNav" tooltip="Bypass Ringmod"/>
+                </Component>
+                <Component type="ScriptPanel" id="pnlModularA" x="20" y="60" width="960"
+                           height="170" itemColour="0" itemColour2="0" parentComponent="FXRackBG"
+                           visible="0">
+                  <Component type="ScriptSlider" id="knbOverdriveMode" parentComponent="pnlModularA"
+                             x="20" y="5" width="96" height="60" max="5.0" stepSize="1.0">
+                    <Component type="ScriptLabel" id="lbl_knbOverdriveMode" x="0" y="38" width="96"
+                               height="20" text="OD Mode" editable="0" fontStyle="Bold" parentComponent="knbOverdriveMode"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbOverdriveDrive" parentComponent="pnlModularA"
+                             x="130" y="10" width="96" height="60" min="0.1000000014901161"
+                             max="20.0" stepSize="0.1000000014901161" suffix=" dB">
+                    <Component type="ScriptLabel" id="lbl_knbOverdriveDrive" x="0" y="38" width="96"
+                               height="20" text="OD Drive" editable="0" fontStyle="Bold" parentComponent="knbOverdriveDrive"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbOverdriveTone" parentComponent="pnlModularA"
+                             x="245" y="10" width="96" height="60" min="-1.0" stepSize="0.009999999776482582">
+                    <Component type="ScriptLabel" id="lbl_knbOverdriveTone" x="0" y="38" width="96"
+                               height="20" text="OD Tone" editable="0" fontStyle="Bold" parentComponent="knbOverdriveTone"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbOverdriveFoldAmount" parentComponent="pnlModularA"
+                             x="360" y="10" width="96" height="60" min="1.0" max="8.0" stepSize="0.1000000014901161">
+                    <Component type="ScriptLabel" id="lbl_knbOverdriveFoldAmount" x="0" y="38"
+                               width="96" height="20" text="OD Fold" editable="0" fontStyle="Bold"
+                               parentComponent="knbOverdriveFoldAmount" textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbOverdriveBits" parentComponent="pnlModularA"
+                             x="475" y="10" width="96" height="60" min="1.0" max="16.0" stepSize="1.0">
+                    <Component type="ScriptLabel" id="lbl_knbOverdriveBits" x="0" y="38" width="96"
+                               height="20" text="OD Bits" editable="0" fontStyle="Bold" parentComponent="knbOverdriveBits"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbOverdriveSRReduction" parentComponent="pnlModularA"
+                             x="590" y="10" width="96" height="60" min="1.0" max="32.0" stepSize="1.0">
+                    <Component type="ScriptLabel" id="lbl_knbOverdriveSRReduction" x="0" y="38"
+                               width="96" height="20" text="OD SR Red" editable="0" fontStyle="Bold"
+                               parentComponent="knbOverdriveSRReduction" textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbOverdriveCircuitBend" parentComponent="pnlModularA"
+                             x="705" y="10" width="96" height="60" min="-48.0" max="48.0"
+                             stepSize="1.0">
+                    <Component type="ScriptLabel" id="lbl_knbOverdriveCircuitBend" x="0" y="38"
+                               width="96" height="20" text="OD Bend" editable="0" fontStyle="Bold"
+                               parentComponent="knbOverdriveCircuitBend" textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbOverdriveMix" parentComponent="pnlModularA"
+                             x="820" y="10" width="96" height="60" stepSize="0.009999999776482582"
+                             suffix=" %">
+                    <Component type="ScriptLabel" id="lbl_knbOverdriveMix" x="0" y="38" width="96"
+                               height="20" text="OD Mix" editable="0" fontStyle="Bold" parentComponent="knbOverdriveMix"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbOverdriveOutputGain" parentComponent="pnlModularA"
+                             x="15" y="85" width="96" height="60" min="-24.0" max="24.0" stepSize="0.1000000014901161"
+                             suffix=" dB">
+                    <Component type="ScriptLabel" id="lbl_knbOverdriveOutputGain" x="0" y="38"
+                               width="96" height="20" text="OD Output" editable="0" fontStyle="Bold"
+                               parentComponent="knbOverdriveOutputGain" textColour="4278190080"/>
+                  </Component>
+                </Component>
+                <Component type="ScriptPanel" id="pnlModularB" x="20" y="60" width="960"
+                           height="170" itemColour="0" itemColour2="0" parentComponent="FXRackBG"
+                           textColour="4278190080" visible="0">
+                  <Component type="ScriptSlider" id="knbAmpMode" parentComponent="pnlModularB"
+                             x="15" y="10" width="96" height="60" stepSize="1.0" defaultValue="1.0">
+                    <Component type="ScriptLabel" id="lbl_knbAmpMode" x="0" y="38" width="96"
+                               height="20" text="Amp Mode" editable="0" fontStyle="Bold" parentComponent="knbAmpMode"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbAmpInput" parentComponent="pnlModularB"
+                             x="130" y="10" width="96" height="60" min="-100.0" max="100.0"
+                             stepSize="0.1000000014901161" suffix=" dB">
+                    <Component type="ScriptLabel" id="lbl_knbAmpInput" x="0" y="38" width="96"
+                               height="20" text="Amp Input" editable="0" fontStyle="Bold" parentComponent="knbAmpInput"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbAmpLow" parentComponent="pnlModularB"
+                             x="245" y="10" width="96" height="60" min="-12.0" max="12.0"
+                             stepSize="0.1000000014901161" suffix=" dB">
+                    <Component type="ScriptLabel" id="lbl_knbAmpLow" x="0" y="38" width="96"
+                               height="20" text="Amp Low" editable="0" fontStyle="Bold" parentComponent="knbAmpLow"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbAmpMid" parentComponent="pnlModularB"
+                             x="360" y="10" width="96" height="60" min="-12.0" max="12.0"
+                             stepSize="0.1000000014901161" suffix=" dB">
+                    <Component type="ScriptLabel" id="lbl_knbAmpMid" x="0" y="38" width="96"
+                               height="20" text="Amp Mid" editable="0" fontStyle="Bold" parentComponent="knbAmpMid"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbAmpHigh" parentComponent="pnlModularB"
+                             x="475" y="10" width="96" height="60" min="-12.0" max="12.0"
+                             stepSize="0.1000000014901161" suffix=" dB">
+                    <Component type="ScriptLabel" id="lbl_knbAmpHigh" x="0" y="38" width="96"
+                               height="20" text="Amp High" editable="0" fontStyle="Bold" parentComponent="knbAmpHigh"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbAmpPresence" parentComponent="pnlModularB"
+                             x="590" y="10" width="96" height="60" min="-12.0" max="12.0"
+                             stepSize="0.1000000014901161" suffix=" dB">
+                    <Component type="ScriptLabel" id="lbl_knbAmpPresence" x="0" y="38" width="96"
+                               height="20" text="Amp Presence" editable="0" fontStyle="Bold"
+                               parentComponent="knbAmpPresence" textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbAmpOutput" parentComponent="pnlModularB"
+                             x="705" y="10" width="96" height="60" min="-36.0" max="36.0"
+                             stepSize="0.1000000014901161" suffix=" dB">
+                    <Component type="ScriptLabel" id="lbl_knbAmpOutput" x="0" y="38" width="96"
+                               height="20" text="Amp Output" editable="0" fontStyle="Bold" parentComponent="knbAmpOutput"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptComboBox" id="cmbAmpCleanToneStackMode" parentComponent="pnlModularB"
+                             x="820" y="10" width="96" height="60" items="Glass&#10;Pearl&#10;Diamond&#10;Zircon"
+                             max="4">
+                    <Component type="ScriptLabel" id="lbl_cmbAmpCleanToneStackMode" x="0" y="38"
+                               width="96" height="20" text="Clean Color" editable="0" fontStyle="Bold"
+                               parentComponent="cmbAmpCleanToneStackMode" textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptComboBox" id="cmbAmpDirtyToneStackMode" parentComponent="pnlModularB"
+                             x="15" y="85" width="96" height="60" items="Slate&#10;Obsidian&#10;Amethyst&#10;Opal&#10;Sapphire&#10;Garnet"
+                             max="6">
+                    <Component type="ScriptLabel" id="lbl_cmbAmpDirtyToneStackMode" x="0" y="38"
+                               width="96" height="20" text="Dirty Color" editable="0" fontStyle="Bold"
+                               parentComponent="cmbAmpDirtyToneStackMode" textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptComboBox" id="cmbAmpDirtyDistortionMode" parentComponent="pnlModularB"
+                             x="130" y="85" width="96" height="60" items="Tyrant&#10;Faceless"
+                             max="2">
+                    <Component type="ScriptLabel" id="lbl_cmbAmpDirtyDistortionMode" x="0" y="38"
+                               width="96" height="20" text="Distortion" editable="0" fontStyle="Bold"
+                               parentComponent="cmbAmpDirtyDistortionMode" textColour="4278190080"/>
+                  </Component>
+                </Component>
+                <Component type="ScriptPanel" id="pnlModularC" x="20" y="60" width="960"
+                           height="170" itemColour="0" itemColour2="0" parentComponent="FXRackBG">
+                  <Component type="ScriptSlider" id="knbCabMix" parentComponent="pnlModularC"
+                             x="15" y="10" width="96" height="60" stepSize="0.009999999776482582"
+                             suffix=" %">
+                    <Component type="ScriptLabel" id="lbl_knbCabMix" x="0" y="38" width="96"
+                               height="20" text="Cab Mix" editable="0" fontStyle="Bold" parentComponent="knbCabMix"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbCabAGain" parentComponent="pnlModularC"
+                             x="130" y="10" width="96" height="60" min="-100.0" max="12.0"
+                             stepSize="0.1000000014901161" suffix=" dB">
+                    <Component type="ScriptLabel" id="lbl_knbCabAGain" x="0" y="38" width="96"
+                               height="20" text="Cab A Gain" editable="0" fontStyle="Bold" parentComponent="knbCabAGain"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbCabAPan" parentComponent="pnlModularC"
+                             x="245" y="10" width="96" height="60" min="-1.0" stepSize="0.009999999776482582">
+                    <Component type="ScriptLabel" id="lbl_knbCabAPan" x="0" y="38" width="96"
+                               height="20" text="Cab A Pan" editable="0" fontStyle="Bold" parentComponent="knbCabAPan"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbCabAAxis" parentComponent="pnlModularC"
+                             x="360" y="10" width="96" height="60" min="-6.0" max="0.0" stepSize="0.1000000014901161">
+                    <Component type="ScriptLabel" id="lbl_knbCabAAxis" x="0" y="38" width="96"
+                               height="20" text="Cab A Axis" editable="0" fontStyle="Bold" parentComponent="knbCabAAxis"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbCabADistance" parentComponent="pnlModularC"
+                             x="475" y="10" width="96" height="60" min="6000.0" max="20000.0"
+                             stepSize="100.0">
+                    <Component type="ScriptLabel" id="lbl_knbCabADistance" x="0" y="38" width="96"
+                               height="20" text="Cab A Dist" editable="0" fontStyle="Bold" parentComponent="knbCabADistance"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbCabADelay" parentComponent="pnlModularC"
+                             x="590" y="10" width="96" height="60" max="100.0" stepSize="0.1000000014901161"
+                             suffix=" ms">
+                    <Component type="ScriptLabel" id="lbl_knbCabADelay" x="0" y="38" width="96"
+                               height="20" text="Cab A Delay" editable="0" fontStyle="Bold"
+                               parentComponent="knbCabADelay" textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbCabBGain" parentComponent="pnlModularC"
+                             x="705" y="10" width="96" height="60" min="-100.0" max="12.0"
+                             stepSize="0.1000000014901161" suffix=" dB">
+                    <Component type="ScriptLabel" id="lbl_knbCabBGain" x="0" y="38" width="96"
+                               height="20" text="Cab B Gain" editable="0" fontStyle="Bold" parentComponent="knbCabBGain"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbCabBPan" parentComponent="pnlModularC"
+                             x="820" y="10" width="96" height="60" min="-1.0" stepSize="0.009999999776482582">
+                    <Component type="ScriptLabel" id="lbl_knbCabBPan" x="0" y="38" width="96"
+                               height="20" text="Cab B Pan" editable="0" fontStyle="Bold" parentComponent="knbCabBPan"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbCabBAxis" parentComponent="pnlModularC"
+                             x="15" y="85" width="96" height="60" min="-6.0" max="0.0" stepSize="0.1000000014901161">
+                    <Component type="ScriptLabel" id="lbl_knbCabBAxis" x="0" y="38" width="96"
+                               height="20" text="Cab B Axis" editable="0" fontStyle="Bold" parentComponent="knbCabBAxis"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbCabBDistance" parentComponent="pnlModularC"
+                             x="130" y="85" width="96" height="60" min="6000.0" max="20000.0"
+                             stepSize="100.0">
+                    <Component type="ScriptLabel" id="lbl_knbCabBDistance" x="0" y="38" width="96"
+                               height="20" text="Cab B Dist" editable="0" fontStyle="Bold" parentComponent="knbCabBDistance"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbCabBDelay" parentComponent="pnlModularC"
+                             x="245" y="85" width="96" height="60" max="100.0" stepSize="0.1000000014901161"
+                             suffix=" ms">
+                    <Component type="ScriptLabel" id="lbl_knbCabBDelay" x="0" y="38" width="96"
+                               height="20" text="Cab B Delay" editable="0" fontStyle="Bold"
+                               parentComponent="knbCabBDelay" textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptButton" id="btnBrowseCabA" parentComponent="pnlModularC"
+                             x="360" y="85" width="120" height="30" text="Load Cab A IR" tooltip="Browse and load an impulse response (.wav) for Cab A"/>
+                  <Component type="ScriptLabel" id="lblCabAName" parentComponent="pnlModularC"
+                             x="360" y="118" width="120" height="24" text="AL-Antera.wav"
+                             editable="0" fontStyle="Italic" textColour="4278190080"/>
+                  <Component type="ScriptButton" id="btnBrowseCabB" parentComponent="pnlModularC"
+                             x="500" y="85" width="120" height="30" text="Load Cab B IR" tooltip="Browse and load an impulse response (.wav) for Cab B"/>
+                  <Component type="ScriptLabel" id="lblCabBName" parentComponent="pnlModularC"
+                             x="500" y="118" width="120" height="24" text="AL-Antera.wav"
+                             editable="0" fontStyle="Italic" textColour="4278190080"/>
+                </Component>
+                <Component type="ScriptPanel" id="pnlModularD" x="20" y="60" width="960"
+                           height="170" itemColour="0" itemColour2="0" parentComponent="FXRackBG"
+                           visible="0">
+                  <Component type="ScriptSlider" id="knbReverbMix" parentComponent="pnlModularD"
+                             x="15" y="10" width="96" height="60" stepSize="0.009999999776482582"
+                             suffix=" %">
+                    <Component type="ScriptLabel" id="lbl_knbReverbMix" x="0" y="38" width="96"
+                               height="20" text="Reverb Mix" editable="0" fontStyle="Bold" parentComponent="knbReverbMix"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbReverbPreDelay" parentComponent="pnlModularD"
+                             x="130" y="10" width="96" height="60" max="0.2000000029802322"
+                             stepSize="0.001000000047497451" suffix=" s">
+                    <Component type="ScriptLabel" id="lbl_knbReverbPreDelay" x="0" y="38" width="96"
+                               height="20" text="Pre-Delay" editable="0" fontStyle="Bold" parentComponent="knbReverbPreDelay"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbReverbRoomSize" parentComponent="pnlModularD"
+                             x="245" y="10" width="96" height="60" stepSize="0.009999999776482582">
+                    <Component type="ScriptLabel" id="lbl_knbReverbRoomSize" x="0" y="38" width="96"
+                               height="20" text="Room Size" editable="0" fontStyle="Bold" parentComponent="knbReverbRoomSize"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbReverbDecay" parentComponent="pnlModularD"
+                             x="360" y="10" width="96" height="60" max="0.9800000190734863"
+                             stepSize="0.009999999776482582">
+                    <Component type="ScriptLabel" id="lbl_knbReverbDecay" x="0" y="38" width="96"
+                               height="20" text="Decay" editable="0" fontStyle="Bold" parentComponent="knbReverbDecay"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbReverbDampingFrequency" parentComponent="pnlModularD"
+                             x="475" y="10" width="96" height="60" min="500.0" max="20000.0"
+                             stepSize="100.0" suffix=" Hz">
+                    <Component type="ScriptLabel" id="lbl_knbReverbDampingFrequency" x="0" y="38"
+                               width="96" height="20" text="Damping" editable="0" fontStyle="Bold"
+                               parentComponent="knbReverbDampingFrequency" textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbReverbChorusDepth" parentComponent="pnlModularD"
+                             x="590" y="10" width="96" height="60" stepSize="0.009999999776482582">
+                    <Component type="ScriptLabel" id="lbl_knbReverbChorusDepth" x="0" y="38"
+                               width="96" height="20" text="Rev Chorus" editable="0" fontStyle="Bold"
+                               parentComponent="knbReverbChorusDepth" textColour="4278190080"/>
+                  </Component>
+                </Component>
+                <Component type="ScriptPanel" id="pnlModularE" x="20" y="60" width="960"
+                           height="170" itemColour="0" itemColour2="0" parentComponent="FXRackBG"
+                           visible="0">
+                  <Component type="ScriptSlider" id="knbDelayMode" parentComponent="pnlModularE"
+                             x="15" y="10" width="96" height="60" max="2.0" stepSize="1.0">
+                    <Component type="ScriptLabel" id="lbl_knbDelayMode" x="0" y="38" width="96"
+                               height="20" text="Delay Mode" editable="0" fontStyle="Bold" parentComponent="knbDelayMode"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbDelayMix" parentComponent="pnlModularE"
+                             x="130" y="10" width="96" height="60" stepSize="0.009999999776482582"
+                             suffix=" %">
+                    <Component type="ScriptLabel" id="lbl_knbDelayMix" x="0" y="38" width="96"
+                               height="20" text="Delay Mix" editable="0" fontStyle="Bold" parentComponent="knbDelayMix"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbDelayDelayTime" parentComponent="pnlModularE"
+                             x="245" y="10" width="96" height="60" min="0.05000000074505806"
+                             max="2.0" stepSize="0.009999999776482582" suffix=" s">
+                    <Component type="ScriptLabel" id="lbl_knbDelayDelayTime" x="0" y="38" width="96"
+                               height="20" text="Delay Time" editable="0" fontStyle="Bold" parentComponent="knbDelayDelayTime"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbDelayFeedback" parentComponent="pnlModularE"
+                             x="360" y="10" width="96" height="60" stepSize="0.009999999776482582">
+                    <Component type="ScriptLabel" id="lbl_knbDelayFeedback" x="0" y="38" width="96"
+                               height="20" text="Feedback" editable="0" fontStyle="Bold" parentComponent="knbDelayFeedback"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbDelayDamping" parentComponent="pnlModularE"
+                             x="475" y="10" width="96" height="60" min="500.0" max="20000.0"
+                             stepSize="100.0" suffix=" Hz">
+                    <Component type="ScriptLabel" id="lbl_knbDelayDamping" x="0" y="38" width="96"
+                               height="20" text="Delay Damp" editable="0" fontStyle="Bold" parentComponent="knbDelayDamping"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbDelayModulation" parentComponent="pnlModularE"
+                             x="590" y="10" width="96" height="60" stepSize="0.009999999776482582">
+                    <Component type="ScriptLabel" id="lbl_knbDelayModulation" x="0" y="38" width="96"
+                               height="20" text="Delay Mod" editable="0" fontStyle="Bold" parentComponent="knbDelayModulation"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbDelayStereoWidth" parentComponent="pnlModularE"
+                             x="705" y="10" width="96" height="60" stepSize="0.009999999776482582">
+                    <Component type="ScriptLabel" id="lbl_knbDelayStereoWidth" x="0" y="38"
+                               width="96" height="20" text="Stereo Width" editable="0" fontStyle="Bold"
+                               parentComponent="knbDelayStereoWidth" textColour="4278190080"/>
+                  </Component>
+                </Component>
+                <Component type="ScriptPanel" id="pnlModularF" x="20" y="60" width="960"
+                           height="170" itemColour="0" itemColour2="0" parentComponent="FXRackBG"
+                           visible="0">
+                  <Component type="ScriptSlider" id="knbChorusMix" parentComponent="pnlModularF"
+                             x="15" y="10" width="96" height="60" stepSize="0.009999999776482582"
+                             suffix=" %">
+                    <Component type="ScriptLabel" id="lbl_knbChorusMix" x="0" y="38" width="96"
+                               height="20" text="Chorus Mix" editable="0" fontStyle="Bold" parentComponent="knbChorusMix"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbChorusVoices" parentComponent="pnlModularF"
+                             x="130" y="10" width="96" height="60" min="1.0" max="4.0" stepSize="1.0">
+                    <Component type="ScriptLabel" id="lbl_knbChorusVoices" x="0" y="38" width="96"
+                               height="20" text="Voices" editable="0" fontStyle="Bold" parentComponent="knbChorusVoices"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbChorusRate" parentComponent="pnlModularF"
+                             x="245" y="10" width="96" height="60" min="0.1000000014901161"
+                             max="10.0" stepSize="0.1000000014901161" suffix=" Hz">
+                    <Component type="ScriptLabel" id="lbl_knbChorusRate" x="0" y="38" width="96"
+                               height="20" text="Chorus Rate" editable="0" fontStyle="Bold"
+                               parentComponent="knbChorusRate" textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbChorusDepth" parentComponent="pnlModularF"
+                             x="360" y="10" width="96" height="60" stepSize="0.009999999776482582">
+                    <Component type="ScriptLabel" id="lbl_knbChorusDepth" x="0" y="38" width="96"
+                               height="20" text="Chorus Depth" editable="0" fontStyle="Bold"
+                               parentComponent="knbChorusDepth" textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbChorusFeedback" parentComponent="pnlModularF"
+                             x="475" y="10" width="96" height="60" stepSize="0.009999999776482582">
+                    <Component type="ScriptLabel" id="lbl_knbChorusFeedback" x="0" y="38" width="96"
+                               height="20" text="Chorus Fbk" editable="0" fontStyle="Bold" parentComponent="knbChorusFeedback"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbChorusDelayTime" parentComponent="pnlModularF"
+                             x="590" y="10" width="96" height="60" min="1.0" max="20.0" stepSize="0.1000000014901161"
+                             suffix=" ms">
+                    <Component type="ScriptLabel" id="lbl_knbChorusDelayTime" x="0" y="38" width="96"
+                               height="20" text="Delay Time" editable="0" fontStyle="Bold" parentComponent="knbChorusDelayTime"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbChorusTone" parentComponent="pnlModularF"
+                             x="705" y="10" width="96" height="60" min="200.0" max="12000.0"
+                             stepSize="100.0" suffix=" Hz">
+                    <Component type="ScriptLabel" id="lbl_knbChorusTone" x="0" y="38" width="96"
+                               height="20" text="Chorus Tone" editable="0" fontStyle="Bold"
+                               parentComponent="knbChorusTone" textColour="4278190080"/>
+                  </Component>
+                </Component>
+                <Component type="ScriptPanel" id="pnlModularG" x="20" y="60" width="960"
+                           height="170" itemColour="0" itemColour2="0" parentComponent="FXRackBG"
+                           visible="0">
+                  <Component type="ScriptSlider" id="knbRingmodMode" parentComponent="pnlModularG"
+                             x="15" y="10" width="96" height="60" max="3.0" stepSize="1.0">
+                    <Component type="ScriptLabel" id="lbl_knbRingmodMode" x="0" y="38" width="96"
+                               height="20" text="Ringmod Mode" editable="0" fontStyle="Bold"
+                               parentComponent="knbRingmodMode" textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbRingmodMix" parentComponent="pnlModularG"
+                             x="130" y="10" width="96" height="60" stepSize="0.009999999776482582"
+                             suffix=" %">
+                    <Component type="ScriptLabel" id="lbl_knbRingmodMix" x="0" y="38" width="96"
+                               height="20" text="Ringmod Mix" editable="0" fontStyle="Bold"
+                               parentComponent="knbRingmodMix" textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbRingmodFrequency" parentComponent="pnlModularG"
+                             x="245" y="10" width="96" height="60" min="1.0" max="2000.0"
+                             stepSize="1.0" suffix=" Hz">
+                    <Component type="ScriptLabel" id="lbl_knbRingmodFrequency" x="0" y="38"
+                               width="96" height="20" text="Ringmod Freq" editable="0" fontStyle="Bold"
+                               parentComponent="knbRingmodFrequency" textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbRingmodDepth" parentComponent="pnlModularG"
+                             x="360" y="10" width="96" height="60" stepSize="0.009999999776482582">
+                    <Component type="ScriptLabel" id="lbl_knbRingmodDepth" x="0" y="38" width="96"
+                               height="20" text="Ringmod Depth" editable="0" fontStyle="Bold"
+                               parentComponent="knbRingmodDepth" textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbRingmodLFORate" parentComponent="pnlModularG"
+                             x="475" y="10" width="96" height="60" min="0.1000000014901161"
+                             max="10.0" stepSize="0.1000000014901161" suffix=" s">
+                    <Component type="ScriptLabel" id="lbl_knbRingmodLFORate" x="0" y="38" width="96"
+                               height="20" text="LFO Rate" editable="0" fontStyle="Bold" parentComponent="knbRingmodLFORate"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbRingmodLFODepth" parentComponent="pnlModularG"
+                             x="590" y="10" width="96" height="60" stepSize="0.009999999776482582">
+                    <Component type="ScriptLabel" id="lbl_knbRingmodLFODepth" x="0" y="38" width="96"
+                               height="20" text="LFO Depth" editable="0" fontStyle="Bold" parentComponent="knbRingmodLFODepth"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbRingmodFilterFrequency" parentComponent="pnlModularG"
+                             x="705" y="10" width="96" height="60" min="200.0" max="12000.0"
+                             stepSize="100.0" suffix=" Hz">
+                    <Component type="ScriptLabel" id="lbl_knbRingmodFilterFrequency" x="0" y="38"
+                               width="96" height="20" text="RM Filter" editable="0" fontStyle="Bold"
+                               parentComponent="knbRingmodFilterFrequency" textColour="4278190080"/>
+                  </Component>
+                </Component>
+                <Component type="ScriptPanel" id="pnlPreEQ" x="20" y="60" width="1000" height="198"
+                           itemColour="0" itemColour2="0" parentComponent="FXRackBG" visible="0">
+                  <Component type="ScriptFloatingTile" id="fltPreEQ" x="0" y="0" width="960"
+                             height="170" parentComponent="pnlPreEQ" ContentType="DraggableFilterPanel"
+                             bgColour="16777215" itemColour="1946122793" itemColour2="4278190080"
+                             Data="{&#10;  &quot;ProcessorId&quot;: &quot;preEQ&quot;,&#10;  &quot;Index&quot;: -1,&#10;  &quot;FollowWorkspace&quot;: false&#10;}"
+                             textColour="4278190080" itemColour3="2634022912" Font="Shehroz"/>
+                  <Component type="ScriptLabel" id="PreEQFreq20HzPointLabel" x="-20" y="167"
+                             width="70" height="23" parentComponent="pnlPreEQ" textColour="4278190080"
+                             text="20" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="PreEQFreq50HzPointLabel" x="100" y="167"
+                             width="70" height="23" parentComponent="pnlPreEQ" textColour="4278190080"
+                             text="50" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="PreEQFreq100HzPointLabel" x="198" y="167"
+                             width="70" height="23" parentComponent="pnlPreEQ" textColour="4278190080"
+                             text="100" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="PreEQFreq200HzPointLabel" x="287" y="167"
+                             width="70" height="23" parentComponent="pnlPreEQ" textColour="4278190080"
+                             text="200" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="PreEQFreq500HzPointLabel" x="412" y="167"
+                             width="70" height="23" parentComponent="pnlPreEQ" textColour="4278190080"
+                             text="500" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="PreEQFreq1kHzPointLabel" x="504" y="167"
+                             width="70" height="23" parentComponent="pnlPreEQ" textColour="4278190080"
+                             text="1k" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="PreEQFreq2kHzPointLabel" x="599" y="167"
+                             width="70" height="23" parentComponent="pnlPreEQ" textColour="4278190080"
+                             text="2k" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="PreEQFreq5kHzPointLabel" x="722" y="167"
+                             width="70" height="23" parentComponent="pnlPreEQ" textColour="4278190080"
+                             text="5k" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="PreEQFreq10kHzPointLabel" x="816" y="167"
+                             width="70" height="23" parentComponent="pnlPreEQ" textColour="4278190080"
+                             text="10k" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="PreEQFreq20kHzPointLabel" x="933" y="167"
+                             width="48" height="23" parentComponent="pnlPreEQ" textColour="4278190080"
+                             text="20k" fontName="Shehroz" fontSize="25.0"/>
+                </Component>
+                <Component type="ScriptPanel" id="pnlPostEQ" x="20" y="60" width="1000"
+                           height="198" itemColour="0" itemColour2="0" parentComponent="FXRackBG"
+                           visible="0">
+                  <Component type="ScriptFloatingTile" id="fltPostEQ" x="0" y="0" width="960"
+                             height="170" parentComponent="pnlPostEQ" ContentType="DraggableFilterPanel"
+                             bgColour="16777215" itemColour="1946122793" itemColour2="4278190080"
+                             Data="{&#10;  &quot;ProcessorId&quot;: &quot;postEQ&quot;,&#10;  &quot;Index&quot;: -1,&#10;  &quot;FollowWorkspace&quot;: false&#10;}"
+                             textColour="4278190080" itemColour3="2634022912"/>
+                  <Component type="ScriptLabel" id="PostEQFreq20HzPointLabel" x="-20" y="167"
+                             width="70" height="23" parentComponent="pnlPostEQ" textColour="4278190080"
+                             text="20" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="PostEQFreq50HzPointLabel" x="100" y="167"
+                             width="70" height="23" parentComponent="pnlPostEQ" textColour="4278190080"
+                             text="50" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="PostEQFreq100HzPointLabel" x="198" y="167"
+                             width="70" height="23" parentComponent="pnlPostEQ" textColour="4278190080"
+                             text="100" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="PostEQFreq200HzPointLabel" x="287" y="167"
+                             width="70" height="23" parentComponent="pnlPostEQ" textColour="4278190080"
+                             text="200" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="PostEQFreq500HzPointLabel" x="412" y="167"
+                             width="70" height="23" parentComponent="pnlPostEQ" textColour="4278190080"
+                             text="500" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="PostEQFreq1kHzPointLabel" x="504" y="167"
+                             width="70" height="23" parentComponent="pnlPostEQ" textColour="4278190080"
+                             text="1k" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="PostEQFreq2kHzPointLabel" x="599" y="167"
+                             width="70" height="23" parentComponent="pnlPostEQ" textColour="4278190080"
+                             text="2k" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="PostEQFreq5kHzPointLabel" x="722" y="167"
+                             width="70" height="23" parentComponent="pnlPostEQ" textColour="4278190080"
+                             text="5k" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="PostEQFreq10kHzPointLabel" x="816" y="167"
+                             width="70" height="23" parentComponent="pnlPostEQ" textColour="4278190080"
+                             text="10k" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="PostEQFreq20kHzPointLabel" x="933" y="167"
+                             width="48" height="23" parentComponent="pnlPostEQ" textColour="4278190080"
+                             text="20k" fontName="Shehroz" fontSize="25.0"/>
+                </Component>
+                <Component type="ScriptButton" id="btnSaveFXPreset" x="20" y="445" width="50"
+                           height="26" text="Save FX" tooltip="Save current FX chain settings to a preset file"
+                           parentComponent="FXRackBG" textColour="4278190080"/>
+                <Component type="ScriptButton" id="btnLoadFXPreset" x="75" y="445" width="50"
+                           height="26" text="Load FX" tooltip="Load an FX chain preset file"
+                           parentComponent="FXRackBG"/>
+                <Component type="ScriptButton" id="btnPreEQ" x="20" y="342" width="95" height="22"
+                           text="Pre EQ" tooltip="View Pre EQ" parentComponent="FXRackBG"/>
+                <Component type="ScriptButton" id="btnBypassPreEQ" x="118" y="342" width="28"
+                           height="20" text="BP" parentComponent="FXRackBG" tooltip="Bypass Pre-FX EQ"/>
+                <Component type="ScriptButton" id="btnPostEQ" x="849" y="342" width="95"
+                           height="22" text="Post EQ" tooltip="View Post EQ" parentComponent="FXRackBG"/>
+                <Component type="ScriptButton" id="btnBypassPostEQ" x="946" y="342" width="28"
+                           height="20" text="BP" parentComponent="FXRackBG" tooltip="Bypass Post-FX EQ"/>
+                <Component type="ScriptLabel" id="lblFXPresetName" x="20" y="1030" width="105"
+                           height="22" text="Default FX" editable="0" fontStyle="Italic"
+                           parentComponent="FXRackBG" textColour="4278190080"/>
+                <Component type="ScriptSlider" id="knbGateThreshold" x="140" y="474" width="96"
+                           height="60" min="-100.0" max="0.0" stepSize="1.0" suffix=" dB"
+                           parentComponent="FXRackBG">
+                  <Component type="ScriptLabel" id="lbl_knbGateThreshold" x="0" y="38" width="96"
+                             height="20" text="Gate Thresh" editable="0" fontStyle="Bold"
+                             parentComponent="knbGateThreshold" textColour="4278190080"/>
+                </Component>
+                <Component type="ScriptSlider" id="knbGateAttack" x="260" y="474" width="96"
+                           height="60" min="1.0" max="100.0" stepSize="1.0" suffix=" ms"
+                           parentComponent="FXRackBG">
+                  <Component type="ScriptLabel" id="lbl_knbGateAttack" x="0" y="38" width="96"
+                             height="20" text="Gate Attack" editable="0" fontStyle="Bold"
+                             parentComponent="knbGateAttack" textColour="4278190080"/>
+                </Component>
+                <Component type="ScriptSlider" id="knbGateRelease" x="380" y="474" width="96"
+                           height="60" min="1.0" max="200.0" stepSize="1.0" suffix=" ms"
+                           parentComponent="FXRackBG">
+                  <Component type="ScriptLabel" id="lbl_knbGateRelease" x="0" y="38" width="96"
+                             height="20" text="Gate Release" editable="0" fontStyle="Bold"
+                             parentComponent="knbGateRelease" textColour="4278190080"/>
+                </Component>
+                <Component type="ScriptSlider" id="knbTranspose" x="500" y="474" width="96"
+                           height="60" min="-24.0" max="24.0" stepSize="1.0" suffix=" st"
+                           parentComponent="FXRackBG">
+                  <Component type="ScriptLabel" id="lbl_knbTranspose" x="0" y="38" width="96"
+                             height="20" text="Transpose" editable="0" fontStyle="Bold" parentComponent="knbTranspose"
+                             textColour="4278190080"/>
+                </Component>
+                <Component type="ScriptSlider" id="knbOctave" x="620" y="474" width="96"
+                           height="60" stepSize="0.009999999776482582" suffix=" %" parentComponent="FXRackBG">
+                  <Component type="ScriptLabel" id="lbl_knbOctave" x="0" y="38" width="96"
+                             height="20" text="Octave" editable="0" fontStyle="Bold" parentComponent="knbOctave"
+                             textColour="4278190080"/>
+                </Component>
+                <Component type="ScriptSlider" id="knbChugStrength" x="740" y="474" width="96"
+                           height="60" max="2.0" stepSize="0.1000000014901161" parentComponent="FXRackBG">
+                  <Component type="ScriptLabel" id="lbl_knbChugStrength" x="0" y="38" width="96"
+                             height="20" text="Chug" editable="0" fontStyle="Bold" parentComponent="knbChugStrength"
+                             textColour="4278190080"/>
+                </Component>
+                <Component type="ScriptSlider" id="knbPickStrength" x="860" y="474" width="96"
+                           height="60" max="2.0" stepSize="0.1000000014901161" parentComponent="FXRackBG">
+                  <Component type="ScriptLabel" id="lbl_knbPickStrength" x="0" y="38" width="96"
+                             height="20" text="Pick" editable="0" fontStyle="Bold" parentComponent="knbPickStrength"
+                             textColour="4278190080"/>
+                </Component>
+              </Component>
               <Component type="ScriptButton" id="ShowPlayingModeButton" x="259" y="478"
                          text="Show Main Playing Controls" width="188" filmstripImage="{PROJECT_FOLDER}PlayingMode_Button_Filmstrip.png"
                          scaleFactor="0.3149999976158142" height="28"/>
@@ -1163,11 +1835,118 @@
     </Processor>
     <Processor Type="EffectChain" ID="FX" Bypassed="0">
       <ChildProcessors>
-        <Processor Type="Convolution" ID="ConvolutionReverb1" Bypassed="0" DryGain="-42.13270568847656"
-                   WetGain="-0.05580993369221687" Latency="0.0" ImpulseLength="1.0"
-                   ProcessInput="1.0" UseBackgroundThread="0.0" Predelay="0.0" HiCut="20000.0"
-                   Damping="0.0" FFTType="0.0" FileName="{PROJECT_FOLDER}AggressiveIRActual1.wav"
+        <Processor Type="Convolution" ID="ConvolutionReverb1" Bypassed="0" DryGain="-6.0"
+                   WetGain="-100.0" Latency="0.0" ImpulseLength="1.0" ProcessInput="1.0"
+                   UseBackgroundThread="0.0" Predelay="0.0" HiCut="20000.0" Damping="0.0"
+                   FFTType="0.0" FileName="{PROJECT_FOLDER}AggressiveIRActual1.wav"
                    min="0" max="8192" loopStart="0" loopEnd="8192">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+        <Processor Type="Convolution" ID="IRMatchGuitarsConv" Bypassed="0" DryGain="-6.0"
+                   WetGain="-100.0" Latency="0.0" ImpulseLength="1.0" ProcessInput="1.0"
+                   UseBackgroundThread="0.0" Predelay="0.0" HiCut="20000.0" Damping="0.0"
+                   FFTType="0.0" FileName="" min="0" max="0" loopStart="0" loopEnd="0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+        <Processor Type="HardcodedMasterFX" ID="gate" Bypassed="1" Network="gate"
+                   Threshold="-100.0" Attack="25.0" Release="40.0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+        <Processor Type="HardcodedMasterFX" ID="transpose" Bypassed="0" Network="transpose"
+                   FreqRatio="1.0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+        <Processor Type="HardcodedMasterFX" ID="pick" Bypassed="0" Network="pick"
+                   Strength="0.0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+        <Processor Type="HardcodedMasterFX" ID="octave" Bypassed="0" Network="octave"
+                   Octave="0.0" DelayTime="9.0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+        <Processor Type="HardcodedMasterFX" ID="chug" Bypassed="0" Network="chug"
+                   Strength="0.0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+        <Processor Type="CurveEq" ID="preEQ" Bypassed="0" NumFilters="0" FFTEnabled="0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+        <Processor Type="HardcodedMasterFX" ID="modularA" Bypassed="1" Network="overdrive"
+                   Mode="0.0" Oversampling="1.0" Drive="1.300000071525574" CircuitBend="0.0"
+                   CircuitBendFreq="400.0" OutputGain="0.0" Mix="1.0" Bits="8.0"
+                   SRReduction="16.0" FoldAmount="1.0" BendTrigger="0.0" Tone="0.7299999594688416"
+                   Mono="1.0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+        <Processor Type="HardcodedMasterFX" ID="modularB" Bypassed="0" Network="amp"
+                   Mode="1.0" Oversampling="1.0" InputGain="31.00000190734863" Low="1.788139343261719e-7"
+                   Mid="-1.399999856948853" High="-5.099999904632568" Presence="1.200000166893005"
+                   OutputGain="-12.69999980926514" DistortionMode="1.0" CleanToneStackMode="0.0"
+                   DirtyToneStackMode="1.0" LatestFilterFreq="10000.0" LatestFilterQ="1.0"
+                   LatestFilterGain="0.0" Mono="1.0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+        <Processor Type="HardcodedMasterFX" ID="modularC" Bypassed="0" Network="cab"
+                   Mix="0.0" CabAEnable="1.0" CabADelay="0.0" CabAAxis="0.0" CabADistance="20000.0"
+                   CabAPhase="0.0" CabAPan="-2.235174179077148e-8" CabAGain="1.490116119384766e-6"
+                   CabBEnable="0.0" CabBDelay="0.0" CabBAxis="0.0" CabBDistance="20000.0"
+                   CabBPhase="0.0" CabBPan="-2.235174179077148e-8" CabBGain="1.490116119384766e-6"
+                   CabDesignerBypass="0.0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+          <AudioFiles>
+            <AudioFile EmbeddedData="{PROJECT_FOLDER}Cabs/AL-Subvera.wav" MinValue="0"
+                       MaxValue="5513"/>
+            <AudioFile EmbeddedData="{PROJECT_FOLDER}Cabs/AL-Sigila.wav" MinValue="0"
+                       MaxValue="1024"/>
+          </AudioFiles>
+        </Processor>
+        <Processor Type="HardcodedMasterFX" ID="modularD" Bypassed="1" Network="reverb"
+                   Mix="0.5" PreDelay="0.0" RoomSize="0.5" Decay="0.5" DampingFrequency="2500.0"
+                   ChorusDepth="0.300000011920929">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+        <Processor Type="HardcodedMasterFX" ID="modularE" Bypassed="1" Network="delay"
+                   Mix="0.5" DelayTime="0.5" Feedback="0.5" Damping="2600.0" Modulation="0.300000011920929"
+                   StereoWidth="0.5" TempoSync="0.0" DelayMode="0.0" DelayTimeSynced="0.0"
+                   GlitchMode="0.0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+        <Processor Type="HardcodedMasterFX" ID="modularF" Bypassed="1" Network="chorus"
+                   Mix="0.5" Rate="2.0" Depth="0.5" Feedback="0.2000000029802322"
+                   DelayTime="10.0" PreDelay="0.0" Tone="2600.0" Voices="2.0" TempoSync="0.0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+        <Processor Type="HardcodedMasterFX" ID="modularG" Bypassed="1" Network="ringmod"
+                   Mix="0.5" Frequency="1000.0" Depth="0.5" Mode="0.0" LFORate="1.5"
+                   LFORateSynced="0.0" LFODepth="0.5" FilterFrequency="2600.0" StereoMode="0.0"
+                   TempoSync="0.0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+        <Processor Type="CurveEq" ID="postEQ" Bypassed="0" NumFilters="0" FFTEnabled="0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+        <Processor Type="Dynamics" ID="FinalLimiter" Bypassed="0" GateEnabled="0.0"
+                   GateThreshold="0.0" GateAttack="1.0" GateRelease="100.0" CompressorEnabled="0.0"
+                   CompressorThreshold="0.0" CompressorRatio="1.0" CompressorAttack="10.0"
+                   CompressorRelease="100.0" LimiterEnabled="1.0" LimiterThreshold="-4.5"
+                   LimiterAttack="1.080000042915344" LimiterRelease="10.0" CompressorMakeup="0.0"
+                   LimiterMakeup="0.0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
@@ -1209,7 +1988,7 @@
             <Processor Type="EffectChain" ID="FX" Bypassed="0">
               <ChildProcessors>
                 <Processor Type="SimpleGain" ID="LeftGuitarGain" Bypassed="0" Gain="0.0"
-                           Delay="0.0" Width="100.0" Balance="-100.0" InvertPolarity="0.0">
+                           Delay="0.0" Width="100.0" Balance="0.0" InvertPolarity="0.0">
                   <ChildProcessors>
                     <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors/>
@@ -11973,7 +12752,7 @@
                 <Processor Type="MidiMuter" ID="RightContainerMute" Bypassed="0">
                   <ChildProcessors/>
                   <Content>
-                    <Control type="ScriptButton" id="ignoreButton" value="0.0"/>
+                    <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
                     <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
                   </Content>
                 </Processor>
@@ -11992,7 +12771,7 @@
             </Processor>
             <Processor Type="EffectChain" ID="FX" Bypassed="0">
               <ChildProcessors>
-                <Processor Type="SimpleGain" ID="RightGuitarGain" Bypassed="0" Gain="0.0"
+                <Processor Type="SimpleGain" ID="RightGuitarGain" Bypassed="0" Gain="-100.0"
                            Delay="0.0" Width="100.0" Balance="100.0" InvertPolarity="0.0">
                   <ChildProcessors>
                     <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">

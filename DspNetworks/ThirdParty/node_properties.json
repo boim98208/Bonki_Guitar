@@ -1,0 +1,46 @@
+{
+  "amp": [
+    "IsPolyphonic",
+    "AllowPolyphonic"
+  ],
+  "cabDesigner": [
+    "IsPolyphonic",
+    "AllowPolyphonic"
+  ],
+  "chorus": [
+    "IsPolyphonic",
+    "AllowPolyphonic"
+  ],
+  "clipper": [
+    "IsPolyphonic",
+    "AllowPolyphonic"
+  ],
+  "delay": [
+    "IsPolyphonic",
+    "AllowPolyphonic"
+  ],
+  "gate": [
+    "IsPolyphonic",
+    "AllowPolyphonic"
+  ],
+  "overdrive": [
+    "IsPolyphonic",
+    "AllowPolyphonic"
+  ],
+  "reverb": [
+    "IsPolyphonic",
+    "AllowPolyphonic"
+  ],
+  "ringmod": [
+    "IsPolyphonic",
+    "AllowPolyphonic"
+  ],
+  "transpose": [
+    "IsPolyphonic",
+    "AllowPolyphonic"
+  ],
+  "tuner": [
+    "IsPolyphonic",
+    "AllowPolyphonic"
+  ]
+}

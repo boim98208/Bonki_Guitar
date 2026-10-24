@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Network ID="DoubleTracking" Version="0.0.0">
+  <Node FactoryPath="container.chain" ID="DoubleTracking" Bypassed="0"
+        Name="DoubleTracking">
+    <Nodes>
+      <Node ID="pitch_shift" FactoryPath="fx.pitch_shift" Bypassed="0" Name="pitch_shift">
+        <Parameters>
+          <Parameter MinValue="0.25" MaxValue="4.0" SkewFactor="0.9393121474091409"
+                     ID="FreqRatio" Value="1.0"/>
+        </Parameters>
+      </Node>
+    </Nodes>
+    <Parameters/>
+  </Node>
+</Network>
