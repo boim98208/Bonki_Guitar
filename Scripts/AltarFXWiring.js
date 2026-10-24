@@ -145,9 +145,10 @@ namespace AltarFX
     const var btnBrowseCabB = Content.getComponent("btnBrowseCabB");
     const var lblCabBName = Content.getComponent("lblCabBName");
 
-    // Audio file slots registered for the modularC network
-    const var audioFileCabA = Engine.createAndRegisterAudioFile(0);
-    const var audioFileCabB = Engine.createAndRegisterAudioFile(1);
+    // Audio sample processor handle for modularC (cab)
+    const var aspModularC = Synth.getAudioSampleProcessor("modularC");
+    const var audioFileCabA = (aspModularC != 0) ? aspModularC.getAudioFile(0) : 0;
+    const var audioFileCabB = (aspModularC != 0) ? aspModularC.getAudioFile(1) : 0;
 
     var currentCabAPath = "";
     var currentCabBPath = "";
@@ -165,8 +166,16 @@ namespace AltarFX
                     lblCabAName.set("text", file.toString(3));
 
                 currentCabAPath = file.toString(0);
-                if (audioFileCabA != 0)
+                if (aspModularC != 0)
+                {
+                    local irSlotA = aspModularC.getAudioFile(0);
+                    if (irSlotA != 0)
+                        irSlotA.loadFile(currentCabAPath);
+                }
+                else if (audioFileCabA != 0)
+                {
                     audioFileCabA.loadFile(currentCabAPath);
+                }
             });
         }
     }
@@ -184,8 +193,16 @@ namespace AltarFX
                     lblCabBName.set("text", file.toString(3));
 
                 currentCabBPath = file.toString(0);
-                if (audioFileCabB != 0)
+                if (aspModularC != 0)
+                {
+                    local irSlotB = aspModularC.getAudioFile(1);
+                    if (irSlotB != 0)
+                        irSlotB.loadFile(currentCabBPath);
+                }
+                else if (audioFileCabB != 0)
+                {
                     audioFileCabB.loadFile(currentCabBPath);
+                }
             });
         }
     }
@@ -694,8 +711,19 @@ Content.getComponent("btnBypassPreEQ").setControlCallback(onbtnBypassPreEQContro
             if (cabAName != "" && lblCabAName != 0)
                 lblCabAName.set("text", cabAName);
 
-            if (currentCabAPath != "" && audioFileCabA != 0)
-                audioFileCabA.loadFile(currentCabAPath);
+            if (currentCabAPath != "")
+            {
+                if (aspModularC != 0)
+                {
+                    local slotA = aspModularC.getAudioFile(0);
+                    if (slotA != 0)
+                        slotA.loadFile(currentCabAPath);
+                }
+                else if (audioFileCabA != 0)
+                {
+                    audioFileCabA.loadFile(currentCabAPath);
+                }
+            }
         }
 
         // 3. Restore Cab IR B
@@ -707,8 +735,19 @@ Content.getComponent("btnBypassPreEQ").setControlCallback(onbtnBypassPreEQContro
             if (cabBName != "" && lblCabBName != 0)
                 lblCabBName.set("text", cabBName);
 
-            if (currentCabBPath != "" && audioFileCabB != 0)
-                audioFileCabB.loadFile(currentCabBPath);
+            if (currentCabBPath != "")
+            {
+                if (aspModularC != 0)
+                {
+                    local slotB = aspModularC.getAudioFile(1);
+                    if (slotB != 0)
+                        slotB.loadFile(currentCabBPath);
+                }
+                else if (audioFileCabB != 0)
+                {
+                    audioFileCabB.loadFile(currentCabBPath);
+                }
+            }
         }
 
         // 4. Restore CurveEQ states
