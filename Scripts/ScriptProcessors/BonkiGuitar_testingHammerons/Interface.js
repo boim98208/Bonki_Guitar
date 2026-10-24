@@ -345,6 +345,28 @@ for(i = 0; i < NUMOFSTRINGS; i++){
  
  // setting up the buttons that show the GUI
  
+ const var AllGuiPages = [Content.getComponent("PlayingModeBG"),
+                          Content.getComponent("DebugPanel"),
+                          Content.getComponent("ArticulationBG"),
+                          Content.getComponent("FXRackBG")];
+ 
+ const var AllShowPageButtons = [Content.getComponent("ShowPlayingModeButton"),
+                                 Content.getComponent("ShowArticulationsButton"),
+                                 Content.getComponent("ShowDebugPanelButton"),
+                                 Content.getComponent("ShowFXRackButton")];
+ 
+ 
+ 
+ inline function hideAllGuiPagesAndTurnOffPageBtns(){
+	 for(Page in AllGuiPages){
+		 Page.set("visible", false);
+	 }
+	 
+	 for(ShowPageButton in AllShowPageButtons){
+		 ShowPageButton.setValue(0);
+	 }
+ }
+ 
  inline function onShowDebugPanelButtonControl(component, value)
  {
  
@@ -374,12 +396,12 @@ for(i = 0; i < NUMOFSTRINGS; i++){
  {
  	
  	if(ShowPlayingModeButton.getValue() == 0){
- 		PlayingModeBG.set("visible", false);
- 		DebugPanel.set("visible", false);
+ 		hideAllGuiPagesAndTurnOffPageBtns();
  	}else{
+	 	hideAllGuiPagesAndTurnOffPageBtns();
+ 		ShowPlayingModeButton.setValue(1);
  		PlayingModeBG.set("visible", true);
- 		ArticulationBG.set("visible", false);
- 		ShowArticulationsButton.setValue(0);
+
  	}
  
  };
@@ -398,14 +420,37 @@ for(i = 0; i < NUMOFSTRINGS; i++){
  		DebugPanel.set("visible", false);
  		PlayingModeBG.set("visible", false);
  	}else{
- 		ShowPlayingModeButton.setValue(0);
- 		PlayingModeBG.set("visible", false);
+ 		hideAllGuiPagesAndTurnOffPageBtns();
+ 		ShowArticulationsButton.setValue(1);
  		ArticulationBG.set("visible", true);
  	}
  };
  
  Content.getComponent("ShowArticulationsButton").setControlCallback(onShowArticulationsButtonControl);
  
+ 
+ const var FXRackBG = Content.getComponent("FXRackBG");
+ 
+ const var ShowFXRackButton = Content.getComponent("ShowFXRackButton");
+ 
+ 
+
+inline function onShowFXRackButtonControl(component, value)
+{
+	 if(value == 0){
+ 		 hideAllGuiPagesAndTurnOffPageBtns();
+ 		PlayingModeBG.set("visible", true);
+ 	}else{
+ 		hideAllGuiPagesAndTurnOffPageBtns();
+ 		ShowFXRackButton.setValue(1);
+ 		FXRackBG.set("visible", true);
+ 	}
+};
+
+Content.getComponent("ShowFXRackButton").setControlCallback(onShowFXRackButtonControl);
+
+ 
+
  //setting up fretMarkers
  
  var fretImages = [];
