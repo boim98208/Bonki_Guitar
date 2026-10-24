@@ -516,6 +516,7 @@ Will change fret position if polyphony leads to a really far fret
 inline function naturalFretting2_2_1(notePlayed, currentHandPos)
 {
 	
+	
 
 	local distBetweenNewFretAndAutoFret = 0;
 	local newFretFromPolyphony;
@@ -606,6 +607,11 @@ inline function naturalFretting2_2_1(notePlayed, currentHandPos)
 		
 	}
 
+	
+	Console.print("~~  new start  ~~");
+	for(var j = 0; j < NUMOFSTRINGS; j++){
+		Console.print(stringNote[j]);
+	}
 	
 }
 
@@ -753,6 +759,9 @@ inline function melodyFretting1_0_0(notePlayed, currentHandPos)
  // interfacing between different fretting engines
  
  inline function playNextNoteOnNewString(notePlayed, velocityPlayed){
+	 
+
+ 
 	 
  	if(Globals.g_frettingEngine == FrettingEngine.NATURAL)
  			{
@@ -1610,6 +1619,9 @@ inline function randomAddOrSub(deviation){
 //	eventIds.setValue(notePlayed, notePlayedId);
 
 
+
+
+
 	detectKeySwitch(notePlayed);
 	
 	if(Globals.g_resetNotes == true)
@@ -1624,7 +1636,6 @@ inline function randomAddOrSub(deviation){
 		if(legatoKeySwitchPlaying){
 			
 			didPlayNoteLegato = playNextNoteLegato(notePlayed, velocityPlayed);
-			
 			if(!didPlayNoteLegato){
 		
 			playNextNoteOnNewString(notePlayed, velocityPlayed);
@@ -1659,9 +1670,11 @@ inline function randomAddOrSub(deviation){
 	
 	individualNoteStrum(notePlayed, velocityPlayed, stringNote, stringNoteId, indivNoteStrumIds);
 	
-	for(i = 0; i < NoteIdLabels.length; i++){
+	
+	
+/*	for(i = 0; i < NoteIdLabels.length; i++){
 		NoteIdLabels[i].set("text", stringNoteId[i]);
-	}
+	}*/
 
 //	strumIfStrumKeyPressed(notePlayed, IdsToTest, notesToTest, velocityPlayed);
 	
@@ -1690,6 +1703,7 @@ function onNoteOff()
 				{
 				    if (!Synth.isKeyDown(stringNote[i]))
 				    {
+
 
 						if(notePlayedMethod[i] == StringPlayingMethod.pianoRoll){
 						noteOffStringSound(i, stringNote, stringNoteId);
