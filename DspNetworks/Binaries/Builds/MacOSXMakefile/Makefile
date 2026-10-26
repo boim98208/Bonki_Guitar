@@ -139,7 +139,7 @@ ifeq ($(CONFIG),Release)
   JUCE_CPPFLAGS_DYNAMIC_LIBRARY :=  "-DJucePlugin_Build_VST=0" "-DJucePlugin_Build_VST3=0" "-DJucePlugin_Build_AU=0" "-DJucePlugin_Build_AUv3=0" "-DJucePlugin_Build_RTAS=0" "-DJucePlugin_Build_AAX=0" "-DJucePlugin_Build_Standalone=0" "-DJucePlugin_Build_Unity=0"
   JUCE_CFLAGS_DYNAMIC_LIBRARY := -fvisibility=hidden
   JUCE_LDFLAGS_DYNAMIC_LIBRARY := -dynamiclib -install_name @rpath/$(notdir $(JUCE_TARGET_DYNAMIC_LIBRARY))
-  JUCE_TARGET_DYNAMIC_LIBRARY := BonkiGuitar.dylib
+  JUCE_TARGET_DYNAMIC_LIBRARY := BonkiGuitar2.dylib
   JUCE_STRIPCMD_DYNAMIC_LIBRARY := $(STRIP) --strip-unneeded $(JUCE_OUTDIR)/$(JUCE_TARGET_DYNAMIC_LIBRARY)
 
   JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -O3 -isysroot $(shell xcrun --sdk macosx --show-sdk-path) -mmacosx-version-min=11.0 -Wno-reorder -Wno-inconsistent-missing-override -faligned-allocation -ffp-contract=off $(CFLAGS)

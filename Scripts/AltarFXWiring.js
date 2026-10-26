@@ -45,6 +45,54 @@ namespace AltarFX
     const var cmbAmpDirtyToneStackMode = Content.getComponent("cmbAmpDirtyToneStackMode");
     const var cmbAmpDirtyDistortionMode = Content.getComponent("cmbAmpDirtyDistortionMode");
 
+    // NAM Model Loader under Amp Mode Knob
+    const var btnBrowseNAM = Content.getComponent("btnBrowseNAM");
+    const var lblNAMName = Content.getComponent("lblNAMName");
+    const var grm = Engine.getGlobalRoutingManager();
+    const var namCable = grm.getCable("nam");
+    var currentNAMPath = "";
+
+    inline function loadNAMModelFile(filePath, displayName)
+    {
+        if (filePath == "")
+            return;
+
+        var f = FileSystem.fromAbsolutePath(filePath);
+        if (!f.isFile())
+            return;
+
+        var json = f.loadAsObject();
+        if (isDefined(json))
+        {
+            namCable.sendData(json);
+            currentNAMPath = filePath;
+            if (lblNAMName != 0)
+                lblNAMName.set("text", (displayName != "") ? displayName : f.toString(3));
+            Console.print("AltarFX: Successfully sent NAM model to cable: " + f.toString(3));
+        }
+        else
+        {
+            Console.print("AltarFX: Failed to parse NAM model file as JSON: " + filePath);
+        }
+    }
+
+    inline function onBtnBrowseNAM(component, value)
+    {
+        if (value)
+        {
+            FileSystem.browse(FileSystem.getFolder(FileSystem.UserPresets), false, "*.nam;*.json", function(file)
+            {
+                if (!file.isFile())
+                    return;
+
+                loadNAMModelFile(file.toString(0), file.toString(3));
+            });
+        }
+    }
+
+    if (btnBrowseNAM != 0)
+        btnBrowseNAM.setControlCallback(onBtnBrowseNAM);
+
     inline function onAmpMode(component, value) { setFXParam(fxAmp, "Mode", value); }
     inline function onAmpInput(component, value) { setFXParam(fxAmp, "InputGain", value); }
     inline function onAmpLow(component, value) { setFXParam(fxAmp, "Low", value); }
@@ -648,6 +696,12 @@ Content.getComponent("btnBypassPreEQ").setControlCallback(onbtnBypassPreEQContro
         }
         preset.parameters = params;
 
+        // Save NAM model path and display name
+        preset.nam = {
+            path: currentNAMPath,
+            name: (lblNAMName != 0) ? lblNAMName.get("text") : ""
+        };
+
         // Save Cab IR paths and display names
         preset.cabA = {
             path: currentCabAPath,
@@ -700,6 +754,18 @@ Content.getComponent("btnBypassPreEQ").setControlCallback(onbtnBypassPreEQContro
                     entry.comp.changed(); // Triggers DSP parameter update!
                 }
             }
+        }
+
+        // Restore NAM Model
+        if (isDefined(preset.nam))
+        {
+            currentNAMPath = isDefined(preset.nam.path) ? preset.nam.path : "";
+            var namName = isDefined(preset.nam.name) ? preset.nam.name : "";
+
+            if (currentNAMPath != "")
+                loadNAMModelFile(currentNAMPath, namName);
+            else if (lblNAMName != 0)
+                lblNAMName.set("text", "No Model");
         }
 
         // 2. Restore Cab IR A

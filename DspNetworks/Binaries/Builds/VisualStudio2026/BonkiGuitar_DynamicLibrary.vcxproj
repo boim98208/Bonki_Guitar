@@ -65,7 +65,7 @@
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='CI|x64'">true</GenerateManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\..\..\dll\Dynamic Library\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\Dynamic Library\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">BonkiGuitar</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">BonkiGuitar2</TargetName>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -173,7 +173,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <AssemblerListingLocation>$(IntDir)\</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)\</ObjectFileName>
-      <ProgramDataBaseFileName>$(IntDir)\BonkiGuitar.pdb</ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(IntDir)\BonkiGuitar2.pdb</ProgramDataBaseFileName>
       <WarningLevel>Level4</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -184,11 +184,11 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <Link>
-      <OutputFile>$(OutDir)\BonkiGuitar.dll</OutputFile>
+      <OutputFile>$(OutDir)\BonkiGuitar2.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(IntDir)\BonkiGuitar.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(IntDir)\BonkiGuitar2.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -196,7 +196,7 @@
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(IntDir)\BonkiGuitar.bsc</OutputFile>
+      <OutputFile>$(IntDir)\BonkiGuitar2.bsc</OutputFile>
     </Bscmake>
     <Lib/>
   </ItemDefinitionGroup>

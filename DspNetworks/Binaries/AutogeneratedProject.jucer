@@ -18,7 +18,7 @@
         <CONFIGURATION isDebug="0" name="CI" targetName="BonkiGuitar_ci" headerPath=""
                        libraryPath="" binaryPath="dll" alwaysGenerateDebugSymbols="0"
                        optimisation="2" linkTimeOptimisation="0" useRuntimeLibDLL="0"/>
-        <CONFIGURATION isDebug="0" name="Release" targetName="BonkiGuitar" headerPath=""
+        <CONFIGURATION isDebug="0" name="Release" targetName="BonkiGuitar2" headerPath=""
                        libraryPath="" binaryPath="dll" alwaysGenerateDebugSymbols="1"
                        linkTimeOptimisation="0" useRuntimeLibDLL="0"/>
       </CONFIGURATIONS>
@@ -50,7 +50,7 @@
                        targetName="BonkiGuitar_ci"/>
         <CONFIGURATION isDebug="0" name="Release" osxArchitecture="64BitIntel" headerPath=""
                        libraryPath="%OSC_STATIC_LIB_FOLDER_RELEASE%" binaryPath="dll"
-                       customXcodeFlags="CODE_SIGNING_ALLOWED=NO" targetName="BonkiGuitar"/>
+                       customXcodeFlags="CODE_SIGNING_ALLOWED=NO" targetName="BonkiGuitar2"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_gui_basics" path="C:\Users\Ibrahim Rasyid\Documents\HISE\JUCE\modules"/>
@@ -79,7 +79,7 @@
                        optimisation="4" linkTimeOptimisation="0" targetName="BonkiGuitar_ci"/>
         <CONFIGURATION isDebug="0" name="Release" osxArchitecture="%MACOS_MAKE_ARCHITECTURE%"
                        headerPath="" libraryPath="%OSC_STATIC_LIB_FOLDER_RELEASE%" binaryPath="dll"
-                       targetName="BonkiGuitar"/>
+                       targetName="BonkiGuitar2"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_gui_basics" path="C:\Users\Ibrahim Rasyid\Documents\HISE\JUCE\modules"/>

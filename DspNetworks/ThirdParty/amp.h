@@ -33,10 +33,11 @@
 #include <array>
 
 #include "src/dependencies/json/single_include/nlohmann/json.hpp"
+#include "src/dependencies/xsimd/include/xsimd/xsimd.hpp"
 #include "src/dependencies/RTNeural/RTNeural/RTNeural.h"
-#include "src/dependencies/RTNeural-NAM/wavenet/wavenet_model.hpp"
 #include "src/dependencies/math_approx/include/math_approx/math_approx.hpp"
 #include "src/filters.h"
+#include "src/NAM_impl.h"
 
 enum class GlobalCablesAmp
 {
@@ -944,31 +945,7 @@ private:
 
     // nam
 
-    // nam math provider (xsimd because eigen was a flop)
-    struct NAMMathsProvider
-    {
-        #if RTNEURAL_USE_EIGEN
-                template <typename Matrix>
-                static auto tanh(const Matrix& x)
-                {
-                    const auto x_poly = x.array() * (1.0f + 0.183428244899f * x.array().square());
-                    return x_poly.array() * (x_poly.array().square() + 1.0f).array().rsqrt();
-                }
-        #elif RTNEURAL_USE_XSIMD
-                template <typename T>
-                static T tanh(const T& x)
-                {
-                    return math_approx::tanh<3>(x);
-                }
-        #endif
-    };  
-
-    using Dilations = wavenet::Dilations<1, 2, 4, 8, 16, 32, 64, 128, 256, 512>;
-
-    using Model = wavenet::Wavenet_Model<float,
-        1,
-        wavenet::Layer_Array<float, 1, 1, 8, 16, 3, Dilations, false, NAMMathsProvider>,
-        wavenet::Layer_Array<float, 16, 1, 1, 8, 3, Dilations, true, NAMMathsProvider>>;
+    using Model = Altar::DSP::NAM::ManualModel;
     
     void loadNAMModel(const var& jsonData)
     {
@@ -990,24 +967,18 @@ private:
             {
                 nlohmann::json modelJson = nlohmann::json::parse(jsonCopy);
 
-                auto newModel = std::make_shared<Model>();
-                newModel->load_weights(modelJson);                
-                newModel->prepare(static_cast<int>(lastSpecs.maximumBlockSize)); // prepare off-thread
-
-                // get sample rate or assume 48000 if not found
-                double sr = 48000.0;
-                if (modelJson.contains("sample_rate"))
+                Altar::DSP::NAM::LoadedManualModel loadedModel = Altar::DSP::NAM::createManualModel(modelJson);
+                if (loadedModel.model)
                 {
-                    try { sr = static_cast<double>(modelJson["sample_rate"]); }
-                    catch (...) {}
-                }
-                modelSampleRate.store(sr, std::memory_order_release);
-                resamplerConfig.store(true, std::memory_order_release);
+                    loadedModel.model->prepare(static_cast<int>(lastSpecs.maximumBlockSize)); // prepare off-thread
+                    modelSampleRate.store(loadedModel.sampleRate, std::memory_order_release);
+                    resamplerConfig.store(true, std::memory_order_release);
 
-                std::atomic_store(&modelShared, std::move(newModel));
-                modelLoaded = true;
-                modelPath = {}; 
-                needsWarmup.store(true, std::memory_order_release); // request warmup 
+                    std::atomic_store(&modelShared, std::move(loadedModel.model));
+                    modelLoaded = true;
+                    modelPath = {}; 
+                    needsWarmup.store(true, std::memory_order_release); // request warmup
+                }
             }
             catch (const std::exception& e) { DBG("Exception loading NAM model: " << e.what()); modelLoaded = false; }            
             catch (...) { DBG("Unknown exception loading NAM model"); modelLoaded = false; }            
@@ -1213,7 +1184,7 @@ private:
         resamplerConfig.store(false, std::memory_order_release);
     }
 
-    void warmupNAM(Model& m)
+    void warmupNAM(Altar::DSP::NAM::ManualModel& m)
     {
         // calls forward on a bunch of 0 samples then discards them to warmup the model
         for (int i = 0; i < 2048; ++i) { (void)m.forward(0.0f); }            
@@ -1331,7 +1302,7 @@ private:
     bool modelLoaded = false;
     juce::String modelPath = "";
     
-    std::shared_ptr<Model> modelShared;
+    std::shared_ptr<Altar::DSP::NAM::ManualModel> modelShared;
     std::atomic<bool> isLoading { false };
     std::atomic<bool> needsWarmup { false };
 
