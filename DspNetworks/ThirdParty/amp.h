@@ -105,6 +105,11 @@ template <int NV> struct amp: public data::base, public cable_manager_t
         {
             m->prepare(static_cast<int>(lastSpecs.maximumBlockSize));            
             warmupNAM(*m);
+            if (auto mR = std::atomic_load(&modelSharedR))
+            {
+                mR->prepare(static_cast<int>(lastSpecs.maximumBlockSize));
+                warmupNAM(*mR);
+            }
             needsWarmup.store(false, std::memory_order_release);
             modelLoaded = true;
         }                
@@ -363,7 +368,7 @@ private:
     // main process function
     void processAudioBuffer(juce::AudioBuffer<float>& buffer)
     {        
-        const bool useOversampling = (oversamplingFactor > 0 && oversampling != nullptr && ampMode < 2); // oversample (only for non-NAM modes)
+        const bool useOversampling = (oversamplingFactor > 0 && oversampling != nullptr); // oversample
         juce::dsp::AudioBlock<float> inBlock(buffer);
 
         if (useOversampling)
@@ -379,7 +384,8 @@ private:
 
             // process
             if (ampMode == 0) { processCleanMode(osBuffer, osBuffer.getNumSamples()); }
-            else { processDirtyMode(osBuffer, osBuffer.getNumSamples()); }
+            else if (ampMode == 1) { processDirtyMode(osBuffer, osBuffer.getNumSamples()); }
+            else if (ampMode == 2) { processNAMMode(osBuffer, osBuffer.getNumSamples()); }
 
             oversampling->processSamplesDown(inBlock); // downsample back to original sr
         }
@@ -941,6 +947,8 @@ private:
 
         garnet.reset();
         garnet.update(scaledSampleRate);            
+
+        resamplerConfig.store(true, std::memory_order_release);
     }
 
     // nam
@@ -967,14 +975,19 @@ private:
             {
                 nlohmann::json modelJson = nlohmann::json::parse(jsonCopy);
 
-                Altar::DSP::NAM::LoadedManualModel loadedModel = Altar::DSP::NAM::createManualModel(modelJson);
-                if (loadedModel.model)
+                Altar::DSP::NAM::LoadedManualModel loadedModelL = Altar::DSP::NAM::createManualModel(modelJson);
+                Altar::DSP::NAM::LoadedManualModel loadedModelR = Altar::DSP::NAM::createManualModel(modelJson);
+                if (loadedModelL.model)
                 {
-                    loadedModel.model->prepare(static_cast<int>(lastSpecs.maximumBlockSize)); // prepare off-thread
-                    modelSampleRate.store(loadedModel.sampleRate, std::memory_order_release);
+                    loadedModelL.model->prepare(static_cast<int>(lastSpecs.maximumBlockSize)); // prepare off-thread
+                    if (loadedModelR.model)
+                        loadedModelR.model->prepare(static_cast<int>(lastSpecs.maximumBlockSize));
+
+                    modelSampleRate.store(loadedModelL.sampleRate, std::memory_order_release);
                     resamplerConfig.store(true, std::memory_order_release);
 
-                    std::atomic_store(&modelShared, std::move(loadedModel.model));
+                    std::atomic_store(&modelShared, std::move(loadedModelL.model));
+                    std::atomic_store(&modelSharedR, std::move(loadedModelR.model));
                     modelLoaded = true;
                     modelPath = {}; 
                     needsWarmup.store(true, std::memory_order_release); // request warmup
@@ -1165,13 +1178,15 @@ private:
     {
         if (!resamplerConfig.load(std::memory_order_acquire)) { return; }            
 
-        const double hostSR  = lastSpecs.sampleRate > 0 ? lastSpecs.sampleRate : (double)sampleRate;
+        const double hostSR  = scaledSampleRate > 0.0f ? (double)scaledSampleRate : (lastSpecs.sampleRate > 0 ? lastSpecs.sampleRate : (double)sampleRate);
         const double modelSR = modelSampleRate.load(std::memory_order_acquire);
         
         auto algo = StreamingResampler::ResampleAlgo::Lagrange;
         
         inputResampler.setup(hostSR, modelSR, algo, resamplerKernelSize);
         outputResampler.setup(modelSR, hostSR, algo, resamplerKernelSize);
+        inputResamplerR.setup(hostSR, modelSR, algo, resamplerKernelSize);
+        outputResamplerR.setup(modelSR, hostSR, algo, resamplerKernelSize);
 
         // prepare scratches        
         const int maxIn = (int)lastSpecs.maximumBlockSize;
@@ -1179,6 +1194,9 @@ private:
         scratchUp.resize(upEstimate);
         scratchNAM.resize(upEstimate);
         scratchDown.resize(maxIn + 32);
+        scratchUpR.resize(upEstimate);
+        scratchNAMR.resize(upEstimate);
+        scratchDownR.resize(maxIn + 32);
         scratchPreFilter.resize(maxIn + 32);
 
         resamplerConfig.store(false, std::memory_order_release);
@@ -1194,26 +1212,40 @@ private:
     {
         updateNAMResamplers();
         
-        float* channelDataL = buffer.getWritePointer(0); // nam processes mono only (for now, might implement stereo later)
-        auto m = std::atomic_load(&modelShared);
-        
-        if (m && needsWarmup.load(std::memory_order_acquire)) // if model needs warming, warm it
+        const int numCh = juce::jmin(2, buffer.getNumChannels());
+        const bool processStereo = (!monoMode && numCh == 2);
+
+        float* channelDataL = buffer.getWritePointer(0);
+        float* channelDataR = (numCh > 1) ? buffer.getWritePointer(1) : nullptr;
+
+        auto mL = std::atomic_load(&modelShared);
+        auto mR = processStereo ? std::atomic_load(&modelSharedR) : nullptr;
+        if (processStereo && !mR)
+            mR = mL; // fallback to mL if mR not instantiated
+
+        if (mL && needsWarmup.load(std::memory_order_acquire)) // if model needs warming, warm it
         {
             bool expected = true;
             if (needsWarmup.compare_exchange_strong(expected, false, std::memory_order_acq_rel))
-                warmupNAM(*m);
+            {
+                warmupNAM(*mL);
+                if (auto mRInit = std::atomic_load(&modelSharedR))
+                    warmupNAM(*mRInit);
+            }
         }
 
         // safety check in case model doesn't exist
-        if (!m)
+        if (!mL)
         {
-            if (buffer.getNumChannels() > 1)
-                std::memcpy(buffer.getWritePointer(1), buffer.getReadPointer(0), (size_t)numSamples * sizeof(float));
+            if (numCh > 1 && monoMode)
+                std::memcpy(channelDataR, channelDataL, (size_t)numSamples * sizeof(float));
             return;
         }
 
-        const double hostSR  = (double)sampleRate;
+        const double hostSR  = scaledSampleRate > 0.0f ? (double)scaledSampleRate : (double)sampleRate;
         const double modelSR = modelSampleRate.load(std::memory_order_acquire);
+        const float inGainVal = Decibels::decibelsToGain(inputGain);
+        const float outGainVal = Decibels::decibelsToGain(outputGain);
 
         // check if upsampling is enabled (by default it's off cause it sounded bad lol)
         const bool isUpsampling = modelSR > hostSR;
@@ -1221,81 +1253,95 @@ private:
         {            
             for (int s = 0; s < numSamples; ++s)
             {
-                float sample = channelDataL[s];
+                float sampleL = channelDataL[s] * inGainVal;
+                sampleL = mL->forward(sampleL);
+                sampleL = toneStack.processPre(0, sampleL) * outGainVal;
+                channelDataL[s] = sampleL;                
 
-                sample *= Decibels::decibelsToGain(inputGain); // input gain
-                sample = m->forward(sample); // nam transfer function                                                
-                sample = toneStack.processPre(0, sample);
-                sample *= Decibels::decibelsToGain(outputGain); // output gain
-                    
-                channelDataL[s] = sample;                
+                if (processStereo && mR)
+                {
+                    float sampleR = channelDataR[s] * inGainVal;
+                    sampleR = mR->forward(sampleR);
+                    sampleR = toneStack.processPre(1, sampleR) * outGainVal;
+                    channelDataR[s] = sampleR;
+                }
             }
 
-            if (buffer.getNumChannels() > 1) // copy to R
-                std::memcpy(buffer.getWritePointer(1), buffer.getReadPointer(0), (size_t)numSamples * sizeof(float));
+            if (numCh > 1 && !processStereo)
+                std::memcpy(channelDataR, channelDataL, (size_t)numSamples * sizeof(float));
             return;
         }
         
-        const bool needsResample = std::abs(modelSR - hostSR) > 0.5; // check for necessary downsampling
+        const bool needsResample = std::abs(modelSR - hostSR) > 0.5;
 
         if (!needsResample) // no resampling
         {            
             for (int s = 0; s < numSamples; ++s)
             {
-                float sample = channelDataL[s];
-                
-                sample *= Decibels::decibelsToGain(inputGain); // input gain
-                sample = m->forward(sample); // nam transfer function                                                
-                sample = toneStack.processPre(0, sample);
-                sample *= Decibels::decibelsToGain(outputGain); // output gain
+                float sampleL = channelDataL[s] * inGainVal;
+                sampleL = mL->forward(sampleL);
+                sampleL = toneStack.processPre(0, sampleL) * outGainVal;
+                channelDataL[s] = sampleL;
 
-                channelDataL[s] = sample;
+                if (processStereo && mR)
+                {
+                    float sampleR = channelDataR[s] * inGainVal;
+                    sampleR = mR->forward(sampleR);
+                    sampleR = toneStack.processPre(1, sampleR) * outGainVal;
+                    channelDataR[s] = sampleR;
+                }
             }
 
-            if (buffer.getNumChannels() > 1) // copy to R
-                std::memcpy(buffer.getWritePointer(1), buffer.getReadPointer(0), (size_t)numSamples * sizeof(float));
+            if (numCh > 1 && !processStereo)
+                std::memcpy(channelDataR, channelDataL, (size_t)numSamples * sizeof(float));
 
             return;
         }
         
         // resample start
-
-        float* inputData = channelDataL;
         const double upRatio = modelSR / hostSR;
         const int upCountTarget = (int)std::llround((double)numSamples * upRatio);
 
-        inputResampler.processBlock(inputData, numSamples, scratchUp, upCountTarget);
-
-        // process resampled data
-        const int upCount = (int)scratchUp.size();
-        scratchNAM.resize(upCount);
-        for (int i = 0; i < upCount; ++i)
+        inputResampler.processBlock(channelDataL, numSamples, scratchUp, upCountTarget);
+        const int upCountL = (int)scratchUp.size();
+        scratchNAM.resize(upCountL);
+        for (int i = 0; i < upCountL; ++i)
         {
-            float x = scratchUp[i];
-
-            x *= Decibels::decibelsToGain(inputGain); // inputGain
-            x = m->forward(x); // nam transfer function
-
-            scratchNAM[i] = x;
+            float x = scratchUp[i] * inGainVal;
+            scratchNAM[i] = mL->forward(x);
         }
+        outputResampler.processBlock(scratchNAM.data(), upCountL, scratchDown, numSamples);
 
-        // resample end
-        outputResampler.processBlock(scratchNAM.data(), upCount, scratchDown, numSamples);
-
-        // tone stack & output gain        
-        float* outL = channelDataL;
         for (int s = 0; s < numSamples; ++s)
         {
             float y = scratchDown[s];
-            
-            y = toneStack.processPre(0, y);
-
-            y *= Decibels::decibelsToGain(outputGain); // outputGain
-            outL[s] = y;
+            y = toneStack.processPre(0, y) * outGainVal;
+            channelDataL[s] = y;
         }
 
-        if (buffer.getNumChannels() > 1) // copy to R
-            std::memcpy(buffer.getWritePointer(1), buffer.getReadPointer(0), (size_t)numSamples * sizeof(float));
+        if (processStereo && mR)
+        {
+            inputResamplerR.processBlock(channelDataR, numSamples, scratchUpR, upCountTarget);
+            const int upCountR = (int)scratchUpR.size();
+            scratchNAMR.resize(upCountR);
+            for (int i = 0; i < upCountR; ++i)
+            {
+                float x = scratchUpR[i] * inGainVal;
+                scratchNAMR[i] = mR->forward(x);
+            }
+            outputResamplerR.processBlock(scratchNAMR.data(), upCountR, scratchDownR, numSamples);
+
+            for (int s = 0; s < numSamples; ++s)
+            {
+                float y = scratchDownR[s];
+                y = toneStack.processPre(1, y) * outGainVal;
+                channelDataR[s] = y;
+            }
+        }
+        else if (numCh > 1)
+        {
+            std::memcpy(channelDataR, channelDataL, (size_t)numSamples * sizeof(float));
+        }
     }
 
     
@@ -1303,6 +1349,7 @@ private:
     juce::String modelPath = "";
     
     std::shared_ptr<Altar::DSP::NAM::ManualModel> modelShared;
+    std::shared_ptr<Altar::DSP::NAM::ManualModel> modelSharedR;
     std::atomic<bool> isLoading { false };
     std::atomic<bool> needsWarmup { false };
 
@@ -1310,17 +1357,22 @@ private:
                
     int resamplerMode = 0; // default lagrange
     int resamplerKernelSize = 32; // used by lanczos and sinc
-    bool allowUpsampleResampling = false; // allow resampling when host < model sample rate (disable by default)
+    bool allowUpsampleResampling = true; // allow resampling when host < model sample rate (disable by default)
     std::atomic<double> modelSampleRate { 48000.0 }; // most nam models are trained at 48000
     std::atomic<bool>   resamplerConfig { true };
 
     UpsampleAAFilter upsampleAAFilter;
 
-    StreamingResampler inputResampler;   // host -> model
-    StreamingResampler outputResampler;  // model -> host
-    std::vector<float> scratchUp;        // upsampled input for NAM
-    std::vector<float> scratchDown;      // NAM output resampled back
-    std::vector<float> scratchNAM;       // NAM processing buffer (mono)
+    StreamingResampler inputResampler;   // host -> model L
+    StreamingResampler outputResampler;  // model -> host L
+    StreamingResampler inputResamplerR;  // host -> model R
+    StreamingResampler outputResamplerR; // model -> host R
+    std::vector<float> scratchUp;        // upsampled input for NAM L
+    std::vector<float> scratchDown;      // NAM output resampled back L
+    std::vector<float> scratchNAM;       // NAM processing buffer L
+    std::vector<float> scratchUpR;       // upsampled input for NAM R
+    std::vector<float> scratchDownR;     // NAM output resampled back R
+    std::vector<float> scratchNAMR;      // NAM processing buffer R
     std::vector<float> scratchPreFilter; // Pre-filtered input for HQ upsampling
    
 };
