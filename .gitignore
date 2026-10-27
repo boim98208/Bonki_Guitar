@@ -3,3 +3,4 @@ XmlPresetBackups/GeneratedGuitar.xml
 /DspNetworks/Binaries
 /DspNetworks/Binaries/Builds
 *.tlog
+/Binaries
