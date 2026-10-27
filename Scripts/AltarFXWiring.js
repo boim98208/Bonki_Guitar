@@ -41,6 +41,7 @@ namespace AltarFX
     const var knbAmpHigh = Content.getComponent("knbAmpHigh");
     const var knbAmpPresence = Content.getComponent("knbAmpPresence");
     const var knbAmpOutput = Content.getComponent("knbAmpOutput");
+    const var knbAmpSlim = Content.getComponent("knbAmpSlim");
     const var cmbAmpCleanToneStackMode = Content.getComponent("cmbAmpCleanToneStackMode");
     const var cmbAmpDirtyToneStackMode = Content.getComponent("cmbAmpDirtyToneStackMode");
     const var cmbAmpDirtyDistortionMode = Content.getComponent("cmbAmpDirtyDistortionMode");
@@ -100,6 +101,7 @@ namespace AltarFX
     inline function onAmpHigh(component, value) { setFXParam(fxAmp, "High", value); }
     inline function onAmpPresence(component, value) { setFXParam(fxAmp, "Presence", value); }
     inline function onAmpOutput(component, value) { setFXParam(fxAmp, "OutputGain", value); }
+    inline function onAmpSlim(component, value) { setFXParam(fxAmp, "Slim", value); }
     inline function onAmpCleanToneStackMode(component, value) { setFXParam(fxAmp, "CleanToneStackMode", value - 1.0); }
     inline function onAmpDirtyToneStackMode(component, value) { setFXParam(fxAmp, "DirtyToneStackMode", value - 1.0); }
     inline function onAmpDirtyDistortionMode(component, value) { setFXParam(fxAmp, "DistortionMode", value - 1.0); }
@@ -111,6 +113,8 @@ namespace AltarFX
     knbAmpHigh.setControlCallback(onAmpHigh);
     knbAmpPresence.setControlCallback(onAmpPresence);
     knbAmpOutput.setControlCallback(onAmpOutput);
+    if (knbAmpSlim != 0)
+        knbAmpSlim.setControlCallback(onAmpSlim);
     cmbAmpCleanToneStackMode.setControlCallback(onAmpCleanToneStackMode);
     cmbAmpDirtyToneStackMode.setControlCallback(onAmpDirtyToneStackMode);
     cmbAmpDirtyDistortionMode.setControlCallback(onAmpDirtyDistortionMode);
@@ -592,6 +596,7 @@ Content.getComponent("btnBypassPreEQ").setControlCallback(onbtnBypassPreEQContro
         { id: "knbAmpHigh", comp: knbAmpHigh },
         { id: "knbAmpPresence", comp: knbAmpPresence },
         { id: "knbAmpOutput", comp: knbAmpOutput },
+        { id: "knbAmpSlim", comp: knbAmpSlim },
         { id: "cmbAmpCleanToneStackMode", comp: cmbAmpCleanToneStackMode },
         { id: "cmbAmpDirtyToneStackMode", comp: cmbAmpDirtyToneStackMode },
         { id: "cmbAmpDirtyDistortionMode", comp: cmbAmpDirtyDistortionMode },

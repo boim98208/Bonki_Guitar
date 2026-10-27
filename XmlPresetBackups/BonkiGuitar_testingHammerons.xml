@@ -9,8 +9,8 @@
         <Processor Type="ScriptProcessor" ID="Interface" Bypassed="0" NumAudioFiles="2">
           <ChildProcessors/>
           <Content>
-            <Control type="ScriptSlider" id="HandPositionFretForceKnob" value="-1.0"/>
-            <Control type="ScriptSlider" id="StringForceKnob" value="1.0"/>
+            <Control type="ScriptSlider" id="HandPositionFretForceKnob" value="1.0"/>
+            <Control type="ScriptSlider" id="StringForceKnob" value="8.0"/>
             <Control type="ScriptComboBox" id="FrettingEngineComboBox" value="1.0"/>
             <Control type="ScriptButton" id="ResetGlobalRRButton" value="0.0"/>
             <Control type="ScriptSlider" id="IRMixKnob" value="0.0"/>
@@ -58,17 +58,17 @@
             <Control type="ScriptButton" id="PrevPageBtn" value="0.0"/>
             <Control type="ScriptButton" id="btnModularA" value="0"/>
             <Control type="ScriptButton" id="btnBypassModularA" value="1.0"/>
-            <Control type="ScriptButton" id="btnModularB" value="1"/>
+            <Control type="ScriptButton" id="btnModularB" value="0"/>
             <Control type="ScriptButton" id="btnBypassModularB" value="0.0"/>
-            <Control type="ScriptButton" id="btnModularC" value="1"/>
-            <Control type="ScriptButton" id="btnBypassModularC" value="0.0"/>
-            <Control type="ScriptButton" id="btnModularD" value="1"/>
+            <Control type="ScriptButton" id="btnModularC" value="0"/>
+            <Control type="ScriptButton" id="btnBypassModularC" value="1.0"/>
+            <Control type="ScriptButton" id="btnModularD" value="0"/>
             <Control type="ScriptButton" id="btnBypassModularD" value="1.0"/>
-            <Control type="ScriptButton" id="btnModularE" value="1"/>
+            <Control type="ScriptButton" id="btnModularE" value="0"/>
             <Control type="ScriptButton" id="btnBypassModularE" value="1.0"/>
-            <Control type="ScriptButton" id="btnModularF" value="1"/>
+            <Control type="ScriptButton" id="btnModularF" value="0"/>
             <Control type="ScriptButton" id="btnBypassModularF" value="1.0"/>
-            <Control type="ScriptButton" id="btnModularG" value="1"/>
+            <Control type="ScriptButton" id="btnModularG" value="0"/>
             <Control type="ScriptButton" id="btnBypassModularG" value="1.0"/>
             <Control type="ScriptSlider" id="knbOverdriveMode" value="0.0"/>
             <Control type="ScriptSlider" id="knbOverdriveDrive" value="3.400000095367432"/>
@@ -79,10 +79,10 @@
             <Control type="ScriptSlider" id="knbOverdriveCircuitBend" value="0.0"/>
             <Control type="ScriptSlider" id="knbOverdriveMix" value="0.3299999833106995"/>
             <Control type="ScriptSlider" id="knbOverdriveOutputGain" value="-2.799999713897705"/>
-            <Control type="ScriptSlider" id="knbAmpMode" value="1.0"/>
-            <Control type="ScriptSlider" id="knbAmpInput" value="55.20000076293945"/>
-            <Control type="ScriptSlider" id="knbAmpLow" value="5.000000476837158"/>
-            <Control type="ScriptSlider" id="knbAmpMid" value="-3.399999856948853"/>
+            <Control type="ScriptSlider" id="knbAmpMode" value="2.0"/>
+            <Control type="ScriptSlider" id="knbAmpInput" value="44.00000381469727"/>
+            <Control type="ScriptSlider" id="knbAmpLow" value="1.788139343261719e-7"/>
+            <Control type="ScriptSlider" id="knbAmpMid" value="1.788139343261719e-7"/>
             <Control type="ScriptSlider" id="knbAmpHigh" value="0.6000002026557922"/>
             <Control type="ScriptSlider" id="knbAmpPresence" value="1.788139343261719e-7"/>
             <Control type="ScriptSlider" id="knbAmpOutput" value="5.364418029785156e-7"/>
@@ -90,6 +90,7 @@
             <Control type="ScriptComboBox" id="cmbAmpDirtyToneStackMode" value="2.0"/>
             <Control type="ScriptComboBox" id="cmbAmpDirtyDistortionMode" value="1.0"/>
             <Control type="ScriptButton" id="btnBrowseNAM" value="1.0"/>
+            <Control type="ScriptSlider" id="knbAmpSlim" value="1.0"/>
             <Control type="ScriptSlider" id="knbCabMix" value="0.0"/>
             <Control type="ScriptSlider" id="knbCabAGain" value="1.490116119384766e-6"/>
             <Control type="ScriptSlider" id="knbCabAPan" value="-2.235174179077148e-8"/>
@@ -134,7 +135,7 @@
             <Control type="ScriptButton" id="btnLoadFXPreset" value="1.0"/>
             <Control type="ScriptButton" id="btnPreEQ" value="1"/>
             <Control type="ScriptButton" id="btnBypassPreEQ" value="1.0"/>
-            <Control type="ScriptButton" id="btnPostEQ" value="1"/>
+            <Control type="ScriptButton" id="btnPostEQ" value="0"/>
             <Control type="ScriptButton" id="btnBypassPostEQ" value="1.0"/>
             <Control type="ScriptSlider" id="knbGateThreshold" value="-100.0"/>
             <Control type="ScriptSlider" id="knbGateAttack" value="25.0"/>
@@ -143,8 +144,8 @@
             <Control type="ScriptSlider" id="knbOctave" value="0.0"/>
             <Control type="ScriptSlider" id="knbChugStrength" value="0.0"/>
             <Control type="ScriptSlider" id="knbPickStrength" value="0.0"/>
-            <Control type="ScriptButton" id="ShowPlayingModeButton" value="0"/>
-            <Control type="ScriptButton" id="ShowArticulationsButton" value="1"/>
+            <Control type="ScriptButton" id="ShowPlayingModeButton" value="1"/>
+            <Control type="ScriptButton" id="ShowArticulationsButton" value="0"/>
             <Control type="ScriptButton" id="ShowDebugPanelButton" value="0"/>
             <Control type="ScriptButton" id="ShowFXRackButton" value="0"/>
           </Content>
@@ -153,8 +154,7 @@
               <Component type="ScriptImage" id="CreditsBG" x="0" y="-60" width="1020"
                          height="800" fileName="{PROJECT_FOLDER}Credits_BG.png" scale="0.699999988079071"/>
               <Component type="ScriptImage" id="PlayingModeBG" x="0" y="-60" width="1020"
-                         height="800" fileName="{PROJECT_FOLDER}Empty_BG.png" scale="0.699999988079071"
-                         visible="0">
+                         height="800" fileName="{PROJECT_FOLDER}Empty_BG.png" scale="0.699999988079071">
                 <Component type="ScriptImage" id="PlayingModeGuitarImg" x="10" y="160" width="1006"
                            height="314" parentComponent="PlayingModeBG" fileName="{PROJECT_FOLDER}Bonki_GuitarRender.png"/>
                 <Component type="ScriptPanel" id="StringFretMarkersPnl" x="0" y="0" width="1020"
@@ -164,37 +164,37 @@
                              height="54" parentComponent="StringFretMarkersPnl" itemColour="0"
                              itemColour2="0" textColour="16777215" bgColour="16777215">
                     <Component type="ScriptImage" id="String8Fret0Marker" x="193" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret1Marker" x="211" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret2Marker" x="250" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret3Marker" x="285" y="21" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret4Marker" x="320" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret5Marker" x="351" y="22" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret6Marker" x="382" y="22" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret7Marker" x="409" y="23" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret8Marker" x="434" y="23" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret9Marker" x="459" y="24" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret10Marker" x="481" y="24" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret11Marker" x="504" y="24" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -246,22 +246,22 @@
                              height="54" parentComponent="StringFretMarkersPnl" itemColour="0"
                              itemColour2="0" textColour="16777215" bgColour="16777215">
                     <Component type="ScriptImage" id="String7Fret0Marker" x="194" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret1Marker" x="212" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret2Marker" x="251" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret3Marker" x="286" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret4Marker" x="320" y="22" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret5Marker" x="351" y="22" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret6Marker" x="382" y="22" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -819,7 +819,7 @@
                 </Component>
                 <Component type="ScriptLabel" id="CurrArticulationPlayingLabel" x="530"
                            y="490" width="100" height="34" parentComponent="PlayingModeBG"
-                           text="Sustain" textColour="4278190080" fontName="Shehroz" fontSize="18.0"
+                           text="Mute" textColour="4278190080" fontName="Shehroz" fontSize="18.0"
                            alignment="left"/>
                 <Component type="ScriptLabel" id="ArticulationPlayingLabel" x="430" y="490"
                            width="100" height="34" parentComponent="PlayingModeBG" text="Articulation:"
@@ -832,19 +832,20 @@
                              height="15" width="10" text="FretBorderLowForced"/>
                   <Component type="ScriptImage" id="FretBorderLowForced" x="0" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder_Forced.png"
-                             scale="0.25" height="15" width="10"/>
+                             scale="0.25" height="15" width="10" visible="0"/>
                   <Component type="ScriptImage" id="FretBorderHigh" x="132" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder.png" scale="0.25"
                              height="15" width="10" text="FretBorderLowForced"/>
                   <Component type="ScriptImage" id="FretBorderHighForced" x="132" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder_Forced.png"
-                             scale="0.25" height="15" width="10"/>
+                             scale="0.25" height="15" width="10" visible="0"/>
                   <Component type="ScriptImage" id="FretBorderCenter" x="66" y="23" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandCenter.png" height="15"
                              width="15" text="FretBorderLowForced" scale="0.4000000059604645"/>
                   <Component type="ScriptImage" id="FretBorderCenterForced" x="66" y="23"
                              parentComponent="FretBorderPanel" fileName="{PROJECT_FOLDER}PlayingMode_HandCenter_Forced.png"
-                             height="15" width="15" text="FretBorderLowForced" scale="0.4000000059604645"/>
+                             height="15" width="15" text="FretBorderLowForced" scale="0.4000000059604645"
+                             visible="0"/>
                   <Component type="ScriptImage" id="FretBorderLowForcedRef" x="496" y="25"
                              parentComponent="FretBorderPanel" fileName="{PROJECT_FOLDER}PlayingMode_HandBorder_Forced.png"
                              scale="0.25" height="15" width="10" visible="0"/>
@@ -1010,7 +1011,8 @@
                            fontSize="16.0"/>
               </Component>
               <Component type="ScriptImage" id="ArticulationBG" x="0" y="-60" width="1020"
-                         height="600" fileName="{PROJECT_FOLDER}Articulations_BG.png">
+                         height="600" fileName="{PROJECT_FOLDER}Articulations_BG.png"
+                         visible="0">
                 <Component type="ScriptPanel" id="SustainModulatorsPnl" x="0" y="150" width="1000"
                            height="60" parentComponent="ArticulationBG" itemColour="0" itemColour2="0"
                            textColour="16777215" bgColour="16777215">
@@ -1309,7 +1311,7 @@
                 </Component>
                 <Component type="ScriptPanel" id="pnlModularB" x="20" y="60" width="960"
                            height="170" itemColour="0" itemColour2="0" parentComponent="FXRackBG"
-                           textColour="4278190080">
+                           textColour="4278190080" visible="0">
                   <Component type="ScriptSlider" id="knbAmpMode" parentComponent="pnlModularB"
                              x="15" y="10" width="96" height="60" stepSize="1.0" defaultValue="1.0"
                              max="2.0">
@@ -1385,6 +1387,13 @@
                   <Component type="ScriptLabel" id="lblNAMName" parentComponent="pnlModularB"
                              x="15" y="118" width="96" height="24" text="Jcm800.nam" editable="0"
                              fontStyle="Italic" textColour="4278190080"/>
+                  <Component type="ScriptSlider" id="knbAmpSlim" parentComponent="pnlModularB"
+                             x="360" y="85" width="96" height="60" stepSize="0.009999999776482582"
+                             tooltip="Slim down NAM A2 model (0.0 = Full 8ch, 1.0 = Lite 3ch)">
+                    <Component type="ScriptLabel" id="lbl_knbAmpSlim" x="0" y="38" width="96"
+                               height="20" text="NAM Slim" editable="0" fontStyle="Bold" parentComponent="knbAmpSlim"
+                               textColour="4278190080"/>
+                  </Component>
                 </Component>
                 <Component type="ScriptPanel" id="pnlModularC" x="20" y="60" width="960"
                            height="170" itemColour="0" itemColour2="0" parentComponent="FXRackBG"
@@ -1667,7 +1676,7 @@
                   </Component>
                 </Component>
                 <Component type="ScriptPanel" id="pnlPreEQ" x="20" y="60" width="1000" height="198"
-                           itemColour="0" itemColour2="0" parentComponent="FXRackBG" visible="0">
+                           itemColour="0" itemColour2="0" parentComponent="FXRackBG">
                   <Component type="ScriptFloatingTile" id="fltPreEQ" x="0" y="0" width="960"
                              height="170" parentComponent="pnlPreEQ" ContentType="DraggableFilterPanel"
                              bgColour="16777215" itemColour="1946122793" itemColour2="4278190080"
@@ -1758,7 +1767,7 @@
                 <Component type="ScriptButton" id="btnBypassPostEQ" x="946" y="342" width="28"
                            height="20" text="BP" parentComponent="FXRackBG" tooltip="Bypass Post-FX EQ"/>
                 <Component type="ScriptLabel" id="lblFXPresetName" x="20" y="1030" width="105"
-                           height="22" text="Default FX" editable="0" fontStyle="Italic"
+                           height="22" text="test save.json" editable="0" fontStyle="Italic"
                            parentComponent="FXRackBG" textColour="4278190080"/>
                 <Component type="ScriptSlider" id="knbGateThreshold" x="140" y="474" width="96"
                            height="60" min="-100.0" max="0.0" stepSize="1.0" suffix=" dB"
@@ -1886,7 +1895,7 @@
         </Processor>
         <Processor Type="CurveEq" ID="preEQ" Bypassed="0" NumFilters="1" Band0="-0.6575353145599365"
                    Band1="529.2901000976562" Band2="3.712930202484131" Band3="1.0"
-                   Band4="4.0" FFTEnabled="1">
+                   Band4="4.0" FFTEnabled="0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
@@ -1899,15 +1908,15 @@
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
         <Processor Type="HardcodedMasterFX" ID="modularB" Bypassed="0" Network="amp"
-                   Mode="1.0" Oversampling="3.0" InputGain="55.20000076293945" Low="5.000000476837158"
-                   Mid="-3.399999856948853" High="0.6000002026557922" Presence="1.788139343261719e-7"
+                   Mode="2.0" Oversampling="3.0" InputGain="44.00000381469727" Low="1.788139343261719e-7"
+                   Mid="1.788139343261719e-7" High="0.6000002026557922" Presence="1.788139343261719e-7"
                    OutputGain="5.364418029785156e-7" DistortionMode="0.0" CleanToneStackMode="1.0"
                    DirtyToneStackMode="1.0" LatestFilterFreq="10000.0" LatestFilterQ="1.0"
-                   LatestFilterGain="0.0" Mono="0.0">
+                   LatestFilterGain="0.0" Mono="0.0" Slim="1.0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
-        <Processor Type="HardcodedMasterFX" ID="modularC" Bypassed="0" Network="cab"
+        <Processor Type="HardcodedMasterFX" ID="modularC" Bypassed="1" Network="cab"
                    Mix="0.0" CabAEnable="1.0" CabADelay="0.0" CabAAxis="0.0" CabADistance="20000.0"
                    CabAPhase="0.0" CabAPan="-2.235174179077148e-8" CabAGain="1.490116119384766e-6"
                    CabBEnable="1.0" CabBDelay="0.0" CabBAxis="0.0" CabBDistance="20000.0"
@@ -1955,7 +1964,7 @@
                    Band12="1.920799970626831" Band13="1.0" Band14="4.0" Band15="0.9863017797470093"
                    Band16="108.1714630126953" Band17="1.999269962310791" Band18="1.0"
                    Band19="4.0" Band20="-24.0" Band21="66.28849792480469" Band22="1.112211227416992"
-                   Band23="1.0" Band24="2.0" FFTEnabled="1">
+                   Band23="1.0" Band24="2.0" FFTEnabled="0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
@@ -2050,7 +2059,7 @@
                     <Processor Type="MidiMuter" ID="LeftSusContainerMute" Bypassed="0">
                       <ChildProcessors/>
                       <Content>
-                        <Control type="ScriptButton" id="ignoreButton" value="0.0"/>
+                        <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
                         <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
                       </Content>
                     </Processor>
@@ -3904,7 +3913,7 @@
                     <Processor Type="MidiMuter" ID="LeftMuteContainerMute" Bypassed="0">
                       <ChildProcessors/>
                       <Content>
-                        <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
+                        <Control type="ScriptButton" id="ignoreButton" value="0.0"/>
                         <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
                       </Content>
                     </Processor>
@@ -12834,7 +12843,7 @@
                     <Processor Type="MidiMuter" ID="RightSusContainerMute" Bypassed="0">
                       <ChildProcessors/>
                       <Content>
-                        <Control type="ScriptButton" id="ignoreButton" value="0.0"/>
+                        <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
                         <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
                       </Content>
                     </Processor>
@@ -14687,7 +14696,7 @@
                     <Processor Type="MidiMuter" ID="RightMuteContainerMute" Bypassed="0">
                       <ChildProcessors/>
                       <Content>
-                        <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
+                        <Control type="ScriptButton" id="ignoreButton" value="0.0"/>
                         <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
                       </Content>
                     </Processor>

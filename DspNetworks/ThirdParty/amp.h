@@ -225,6 +225,16 @@ template <int NV> struct amp: public data::base, public cable_manager_t
         case 12: latestFilterQ = static_cast<float>(v); break;
         case 13: latestFilterGain = static_cast<float>(v); break;
         case 14: monoMode = (v > 0.5); break;
+        case 15:
+        {
+            const float newSlim = static_cast<float>(v);
+            if (std::abs(slimAmount.load() - newSlim) > 0.05f)
+            {
+                slimAmount.store(newSlim);
+                reloadCurrentModel();
+            }
+            break;
+        }
         }
     }
     
@@ -321,6 +331,12 @@ template <int NV> struct amp: public data::base, public cable_manager_t
             registerCallback<14>(mono);
             mono.setDefaultValue(0.0);
             data.add(std::move(mono));
+        }
+        {
+            parameter::data slim("Slim", { 0.0, 1.0 });
+            registerCallback<15>(slim);
+            slim.setDefaultValue(0.0);
+            data.add(std::move(slim));
         }
            
     }    
@@ -954,6 +970,17 @@ private:
     // nam
 
     using Model = Altar::DSP::NAM::ManualModel;
+
+    void reloadCurrentModel()
+    {
+        juce::String jsonString;
+        {
+            const juce::ScopedLock sl(cachedJsonLock);
+            jsonString = lastLoadedModelJson;
+        }
+        if (jsonString.isNotEmpty())
+            loadNAMModelInternal(jsonString);
+    }
     
     void loadNAMModel(const var& jsonData)
     {
@@ -965,18 +992,30 @@ private:
         else { DBG("Invalid JSON data format for NAM loader."); return; }
 
         if (jsonString.isEmpty()) { return; }
+        {
+            const juce::ScopedLock sl(cachedJsonLock);
+            lastLoadedModelJson = jsonString;
+        }
+
+        loadNAMModelInternal(jsonString);
+    }
+
+    void loadNAMModelInternal(const juce::String& jsonString)
+    {
         if (isLoading.exchange(true)) { return; }
 
         const std::string jsonCopy = jsonString.toStdString();
+        // slimAmount: 0.0 = Full (target 1.0), 1.0 = Lite (target 0.0)
+        const double targetSlim = 1.0 - (double)std::max(0.0f, std::min(1.0f, slimAmount.load()));
 
-        std::thread([this, jsonCopy]()
+        std::thread([this, jsonCopy, targetSlim]()
         {
             try
             {
                 nlohmann::json modelJson = nlohmann::json::parse(jsonCopy);
 
-                Altar::DSP::NAM::LoadedManualModel loadedModelL = Altar::DSP::NAM::createManualModel(modelJson);
-                Altar::DSP::NAM::LoadedManualModel loadedModelR = Altar::DSP::NAM::createManualModel(modelJson);
+                Altar::DSP::NAM::LoadedManualModel loadedModelL = Altar::DSP::NAM::createManualModel(modelJson, targetSlim);
+                Altar::DSP::NAM::LoadedManualModel loadedModelR = Altar::DSP::NAM::createManualModel(modelJson, targetSlim);
                 if (loadedModelL.model)
                 {
                     loadedModelL.model->prepare(static_cast<int>(lastSpecs.maximumBlockSize)); // prepare off-thread
@@ -1347,6 +1386,9 @@ private:
     
     bool modelLoaded = false;
     juce::String modelPath = "";
+    std::atomic<float> slimAmount { 0.0f };
+    juce::CriticalSection cachedJsonLock;
+    juce::String lastLoadedModelJson;
     
     std::shared_ptr<Altar::DSP::NAM::ManualModel> modelShared;
     std::shared_ptr<Altar::DSP::NAM::ManualModel> modelSharedR;

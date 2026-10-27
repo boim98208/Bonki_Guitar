@@ -871,9 +871,9 @@ inline bool isA2WavenetShape(const nlohmann::json& modelJson, int& channels)
     return true;
 }
 
-inline LoadedManualModel createManualModel(const nlohmann::json& modelJson);
+inline LoadedManualModel createManualModel(const nlohmann::json& modelJson, double slimTarget = 1.0);
 
-inline LoadedManualModel createFromSlimmableContainer(const nlohmann::json& modelJson)
+inline LoadedManualModel createFromSlimmableContainer(const nlohmann::json& modelJson, double slimTarget = 1.0)
 {
     const auto& submodels { modelJson.at("config").at("submodels") };
     if (!submodels.is_array() || submodels.empty())
@@ -881,17 +881,21 @@ inline LoadedManualModel createFromSlimmableContainer(const nlohmann::json& mode
 
     nlohmann::json selectedModel;
     bool hasSelectedModel { false };
-    double selectedMaxValue { -1.0 };
+    double bestDiff { 1e9 };
+
+    // slimTarget: 0.0 = Lite (3ch), 1.0 = Full (8ch), or intermediate values for models with more submodels
+    const double clampedTarget = std::max(0.0, std::min(1.0, slimTarget));
 
     for (const auto& entry : submodels)
     {
-        if (!entry.is_object() || !entry.contains("model"))
+        if (!entry.is_object() || !entry.contains("model") || !entry.contains("max_value"))
             continue;
 
         const double maxValue { entry.at("max_value").get<double>() };
-        if (!hasSelectedModel || maxValue > selectedMaxValue)
+        const double diff = std::abs(maxValue - clampedTarget);
+        if (!hasSelectedModel || diff < bestDiff)
         {
-            selectedMaxValue = maxValue;
+            bestDiff = diff;
             selectedModel = entry.at("model");
             hasSelectedModel = true;
         }
@@ -903,12 +907,12 @@ inline LoadedManualModel createFromSlimmableContainer(const nlohmann::json& mode
     if (!selectedModel.is_object())
         throw std::runtime_error("SlimmableContainer selected submodel is not a JSON object.");
 
-    LoadedManualModel loaded { createManualModel(selectedModel) };
+    LoadedManualModel loaded { createManualModel(selectedModel, slimTarget) };
     loaded.family = "SlimmableContainer -> " + loaded.family;
     return loaded;
 }
 
-inline LoadedManualModel createManualModel(const nlohmann::json& modelJson)
+inline LoadedManualModel createManualModel(const nlohmann::json& modelJson, double slimTarget)
 {
     if (!modelJson.is_object())
         throw std::runtime_error("NAM file root must be a JSON object.");
@@ -916,7 +920,7 @@ inline LoadedManualModel createManualModel(const nlohmann::json& modelJson)
     const std::string architecture { modelJson.value("architecture", std::string()) };
 
     if (architecture == "SlimmableContainer")
-        return createFromSlimmableContainer(modelJson);
+        return createFromSlimmableContainer(modelJson, slimTarget);
 
     if (architecture != "WaveNet")
         throw std::runtime_error("Unsupported NAM architecture: " + architecture);
