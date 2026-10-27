@@ -29,6 +29,22 @@
 
 #include "dependencies/json/single_include/nlohmann/json.hpp"
 
+#if defined(_M_X64) || defined(__x86_64__)
+#include <immintrin.h>
+
+inline float hsum256(__m256 v)
+{
+    __m128 vlow = _mm256_castps256_ps128(v);
+    __m128 vhigh = _mm256_extractf128_ps(v, 1);
+    __m128 v128 = _mm_add_ps(vlow, vhigh);
+    __m128 shuf = _mm_movehl_ps(v128, v128);
+    __m128 sums = _mm_add_ps(v128, shuf);
+    shuf = _mm_shuffle_ps(sums, sums, 0x55);
+    sums = _mm_add_ss(sums, shuf);
+    return _mm_cvtss_f32(sums);
+}
+#endif
+
 namespace Altar::DSP
 {
 
@@ -526,10 +542,6 @@ struct ManualA2Wavenet : ManualModel
     float headScale { 1.0f };
     std::vector<float> headState;
     int headStatePtr { 0 };
-    std::vector<float> layerValues;
-    std::vector<float> headSum;
-    std::vector<float> activated;
-    std::vector<float> nextValues;
 
     ManualA2Wavenet()
     {
@@ -544,10 +556,6 @@ struct ManualA2Wavenet : ManualModel
         }
 
         headState.resize(static_cast<size_t>(headKernelSize * Channels), 0.0f);
-        layerValues.resize(static_cast<size_t>(Channels), 0.0f);
-        headSum.resize(static_cast<size_t>(Channels), 0.0f);
-        activated.resize(static_cast<size_t>(Channels), 0.0f);
-        nextValues.resize(static_cast<size_t>(Channels), 0.0f);
     }
 
     void load_weights(const nlohmann::json& j)
@@ -634,67 +642,178 @@ struct ManualA2Wavenet : ManualModel
 
     float forward(float input) override
     {
-        for (int c { 0 }; c < Channels; ++c)
+#if defined(_M_X64) || defined(__x86_64__)
+        if constexpr (Channels == 8)
         {
-            layerValues[static_cast<size_t>(c)] = rechannelWeights[static_cast<size_t>(c)] * input;
-            headSum[static_cast<size_t>(c)] = 0.0f;
-        }
+            const __m256 inVec = _mm256_set1_ps(input);
+            __m256 lVal = _mm256_mul_ps(_mm256_loadu_ps(rechannelWeights.data()), inVec);
+            __m256 hSum = _mm256_setzero_ps();
+            const __m256 slopeVec = _mm256_set1_ps(leakySlope);
+            const __m256 zeroVec = _mm256_setzero_ps();
 
-        for (auto& layer : layers)
-        {
-            std::copy(layerValues.begin(), layerValues.end(), layer.state.begin() + static_cast<size_t>(layer.statePtr * Channels));
-
-            for (int oc { 0 }; oc < Channels; ++oc)
+            for (auto& layer : layers)
             {
-                float sum { layer.convBias[static_cast<size_t>(oc)] + layer.mixinWeights[static_cast<size_t>(oc)] * input };
+                _mm256_storeu_ps(layer.state.data() + (layer.statePtr * 8), lVal);
 
-                for (int k { 0 }; k < layer.kernelSize; ++k)
+                const float* tapStatePtrs[16];
+                int idx = layer.statePtr;
+                for (int k = layer.kernelSize - 1; k >= 0; --k)
                 {
-                    const int stateIndex { (layer.statePtr + layer.stateSize - (layer.kernelSize - 1 - k) * layer.dilation) % layer.stateSize };
-                    const float* stateValues { layer.state.data() + static_cast<size_t>(stateIndex * Channels) };
+                    tapStatePtrs[k] = layer.state.data() + (idx * 8);
+                    idx -= layer.dilation;
+                    if (idx < 0) idx += layer.stateSize;
+                }
 
-                    for (int ic { 0 }; ic < Channels; ++ic)
+                __m256 convSum = _mm256_fmadd_ps(_mm256_loadu_ps(layer.mixinWeights.data()), inVec, _mm256_loadu_ps(layer.convBias.data()));
+
+                const float* w = layer.convWeights.data();
+                for (int k = 0; k < layer.kernelSize; ++k)
+                {
+                    const float* stateValues = tapStatePtrs[k];
+
+                    for (int ic = 0; ic < 8; ++ic)
                     {
-                        const size_t weightIndex { static_cast<size_t>((k * Channels + ic) * Channels + oc) };
-                        sum += layer.convWeights[weightIndex] * stateValues[ic];
+                        __m256 s = _mm256_set1_ps(stateValues[ic]);
+                        __m256 wVec = _mm256_loadu_ps(w + ic * 8);
+                        convSum = _mm256_fmadd_ps(s, wVec, convSum);
                     }
+                    w += 64;
                 }
 
-                const float value { sum >= 0.0f ? sum : sum * leakySlope };
-                activated[static_cast<size_t>(oc)] = value;
-                headSum[static_cast<size_t>(oc)] += value;
-            }
+                __m256 pos = _mm256_max_ps(convSum, zeroVec);
+                __m256 neg = _mm256_min_ps(convSum, zeroVec);
+                __m256 act = _mm256_fmadd_ps(neg, slopeVec, pos);
 
-            for (int oc { 0 }; oc < Channels; ++oc)
-            {
-                float sum { layerValues[static_cast<size_t>(oc)] + layer.layer1x1Bias[static_cast<size_t>(oc)] };
+                hSum = _mm256_add_ps(hSum, act);
 
-                for (int ic { 0 }; ic < Channels; ++ic)
+                __m256 nextLVal = _mm256_add_ps(lVal, _mm256_loadu_ps(layer.layer1x1Bias.data()));
+
+                alignas(32) float actArray[8];
+                _mm256_store_ps(actArray, act);
+
+                const float* w1x1 = layer.layer1x1Weights.data();
+                for (int ic = 0; ic < 8; ++ic)
                 {
-                    sum += layer.layer1x1Weights[static_cast<size_t>(ic * Channels + oc)] * activated[static_cast<size_t>(ic)];
+                    __m256 a = _mm256_set1_ps(actArray[ic]);
+                    __m256 wVec = _mm256_loadu_ps(w1x1 + ic * 8);
+                    nextLVal = _mm256_fmadd_ps(a, wVec, nextLVal);
                 }
 
-                nextValues[static_cast<size_t>(oc)] = sum;
+                lVal = nextLVal;
+
+                layer.statePtr++;
+                if (layer.statePtr >= layer.stateSize)
+                    layer.statePtr = 0;
             }
 
-            std::copy(nextValues.begin(), nextValues.end(), layerValues.begin());
-            layer.statePtr = (layer.statePtr + 1) % layer.stateSize;
+            _mm256_storeu_ps(headState.data() + (headStatePtr * 8), hSum);
+
+            __m256 headAcc = _mm256_setzero_ps();
+            int stateIndex = headStatePtr + 1;
+            for (int k = 0; k < headKernelSize; ++k)
+            {
+                if (stateIndex >= headKernelSize) stateIndex -= headKernelSize;
+                __m256 st = _mm256_loadu_ps(headState.data() + (stateIndex * 8));
+                __m256 hw = _mm256_loadu_ps(headWeights[k].data());
+                headAcc = _mm256_fmadd_ps(hw, st, headAcc);
+                stateIndex++;
+            }
+
+            headStatePtr++;
+            if (headStatePtr >= headKernelSize) headStatePtr = 0;
+
+            float output = (hsum256(headAcc) + headBias) * headScale;
+            return output;
         }
-
-        std::copy(headSum.begin(), headSum.end(), headState.begin() + static_cast<size_t>(headStatePtr * Channels));
-
-        float output { headBias };
-        for (int k { 0 }; k < headKernelSize; ++k)
+        else
+#endif
         {
-            const int stateIndex { (headStatePtr + headKernelSize - (headKernelSize - 1 - k)) % headKernelSize };
-            const float* stateValues { headState.data() + static_cast<size_t>(stateIndex * Channels) };
+            alignas(32) float lVal[Channels];
+            alignas(32) float hSum[Channels] {};
 
-            for (int c { 0 }; c < Channels; ++c)
-                output += headWeights[static_cast<size_t>(k)][static_cast<size_t>(c)] * stateValues[c];
+            for (int c = 0; c < Channels; ++c)
+                lVal[c] = rechannelWeights[c] * input;
+
+            for (auto& layer : layers)
+            {
+                float* dst = layer.state.data() + (layer.statePtr * Channels);
+                for (int c = 0; c < Channels; ++c) dst[c] = lVal[c];
+
+                const float* tapStatePtrs[16];
+                int idx = layer.statePtr;
+                for (int k = layer.kernelSize - 1; k >= 0; --k)
+                {
+                    tapStatePtrs[k] = layer.state.data() + (idx * Channels);
+                    idx -= layer.dilation;
+                    if (idx < 0) idx += layer.stateSize;
+                }
+
+                alignas(32) float convSum[Channels];
+                for (int c = 0; c < Channels; ++c)
+                    convSum[c] = layer.convBias[c] + layer.mixinWeights[c] * input;
+
+                const float* w = layer.convWeights.data();
+                for (int k = 0; k < layer.kernelSize; ++k)
+                {
+                    const float* stateValues = tapStatePtrs[k];
+                    for (int ic = 0; ic < Channels; ++ic)
+                    {
+                        const float s = stateValues[ic];
+                        const float* w_ic = w + ic * Channels;
+                        for (int oc = 0; oc < Channels; ++oc)
+                            convSum[oc] += w_ic[oc] * s;
+                    }
+                    w += Channels * Channels;
+                }
+
+                alignas(32) float act[Channels];
+                for (int c = 0; c < Channels; ++c)
+                {
+                    const float v = (convSum[c] >= 0.0f) ? convSum[c] : (convSum[c] * leakySlope);
+                    act[c] = v;
+                    hSum[c] += v;
+                }
+
+                alignas(32) float nextLVal[Channels];
+                for (int c = 0; c < Channels; ++c)
+                    nextLVal[c] = lVal[c] + layer.layer1x1Bias[c];
+
+                const float* w1x1 = layer.layer1x1Weights.data();
+                for (int ic = 0; ic < Channels; ++ic)
+                {
+                    const float a = act[ic];
+                    const float* w_ic = w1x1 + ic * Channels;
+                    for (int oc = 0; oc < Channels; ++oc)
+                        nextLVal[oc] += w_ic[oc] * a;
+                }
+
+                for (int c = 0; c < Channels; ++c) lVal[c] = nextLVal[c];
+
+                layer.statePtr++;
+                if (layer.statePtr >= layer.stateSize)
+                    layer.statePtr = 0;
+            }
+
+            float* hDst = headState.data() + (headStatePtr * Channels);
+            for (int c = 0; c < Channels; ++c) hDst[c] = hSum[c];
+
+            float output = headBias;
+            int stateIndex = headStatePtr + 1;
+            for (int k = 0; k < headKernelSize; ++k)
+            {
+                if (stateIndex >= headKernelSize) stateIndex -= headKernelSize;
+                const float* stateValues = headState.data() + (stateIndex * Channels);
+
+                for (int c = 0; c < Channels; ++c)
+                    output += headWeights[k][c] * stateValues[c];
+                stateIndex++;
+            }
+
+            headStatePtr++;
+            if (headStatePtr >= headKernelSize) headStatePtr = 0;
+
+            return output * headScale;
         }
-
-        headStatePtr = (headStatePtr + 1) % headKernelSize;
-        return output * headScale;
     }
 
     void forward(const float* input, float* output, int numSamples) override

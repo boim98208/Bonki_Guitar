@@ -1,5 +1,5 @@
 /*
-    Copyright 2025 iamlamprey
+    Copyright 2025, 2026 iamlamprey
 
     This file is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -92,10 +92,14 @@ template <int NV> struct amp: public data::base, public cable_manager_t
         maxBlockSize = specs.blockSize;
                 
         lastSpecs.sampleRate        = specs.sampleRate;
-        lastSpecs.numChannels       = specs.numChannels;
-        lastSpecs.maximumBlockSize  = specs.blockSize;
+        lastSpecs.numChannels       = 2;
+        lastSpecs.maximumBlockSize  = static_cast<uint32>(std::max(512, (int)specs.blockSize));
+        
+        internalBuffer.setSize(2, (int)lastSpecs.maximumBlockSize, false, true, true);
+        internalBuffer.clear();
                 
         updateOversampling();
+        updateToneStackRate();
         
         resamplerConfig.store(true, std::memory_order_release);
         updateNAMResamplers();
@@ -133,43 +137,78 @@ template <int NV> struct amp: public data::base, public cable_manager_t
         garnet.reset();
                 
         if (oversamplingFactor > 0 && oversampling != nullptr) { oversampling->reset(); }
-        for (int ch = 0; ch < 2; ++ch) { dirtyLowBandMem[ch] = 0.0f; dirtyPresenceMem[ch] = 0.0f; }
+        for (int ch = 0; ch < 2; ++ch) 
+        { 
+            dirtyLowBandMem[ch] = 0.0f; 
+            dirtyPresenceMem[ch] = 0.0f; 
+            biasMem[ch] = 0.0f;
+        }
         
         inputResampler.resetState();
         outputResampler.resetState();                
-        upsampleAAFilter.reset();
+        inputResamplerR.resetState();
+        outputResamplerR.resetState();                
+
+        if (auto mL = std::atomic_load(&modelShared)) mL->reset();
+        if (auto mR = std::atomic_load(&modelSharedR)) mR->reset();
+
+        internalBuffer.clear();
     }
     
     template <typename T> void process(T& data)
     {
-        int numSamples = data.getNumSamples();
-        size_t numCh = juce::jmin(2, (int)data.getNumChannels());
+        juce::ScopedNoDenormals noDenormals;
 
-        AudioBuffer<float> buffer((int)numCh, numSamples); // FIX ME: use SNEX audio buffer         
+        const int numSamples = data.getNumSamples();
+        if (numSamples <= 0) return;
+
+        const int numCh = juce::jmin(2, (int)data.getNumChannels());
+
+        if (numSamples > (int)lastSpecs.maximumBlockSize)
+        {
+            lastSpecs.maximumBlockSize = static_cast<uint32>(numSamples);
+            updateOversampling();
+            resamplerConfig.store(true, std::memory_order_release);
+            updateNAMResamplers();
+        }
+
+        if (internalBuffer.getNumSamples() < numSamples || internalBuffer.getNumChannels() < 2)
+        {
+            internalBuffer.setSize(2, numSamples, false, true, true);
+            internalBuffer.clear();
+        }
+
         int channelIndex = 0;
-        for(auto ch: data)
+        for (auto ch: data)
         {   
-            // FIX ME: weird logic, I think I can just use ch
-            if (channelIndex >= (int)numCh) break;
+            if (channelIndex >= numCh) break;
             dyn<float> channel = data.toChannelData(ch);
+            float* dest = internalBuffer.getWritePointer(channelIndex);
             for (int s = 0; s < numSamples; ++s)
             {
-                buffer.setSample(channelIndex, s, channel[s]);
+                dest[s] = channel[s];
             }
             channelIndex++;
         }
-                
-        processAudioBuffer(buffer);
-        
-        // write back to data // FIX ME: make inline by using SNEX buffer
-        channelIndex = 0;
-        for(auto ch: data)
+
+        if (numCh == 1)
         {
-            if (channelIndex >= (int)numCh) break;
+            FloatVectorOperations::copy(internalBuffer.getWritePointer(1), internalBuffer.getReadPointer(0), numSamples);
+        }
+
+        AudioBuffer<float> buffer(internalBuffer.getArrayOfWritePointers(), 2, numSamples);
+                
+        processAudioBuffer(buffer, numSamples);
+        
+        channelIndex = 0;
+        for (auto ch: data)
+        {
+            if (channelIndex >= numCh) break;
             dyn<float> channel = data.toChannelData(ch);
+            const float* src = internalBuffer.getReadPointer(channelIndex);
             for (int s = 0; s < numSamples; ++s)
             {
-                channel[s] = buffer.getSample(channelIndex, s);
+                channel[s] = src[s];
             }
             channelIndex++;
         }
@@ -179,13 +218,23 @@ template <int NV> struct amp: public data::base, public cable_manager_t
     {
         switch (P)
         {        
-        case 0: ampMode = static_cast<int>(v); break; // clean | dirty | nam
+        case 0: 
+        {
+            int oldMode = ampMode;
+            ampMode = static_cast<int>(v); 
+            if (oldMode != ampMode)
+                updateToneStackRate();
+            break; // clean | dirty | nam
+        }
         case 1: 
         {
             int oldFactor = oversamplingFactor;
             oversamplingFactor = static_cast<int>(v);
             if (oldFactor != oversamplingFactor)
+            {
                 updateOversampling();
+                updateToneStackRate();
+            }
             break;
         }        
         case 2: inputGain = static_cast<float>(v); break;
@@ -193,28 +242,28 @@ template <int NV> struct amp: public data::base, public cable_manager_t
         {
             low = static_cast<float>(v); 
             toneStack.setPreGain(0, low);
-            toneStack.update(scaledSampleRate); 
+            updateToneStackRate(); 
             break;
         }
         case 4: 
         {
             mid = static_cast<float>(v); 
             toneStack.setPreGain(1, mid);
-            toneStack.update(scaledSampleRate); 
+            updateToneStackRate(); 
             break;
         }
         case 5: 
         {
             high = static_cast<float>(v); 
             toneStack.setPreGain(2, high);
-            toneStack.update(scaledSampleRate); 
+            updateToneStackRate(); 
             break;
         }
         case 6: 
         {
             presence = static_cast<float>(v); 
             toneStack.setPreGain(3, presence);
-            toneStack.update(scaledSampleRate); 
+            updateToneStackRate(); 
             break;
         }
         case 7: outputGain = static_cast<float>(v); break;           
@@ -361,7 +410,7 @@ private:
 
     float dirtyLowBandMem[2] = {0.0f, 0.0f};
     float dirtyPresenceMem[2] = {0.0f, 0.0f};
-    float biasMemLeft = 0.0f;
+    float biasMem[2] = {0.0f, 0.0f};
 
     float latestFilterFreq = 1000.0f;
     float latestFilterQ = 0.81f;
@@ -381,9 +430,24 @@ private:
     float scaledSampleRate = 44100.0f;
     std::unique_ptr<juce::dsp::Oversampling<float>> oversampling;    
     
+    void updateToneStackRate()
+    {
+        double rate = (ampMode < 2 && oversamplingFactor > 0 && oversampling != nullptr)
+                    ? static_cast<double>(scaledSampleRate)
+                    : (lastSpecs.sampleRate > 0.0 ? lastSpecs.sampleRate : (double)sampleRate);
+        toneStack.update(rate);
+    }
+
     // main process function
-    void processAudioBuffer(juce::AudioBuffer<float>& buffer)
+    void processAudioBuffer(juce::AudioBuffer<float>& buffer, int numSamples)
     {        
+        // Mode 2 is NAM: run directly at host sample rate (matching Altar)
+        if (ampMode == 2)
+        {
+            processNAMMode(buffer, numSamples);
+            return;
+        }
+
         const bool useOversampling = (oversamplingFactor > 0 && oversampling != nullptr); // oversample
         juce::dsp::AudioBlock<float> inBlock(buffer);
 
@@ -392,25 +456,22 @@ private:
             auto upBlock = oversampling->processSamplesUp(inBlock);
             const int upCh     = static_cast<int>(upBlock.getNumChannels());
             const int upFrames = static_cast<int>(upBlock.getNumSamples());
-            juce::HeapBlock<float*> chanPtrs(upCh);
+            float* chanPtrs[2] = { nullptr, nullptr };
             for (int ch = 0; ch < upCh; ++ch) { chanPtrs[ch] = upBlock.getChannelPointer(static_cast<size_t>(ch)); }
                 
             // non-owning view of the upsampled data
-            juce::AudioBuffer<float> osBuffer(chanPtrs.getData(), upCh, upFrames);
+            juce::AudioBuffer<float> osBuffer(chanPtrs, upCh, upFrames);
 
             // process
-            if (ampMode == 0) { processCleanMode(osBuffer, osBuffer.getNumSamples()); }
-            else if (ampMode == 1) { processDirtyMode(osBuffer, osBuffer.getNumSamples()); }
-            else if (ampMode == 2) { processNAMMode(osBuffer, osBuffer.getNumSamples()); }
+            if (ampMode == 0) { processCleanMode(osBuffer, upFrames); }
+            else if (ampMode == 1) { processDirtyMode(osBuffer, upFrames); }
 
             oversampling->processSamplesDown(inBlock); // downsample back to original sr
         }
         else // no oversampling
         {            
-            const int numSamples = buffer.getNumSamples(); 
             if (ampMode == 0) { processCleanMode(buffer, numSamples); }
             else if (ampMode == 1) { processDirtyMode(buffer, numSamples); }
-            else if (ampMode == 2) { processNAMMode(buffer, numSamples); }
         }
     }
 
@@ -494,7 +555,7 @@ private:
                 switch (distortionMode) // waveshaper algos go here
                 {
                     case 0: sample = getTyrantSample(sample, dirtyLowBandMem[ch], dirtyPresenceMem[ch]); break;
-                    case 1: sample = getFacelessSample(sample, biasMemLeft); break;
+                    case 1: sample = getFacelessSample(sample, biasMem[ch]); break;
                 }                                           
 
                 // tone stack                
@@ -904,7 +965,7 @@ private:
         if (oversamplingFactor > 0)
         {
             newOversampling = std::make_unique<juce::dsp::Oversampling<float>>(
-                static_cast<int>(lastSpecs.numChannels),
+                2,
                 oversamplingFactor,
                 juce::dsp::Oversampling<float>::filterHalfBandFIREquiripple,
                 false
@@ -913,7 +974,7 @@ private:
             newOversampling->initProcessing(lastSpecs.maximumBlockSize);
             newOversampling->reset();
             
-            specsOversampling.numChannels = lastSpecs.numChannels;
+            specsOversampling.numChannels = 2;
             specsOversampling.sampleRate = lastSpecs.sampleRate * (1 << oversamplingFactor);
             specsOversampling.maximumBlockSize = lastSpecs.maximumBlockSize * (1 << oversamplingFactor);
             
@@ -923,10 +984,6 @@ private:
         else { scaledSampleRate = static_cast<float>(lastSpecs.sampleRate); }       
         
         oversampling.swap(newOversampling);        
-
-        // toneStack
-        toneStack.reset();
-        toneStack.update(scaledSampleRate);
 
         // dcBlocker
         dcBlocker.reset();
@@ -964,7 +1021,8 @@ private:
         garnet.reset();
         garnet.update(scaledSampleRate);            
 
-        resamplerConfig.store(true, std::memory_order_release);
+        toneStack.reset();
+        updateToneStackRate();
     }
 
     // nam
@@ -1039,68 +1097,17 @@ private:
         }).detach();
     }
  
-    struct UpsampleAAFilter
-    {
-        // this is all vibe-coded but it sounds fine and doesn't blow up the cpu
-
-        BiquadState stage1, stage2;
-        
-        void reset()
-        {
-            stage1.reset();
-            stage2.reset();
-        }
-        
-        void setup(float sampleRate, float cutoffFreq)
-        {
-            setupLowpass(stage1, sampleRate, cutoffFreq, 0.541f);
-            setupLowpass(stage2, sampleRate, cutoffFreq, 1.307f);
-        }
-        
-        float process(float input)
-        {
-            float out = stage1.process(input);
-            return stage2.process(out);
-        }
-        
-    private:
-        void setupLowpass(BiquadState& state, float sr, float freq, float Q)
-        {
-            float omega = 2.0f * juce::MathConstants<float>::pi * freq / sr;
-            float cosOmega = std::cos(omega);
-            float sinOmega = std::sin(omega);
-            float alpha = sinOmega / (2.0f * Q);
-            
-            float b0 = (1.0f - cosOmega) / 2.0f;
-            float b1 = 1.0f - cosOmega;
-            float b2 = (1.0f - cosOmega) / 2.0f;
-            float a0 = 1.0f + alpha;
-            float a1 = -2.0f * cosOmega;
-            float a2 = 1.0f - alpha;
-            
-            state.b0 = b0 / a0;
-            state.b1 = b1 / a0;
-            state.b2 = b2 / a0;
-            state.a1 = a1 / a0;
-            state.a2 = a2 / a0;
-        }
-    };
-
     struct StreamingResampler
     {        
-        enum class ResampleAlgo { Lagrange = 0, Lanczos = 1, WindowedSinc = 2, HQUpsampling = 3 };
+        static constexpr int NumTaps = 12;
+        static constexpr int HalfTaps = NumTaps / 2;
+        static constexpr int HistoryLenVal = HalfTaps + 6;
 
-        void setup(double inRate, double outRate, ResampleAlgo algo, int kernelSize)
+        void setup(double inRate, double outRate)
         {
-            inSR = inRate;
-            outSR = outRate;
-            algoType = algo;
-            isUpsampling = outRate > inRate;                        
-            step = inSR / outSR;
- 
-            // anti-alias filter
-            if (isUpsampling) { cutoff = static_cast<float>(std::min(0.45, (inSR * 0.45) / outSR)); }                        
-
+            step = inRate / outRate;
+            history.reserve(64);
+            src.reserve(4096);
             resetState();
         }
 
@@ -1108,135 +1115,134 @@ private:
         {
             pos = 0.0;
             history.clear();
-            history.resize(HistoryLen(), 0.0f);            
+            history.resize(HistoryLenVal, 0.0f);            
         }
         
         void processBlock(const float* in, int inCount, std::vector<float>& out, int outCount)
         {
-            // process a block to produce outCount samples
-            const int half = HalfKernel();
-            const int postPad = half + 8; // extra safety at block tails
+            const int postPad = HistoryLenVal; 
+            src.resize(history.size() + (size_t)inCount + (size_t)postPad);
                         
-            // source buffer [history][in][post zeros]
-            src.resize(history.size() + inCount + postPad);
-                        
-            if (!history.empty()) { std::memcpy(src.data(), history.data(), history.size() * sizeof(float)); } // copy history                            
-            if (inCount > 0) { std::memcpy(src.data() + history.size(), in, inCount * sizeof(float)); } // copy input                                        
-            if (postPad > 0) { std::memset(src.data() + history.size() + inCount, 0, postPad * sizeof(float)); } // zero post-pad
+            if (!history.empty()) { std::memcpy(src.data(), history.data(), history.size() * sizeof(float)); }
+            if (inCount > 0) { std::memcpy(src.data() + history.size(), in, (size_t)inCount * sizeof(float)); }
+            if (postPad > 0) { std::memset(src.data() + history.size() + (size_t)inCount, 0, (size_t)postPad * sizeof(float)); }
                 
-            out.resize(outCount);
+            out.resize((size_t)outCount);
             const double base = static_cast<double>(history.size());
             
             for (int m = 0; m < outCount; ++m)
             {
-                const double x = pos + base + m * step;
-                out[m] = lagrange6(x);                
+                const double x = pos + base + (double)m * step;
+                out[(size_t)m] = lagrange(x);                
             }
             
-            double newPos = pos + outCount * step - static_cast<double>(inCount); // update position
-            
-            const double maxDrift = static_cast<double>(HistoryLen()); 
-            pos = juce::jlimit(-maxDrift, maxDrift, newPos); // clamp to prevent excessive drift
+            pos += (double)outCount * step - static_cast<double>(inCount);
 
-            const int keepN = HistoryLen(); 
-            history.resize(keepN); // update history
+            const int keepN = HistoryLenVal; 
+            history.resize(keepN);
             
-            if (inCount >= keepN) { std::memcpy(history.data(), in + (inCount - keepN), keepN * sizeof(float)); }
+            if (inCount >= keepN)
+            {
+                std::memcpy(history.data(), in + (inCount - keepN), (size_t)keepN * sizeof(float));
+            }
             else
             {
-                // not enough new input, shift old history and append new input
                 const int fromHistory = keepN - inCount;
-                const int historyStart = static_cast<int>(history.size()) - fromHistory; // equals inCount
-
-                // overlapping copy: must use memmove
-                if (historyStart >= 0 && fromHistory > 0) { std::memmove(history.data(), history.data() + historyStart, fromHistory * sizeof(float)); }
-                
-                if (inCount > 0) { std::memcpy(history.data() + fromHistory, in, inCount * sizeof(float)); }
+                if (fromHistory > 0)
+                {
+                    std::memmove(history.data(), history.data() + inCount, (size_t)fromHistory * sizeof(float));
+                }
+                if (inCount > 0)
+                {
+                    std::memcpy(history.data() + fromHistory, in, (size_t)inCount * sizeof(float));
+                }
             }
         }
 
-        // inline helpers
-        inline int HalfKernel() const { return kSize / 2; }
-        inline int HistoryLen() const { return HalfKernel() + 8; }
-
-        inline float lagrange6(double posInSrc) const
+        inline float lagrange(double posInSrc) const
         {
-            // vibe coded
-            // lagrange sounded the best from my testing
-            // 6-point Lagrange interpolation using nodes at [-2, -1, 0, 1, 2, 3]
-            const int baseIdx = (int)std::floor(posInSrc);
-            const float mu = (float)(posInSrc - (double)baseIdx);
+            const int baseIdx = static_cast<int>(std::floor(posInSrc));
+            const float mu = static_cast<float>(posInSrc - static_cast<double>(baseIdx));
+            static constexpr int nodes[NumTaps] = { -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6 };
 
-            static constexpr int taps = 6;
-            static constexpr int nodes[taps] = { -2, -1, 0, 1, 2, 3 };
+            // Precomputed 1.0f / prod_{j != i} (nodes[i] - nodes[j])
+            static constexpr float invDenom[NumTaps] = {
+                -1.0f / 39916800.0f,
+                 1.0f / 3628800.0f,
+                -1.0f / 725760.0f,
+                 1.0f / 241920.0f,
+                -1.0f / 120960.0f,
+                 1.0f / 86400.0f,
+                -1.0f / 86400.0f,
+                 1.0f / 120960.0f,
+                -1.0f / 241920.0f,
+                 1.0f / 725760.0f,
+                -1.0f / 3628800.0f,
+                 1.0f / 39916800.0f
+            };
 
-            float y[taps];
-            for (int i = 0; i < taps; ++i)
+            float y[NumTaps] = { 0.0f };
+            for (int i = 0; i < NumTaps; ++i)
             {
                 int idx = baseIdx + nodes[i];
-                if ((unsigned)idx < (unsigned)src.size())
-                    y[i] = src[(size_t)idx];
-                else
-                    y[i] = 0.0f;
+                if (idx >= 0 && static_cast<size_t>(idx) < src.size())
+                {
+                    y[i] = src[static_cast<size_t>(idx)];
+                }
+            }
+
+            float diff[NumTaps];
+            for (int j = 0; j < NumTaps; ++j)
+            {
+                diff[j] = mu - static_cast<float>(nodes[j]);
             }
 
             float out = 0.0f;
-
-            for (int i = 0; i < taps; ++i)
+            for (int i = 0; i < NumTaps; ++i)
             {
-                float Li = 1.0f;
-                const float xi = (float)nodes[i];
-                for (int j = 0; j < taps; ++j)
+                float num = 1.0f;
+                for (int j = 0; j < NumTaps; ++j)
                 {
                     if (i == j) continue;
-                    const float xj = (float)nodes[j];
-                    Li *= (mu - xj) / (xi - xj);
+                    num *= diff[j];
                 }
-                out += Li * y[i];
+                out += (num * invDenom[i]) * y[i];
             }
-
             return out;
         }
         
-        double inSR { 48000.0 };
-        double outSR { 48000.0 };
         double step { 1.0 };
         double pos  { 0.0 };
-        int    kSize { 6 };
-        float  cutoff { 1.0f };
-        bool   isUpsampling { false };
-        ResampleAlgo algoType { ResampleAlgo::Lagrange };
-
         std::vector<float> history;
         mutable std::vector<float> src;
     };
-
-    
 
     void updateNAMResamplers()
     {
         if (!resamplerConfig.load(std::memory_order_acquire)) { return; }            
 
-        const double hostSR  = scaledSampleRate > 0.0f ? (double)scaledSampleRate : (lastSpecs.sampleRate > 0 ? lastSpecs.sampleRate : (double)sampleRate);
+        const double hostSR  = (lastSpecs.sampleRate > 0.0) ? lastSpecs.sampleRate : (double)sampleRate;
         const double modelSR = modelSampleRate.load(std::memory_order_acquire);
         
-        auto algo = StreamingResampler::ResampleAlgo::Lagrange;
-        
-        inputResampler.setup(hostSR, modelSR, algo, resamplerKernelSize);
-        outputResampler.setup(modelSR, hostSR, algo, resamplerKernelSize);
-        inputResamplerR.setup(hostSR, modelSR, algo, resamplerKernelSize);
-        outputResamplerR.setup(modelSR, hostSR, algo, resamplerKernelSize);
+        inputResampler.setup(hostSR, modelSR);
+        outputResampler.setup(modelSR, hostSR);
+        inputResamplerR.setup(hostSR, modelSR);
+        outputResamplerR.setup(modelSR, hostSR);
 
         // prepare scratches        
-        const int maxIn = (int)lastSpecs.maximumBlockSize;
-        const int upEstimate = (int)std::ceil(maxIn * (modelSR / hostSR)) + 32;
-        scratchUp.resize(upEstimate);
-        scratchNAM.resize(upEstimate);
-        scratchDown.resize(maxIn + 32);
-        scratchUpR.resize(upEstimate);
-        scratchNAMR.resize(upEstimate);
-        scratchDownR.resize(maxIn + 32);
-        scratchPreFilter.resize(maxIn + 32);
+        const int maxIn = std::max(512, (int)lastSpecs.maximumBlockSize);
+        const double ratio = (hostSR > 0.0) ? (modelSR / hostSR) : 1.0;
+        const int upEstimate = static_cast<int>(std::ceil(maxIn * std::max(1.0, ratio))) + 64;
+
+        scratchUp.resize((size_t)upEstimate);
+        scratchNAM.resize((size_t)upEstimate);
+        scratchDown.resize((size_t)(maxIn + 64));
+        tempBuffer.resize((size_t)upEstimate);
+
+        scratchUpR.resize((size_t)upEstimate);
+        scratchNAMR.resize((size_t)upEstimate);
+        scratchDownR.resize((size_t)(maxIn + 64));
+        tempBufferR.resize((size_t)upEstimate);
 
         resamplerConfig.store(false, std::memory_order_release);
     }
@@ -1259,8 +1265,6 @@ private:
 
         auto mL = std::atomic_load(&modelShared);
         auto mR = processStereo ? std::atomic_load(&modelSharedR) : nullptr;
-        if (processStereo && !mR)
-            mR = mL; // fallback to mL if mR not instantiated
 
         if (mL && needsWarmup.load(std::memory_order_acquire)) // if model needs warming, warm it
         {
@@ -1281,109 +1285,78 @@ private:
             return;
         }
 
-        const double hostSR  = scaledSampleRate > 0.0f ? (double)scaledSampleRate : (double)sampleRate;
+        const float inGainLinear = Decibels::decibelsToGain(inputGain);
+        const float outGainLinear = Decibels::decibelsToGain(outputGain);
+
+        const double hostSR = (lastSpecs.sampleRate > 0.0) ? lastSpecs.sampleRate : (double)sampleRate;
         const double modelSR = modelSampleRate.load(std::memory_order_acquire);
-        const float inGainVal = Decibels::decibelsToGain(inputGain);
-        const float outGainVal = Decibels::decibelsToGain(outputGain);
+        const bool needsResample = std::abs(hostSR - modelSR) > 0.5;
 
-        // check if upsampling is enabled (by default it's off cause it sounded bad lol)
-        const bool isUpsampling = modelSR > hostSR;
-        if (isUpsampling && !allowUpsampleResampling) // skip upsampling (thru)
-        {            
-            for (int s = 0; s < numSamples; ++s)
-            {
-                float sampleL = channelDataL[s] * inGainVal;
-                sampleL = mL->forward(sampleL);
-                sampleL = toneStack.processPre(0, sampleL) * outGainVal;
-                channelDataL[s] = sampleL;                
-
-                if (processStereo && mR)
-                {
-                    float sampleR = channelDataR[s] * inGainVal;
-                    sampleR = mR->forward(sampleR);
-                    sampleR = toneStack.processPre(1, sampleR) * outGainVal;
-                    channelDataR[s] = sampleR;
-                }
-            }
-
-            if (numCh > 1 && !processStereo)
-                std::memcpy(channelDataR, channelDataL, (size_t)numSamples * sizeof(float));
-            return;
-        }
-        
-        const bool needsResample = std::abs(modelSR - hostSR) > 0.5;
-
-        if (!needsResample) // no resampling
-        {            
-            for (int s = 0; s < numSamples; ++s)
-            {
-                float sampleL = channelDataL[s] * inGainVal;
-                sampleL = mL->forward(sampleL);
-                sampleL = toneStack.processPre(0, sampleL) * outGainVal;
-                channelDataL[s] = sampleL;
-
-                if (processStereo && mR)
-                {
-                    float sampleR = channelDataR[s] * inGainVal;
-                    sampleR = mR->forward(sampleR);
-                    sampleR = toneStack.processPre(1, sampleR) * outGainVal;
-                    channelDataR[s] = sampleR;
-                }
-            }
-
-            if (numCh > 1 && !processStereo)
-                std::memcpy(channelDataR, channelDataL, (size_t)numSamples * sizeof(float));
-
-            return;
-        }
-        
-        // resample start
-        const double upRatio = modelSR / hostSR;
-        const int upCountTarget = (int)std::llround((double)numSamples * upRatio);
-
-        inputResampler.processBlock(channelDataL, numSamples, scratchUp, upCountTarget);
-        const int upCountL = (int)scratchUp.size();
-        scratchNAM.resize(upCountL);
-        for (int i = 0; i < upCountL; ++i)
+        auto processChannel = [&](const float* input, float* output, Altar::DSP::NAM::ManualModel* m, int ch,
+                                  StreamingResampler& inResamp, StreamingResampler& outResamp,
+                                  std::vector<float>& upBuf, std::vector<float>& namBuf, std::vector<float>& downBuf,
+                                  std::vector<float>& tBuf)
         {
-            float x = scratchUp[i] * inGainVal;
-            scratchNAM[i] = mL->forward(x);
-        }
-        outputResampler.processBlock(scratchNAM.data(), upCountL, scratchDown, numSamples);
-
-        for (int s = 0; s < numSamples; ++s)
-        {
-            float y = scratchDown[s];
-            y = toneStack.processPre(0, y) * outGainVal;
-            channelDataL[s] = y;
-        }
-
-        if (processStereo && mR)
-        {
-            inputResamplerR.processBlock(channelDataR, numSamples, scratchUpR, upCountTarget);
-            const int upCountR = (int)scratchUpR.size();
-            scratchNAMR.resize(upCountR);
-            for (int i = 0; i < upCountR; ++i)
+            if (!needsResample)
             {
-                float x = scratchUpR[i] * inGainVal;
-                scratchNAMR[i] = mR->forward(x);
-            }
-            outputResamplerR.processBlock(scratchNAMR.data(), upCountR, scratchDownR, numSamples);
+                if (tBuf.size() < (size_t)numSamples)
+                    tBuf.resize((size_t)numSamples);
 
-            for (int s = 0; s < numSamples; ++s)
-            {
-                float y = scratchDownR[s];
-                y = toneStack.processPre(1, y) * outGainVal;
-                channelDataR[s] = y;
+                for (int s = 0; s < numSamples; ++s)
+                    tBuf[(size_t)s] = input[s] * inGainLinear;
+
+                m->forward(tBuf.data(), output, numSamples);
+
+                for (int s = 0; s < numSamples; ++s)
+                    output[s] = toneStack.processPre(ch, output[s]) * outGainLinear;
             }
+            else
+            {
+                const double upRatio = modelSR / hostSR;
+                const double exactTarget = (static_cast<double>(numSamples) - inResamp.pos) * upRatio;
+                const int upCountTarget = static_cast<int>(std::round(exactTarget));
+
+                inResamp.processBlock(input, numSamples, upBuf, upCountTarget);
+
+                const int upCount = static_cast<int>(upBuf.size());
+                if (tBuf.size() < (size_t)upCount)
+                    tBuf.resize((size_t)upCount);
+
+                for (int i = 0; i < upCount; ++i)
+                    tBuf[(size_t)i] = upBuf[(size_t)i] * inGainLinear;
+
+                if (namBuf.size() < (size_t)upCount)
+                    namBuf.resize((size_t)upCount);
+
+                m->forward(tBuf.data(), namBuf.data(), upCount);
+
+                outResamp.processBlock(namBuf.data(), upCount, downBuf, numSamples);
+
+                for (int s = 0; s < numSamples; ++s)
+                    output[s] = toneStack.processPre(ch, downBuf[(size_t)s]) * outGainLinear;
+            }
+        };
+
+        if (processStereo && mR && mR != mL)
+        {
+            processChannel(buffer.getReadPointer(0), channelDataL, mL.get(), 0,
+                           inputResampler, outputResampler, scratchUp, scratchNAM, scratchDown, tempBuffer);
+            processChannel(buffer.getReadPointer(1), channelDataR, mR.get(), 1,
+                           inputResamplerR, outputResamplerR, scratchUpR, scratchNAMR, scratchDownR, tempBufferR);
         }
         else if (numCh > 1)
         {
+            processChannel(buffer.getReadPointer(0), channelDataL, mL.get(), 0,
+                           inputResampler, outputResampler, scratchUp, scratchNAM, scratchDown, tempBuffer);
             std::memcpy(channelDataR, channelDataL, (size_t)numSamples * sizeof(float));
+        }
+        else
+        {
+            processChannel(channelDataL, channelDataL, mL.get(), 0,
+                           inputResampler, outputResampler, scratchUp, scratchNAM, scratchDown, tempBuffer);
         }
     }
 
-    
     bool modelLoaded = false;
     juce::String modelPath = "";
     std::atomic<float> slimAmount { 0.0f };
@@ -1396,14 +1369,8 @@ private:
     std::atomic<bool> needsWarmup { false };
 
     // nam resampler
-               
-    int resamplerMode = 0; // default lagrange
-    int resamplerKernelSize = 32; // used by lanczos and sinc
-    bool allowUpsampleResampling = true; // allow resampling when host < model sample rate (disable by default)
     std::atomic<double> modelSampleRate { 48000.0 }; // most nam models are trained at 48000
     std::atomic<bool>   resamplerConfig { true };
-
-    UpsampleAAFilter upsampleAAFilter;
 
     StreamingResampler inputResampler;   // host -> model L
     StreamingResampler outputResampler;  // model -> host L
@@ -1412,10 +1379,12 @@ private:
     std::vector<float> scratchUp;        // upsampled input for NAM L
     std::vector<float> scratchDown;      // NAM output resampled back L
     std::vector<float> scratchNAM;       // NAM processing buffer L
+    std::vector<float> tempBuffer;       // scaled input for NAM L
     std::vector<float> scratchUpR;       // upsampled input for NAM R
     std::vector<float> scratchDownR;     // NAM output resampled back R
     std::vector<float> scratchNAMR;      // NAM processing buffer R
-    std::vector<float> scratchPreFilter; // Pre-filtered input for HQ upsampling
+    std::vector<float> tempBufferR;      // scaled input for NAM R
+    AudioBuffer<float> internalBuffer;
    
 };
 }
