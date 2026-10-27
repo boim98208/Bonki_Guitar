@@ -1,7 +1,27 @@
-XmlPresetBackups/GeneratedGuitar.xml
-/DspNetworks/Binaries
-/DspNetworks/Binaries
-/DspNetworks/Binaries/Builds
+# Compiled Plugin Binaries & IDE Build Folders
+/Binaries/
+/Builds/
+*.vst3
+*.exe
+*.dll
+*.so
+*.dylib
+*.lib
+*.exp
+*.ilk
+*.pdb
+
+# DSP Network Intermediates & Compiled DLLs
+/DspNetworks/Binaries/Builds/
+/DspNetworks/Binaries/dll/
+*.obj
 *.tlog
-/Binaries
-/Samples
+*.recipe
+
+# HISE Backups & Temp Autosaves (Optional, keeps history clean)
+XmlPresetBackups/
+# Presets/Autosave_*.hip
+
+# Audio Samples (Uncomment if using external sample distribution/HLAC)
+# Samples/*.ch1
+# Samples/*.wav
