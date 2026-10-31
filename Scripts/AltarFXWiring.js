@@ -267,6 +267,7 @@ namespace AltarFX
     // ==========================================
     // REVERB CONTROLS
     // ==========================================
+    const var knbReverbMode = Content.getComponent("knbReverbMode");
     const var knbReverbMix = Content.getComponent("knbReverbMix");
     const var knbReverbPreDelay = Content.getComponent("knbReverbPreDelay");
     const var knbReverbRoomSize = Content.getComponent("knbReverbRoomSize");
@@ -274,6 +275,7 @@ namespace AltarFX
     const var knbReverbDampingFrequency = Content.getComponent("knbReverbDampingFrequency");
     const var knbReverbChorusDepth = Content.getComponent("knbReverbChorusDepth");
 
+    inline function onReverbMode(component, value) { setFXParam(fxReverb, "ReverbMode", value); }
     inline function onReverbMix(component, value) { setFXParam(fxReverb, "Mix", value); }
     inline function onReverbPreDelay(component, value) { setFXParam(fxReverb, "PreDelay", value); }
     inline function onReverbRoomSize(component, value) { setFXParam(fxReverb, "RoomSize", value); }
@@ -281,6 +283,7 @@ namespace AltarFX
     inline function onReverbDampingFrequency(component, value) { setFXParam(fxReverb, "DampingFrequency", value); }
     inline function onReverbChorusDepth(component, value) { setFXParam(fxReverb, "ChorusDepth", value); }
 
+    knbReverbMode.setControlCallback(onReverbMode);
     knbReverbMix.setControlCallback(onReverbMix);
     knbReverbPreDelay.setControlCallback(onReverbPreDelay);
     knbReverbRoomSize.setControlCallback(onReverbRoomSize);
@@ -446,7 +449,7 @@ namespace AltarFX
     ];
 
     const var modControlsD = [
-        knbReverbMix, knbReverbPreDelay, knbReverbRoomSize, 
+        knbReverbMode, knbReverbMix, knbReverbPreDelay, knbReverbRoomSize, 
         knbReverbDecay, knbReverbDampingFrequency, knbReverbChorusDepth
     ];
 
@@ -626,6 +629,7 @@ Content.getComponent("btnBypassPreEQ").setControlCallback(onbtnBypassPreEQContro
         { id: "knbCabBDelay", comp: knbCabBDelay },
 
         // Reverb
+        { id: "knbReverbMode", comp: knbReverbMode },
         { id: "knbReverbMix", comp: knbReverbMix },
         { id: "knbReverbPreDelay", comp: knbReverbPreDelay },
         { id: "knbReverbRoomSize", comp: knbReverbRoomSize },

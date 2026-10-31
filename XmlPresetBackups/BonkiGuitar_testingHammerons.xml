@@ -62,7 +62,7 @@
             <Control type="ScriptButton" id="btnModularC" value="0"/>
             <Control type="ScriptButton" id="btnBypassModularC" value="1.0"/>
             <Control type="ScriptButton" id="btnModularD" value="0"/>
-            <Control type="ScriptButton" id="btnBypassModularD" value="1.0"/>
+            <Control type="ScriptButton" id="btnBypassModularD" value="0.0"/>
             <Control type="ScriptButton" id="btnModularE" value="0"/>
             <Control type="ScriptButton" id="btnBypassModularE" value="1.0"/>
             <Control type="ScriptButton" id="btnModularF" value="0"/>
@@ -78,11 +78,11 @@
             <Control type="ScriptSlider" id="knbOverdriveCircuitBend" value="0.0"/>
             <Control type="ScriptSlider" id="knbOverdriveMix" value="0.3299999833106995"/>
             <Control type="ScriptSlider" id="knbOverdriveOutputGain" value="-2.799999713897705"/>
-            <Control type="ScriptSlider" id="knbAmpMode" value="2.0"/>
-            <Control type="ScriptSlider" id="knbAmpInput" value="-17.79999923706055"/>
-            <Control type="ScriptSlider" id="knbAmpLow" value="1.788139343261719e-7"/>
-            <Control type="ScriptSlider" id="knbAmpMid" value="1.788139343261719e-7"/>
-            <Control type="ScriptSlider" id="knbAmpHigh" value="0.6000002026557922"/>
+            <Control type="ScriptSlider" id="knbAmpMode" value="0.0"/>
+            <Control type="ScriptSlider" id="knbAmpInput" value="11.20000076293945"/>
+            <Control type="ScriptSlider" id="knbAmpLow" value="4.200000286102295"/>
+            <Control type="ScriptSlider" id="knbAmpMid" value="-1.699999809265137"/>
+            <Control type="ScriptSlider" id="knbAmpHigh" value="3.700000286102295"/>
             <Control type="ScriptSlider" id="knbAmpPresence" value="1.788139343261719e-7"/>
             <Control type="ScriptSlider" id="knbAmpOutput" value="-12.09999942779541"/>
             <Control type="ScriptComboBox" id="cmbAmpCleanToneStackMode" value="2.0"/>
@@ -103,6 +103,7 @@
             <Control type="ScriptSlider" id="knbCabBDelay" value="0.0"/>
             <Control type="ScriptButton" id="btnBrowseCabA" value="1.0"/>
             <Control type="ScriptButton" id="btnBrowseCabB" value="1.0"/>
+            <Control type="ScriptSlider" id="knbReverbMode" value="3.0"/>
             <Control type="ScriptSlider" id="knbReverbMix" value="0.2800000011920929"/>
             <Control type="ScriptSlider" id="knbReverbPreDelay" value="0.0"/>
             <Control type="ScriptSlider" id="knbReverbRoomSize" value="1.0"/>
@@ -143,7 +144,7 @@
             <Control type="ScriptSlider" id="knbOctave" value="0.0"/>
             <Control type="ScriptSlider" id="knbChugStrength" value="0.0"/>
             <Control type="ScriptSlider" id="knbPickStrength" value="0.0"/>
-            <Control type="ScriptSlider" id="GuitarMorphKnob" value="0.0"/>
+            <Control type="ScriptSlider" id="GuitarMorphKnob" value="1.0"/>
             <Control type="ScriptComboBox" id="cmbIr" value="2.0"/>
             <Control type="ScriptButton" id="ShowPlayingModeButton" value="0"/>
             <Control type="ScriptButton" id="ShowArticulationsButton" value="0"/>
@@ -251,13 +252,13 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret1Marker" x="212" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret2Marker" x="251" y="21" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret3Marker" x="286" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret4Marker" x="320" y="22" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -1482,42 +1483,48 @@
                 <Component type="ScriptPanel" id="pnlModularD" x="20" y="60" width="960"
                            height="170" itemColour="0" itemColour2="0" parentComponent="FXRackBG"
                            visible="0">
+                  <Component type="ScriptSlider" id="knbReverbMode" parentComponent="pnlModularD"
+                             x="15" y="10" width="96" height="60" max="3.0" stepSize="1.0">
+                    <Component type="ScriptLabel" id="lbl_knbReverbMode" x="0" y="38" width="96"
+                               height="20" text="Reverb Mode" editable="0" fontStyle="Bold"
+                               parentComponent="knbReverbMode" textColour="4278190080"/>
+                  </Component>
                   <Component type="ScriptSlider" id="knbReverbMix" parentComponent="pnlModularD"
-                             x="15" y="10" width="96" height="60" stepSize="0.009999999776482582"
+                             x="130" y="10" width="96" height="60" stepSize="0.009999999776482582"
                              suffix=" %">
                     <Component type="ScriptLabel" id="lbl_knbReverbMix" x="0" y="38" width="96"
                                height="20" text="Reverb Mix" editable="0" fontStyle="Bold" parentComponent="knbReverbMix"
                                textColour="4278190080"/>
                   </Component>
                   <Component type="ScriptSlider" id="knbReverbPreDelay" parentComponent="pnlModularD"
-                             x="130" y="10" width="96" height="60" max="0.2000000029802322"
+                             x="245" y="10" width="96" height="60" max="0.2000000029802322"
                              stepSize="0.001000000047497451" suffix=" s">
                     <Component type="ScriptLabel" id="lbl_knbReverbPreDelay" x="0" y="38" width="96"
                                height="20" text="Pre-Delay" editable="0" fontStyle="Bold" parentComponent="knbReverbPreDelay"
                                textColour="4278190080"/>
                   </Component>
                   <Component type="ScriptSlider" id="knbReverbRoomSize" parentComponent="pnlModularD"
-                             x="245" y="10" width="96" height="60" stepSize="0.009999999776482582">
+                             x="360" y="10" width="96" height="60" stepSize="0.009999999776482582">
                     <Component type="ScriptLabel" id="lbl_knbReverbRoomSize" x="0" y="38" width="96"
                                height="20" text="Room Size" editable="0" fontStyle="Bold" parentComponent="knbReverbRoomSize"
                                textColour="4278190080"/>
                   </Component>
                   <Component type="ScriptSlider" id="knbReverbDecay" parentComponent="pnlModularD"
-                             x="360" y="10" width="96" height="60" max="0.9800000190734863"
+                             x="475" y="10" width="96" height="60" max="0.9800000190734863"
                              stepSize="0.009999999776482582">
                     <Component type="ScriptLabel" id="lbl_knbReverbDecay" x="0" y="38" width="96"
                                height="20" text="Decay" editable="0" fontStyle="Bold" parentComponent="knbReverbDecay"
                                textColour="4278190080"/>
                   </Component>
                   <Component type="ScriptSlider" id="knbReverbDampingFrequency" parentComponent="pnlModularD"
-                             x="475" y="10" width="96" height="60" min="500.0" max="20000.0"
+                             x="590" y="10" width="96" height="60" min="500.0" max="20000.0"
                              stepSize="100.0" suffix=" Hz">
                     <Component type="ScriptLabel" id="lbl_knbReverbDampingFrequency" x="0" y="38"
                                width="96" height="20" text="Damping" editable="0" fontStyle="Bold"
                                parentComponent="knbReverbDampingFrequency" textColour="4278190080"/>
                   </Component>
                   <Component type="ScriptSlider" id="knbReverbChorusDepth" parentComponent="pnlModularD"
-                             x="590" y="10" width="96" height="60" stepSize="0.009999999776482582">
+                             x="705" y="10" width="96" height="60" stepSize="0.009999999776482582">
                     <Component type="ScriptLabel" id="lbl_knbReverbChorusDepth" x="0" y="38"
                                width="96" height="20" text="Rev Chorus" editable="0" fontStyle="Bold"
                                parentComponent="knbReverbChorusDepth" textColour="4278190080"/>
@@ -1862,8 +1869,8 @@
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
-        <Processor Type="Convolution" ID="IRMatchGuitarsConv" Bypassed="0" DryGain="-6.0"
-                   WetGain="-100.0" Latency="0.0" ImpulseLength="1.0" ProcessInput="1.0"
+        <Processor Type="Convolution" ID="IRMatchGuitarsConv" Bypassed="0" DryGain="-100.0"
+                   WetGain="0.0" Latency="0.0" ImpulseLength="1.0" ProcessInput="1.0"
                    UseBackgroundThread="0.0" Predelay="0.0" HiCut="20000.0" Damping="0.0"
                    FFTType="0.0" FileName="{PROJECT_FOLDER}GuitarMorphIRs/Darken2.wav"
                    min="0" max="8192" loopStart="0" loopEnd="8192">
@@ -1911,12 +1918,11 @@
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
         <Processor Type="HardcodedMasterFX" ID="modularB" Bypassed="0" Network="amp"
-                   Mode="2.0" Oversampling="3.0" InputGain="-17.79999923706055"
-                   Low="1.788139343261719e-7" Mid="1.788139343261719e-7" High="0.6000002026557922"
-                   Presence="1.788139343261719e-7" OutputGain="-12.09999942779541"
-                   DistortionMode="0.0" CleanToneStackMode="1.0" DirtyToneStackMode="1.0"
-                   LatestFilterFreq="10000.0" LatestFilterQ="1.0" LatestFilterGain="0.0"
-                   Mono="0.0" Slim="1.0">
+                   Mode="0.0" Oversampling="3.0" InputGain="11.20000076293945" Low="4.200000286102295"
+                   Mid="-1.699999809265137" High="3.700000286102295" Presence="1.788139343261719e-7"
+                   OutputGain="-12.09999942779541" DistortionMode="0.0" CleanToneStackMode="1.0"
+                   DirtyToneStackMode="1.0" LatestFilterFreq="10000.0" LatestFilterQ="1.0"
+                   LatestFilterGain="0.0" Mono="0.0" Slim="1.0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
@@ -1935,9 +1941,9 @@
                        MaxValue="1839"/>
           </AudioFiles>
         </Processor>
-        <Processor Type="HardcodedMasterFX" ID="modularD" Bypassed="1" Network="reverb"
+        <Processor Type="HardcodedMasterFX" ID="modularD" Bypassed="0" Network="reverb"
                    Mix="0.2800000011920929" PreDelay="0.0" RoomSize="1.0" Decay="0.6599999666213989"
-                   DampingFrequency="20000.0" ChorusDepth="0.0">
+                   DampingFrequency="20000.0" ChorusDepth="0.0" ReverbMode="3.0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
@@ -2122,7 +2128,7 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
                                    Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="4.46999979019165"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="10.6899995803833"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="38.04982376098633"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
