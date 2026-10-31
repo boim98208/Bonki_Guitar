@@ -112,6 +112,8 @@ template <int NV> struct amp: public data::base, public cable_manager_t
         
         resamplerConfig.store(true, std::memory_order_release);
         updateNAMResamplers();
+        namDCBlocker.update(specs.sampleRate);
+        namDCBlocker.reset();
         
         // prepare nam model        
         if (auto m = std::atomic_load(&modelShared))
@@ -160,6 +162,8 @@ template <int NV> struct amp: public data::base, public cable_manager_t
 
         if (auto mL = std::atomic_load(&modelShared)) mL->reset();
         if (auto mR = std::atomic_load(&modelSharedR)) mR->reset();
+
+        namDCBlocker.reset();
 
         internalBuffer.clear();
     }
@@ -1154,7 +1158,11 @@ private:
                         
             if (!history.empty()) { std::memcpy(src.data(), history.data(), history.size() * sizeof(float)); }
             if (inCount > 0) { std::memcpy(src.data() + history.size(), in, (size_t)inCount * sizeof(float)); }
-            if (postPad > 0) { std::memset(src.data() + history.size() + (size_t)inCount, 0, (size_t)postPad * sizeof(float)); }
+            if (postPad > 0)
+            {
+                const float padVal = (inCount > 0) ? in[inCount - 1] : (!history.empty() ? history.back() : 0.0f);
+                std::fill_n(src.data() + history.size() + (size_t)inCount, (size_t)postPad, padVal);
+            }
                 
             out.resize((size_t)outCount);
             const double base = static_cast<double>(history.size());
@@ -1337,7 +1345,10 @@ private:
                 m->forward(tBuf.data(), output, numSamples);
 
                 for (int s = 0; s < numSamples; ++s)
-                    output[s] = toneStack.processPre(ch, output[s]) * outGainLinear;
+                {
+                    const float sVal = namDCBlocker.process(ch, output[s]);
+                    output[s] = toneStack.processPre(ch, sVal) * outGainLinear;
+                }
             }
             else
             {
@@ -1362,7 +1373,10 @@ private:
                 outResamp.processBlock(namBuf.data(), upCount, downBuf, numSamples);
 
                 for (int s = 0; s < numSamples; ++s)
-                    output[s] = toneStack.processPre(ch, downBuf[(size_t)s]) * outGainLinear;
+                {
+                    const float sVal = namDCBlocker.process(ch, downBuf[(size_t)s]);
+                    output[s] = toneStack.processPre(ch, sVal) * outGainLinear;
+                }
             }
         };
 
@@ -1400,6 +1414,34 @@ private:
     // nam resampler
     std::atomic<double> modelSampleRate { 48000.0 }; // most nam models are trained at 48000
     std::atomic<bool>   resamplerConfig { true };
+
+    struct SimpleDCBlocker
+    {
+        float x1[2] = { 0.0f, 0.0f };
+        float y1[2] = { 0.0f, 0.0f };
+        float r = 0.999f;
+
+        void update(double sampleRate)
+        {
+            if (sampleRate > 0.0)
+                r = static_cast<float>(std::clamp(1.0 - (2.0 * 3.14159265358979323846 * 10.0 / sampleRate), 0.99, 0.9999));
+        }
+
+        void reset()
+        {
+            x1[0] = x1[1] = 0.0f;
+            y1[0] = y1[1] = 0.0f;
+        }
+
+        inline float process(int ch, float x)
+        {
+            const int c = (ch == 1) ? 1 : 0;
+            float y = x - x1[c] + r * y1[c];
+            x1[c] = x;
+            y1[c] = (std::abs(y) < 1e-15f) ? 0.0f : y;
+            return y;
+        }
+    } namDCBlocker;
 
     StreamingResampler inputResampler;   // host -> model L
     StreamingResampler outputResampler;  // model -> host L

@@ -154,7 +154,9 @@
  	
  };
  
- Content.getComponent("ResetGlobalRRButton").setControlCallback(onResetGlobalRRButtonControl);
+ var btnResetRR = Content.getComponent("ResetGlobalRRButton");
+if (isDefined(btnResetRR))
+	btnResetRR.setControlCallback(onResetGlobalRRButtonControl);
  
  
  
