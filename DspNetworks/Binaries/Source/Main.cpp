@@ -38,6 +38,7 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		registerPolyNode<project::chorus<1>, project::chorus<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::cabDesigner<1>, project::cabDesigner<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::amp<1>, project::amp<NUM_POLYPHONIC_VOICES>>();
+		registerPolyNode<project::slot<1>, wrap::illegal_poly<project::slot<1>>>();
 		registerPolyNode<project::cab<1>, wrap::illegal_poly<project::cab<1>>>();
 		registerPolyNode<project::cabDesignerNetwork<1>, wrap::illegal_poly<project::cabDesignerNetwork<1>>>();
 		registerPolyNode<project::chug<1>, wrap::illegal_poly<project::chug<1>>>();
@@ -67,7 +68,7 @@ DLL_EXPORT size_t getNodeId(int index, char* t)
 
 DLL_EXPORT bool isThirdPartyNode(int index)
 {
-	return index < 11;
+	return index < 12;
 }
 
 DLL_EXPORT int getNumDataObjects(int nodeIndex, int dataTypeAsInt)
@@ -86,7 +87,7 @@ DLL_EXPORT void initOpaqueNode(scriptnode::OpaqueNode* n, int index, bool polyIf
 }
 DLL_EXPORT int getHash(int index)
 {
-	static const int thirdPartyOffset = 11;
+	static const int thirdPartyOffset = 12;
 	static const int hashIndexes[9] =
 	{
 		1309478914,

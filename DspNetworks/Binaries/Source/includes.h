@@ -36,6 +36,8 @@
 #include "octave.h"
 #include "pick.h"
 
+#include "slot.h"
+
 #if (defined (_WIN32) || defined (_WIN64))
 #pragma warning( pop )
 #else
