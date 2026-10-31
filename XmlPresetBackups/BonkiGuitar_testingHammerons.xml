@@ -9,12 +9,10 @@
         <Processor Type="ScriptProcessor" ID="Interface" Bypassed="0" NumAudioFiles="2">
           <ChildProcessors/>
           <Content>
-            <Control type="ScriptSlider" id="HandPositionFretForceKnob" value="1.0"/>
-            <Control type="ScriptSlider" id="StringForceKnob" value="8.0"/>
+            <Control type="ScriptSlider" id="HandPositionFretForceKnob" value="-1.0"/>
+            <Control type="ScriptSlider" id="StringForceKnob" value="1.0"/>
             <Control type="ScriptComboBox" id="FrettingEngineComboBox" value="1.0"/>
             <Control type="ScriptButton" id="ResetGlobalRRButton" value="0.0"/>
-            <Control type="ScriptSlider" id="IRMixKnob" value="0.0"/>
-            <Control type="ScriptComboBox" id="cmbIr" value="2.0"/>
             <Control type="ScriptSlider" id="VibratoDepthKnob" value="0.0"/>
             <Control type="ScriptSlider" id="VibratoFreqKnob" value="0.0"/>
             <Control type="ScriptSlider" id="PitchBendRangeKnob" value="2.0"/>
@@ -22,10 +20,11 @@
             <Control type="ScriptButton" id="StrummingModeEnableBtn" value="0.0"/>
             <Control type="ScriptSlider" id="StrumSpeedKnob" value="127.0"/>
             <Control type="ScriptButton" id="EnableStrumSpeedWithVelBtn" value="0.0"/>
-            <Control type="ScriptSlider" id="SustainModulatorsAttack" value="0.0"/>
+            <Control type="ScriptSlider" id="IRMixKnob" value="0.0"/>
+            <Control type="ScriptSlider" id="SustainModulatorsAttack" value="4.46999979019165"/>
             <Control type="ScriptSlider" id="SustainModulatorsDecay" value="0.0"/>
             <Control type="ScriptSlider" id="SustainModulatorsSustain" value="0.0"/>
-            <Control type="ScriptSlider" id="SustainModulatorsRelease" value="151.0"/>
+            <Control type="ScriptSlider" id="SustainModulatorsRelease" value="10.6899995803833"/>
             <Control type="ScriptButton" id="PurgeSustainBtn" value="1.0"/>
             <Control type="ScriptSlider" id="SustainModulatorsVolume" value="-0.4399999976158142"/>
             <Control type="ScriptSlider" id="MuteModulatorsAttack" value="0.0"/>
@@ -80,17 +79,17 @@
             <Control type="ScriptSlider" id="knbOverdriveMix" value="0.3299999833106995"/>
             <Control type="ScriptSlider" id="knbOverdriveOutputGain" value="-2.799999713897705"/>
             <Control type="ScriptSlider" id="knbAmpMode" value="2.0"/>
-            <Control type="ScriptSlider" id="knbAmpInput" value="37.60000228881836"/>
+            <Control type="ScriptSlider" id="knbAmpInput" value="-17.79999923706055"/>
             <Control type="ScriptSlider" id="knbAmpLow" value="1.788139343261719e-7"/>
             <Control type="ScriptSlider" id="knbAmpMid" value="1.788139343261719e-7"/>
             <Control type="ScriptSlider" id="knbAmpHigh" value="0.6000002026557922"/>
             <Control type="ScriptSlider" id="knbAmpPresence" value="1.788139343261719e-7"/>
-            <Control type="ScriptSlider" id="knbAmpOutput" value="5.364418029785156e-7"/>
+            <Control type="ScriptSlider" id="knbAmpOutput" value="-12.09999942779541"/>
             <Control type="ScriptComboBox" id="cmbAmpCleanToneStackMode" value="2.0"/>
             <Control type="ScriptComboBox" id="cmbAmpDirtyToneStackMode" value="2.0"/>
             <Control type="ScriptComboBox" id="cmbAmpDirtyDistortionMode" value="1.0"/>
             <Control type="ScriptButton" id="btnBrowseNAM" value="1.0"/>
-            <Control type="ScriptSlider" id="knbAmpSlim" value="0.0"/>
+            <Control type="ScriptSlider" id="knbAmpSlim" value="1.0"/>
             <Control type="ScriptSlider" id="knbCabMix" value="0.0"/>
             <Control type="ScriptSlider" id="knbCabAGain" value="1.490116119384766e-6"/>
             <Control type="ScriptSlider" id="knbCabAPan" value="-2.235174179077148e-8"/>
@@ -131,19 +130,21 @@
             <Control type="ScriptSlider" id="knbRingmodLFORate" value="1.5"/>
             <Control type="ScriptSlider" id="knbRingmodLFODepth" value="0.5"/>
             <Control type="ScriptSlider" id="knbRingmodFilterFrequency" value="1100.0"/>
-            <Control type="ScriptButton" id="btnSaveFXPreset" value="1.0"/>
-            <Control type="ScriptButton" id="btnLoadFXPreset" value="1.0"/>
+            <Control type="ScriptButton" id="btnSaveFXPreset" value="0.0"/>
+            <Control type="ScriptButton" id="btnLoadFXPreset" value="0.0"/>
             <Control type="ScriptButton" id="btnPreEQ" value="0"/>
             <Control type="ScriptButton" id="btnBypassPreEQ" value="1.0"/>
             <Control type="ScriptButton" id="btnPostEQ" value="0"/>
-            <Control type="ScriptButton" id="btnBypassPostEQ" value="1.0"/>
+            <Control type="ScriptButton" id="btnBypassPostEQ" value="0.0"/>
             <Control type="ScriptSlider" id="knbGateThreshold" value="-100.0"/>
-            <Control type="ScriptSlider" id="knbGateAttack" value="25.0"/>
+            <Control type="ScriptSlider" id="knbGateAttack" value="1.0"/>
             <Control type="ScriptSlider" id="knbGateRelease" value="40.0"/>
             <Control type="ScriptSlider" id="knbTranspose" value="0.0"/>
             <Control type="ScriptSlider" id="knbOctave" value="0.0"/>
             <Control type="ScriptSlider" id="knbChugStrength" value="0.0"/>
             <Control type="ScriptSlider" id="knbPickStrength" value="0.0"/>
+            <Control type="ScriptSlider" id="GuitarMorphKnob" value="0.0"/>
+            <Control type="ScriptComboBox" id="cmbIr" value="2.0"/>
             <Control type="ScriptButton" id="ShowPlayingModeButton" value="0"/>
             <Control type="ScriptButton" id="ShowArticulationsButton" value="0"/>
             <Control type="ScriptButton" id="ShowDebugPanelButton" value="0"/>
@@ -250,13 +251,13 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret1Marker" x="212" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret2Marker" x="251" y="21" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret3Marker" x="286" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret4Marker" x="320" y="22" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -833,20 +834,19 @@
                              height="15" width="10" text="FretBorderLowForced"/>
                   <Component type="ScriptImage" id="FretBorderLowForced" x="0" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder_Forced.png"
-                             scale="0.25" height="15" width="10" visible="0"/>
+                             scale="0.25" height="15" width="10"/>
                   <Component type="ScriptImage" id="FretBorderHigh" x="132" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder.png" scale="0.25"
                              height="15" width="10" text="FretBorderLowForced"/>
                   <Component type="ScriptImage" id="FretBorderHighForced" x="132" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder_Forced.png"
-                             scale="0.25" height="15" width="10" visible="0"/>
+                             scale="0.25" height="15" width="10"/>
                   <Component type="ScriptImage" id="FretBorderCenter" x="66" y="23" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandCenter.png" height="15"
                              width="15" text="FretBorderLowForced" scale="0.4000000059604645"/>
                   <Component type="ScriptImage" id="FretBorderCenterForced" x="66" y="23"
                              parentComponent="FretBorderPanel" fileName="{PROJECT_FOLDER}PlayingMode_HandCenter_Forced.png"
-                             height="15" width="15" text="FretBorderLowForced" scale="0.4000000059604645"
-                             visible="0"/>
+                             height="15" width="15" text="FretBorderLowForced" scale="0.4000000059604645"/>
                   <Component type="ScriptImage" id="FretBorderLowForcedRef" x="496" y="25"
                              parentComponent="FretBorderPanel" fileName="{PROJECT_FOLDER}PlayingMode_HandBorder_Forced.png"
                              scale="0.25" height="15" width="10" visible="0"/>
@@ -904,13 +904,7 @@
                 </Component>
                 <Component type="ScriptPanel" id="DSPPanel" x="280" y="130" width="557"
                            height="100" parentComponent="PlayingModeBG" itemColour="3355443"
-                           itemColour2="1118481" textColour="16777215" bgColour="16777215">
-                  <Component type="ScriptSlider" id="IRMixKnob" x="30" y="30" width="125"
-                             height="30" parentComponent="DSPPanel" middlePosition="0.5"/>
-                  <Component type="ScriptComboBox" id="cmbIr" x="170" y="40" width="131" height="21"
-                             parentComponent="DSPPanel" text="Load Impulse" items="&#10;AggressiveIRActual1&#10;AggressiveIRActual2&#10;Cabs/1on-pres8&#10;Cabs/1on-preshigh&#10;Cabs/2off-pres5&#10;Cabs/2off-pres8&#10;Cabs/2off-preshigh&#10;Cabs/7_dc&#10;Cabs/8_dc&#10;Cabs/AL-Antera&#10;Cabs/AL-Cifra&#10;Cabs/AL-Crypta&#10;Cabs/AL-Errata&#10;Cabs/AL-Obscura&#10;Cabs/AL-Sigila&#10;Cabs/AL-Silica&#10;Cabs/AL-Spectera&#10;Cabs/AL-Subvera&#10;Cabs/AL-Vespera&#10;Cabs/new impulse&#10;Cabs/s-pres5&#10;Cabs/s-pres8&#10;Cabs/s-preshigh&#10;hidden/_click&#10;hidden/_dirac&#10;hidden/_testAudio&#10;hidden/_testAudioChug&#10;RhythmCabIR"
-                             max="28"/>
-                </Component>
+                           itemColour2="1118481" textColour="16777215" bgColour="16777215"/>
                 <Component type="ScriptPanel" id="VibratoPnl" x="120" y="140" width="150"
                            height="100" parentComponent="PlayingModeBG" itemColour="0" itemColour2="0"
                            textColour="16777215" bgColour="16777215">
@@ -973,6 +967,9 @@
                   <Component type="ScriptButton" id="EnableStrumSpeedWithVelBtn" x="30" y="20"
                              width="54" height="20" parentComponent="StrumSpeedKnob" text="Vel"/>
                 </Component>
+                <Component type="ScriptSlider" id="IRMixKnob" x="270" y="140" width="125"
+                           height="30" parentComponent="PlayingModeBG" middlePosition="0.5"
+                           text="Bonk (bite)"/>
               </Component>
               <Component type="ScriptPanel" id="DebugPanel" x="120" y="0" itemColour="0"
                          itemColour2="0" bgColour="16777215" textColour="16777215" borderSize="0.0"
@@ -1320,7 +1317,7 @@
                                textColour="4278190080"/>
                   </Component>
                   <Component type="ScriptSlider" id="knbAmpInput" parentComponent="pnlModularB"
-                             x="130" y="10" width="96" height="60" min="-100.0" max="100.0"
+                             x="130" y="10" width="96" height="60" min="-50.0" max="50.0"
                              stepSize="0.1000000014901161" suffix=" dB">
                     <Component type="ScriptLabel" id="lbl_knbAmpInput" x="0" y="38" width="96"
                                height="20" text="Amp Input" editable="0" fontStyle="Bold" parentComponent="knbAmpInput"
@@ -1385,8 +1382,8 @@
                   <Component type="ScriptButton" id="btnBrowseNAM" parentComponent="pnlModularB"
                              x="15" y="85" width="96" height="30" text="Load NAM" tooltip="Browse and load a Neural Amp Modeler (.nam / .json) model"/>
                   <Component type="ScriptLabel" id="lblNAMName" parentComponent="pnlModularB"
-                             x="15" y="118" width="96" height="24" text="Jcm800.nam" editable="0"
-                             fontStyle="Italic" textColour="4278190080"/>
+                             x="15" y="118" width="96" height="24" text="Self-Titled-System-of-a-Down-Era-Guitar-Tone---Self-Titled-Guitar-Combined-Tone.nam"
+                             editable="0" fontStyle="Italic" textColour="4278190080"/>
                   <Component type="ScriptSlider" id="knbAmpSlim" parentComponent="pnlModularB"
                              x="360" y="85" width="96" height="60" stepSize="0.009999999776482582"
                              tooltip="Slim down NAM A2 model (0.0 = Full 8ch, 1.0 = Lite 3ch)">
@@ -1754,10 +1751,10 @@
                 </Component>
                 <Component type="ScriptButton" id="btnSaveFXPreset" x="20" y="445" width="50"
                            height="26" text="Save FX" tooltip="Save current FX chain settings to a preset file"
-                           parentComponent="FXRackBG" textColour="4278190080"/>
+                           parentComponent="FXRackBG" textColour="4278190080" isMomentary="1"/>
                 <Component type="ScriptButton" id="btnLoadFXPreset" x="75" y="445" width="50"
                            height="26" text="Load FX" tooltip="Load an FX chain preset file"
-                           parentComponent="FXRackBG"/>
+                           parentComponent="FXRackBG" isMomentary="1"/>
                 <Component type="ScriptButton" id="btnPreEQ" x="20" y="342" width="95" height="22"
                            text="Pre EQ" tooltip="View Pre EQ" parentComponent="FXRackBG"/>
                 <Component type="ScriptButton" id="btnBypassPreEQ" x="118" y="342" width="28"
@@ -1771,21 +1768,21 @@
                            parentComponent="FXRackBG" textColour="4278190080"/>
                 <Component type="ScriptSlider" id="knbGateThreshold" x="140" y="474" width="96"
                            height="60" min="-100.0" max="0.0" stepSize="1.0" suffix=" dB"
-                           parentComponent="FXRackBG">
+                           parentComponent="FXRackBG" visible="0" enabled="0">
                   <Component type="ScriptLabel" id="lbl_knbGateThreshold" x="0" y="38" width="96"
                              height="20" text="Gate Thresh" editable="0" fontStyle="Bold"
                              parentComponent="knbGateThreshold" textColour="4278190080"/>
                 </Component>
                 <Component type="ScriptSlider" id="knbGateAttack" x="260" y="474" width="96"
                            height="60" min="1.0" max="100.0" stepSize="1.0" suffix=" ms"
-                           parentComponent="FXRackBG">
+                           parentComponent="FXRackBG" visible="0" enabled="0">
                   <Component type="ScriptLabel" id="lbl_knbGateAttack" x="0" y="38" width="96"
                              height="20" text="Gate Attack" editable="0" fontStyle="Bold"
                              parentComponent="knbGateAttack" textColour="4278190080"/>
                 </Component>
                 <Component type="ScriptSlider" id="knbGateRelease" x="380" y="474" width="96"
                            height="60" min="1.0" max="200.0" stepSize="1.0" suffix=" ms"
-                           parentComponent="FXRackBG">
+                           parentComponent="FXRackBG" visible="0" enabled="0">
                   <Component type="ScriptLabel" id="lbl_knbGateRelease" x="0" y="38" width="96"
                              height="20" text="Gate Release" editable="0" fontStyle="Bold"
                              parentComponent="knbGateRelease" textColour="4278190080"/>
@@ -1815,6 +1812,11 @@
                              height="20" text="Pick" editable="0" fontStyle="Bold" parentComponent="knbPickStrength"
                              textColour="4278190080"/>
                 </Component>
+                <Component type="ScriptSlider" id="GuitarMorphKnob" x="300" y="470" parentComponent="FXRackBG"
+                           height="59"/>
+                <Component type="ScriptComboBox" id="cmbIr" x="310" y="450" width="131"
+                           height="21" parentComponent="FXRackBG" text="Load Impulse" max="2"
+                           items="Darken1&#10;Darken2"/>
               </Component>
               <Component type="ScriptButton" id="ShowPlayingModeButton" x="259" y="478"
                          text="Show Main Playing Controls" width="188" filmstripImage="{PROJECT_FOLDER}PlayingMode_Button_Filmstrip.png"
@@ -1860,16 +1862,16 @@
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
-        <Processor Type="Convolution" ID="IRMatchGuitarsConv" Bypassed="0" DryGain="-100.0"
-                   WetGain="0.0" Latency="0.0" ImpulseLength="1.0" ProcessInput="1.0"
+        <Processor Type="Convolution" ID="IRMatchGuitarsConv" Bypassed="0" DryGain="-6.0"
+                   WetGain="-100.0" Latency="0.0" ImpulseLength="1.0" ProcessInput="1.0"
                    UseBackgroundThread="0.0" Predelay="0.0" HiCut="20000.0" Damping="0.0"
-                   FFTType="0.0" FileName="C:\Users\Ibrahim Rasyid\Downloads\bridge to neck IR.wav"
+                   FFTType="0.0" FileName="{PROJECT_FOLDER}GuitarMorphIRs/Darken2.wav"
                    min="0" max="8192" loopStart="0" loopEnd="8192">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
         <Processor Type="HardcodedMasterFX" ID="gate" Bypassed="1" Network="gate"
-                   Threshold="-100.0" Attack="25.0" Release="40.0">
+                   Threshold="-100.0" Attack="1.0" Release="40.0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
@@ -1893,9 +1895,10 @@
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
-        <Processor Type="CurveEq" ID="preEQ" Bypassed="0" NumFilters="1" Band0="-0.6575353145599365"
-                   Band1="529.2901000976562" Band2="3.712930202484131" Band3="1.0"
-                   Band4="4.0" FFTEnabled="0">
+        <Processor Type="CurveEq" ID="preEQ" Bypassed="0" NumFilters="2" Band0="-12.16438293457031"
+                   Band1="102.6966705322266" Band2="1.50659191608429" Band3="1.0"
+                   Band4="4.0" Band5="-24.0" Band6="98.22505187988281" Band7="3.637343406677246"
+                   Band8="1.0" Band9="1.0" FFTEnabled="0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
@@ -1908,11 +1911,12 @@
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
         <Processor Type="HardcodedMasterFX" ID="modularB" Bypassed="0" Network="amp"
-                   Mode="2.0" Oversampling="3.0" InputGain="37.60000228881836" Low="1.788139343261719e-7"
-                   Mid="1.788139343261719e-7" High="0.6000002026557922" Presence="1.788139343261719e-7"
-                   OutputGain="5.364418029785156e-7" DistortionMode="0.0" CleanToneStackMode="1.0"
-                   DirtyToneStackMode="1.0" LatestFilterFreq="10000.0" LatestFilterQ="1.0"
-                   LatestFilterGain="0.0" Mono="0.0" Slim="0.0">
+                   Mode="2.0" Oversampling="3.0" InputGain="-17.79999923706055"
+                   Low="1.788139343261719e-7" Mid="1.788139343261719e-7" High="0.6000002026557922"
+                   Presence="1.788139343261719e-7" OutputGain="-12.09999942779541"
+                   DistortionMode="0.0" CleanToneStackMode="1.0" DirtyToneStackMode="1.0"
+                   LatestFilterFreq="10000.0" LatestFilterQ="1.0" LatestFilterGain="0.0"
+                   Mono="0.0" Slim="1.0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
@@ -1957,7 +1961,7 @@
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
-        <Processor Type="CurveEq" ID="postEQ" Bypassed="0" NumFilters="5" Band0="-24.0"
+        <Processor Type="CurveEq" ID="postEQ" Bypassed="1" NumFilters="5" Band0="-24.0"
                    Band1="2042.489990234375" Band2="8.0" Band3="1.0" Band4="4.0"
                    Band5="0.0" Band6="310.2309875488281" Band7="2.197000026702881"
                    Band8="1.0" Band9="4.0" Band10="0.328767716884613" Band11="3670.498046875"
@@ -2117,8 +2121,8 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="38.04982376098633"
+                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="4.46999979019165"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="10.6899995803833"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -2344,8 +2348,8 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="4.46999979019165"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="10.6899995803833"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -2570,8 +2574,8 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="4.46999979019165"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="10.6899995803833"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -2796,8 +2800,8 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="4.46999979019165"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="10.6899995803833"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -3022,8 +3026,8 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="4.46999979019165"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="10.6899995803833"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -3248,8 +3252,8 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="4.46999979019165"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="10.6899995803833"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -3474,8 +3478,8 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="4.46999979019165"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="10.6899995803833"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -3700,8 +3704,8 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="4.46999979019165"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="10.6899995803833"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -9129,8 +9133,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="4.46999979019165" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -9356,8 +9360,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="4.46999979019165" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -9583,8 +9587,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="4.46999979019165" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -9810,8 +9814,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="4.46999979019165" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -10037,8 +10041,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="4.46999979019165" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -10264,8 +10268,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="4.46999979019165" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -10491,8 +10495,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="4.46999979019165" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -10718,8 +10722,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="4.46999979019165" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -12901,8 +12905,8 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="4.46999979019165"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="10.6899995803833"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -13127,8 +13131,8 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="4.46999979019165"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="10.6899995803833"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -13353,8 +13357,8 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="4.46999979019165"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="10.6899995803833"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -13579,8 +13583,8 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="4.46999979019165"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="10.6899995803833"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -13805,8 +13809,8 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="4.46999979019165"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="10.6899995803833"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -14031,8 +14035,8 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="4.46999979019165"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="10.6899995803833"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -14257,8 +14261,8 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="4.46999979019165"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="10.6899995803833"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -14483,8 +14487,8 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
-                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="0.0"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="151.0"
+                                   Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="4.46999979019165"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="10.6899995803833"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -19912,8 +19916,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="4.46999979019165" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -20139,8 +20143,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="4.46999979019165" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -20366,8 +20370,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="4.46999979019165" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -20593,8 +20597,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="4.46999979019165" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -20820,8 +20824,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="4.46999979019165" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -21047,8 +21051,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="4.46999979019165" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -21274,8 +21278,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="4.46999979019165" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -21501,8 +21505,8 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="PowerChordSusAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="0.0" AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0"
-                                   Release="151.0" EcoMode="1.0">
+                                   Attack="4.46999979019165" AttackLevel="0.0" Hold="10.0" Decay="1.0"
+                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -23615,7 +23619,7 @@
     <Controller Controller="3" Channel="-1" Processor="Interface" MacroIndex="-1"
                 Start="0.0" End="1.0" FullStart="0.0" FullEnd="1.0" Skew="1.0"
                 Interval="0.01" Converter="37.nT6K8CBGgC..VEFa0U1Pu4lckIGckIG.ADPXiQWZ1UF.ADf..."
-                Attribute="cmbIr" Inverted="0"/>
+                Attribute="VibratoDepthKnob" Inverted="0"/>
     <Controller Controller="4" Channel="-1" Processor="Interface" MacroIndex="-1"
                 Start="-24.0" End="24.0" FullStart="-24.0" FullEnd="24.0" Skew="0.9421513914112677"
                 Interval="1.0" Converter="37.nT6K8CBGgC..VEFa0U1Pu4lckIGckIG.ADPXiQWZ1UF.ADf..."

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<samplemap ID="Mute_String4" RRGroupAmount="8.0" MicPositions=";">
+<samplemap ID="Mute_String4" RRGroupAmount="8.0" MicPositions=";" CrossfadeGamma="1.0">
   <sample Root="80" LoKey="80" HiKey="81" LoVel="0" HiVel="127" RRGroup="4"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\export\Bonki_Mute_String4_Dynamic3_Tuned_G#4_RR04_XTail1.wav"
           Duplicate="0"/>

@@ -829,30 +829,52 @@ inline function distributeFretMarkersVertically(stringToDistribute, fretImages){
  
  // initializing DSP FX GUI
  
- const var ConvolutionReverb1 = Synth.getEffect("ConvolutionReverb1");
- const var ConvolutionReverb1Sample = Synth.getAudioSampleProcessor("ConvolutionReverb1");
+const var IRMatchGuitarsConv = Synth.getEffect("IRMatchGuitarsConv");
+const var IRMatchGuitarsConvSample = Synth.getAudioSampleProcessor("IRMatchGuitarsConv");
+
+const var ConvolutionReverb1 = Synth.getEffect("ConvolutionReverb1");
+const var ConvolutionReverb1Sample = Synth.getAudioSampleProcessor("ConvolutionReverb1");
+
+const var cmbIr = Content.getComponent("cmbIr");
+const var irs = Engine.loadAudioFilesIntoPool();
+
+// Define the specific folder name you want to target inside AudioFiles
+const var targetFolder = "GuitarMorphIRs"; 
+
+// Create an array to hold only the paths belonging to that folder
+const var filteredIrs = [];
+const var displayNames = [];
+
+
+// Loop through all pool files and filter them
+for (var i = 0; i < irs.length; i++)
+{
+    if (irs[i].contains(targetFolder) && !irs[i].contains("xfade"))
+    {
+        filteredIrs.push(irs[i]);
+        
+        // Strip project prefix, extension, and folder structure
+        var cleanName = irs[i].replace("{PROJECT_FOLDER}", "").replace(".wav", "").split("/").pop();
+        displayNames.push(cleanName);
+    }
+}
+
+
+
+inline function oncmbIrControl(component, value)
+{
+    if (value > 0) {
+        // Target the file using the filtered array index
+        IRMatchGuitarsConvSample.setFile(filteredIrs[value - 1]);
+    }
+};
+
+if (isDefined(cmbIr)) { 
+	cmbIr.set("items", displayNames.join("\n"));
+    cmbIr.setControlCallback(oncmbIrControl); 
+}
  
- const var cmbIr = Content.getComponent("cmbIr");
- const irs = Engine.loadAudioFilesIntoPool();
- cmbIr.set("items", "");
- 
- 
- inline function oncmbIrControl(component, value)
- {
- 	if(value > 0)
- 		ConvolutionReverb1Sample.setFile(irs[value - 1]);
- };
- 
- Content.getComponent("cmbIr").setControlCallback(oncmbIrControl);
- 
- 
- for (var i = 0; i < irs.length; i++){
- 	if(!irs[i].contains("xfade")){
- 		cmbIr.addItem(irs[i].replace("{PROJECT_FOLDER}").replace(".wav"));
- 	}
- 
- 
- }
+
  
  
  
@@ -882,6 +904,32 @@ inline function distributeFretMarkersVertically(stringToDistribute, fretImages){
  };
  
  Content.getComponent("IRMixKnob").setControlCallback(onIRMixKnobControl);
+ 
+ 
+ 
+ inline function onGuitarMorphKnobControl(component, value)
+ {
+ 	local dryLinear = Math.cos(Math.PI * value / 2);
+ 	local wetLinear = Math.sin(Math.PI * value / 2);
+ 	
+ 		// noticing a boost in the middle position. This'll hopefully reduce that
+ 		local centerComp = 1.0 - 0.2 * Math.sin(Math.PI * value);
+ 		dryLinear *= centerComp;
+ 		wetLinear *= centerComp;
+ 		
+ 		 
+ 	
+ 	local dryGain = 20 * Math.log10(dryLinear);
+ 	local wetGain = 20 * Math.log10(wetLinear);
+ 	
+ 	  
+ 	
+ 		dryGain = dryGain - 6 ;
+ 	IRMatchGuitarsConv.setAttribute(IRMatchGuitarsConv.DryGain, dryGain);
+ 	IRMatchGuitarsConv.setAttribute(IRMatchGuitarsConv.WetGain, wetGain);
+ };
+ 
+ Content.getComponent("GuitarMorphKnob").setControlCallback(onGuitarMorphKnobControl);
  
  
  

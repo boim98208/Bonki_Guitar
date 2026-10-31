@@ -17,6 +17,7 @@
 
 #pragma once
 #include <JuceHeader.h>
+#include "DevBypassConfig.h"
 
 // xsimd best simd
 #define RTNEURAL_USE_EIGEN 0
@@ -77,12 +78,20 @@ template <int NV> struct amp: public data::base, public cable_manager_t
     void handleHiseEvent(HiseEvent& e) {}
     void setExternalData(const ExternalData& data, int index) {}    
 
+    std::shared_ptr<std::atomic<bool>> isAlive = std::make_shared<std::atomic<bool>>(true);
+
     amp()
     {        
         this->registerDataCallback<GlobalCablesAmp::nam>([this](const var& data)
         {
             this->loadNAMModel(data);
         });
+    }
+
+    ~amp()
+    {
+        if (isAlive)
+            isAlive->store(false);
     }
     
     void prepare(PrepareSpecs specs) 
@@ -157,6 +166,10 @@ template <int NV> struct amp: public data::base, public cable_manager_t
     
     template <typename T> void process(T& data)
     {
+#if DEV_BYPASS_AMP
+        return;
+#endif
+
         juce::ScopedNoDenormals noDenormals;
 
         const int numSamples = data.getNumSamples();
@@ -1042,6 +1055,9 @@ private:
     
     void loadNAMModel(const var& jsonData)
     {
+#if DEV_BYPASS_AMP
+        return;
+#endif
         // thread-safe JSON loader, creates new model off-thread & atomically swaps it in        
         juce::String jsonString;
 
@@ -1060,25 +1076,37 @@ private:
 
     void loadNAMModelInternal(const juce::String& jsonString)
     {
+#if DEV_BYPASS_AMP
+        return;
+#endif
         if (isLoading.exchange(true)) { return; }
 
         const std::string jsonCopy = jsonString.toStdString();
         // slimAmount: 0.0 = Full (target 1.0), 1.0 = Lite (target 0.0)
         const double targetSlim = 1.0 - (double)std::max(0.0f, std::min(1.0f, slimAmount.load()));
+        const int prepBlockSize = static_cast<int>(lastSpecs.maximumBlockSize > 0 ? lastSpecs.maximumBlockSize : 512);
+        auto aliveToken = isAlive;
 
-        std::thread([this, jsonCopy, targetSlim]()
+        std::thread([this, aliveToken, jsonCopy, targetSlim, prepBlockSize]()
         {
             try
             {
                 nlohmann::json modelJson = nlohmann::json::parse(jsonCopy);
 
+                if (!aliveToken->load()) return;
+
                 Altar::DSP::NAM::LoadedManualModel loadedModelL = Altar::DSP::NAM::createManualModel(modelJson, targetSlim);
                 Altar::DSP::NAM::LoadedManualModel loadedModelR = Altar::DSP::NAM::createManualModel(modelJson, targetSlim);
+
+                if (!aliveToken->load()) return;
+
                 if (loadedModelL.model)
                 {
-                    loadedModelL.model->prepare(static_cast<int>(lastSpecs.maximumBlockSize)); // prepare off-thread
+                    loadedModelL.model->prepare(prepBlockSize); // prepare off-thread
                     if (loadedModelR.model)
-                        loadedModelR.model->prepare(static_cast<int>(lastSpecs.maximumBlockSize));
+                        loadedModelR.model->prepare(prepBlockSize);
+
+                    if (!aliveToken->load()) return;
 
                     modelSampleRate.store(loadedModelL.sampleRate, std::memory_order_release);
                     resamplerConfig.store(true, std::memory_order_release);
@@ -1090,10 +1118,11 @@ private:
                     needsWarmup.store(true, std::memory_order_release); // request warmup
                 }
             }
-            catch (const std::exception& e) { DBG("Exception loading NAM model: " << e.what()); modelLoaded = false; }            
-            catch (...) { DBG("Unknown exception loading NAM model"); modelLoaded = false; }            
+            catch (const std::exception& e) { DBG("Exception loading NAM model: " << e.what()); if (aliveToken->load()) modelLoaded = false; }            
+            catch (...) { DBG("Unknown exception loading NAM model"); if (aliveToken->load()) modelLoaded = false; }            
 
-            isLoading.store(false);
+            if (aliveToken->load())
+                isLoading.store(false);
         }).detach();
     }
  
