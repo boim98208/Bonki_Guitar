@@ -5,6 +5,7 @@
     - Mode 1: Hall / Chamber (Lush, expansive concert hall with smooth diffusion)
     - Mode 2: Spring (Vintage guitar spring tank with dispersion chirp and pickup filtering)
     - Mode 3: Ambient (Cavernous cloud, dual modulated tank, 30s+ decay & infinite freeze)
+    - Mode 4: Shimmer (Pitch-shifted +1 octave feedback tank for ethereal ascending bloom)
 
     This file is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -169,6 +170,85 @@ template <int NV> struct reverb: public data::base
         }
     };
 
+    struct ShimmerPitchShifter
+    {
+        std::vector<float> buffer;
+        int writePos = 0;
+        float grainPhase = 0.0f;
+        float grainSize = 2048.0f;
+
+        void prepare(float sr)
+        {
+            // ~45ms grain: smooth pitch shifting of polyphonic chords & notes
+            grainSize = std::round(sr * 0.045f);
+            if (grainSize < 512.0f) grainSize = 512.0f;
+            if (grainSize > 4096.0f) grainSize = 4096.0f;
+
+            int bufSize = static_cast<int>(grainSize * 4.0f);
+            buffer.assign(bufSize, 0.0f);
+            writePos = 0;
+            grainPhase = 0.0f;
+        }
+
+        void reset()
+        {
+            std::fill(buffer.begin(), buffer.end(), 0.0f);
+            writePos = 0;
+            grainPhase = 0.0f;
+        }
+
+        forcedinline float processOctaveUp(float in)
+        {
+            if (buffer.empty()) return in;
+            const int bufSize = static_cast<int>(buffer.size());
+
+            buffer[writePos] = in;
+
+            // Octave up (+12 semitones): rate = 2.0x, relative phase step = 1.0 - 2.0 = -1.0
+            grainPhase -= 1.0f;
+            while (grainPhase < 0.0f) grainPhase += grainSize;
+            while (grainPhase >= grainSize) grainPhase -= grainSize;
+
+            float halfGrain = grainSize * 0.5f;
+            float grainPhase1 = grainPhase + halfGrain;
+            if (grainPhase1 >= grainSize) grainPhase1 -= grainSize;
+
+            // Hann crossfade window for continuous seamless looping
+            float normPhase0 = grainPhase / grainSize;
+            float w0 = 0.5f * (1.0f - std::cos(2.0f * juce::MathConstants<float>::pi * normPhase0));
+            float normPhase1 = grainPhase1 / grainSize;
+            float w1 = 0.5f * (1.0f - std::cos(2.0f * juce::MathConstants<float>::pi * normPhase1));
+            float sumW = w0 + w1;
+            if (sumW > 1.0e-6f)
+            {
+                w0 /= sumW;
+                w1 /= sumW;
+            }
+
+            // Read tap 0
+            float r0 = static_cast<float>(writePos) - grainPhase;
+            while (r0 < 0.0f) r0 += static_cast<float>(bufSize);
+            while (r0 >= static_cast<float>(bufSize)) r0 -= static_cast<float>(bufSize);
+            int i0 = static_cast<int>(r0);
+            int i0_next = (i0 + 1) % bufSize;
+            float frac0 = r0 - static_cast<float>(i0);
+            float s0 = buffer[i0] + frac0 * (buffer[i0_next] - buffer[i0]);
+
+            // Read tap 1
+            float r1 = static_cast<float>(writePos) - grainPhase1;
+            while (r1 < 0.0f) r1 += static_cast<float>(bufSize);
+            while (r1 >= static_cast<float>(bufSize)) r1 -= static_cast<float>(bufSize);
+            int i1 = static_cast<int>(r1);
+            int i1_next = (i1 + 1) % bufSize;
+            float frac1 = r1 - static_cast<float>(i1);
+            float s1 = buffer[i1] + frac1 * (buffer[i1_next] - buffer[i1]);
+
+            if (++writePos >= bufSize) writePos = 0;
+
+            return s0 * w0 + s1 * w1;
+        }
+    };
+
     forcedinline static float softLimit(float x)
     {
         float ax = std::abs(x);
@@ -280,6 +360,33 @@ template <int NV> struct reverb: public data::base
             }
         }
 
+        // ---------------------------------------------------------------------
+        // Mode 4: Shimmer Setup
+        // ---------------------------------------------------------------------
+        const float shimInputAPMs[4] = { 8.5f, 13.2f, 19.4f, 27.1f };
+        for (int ch = 0; ch < 2; ++ch)
+        {
+            for (int i = 0; i < 4; ++i)
+            {
+                float offsetMs = (ch == 1) ? 1.8f : 0.0f;
+                int apSamples = static_cast<int>((shimInputAPMs[i] + offsetMs) * 0.001f * sampleRate);
+                shimInputAP[ch][i].prepare(apSamples);
+            }
+            int maxShimSamples = static_cast<int>(1.0f * sampleRate);
+            for (int i = 0; i < 4; ++i)
+            {
+                shimTankDelay[ch][i].prepare(maxShimSamples);
+            }
+            const float shimLoopAPMs[4] = { 4.8f, 7.3f, 10.9f, 14.1f };
+            for (int i = 0; i < 4; ++i)
+            {
+                float offsetMs = (ch == 1) ? 1.2f : 0.0f;
+                shimLoopAP[ch][i].prepare(static_cast<int>((shimLoopAPMs[i] + offsetMs) * 0.001f * sampleRate));
+            }
+
+            shimmerPitch[ch].prepare(sampleRate);
+        }
+
         reset();
     }       
 
@@ -322,6 +429,16 @@ template <int NV> struct reverb: public data::base
                 ambLoopAP[ch][i].reset();
                 ambTankLP[ch][i].reset();
             }
+
+            // Shimmer
+            for (int i = 0; i < 4; ++i) shimInputAP[ch][i].reset();
+            for (int i = 0; i < 4; ++i)
+            {
+                shimTankDelay[ch][i].reset();
+                shimLoopAP[ch][i].reset();
+                shimTankLP[ch][i].reset();
+            }
+            shimmerPitch[ch].reset();
         }
 
         preDelayWriteIndex = 0;
@@ -572,6 +689,98 @@ template <int NV> struct reverb: public data::base
         outR = (tankReadR[0] + tankReadR[1] - tankReadR[2] - tankReadR[3]) * 0.45f;
     }
 
+    forcedinline void processShimmer(float inL, float inR, float& outL, float& outR,
+                                     float roomSizeVal, float decayVal, float dampVal,
+                                     float chorusDepthVal, float lfo1, float lfo2)
+    {
+        // 1. High-diffusion input cascade
+        float diffL = inL;
+        float diffR = inR;
+        for (int i = 0; i < 4; ++i)
+        {
+            diffL = shimInputAP[0][i].process(diffL, 0.70f);
+            diffR = shimInputAP[1][i].process(diffR, 0.70f);
+        }
+
+        // 2. Feedback gain based on decay
+        float fbGain = 0.45f + 0.49f * decayVal;
+
+        // 3. Tank delay times with quadrature LFO modulation
+        float sizeScale = 0.65f + 0.85f * roomSizeVal;
+        const float baseDelaysL[4] = { 123.7f, 189.1f, 281.3f, 411.7f };
+        const float baseDelaysR[4] = { 139.5f, 211.3f, 317.9f, 457.1f };
+
+        float modScaleSamples = (0.25f + 0.75f * chorusDepthVal) * 0.0025f * sampleRate;
+        float modTapsL[4] = {
+            modScaleSamples * lfo1,
+            modScaleSamples * lfo2,
+            -modScaleSamples * lfo1,
+            -modScaleSamples * lfo2
+        };
+        float modTapsR[4] = {
+            modScaleSamples * lfo2,
+            -modScaleSamples * lfo1,
+            -modScaleSamples * lfo2,
+            modScaleSamples * lfo1
+        };
+
+        float tankReadL[4];
+        float tankReadR[4];
+
+        for (int i = 0; i < 4; ++i)
+        {
+            float dSamplesL = (baseDelaysL[i] * sizeScale) * 0.001f * sampleRate + modTapsL[i];
+            float dSamplesR = (baseDelaysR[i] * sizeScale) * 0.001f * sampleRate + modTapsR[i];
+
+            float sL = shimTankDelay[0][i].readLinear(dSamplesL);
+            float sR = shimTankDelay[1][i].readLinear(dSamplesR);
+
+            sL = shimLoopAP[0][i].process(sL, 0.55f);
+            sR = shimLoopAP[1][i].process(sR, 0.55f);
+
+            sL = shimTankLP[0][i].process(sL, dampVal);
+            sR = shimTankLP[1][i].process(sR, dampVal);
+
+            tankReadL[i] = sL;
+            tankReadR[i] = sR;
+        }
+
+        // 4. Householder mixing matrix with crossfeed & octave-up shimmer feedback
+        float sumL = tankReadL[0] + tankReadL[1] + tankReadL[2] + tankReadL[3];
+        float sumR = tankReadR[0] + tankReadR[1] + tankReadR[2] + tankReadR[3];
+
+        float crossfeed = 0.22f;
+
+        // Shift mixed reflections up by +1 octave (+12 semitones)
+        float shiftedL = shimmerPitch[0].processOctaveUp(0.5f * sumL);
+        float shiftedR = shimmerPitch[1].processOctaveUp(0.5f * sumR);
+
+        // Shimmer amount scales with chorusDepth (from 0.30 to 0.85)
+        float shimmerAmount = juce::jlimit(0.15f, 0.85f, 0.30f + 0.55f * chorusDepthVal);
+
+        for (int i = 0; i < 4; ++i)
+        {
+            float mixedL = 0.5f * sumL - tankReadL[i];
+            float mixedR = 0.5f * sumR - tankReadR[i];
+
+            // Blend diffuse reflections with octave-shifted reflections in feedback loop
+            float blendedL = mixedL * (1.0f - shimmerAmount) + (shiftedL - tankReadL[i] * 0.5f) * shimmerAmount;
+            float blendedR = mixedR * (1.0f - shimmerAmount) + (shiftedR - tankReadR[i] * 0.5f) * shimmerAmount;
+
+            float combinedL = blendedL * (1.0f - crossfeed) + blendedR * crossfeed;
+            float combinedR = blendedR * (1.0f - crossfeed) + blendedL * crossfeed;
+
+            float feedL = softLimit(diffL * 0.5f + fbGain * combinedL);
+            float feedR = softLimit(diffR * 0.5f + fbGain * combinedR);
+
+            shimTankDelay[0][i].write(feedL);
+            shimTankDelay[1][i].write(feedR);
+        }
+
+        outL = (tankReadL[0] - tankReadL[1] + tankReadL[2] - tankReadL[3]) * 0.45f;
+        outR = (tankReadR[0] + tankReadR[1] - tankReadR[2] - tankReadR[3]) * 0.45f;
+    }
+
     // =========================================================================
     // Process Block
     // =========================================================================
@@ -583,7 +792,7 @@ template <int NV> struct reverb: public data::base
         const float decayValue = juce::jlimit(0.0f, 0.98f, decay);
         const float chorusDepthValue = juce::jlimit(0.0f, 1.0f, chorusDepth);
         const float preDelayTimeValue = juce::jlimit(0.0f, 0.20f, preDelayTime);
-        const int currentMode = juce::jlimit(0, 3, static_cast<int>(std::round(reverbMode)));
+        const int currentMode = juce::jlimit(0, 4, static_cast<int>(std::round(reverbMode)));
 
         int preDelaySamples = static_cast<int>(preDelayTimeValue * sampleRate);
 
@@ -655,6 +864,9 @@ template <int NV> struct reverb: public data::base
             case 3: // Ambient
                 processAmbient(preInL, preInR, wetL, wetR, roomSizeValue, decayValue, dampVal, chorusDepthValue, lfo1, lfo2);
                 break;
+            case 4: // Shimmer
+                processShimmer(preInL, preInR, wetL, wetR, roomSizeValue, decayValue, dampVal, chorusDepthValue, lfo1, lfo2);
+                break;
             default:
                 processRoom(preInL, preInR, wetL, wetR, roomSizeValue, decayValue, dampVal);
                 break;
@@ -725,7 +937,7 @@ template <int NV> struct reverb: public data::base
             data.add(std::move(chorus_param));
         }
         {
-            parameter::data mode_param("ReverbMode", { 0.0, 3.0 });
+            parameter::data mode_param("ReverbMode", { 0.0, 4.0 });
             registerCallback<6>(mode_param);
             mode_param.setDefaultValue(0.0);
             data.add(std::move(mode_param));
@@ -772,5 +984,12 @@ private:
     DelayLine ambTankDelay[2][4];
     Allpass ambLoopAP[2][4];
     OnePoleLP ambTankLP[2][4];
+
+    // Mode 4: Shimmer
+    Allpass shimInputAP[2][4];
+    DelayLine shimTankDelay[2][4];
+    Allpass shimLoopAP[2][4];
+    OnePoleLP shimTankLP[2][4];
+    ShimmerPitchShifter shimmerPitch[2];
 };
 }

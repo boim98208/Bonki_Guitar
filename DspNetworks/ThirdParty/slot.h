@@ -21,6 +21,10 @@
 #include "chorus.h"
 #include "ringmod.h"
 #include "cab.h"
+#include "pitchshifter.h"
+#include "compressor.h"
+#include "multiband.h"
+#include "clipper.h"
 
 namespace project
 {
@@ -73,6 +77,10 @@ template <int NV> struct slot: public data::base
         dlyNode.prepare(specs);
         choNode.prepare(specs);
         rmNode.prepare(specs);
+        pitchNode.prepare(specs);
+        compNode.prepare(specs);
+        mbcNode.prepare(specs);
+        clipperNode.prepare(specs);
     }
 
     void reset()
@@ -84,6 +92,10 @@ template <int NV> struct slot: public data::base
         dlyNode.reset();
         choNode.reset();
         rmNode.reset();
+        pitchNode.reset();
+        compNode.reset();
+        mbcNode.reset();
+        clipperNode.reset();
     }
 
     template <typename ProcessDataType>
@@ -98,6 +110,11 @@ template <int NV> struct slot: public data::base
         case 5: dlyNode.process(data); break;
         case 6: choNode.process(data); break;
         case 7: rmNode.process(data); break;
+        case 8: pitchNode.process(data); break;
+        case 9: compNode.process(data); break;
+        case 10: mbcNode.process(data); break;
+        case 11: break; // EQ processed by slotEQ CurveEq
+        case 12: clipperNode.process(data); break;
         default: break; // 0 = Empty, pass-through (0 CPU)
         }
     }
@@ -183,13 +200,48 @@ template <int NV> struct slot: public data::base
         case 60: rmNode.template setParameter<4>(v); break; // LFORate
         case 61: rmNode.template setParameter<6>(v); break; // LFODepth
         case 62: rmNode.template setParameter<7>(v); break; // FilterFrequency
+
+        // Pitch Shifter (63..65)
+        case 63: pitchNode.template setParameter<0>(v); break; // Pitch
+        case 64: pitchNode.template setParameter<1>(v); break; // Mix
+        case 65: pitchNode.template setParameter<2>(v); break; // Algorithm
+
+        // Compressor (66..71)
+        case 66: compNode.template setParameter<0>(v); break; // Threshold
+        case 67: compNode.template setParameter<1>(v); break; // Ratio
+        case 68: compNode.template setParameter<2>(v); break; // Attack
+        case 69: compNode.template setParameter<3>(v); break; // Release
+        case 70: compNode.template setParameter<4>(v); break; // OutputGain
+        case 71: compNode.template setParameter<5>(v); break; // Mix
+
+        // Multiband Compressor (72..85)
+        case 72: mbcNode.template setParameter<0>(v); break;  // LowXOver
+        case 73: mbcNode.template setParameter<1>(v); break;  // HighXOver
+        case 74: mbcNode.template setParameter<2>(v); break;  // LowThreshold
+        case 75: mbcNode.template setParameter<3>(v); break;  // LowRatio
+        case 76: mbcNode.template setParameter<4>(v); break;  // LowGain
+        case 77: mbcNode.template setParameter<5>(v); break;  // MidThreshold
+        case 78: mbcNode.template setParameter<6>(v); break;  // MidRatio
+        case 79: mbcNode.template setParameter<7>(v); break;  // MidGain
+        case 80: mbcNode.template setParameter<8>(v); break;  // HighThreshold
+        case 81: mbcNode.template setParameter<9>(v); break;  // HighRatio
+        case 82: mbcNode.template setParameter<10>(v); break; // HighGain
+        case 83: mbcNode.template setParameter<11>(v); break; // Attack
+        case 84: mbcNode.template setParameter<12>(v); break; // Release
+        case 85: mbcNode.template setParameter<13>(v); break; // Mix
+
+        // Clipper (86..89)
+        case 86: clipperNode.template setParameter<0>(v); break; // Gain
+        case 87: clipperNode.template setParameter<1>(v); break; // Ceiling
+        case 88: clipperNode.template setParameter<2>(v); break; // OutputGain
+        case 89: clipperNode.template setParameter<3>(v); break; // Mix
         }
     }
 
     void createParameters(ParameterDataList& data)
     {
         {
-            parameter::data p("Module", { 0.0, 7.0 });
+            parameter::data p("Module", { 0.0, 12.0 });
             registerCallback<0>(p);
             p.setDefaultValue(0.0);
             data.add(std::move(p));
@@ -407,7 +459,7 @@ template <int NV> struct slot: public data::base
 
         // Reverb
         {
-            parameter::data p("ReverbMode", { 0.0, 3.0 });
+            parameter::data p("ReverbMode", { 0.0, 4.0 });
             registerCallback<35>(p);
             p.setDefaultValue(3.0);
             data.add(std::move(p));
@@ -580,10 +632,180 @@ template <int NV> struct slot: public data::base
             p.setDefaultValue(1100.0);
             data.add(std::move(p));
         }
+
+        // Pitch Shifter (63..65)
+        {
+            parameter::data p("PitchShiftPitch", { -24.0, 24.0 });
+            registerCallback<63>(p);
+            p.setDefaultValue(0.0);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("PitchShiftMix", { 0.0, 1.0 });
+            registerCallback<64>(p);
+            p.setDefaultValue(1.0);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("PitchShiftAlgorithm", { 0.0, 2.0 });
+            registerCallback<65>(p);
+            p.setDefaultValue(0.0);
+            data.add(std::move(p));
+        }
+
+        // Compressor (66..71)
+        {
+            parameter::data p("CompThreshold", { -60.0, 0.0 });
+            registerCallback<66>(p);
+            p.setDefaultValue(-20.0);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("CompRatio", { 1.0, 20.0 });
+            registerCallback<67>(p);
+            p.setDefaultValue(4.0);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("CompAttack", { 0.1, 200.0 });
+            registerCallback<68>(p);
+            p.setDefaultValue(10.0);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("CompRelease", { 10.0, 1000.0 });
+            registerCallback<69>(p);
+            p.setDefaultValue(100.0);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("CompOutputGain", { -24.0, 24.0 });
+            registerCallback<70>(p);
+            p.setDefaultValue(0.0);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("CompMix", { 0.0, 1.0 });
+            registerCallback<71>(p);
+            p.setDefaultValue(1.0);
+            data.add(std::move(p));
+        }
+
+        // Multiband Compressor (72..85)
+        {
+            parameter::data p("MBCLowXOver", { 40.0, 1000.0 });
+            registerCallback<72>(p);
+            p.setDefaultValue(200.0);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("MBCHighXOver", { 1000.0, 16000.0 });
+            registerCallback<73>(p);
+            p.setDefaultValue(2500.0);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("MBCLowThreshold", { -60.0, 0.0 });
+            registerCallback<74>(p);
+            p.setDefaultValue(-20.0);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("MBCLowRatio", { 1.0, 20.0 });
+            registerCallback<75>(p);
+            p.setDefaultValue(3.0);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("MBCLowGain", { -18.0, 18.0 });
+            registerCallback<76>(p);
+            p.setDefaultValue(0.0);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("MBCMidThreshold", { -60.0, 0.0 });
+            registerCallback<77>(p);
+            p.setDefaultValue(-20.0);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("MBCMidRatio", { 1.0, 20.0 });
+            registerCallback<78>(p);
+            p.setDefaultValue(3.0);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("MBCMidGain", { -18.0, 18.0 });
+            registerCallback<79>(p);
+            p.setDefaultValue(0.0);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("MBCHighThreshold", { -60.0, 0.0 });
+            registerCallback<80>(p);
+            p.setDefaultValue(-20.0);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("MBCHighRatio", { 1.0, 20.0 });
+            registerCallback<81>(p);
+            p.setDefaultValue(3.0);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("MBCHighGain", { -18.0, 18.0 });
+            registerCallback<82>(p);
+            p.setDefaultValue(0.0);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("MBCAttack", { 1.0, 100.0 });
+            registerCallback<83>(p);
+            p.setDefaultValue(15.0);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("MBCRelease", { 10.0, 500.0 });
+            registerCallback<84>(p);
+            p.setDefaultValue(100.0);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("MBCMix", { 0.0, 1.0 });
+            registerCallback<85>(p);
+            p.setDefaultValue(1.0);
+            data.add(std::move(p));
+        }
+
+        // Clipper (86..89)
+        {
+            parameter::data p("ClipperGain", { 0.0, 24.0 });
+            registerCallback<86>(p);
+            p.setDefaultValue(0.0);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("ClipperCeiling", { -12.0, 0.0 });
+            registerCallback<87>(p);
+            p.setDefaultValue(-0.1);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("ClipperOutputGain", { -24.0, 24.0 });
+            registerCallback<88>(p);
+            p.setDefaultValue(0.0);
+            data.add(std::move(p));
+        }
+        {
+            parameter::data p("ClipperMix", { 0.0, 1.0 });
+            registerCallback<89>(p);
+            p.setDefaultValue(1.0);
+            data.add(std::move(p));
+        }
     }
 
 private:
-    int activeModule = 0; // 0=Empty, 1=Overdrive, 2=Amp, 3=Cab, 4=Reverb, 5=Delay, 6=Chorus, 7=Ringmod
+    int activeModule = 0; // 0=Empty, 1=Overdrive, 2=Amp, 3=Cab, 4=Reverb, 5=Delay, 6=Chorus, 7=Ringmod, 8=Pitch, 9=Comp, 10=MBC, 11=EQ, 12=Clipper
 
     project::overdrive<NV> od;
     project::amp<NV> ampNode;
@@ -592,6 +814,10 @@ private:
     project::delay<NV> dlyNode;
     project::chorus<NV> choNode;
     project::ringmod<NV> rmNode;
+    project::pitchshifter<NV> pitchNode;
+    project::compressor<NV> compNode;
+    project::multiband<NV> mbcNode;
+    project::clipper<NV> clipperNode;
 };
 
 } // namespace project

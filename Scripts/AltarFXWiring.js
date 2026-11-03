@@ -30,6 +30,18 @@ namespace AltarFX
         Synth.getEffect("modularSlot8")
     ];
 
+    const var slotEQs = [
+        Synth.getEffect("slotEQ0"),
+        Synth.getEffect("slotEQ1"),
+        Synth.getEffect("slotEQ2"),
+        Synth.getEffect("slotEQ3"),
+        Synth.getEffect("slotEQ4"),
+        Synth.getEffect("slotEQ5"),
+        Synth.getEffect("slotEQ6"),
+        Synth.getEffect("slotEQ7"),
+        Synth.getEffect("slotEQ8")
+    ];
+
     inline function setFXParam(fx, paramName, value)
     {
         if (fx != 0)
@@ -54,7 +66,12 @@ namespace AltarFX
         "Reverb",
         "Delay",
         "Chorus",
-        "Ringmod"
+        "Ringmod",
+        "Pitch Shift",
+        "Compressor",
+        "Multiband",
+        "EQ",
+        "Clipper"
     ];
 
     var slotStates = [];
@@ -144,6 +161,41 @@ namespace AltarFX
                 RingmodLFORate: 1.5,
                 RingmodLFODepth: 0.5,
                 RingmodFilterFrequency: 1100.0
+            },
+            pitchshifter: {
+                Pitch: 0.0,
+                Mix: 1.0,
+                Algorithm: 0.0
+            },
+            compressor: {
+                Threshold: -18.0,
+                Ratio: 4.0,
+                Attack: 20.0,
+                Release: 100.0,
+                OutputGain: 0.0,
+                Mix: 1.0
+            },
+            multiband: {
+                LowXOver: 200.0,
+                HighXOver: 2500.0,
+                Attack: 20.0,
+                Release: 100.0,
+                Mix: 1.0,
+                LowThreshold: -18.0,
+                LowRatio: 3.0,
+                LowGain: 0.0,
+                MidThreshold: -18.0,
+                MidRatio: 3.0,
+                MidGain: 0.0,
+                HighThreshold: -18.0,
+                HighRatio: 3.0,
+                HighGain: 0.0
+            },
+            clipper: {
+                Gain: 0.0,
+                Ceiling: 0.0,
+                OutputGain: 0.0,
+                Mix: 1.0
             }
         };
     }
@@ -159,18 +211,39 @@ namespace AltarFX
     const var pnlModularE = Content.getComponent("pnlModularE");
     const var pnlModularF = Content.getComponent("pnlModularF");
     const var pnlModularG = Content.getComponent("pnlModularG");
+    const var pnlModularPitchShift = Content.getComponent("pnlModularPitchShift");
+    const var pnlModularCompressor = Content.getComponent("pnlModularCompressor");
+    const var pnlModularMultiband = Content.getComponent("pnlModularMultiband");
+    const var pnlModularEQ = Content.getComponent("pnlModularEQ");
+    const var pnlModularClipper = Content.getComponent("pnlModularClipper");
+    const var fltModularEQs = [
+        Content.getComponent("fltModularEQ0"),
+        Content.getComponent("fltModularEQ1"),
+        Content.getComponent("fltModularEQ2"),
+        Content.getComponent("fltModularEQ3"),
+        Content.getComponent("fltModularEQ4"),
+        Content.getComponent("fltModularEQ5"),
+        Content.getComponent("fltModularEQ6"),
+        Content.getComponent("fltModularEQ7"),
+        Content.getComponent("fltModularEQ8")
+    ];
     const var pnlPreEQ = Content.getComponent("pnlPreEQ");
     const var pnlPostEQ = Content.getComponent("pnlPostEQ");
 
     const var modulePanels = [
-        pnlModularEmpty,
-        pnlModularA,
-        pnlModularB,
-        pnlModularC,
-        pnlModularD,
-        pnlModularE,
-        pnlModularF,
-        pnlModularG
+        pnlModularEmpty,        // 0
+        pnlModularA,            // 1: Overdrive
+        pnlModularB,            // 2: Amp
+        pnlModularC,            // 3: Cab
+        pnlModularD,            // 4: Reverb
+        pnlModularE,            // 5: Delay
+        pnlModularF,            // 6: Chorus
+        pnlModularG,            // 7: Ringmod
+        pnlModularPitchShift,   // 8: Pitch Shift
+        pnlModularCompressor,   // 9: Compressor
+        pnlModularMultiband,    // 10: Multiband
+        pnlModularEQ,           // 11: EQ
+        pnlModularClipper       // 12: Clipper
     ];
 
     const var btnSlots = [
@@ -282,6 +355,41 @@ namespace AltarFX
     const var knbRingmodLFORate = Content.getComponent("knbRingmodLFORate");
     const var knbRingmodLFODepth = Content.getComponent("knbRingmodLFODepth");
     const var knbRingmodFilterFrequency = Content.getComponent("knbRingmodFilterFrequency");
+
+    // Pitch Shifter
+    const var knbPitchShiftPitch = Content.getComponent("knbPitchShiftPitch");
+    const var knbPitchShiftMix = Content.getComponent("knbPitchShiftMix");
+    const var knbPitchShiftAlgorithm = Content.getComponent("knbPitchShiftAlgorithm");
+
+    // Compressor
+    const var knbCompThreshold = Content.getComponent("knbCompThreshold");
+    const var knbCompRatio = Content.getComponent("knbCompRatio");
+    const var knbCompAttack = Content.getComponent("knbCompAttack");
+    const var knbCompRelease = Content.getComponent("knbCompRelease");
+    const var knbCompOutput = Content.getComponent("knbCompOutput");
+    const var knbCompMix = Content.getComponent("knbCompMix");
+
+    // Multiband Compressor
+    const var knbMBCLowXOver = Content.getComponent("knbMBCLowXOver");
+    const var knbMBCHighXOver = Content.getComponent("knbMBCHighXOver");
+    const var knbMBCAttack = Content.getComponent("knbMBCAttack");
+    const var knbMBCRelease = Content.getComponent("knbMBCRelease");
+    const var knbMBCMix = Content.getComponent("knbMBCMix");
+    const var knbMBCLowThreshold = Content.getComponent("knbMBCLowThreshold");
+    const var knbMBCLowRatio = Content.getComponent("knbMBCLowRatio");
+    const var knbMBCLowGain = Content.getComponent("knbMBCLowGain");
+    const var knbMBCMidThreshold = Content.getComponent("knbMBCMidThreshold");
+    const var knbMBCMidRatio = Content.getComponent("knbMBCMidRatio");
+    const var knbMBCMidGain = Content.getComponent("knbMBCMidGain");
+    const var knbMBCHighThreshold = Content.getComponent("knbMBCHighThreshold");
+    const var knbMBCHighRatio = Content.getComponent("knbMBCHighRatio");
+    const var knbMBCHighGain = Content.getComponent("knbMBCHighGain");
+
+    // Clipper
+    const var knbClipperGain = Content.getComponent("knbClipperGain");
+    const var knbClipperCeiling = Content.getComponent("knbClipperCeiling");
+    const var knbClipperOutput = Content.getComponent("knbClipperOutput");
+    const var knbClipperMix = Content.getComponent("knbClipperMix");
 
     // Pre-FX
     const var knbGateThreshold = Content.getComponent("knbGateThreshold");
@@ -489,11 +597,68 @@ namespace AltarFX
             setFXParam(fx, "RingmodLFODepth", rm.RingmodLFODepth);
             setFXParam(fx, "RingmodFilterFrequency", rm.RingmodFilterFrequency);
         }
+        else if (modIdx == 8) // Pitch Shifter
+        {
+            local ps = slotStates[slotIdx].pitchshifter;
+            setFXParam(fx, "PitchShiftPitch", ps.Pitch);
+            setFXParam(fx, "PitchShiftMix", ps.Mix);
+            setFXParam(fx, "PitchShiftAlgorithm", ps.Algorithm);
+        }
+        else if (modIdx == 9) // Compressor
+        {
+            local comp = slotStates[slotIdx].compressor;
+            setFXParam(fx, "CompThreshold", comp.Threshold);
+            setFXParam(fx, "CompRatio", comp.Ratio);
+            setFXParam(fx, "CompAttack", comp.Attack);
+            setFXParam(fx, "CompRelease", comp.Release);
+            setFXParam(fx, "CompOutputGain", comp.OutputGain);
+            setFXParam(fx, "CompMix", comp.Mix);
+        }
+        else if (modIdx == 10) // Multiband Compressor
+        {
+            local mbc = slotStates[slotIdx].multiband;
+            setFXParam(fx, "MBCLowXOver", mbc.LowXOver);
+            setFXParam(fx, "MBCHighXOver", mbc.HighXOver);
+            setFXParam(fx, "MBCLowThreshold", mbc.LowThreshold);
+            setFXParam(fx, "MBCLowRatio", mbc.LowRatio);
+            setFXParam(fx, "MBCLowGain", mbc.LowGain);
+            setFXParam(fx, "MBCMidThreshold", mbc.MidThreshold);
+            setFXParam(fx, "MBCMidRatio", mbc.MidRatio);
+            setFXParam(fx, "MBCMidGain", mbc.MidGain);
+            setFXParam(fx, "MBCHighThreshold", mbc.HighThreshold);
+            setFXParam(fx, "MBCHighRatio", mbc.HighRatio);
+            setFXParam(fx, "MBCHighGain", mbc.HighGain);
+            setFXParam(fx, "MBCAttack", mbc.Attack);
+            setFXParam(fx, "MBCRelease", mbc.Release);
+            setFXParam(fx, "MBCMix", mbc.Mix);
+        }
+        else if (modIdx == 11) // EQ
+        {
+            // EQ audio processing is handled by the dedicated CurveEq processor slotEQ0..8
+        }
+        else if (modIdx == 12) // Clipper
+        {
+            local clp = slotStates[slotIdx].clipper;
+            setFXParam(fx, "ClipperGain", clp.Gain);
+            setFXParam(fx, "ClipperCeiling", clp.Ceiling);
+            setFXParam(fx, "ClipperOutputGain", clp.OutputGain);
+            setFXParam(fx, "ClipperMix", clp.Mix);
+        }
     }
 
     // ==========================================
     // 6. UI CONTROLS SYNCING (STATE -> KNOBS)
     // ==========================================
+    inline function updateModularEQTileVisibility(targetSlot)
+    {
+        local s = 0;
+        for (s = 0; s < 9; s++)
+        {
+            if (fltModularEQs[s] != 0)
+                fltModularEQs[s].set("visible", s == targetSlot);
+        }
+    }
+
     inline function syncControlsToSlot(slotIdx, modIdx)
     {
         isUpdatingUI = true;
@@ -588,6 +753,53 @@ namespace AltarFX
             knbRingmodLFODepth.setValue(rm.RingmodLFODepth);
             knbRingmodFilterFrequency.setValue(rm.RingmodFilterFrequency);
         }
+        else if (modIdx == 8) // Pitch Shifter
+        {
+            local ps = slotStates[slotIdx].pitchshifter;
+            knbPitchShiftPitch.setValue(ps.Pitch);
+            knbPitchShiftMix.setValue(ps.Mix);
+            knbPitchShiftAlgorithm.setValue(ps.Algorithm);
+        }
+        else if (modIdx == 9) // Compressor
+        {
+            local comp = slotStates[slotIdx].compressor;
+            knbCompThreshold.setValue(comp.Threshold);
+            knbCompRatio.setValue(comp.Ratio);
+            knbCompAttack.setValue(comp.Attack);
+            knbCompRelease.setValue(comp.Release);
+            knbCompOutput.setValue(comp.OutputGain);
+            knbCompMix.setValue(comp.Mix);
+        }
+        else if (modIdx == 10) // Multiband Compressor
+        {
+            local mbc = slotStates[slotIdx].multiband;
+            knbMBCLowXOver.setValue(mbc.LowXOver);
+            knbMBCHighXOver.setValue(mbc.HighXOver);
+            knbMBCAttack.setValue(mbc.Attack);
+            knbMBCRelease.setValue(mbc.Release);
+            knbMBCMix.setValue(mbc.Mix);
+            knbMBCLowThreshold.setValue(mbc.LowThreshold);
+            knbMBCLowRatio.setValue(mbc.LowRatio);
+            knbMBCLowGain.setValue(mbc.LowGain);
+            knbMBCMidThreshold.setValue(mbc.MidThreshold);
+            knbMBCMidRatio.setValue(mbc.MidRatio);
+            knbMBCMidGain.setValue(mbc.MidGain);
+            knbMBCHighThreshold.setValue(mbc.HighThreshold);
+            knbMBCHighRatio.setValue(mbc.HighRatio);
+            knbMBCHighGain.setValue(mbc.HighGain);
+        }
+        else if (modIdx == 11) // EQ
+        {
+            updateModularEQTileVisibility(slotIdx);
+        }
+        else if (modIdx == 12) // Clipper
+        {
+            local clp = slotStates[slotIdx].clipper;
+            knbClipperGain.setValue(clp.Gain);
+            knbClipperCeiling.setValue(clp.Ceiling);
+            knbClipperOutput.setValue(clp.OutputGain);
+            knbClipperMix.setValue(clp.Mix);
+        }
 
         isUpdatingUI = false;
     }
@@ -634,6 +846,10 @@ namespace AltarFX
         if (btnPostEQ != 0) btnPostEQ.setValue(0);
 
         local curMod = slotStates[activeSlot].module;
+        if (curMod == 11)
+        {
+            updateModularEQTileVisibility(activeSlot);
+        }
         showModulePanel(curMod);
         syncControlsToSlot(activeSlot, curMod);
 
@@ -651,12 +867,18 @@ namespace AltarFX
     {
         local newMod = value - 1; // 1-based in HISE: 1=Empty, 2=Overdrive, ...
         if (newMod < 0) newMod = 0;
-        if (newMod > 7) newMod = 7;
+        if (newMod > 12) newMod = 12;
 
         slotStates[slotIdx].module = newMod;
 
         // Send Module to C++ DSP processor
         setFXParam(fxSlots[slotIdx], "Module", newMod);
+
+        // Manage slotEQ bypass (bypassed unless module is EQ)
+        if (slotEQs[slotIdx] != 0)
+        {
+            slotEQs[slotIdx].setBypassed(newMod != 11);
+        }
 
         // Push slot's memorized settings for this module to C++
         pushSlotParamsToDSP(slotIdx, newMod);
@@ -667,6 +889,10 @@ namespace AltarFX
         // If this slot is currently being inspected, update panel & knobs
         if (slotIdx == activeSlot)
         {
+            if (newMod == 11)
+            {
+                updateModularEQTileVisibility(slotIdx);
+            }
             showModulePanel(newMod);
             syncControlsToSlot(slotIdx, newMod);
         }
@@ -902,6 +1128,78 @@ namespace AltarFX
     knbRingmodLFODepth.setControlCallback(onRingmodLFODepth);
     knbRingmodFilterFrequency.setControlCallback(onRingmodFilterFrequency);
 
+    // Pitch Shifter
+    inline function onPitchShiftPitch(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].pitchshifter.Pitch = v; setFXParam(fxSlots[activeSlot], "PitchShiftPitch", v); }
+    inline function onPitchShiftMix(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].pitchshifter.Mix = v; setFXParam(fxSlots[activeSlot], "PitchShiftMix", v); }
+    inline function onPitchShiftAlgorithm(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].pitchshifter.Algorithm = v; setFXParam(fxSlots[activeSlot], "PitchShiftAlgorithm", v); }
+
+    if (knbPitchShiftPitch != 0) knbPitchShiftPitch.setControlCallback(onPitchShiftPitch);
+    if (knbPitchShiftMix != 0) knbPitchShiftMix.setControlCallback(onPitchShiftMix);
+    if (knbPitchShiftAlgorithm != 0) knbPitchShiftAlgorithm.setControlCallback(onPitchShiftAlgorithm);
+
+    // Compressor
+    inline function onCompThreshold(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].compressor.Threshold = v; setFXParam(fxSlots[activeSlot], "CompThreshold", v); }
+    inline function onCompRatio(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].compressor.Ratio = v; setFXParam(fxSlots[activeSlot], "CompRatio", v); }
+    inline function onCompAttack(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].compressor.Attack = v; setFXParam(fxSlots[activeSlot], "CompAttack", v); }
+    inline function onCompRelease(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].compressor.Release = v; setFXParam(fxSlots[activeSlot], "CompRelease", v); }
+    inline function onCompOutput(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].compressor.OutputGain = v; setFXParam(fxSlots[activeSlot], "CompOutputGain", v); }
+    inline function onCompMix(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].compressor.Mix = v; setFXParam(fxSlots[activeSlot], "CompMix", v); }
+
+    if (knbCompThreshold != 0) knbCompThreshold.setControlCallback(onCompThreshold);
+    if (knbCompRatio != 0) knbCompRatio.setControlCallback(onCompRatio);
+    if (knbCompAttack != 0) knbCompAttack.setControlCallback(onCompAttack);
+    if (knbCompRelease != 0) knbCompRelease.setControlCallback(onCompRelease);
+    if (knbCompOutput != 0) knbCompOutput.setControlCallback(onCompOutput);
+    if (knbCompMix != 0) knbCompMix.setControlCallback(onCompMix);
+
+    // Multiband Compressor
+    inline function onMBCLowXOver(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].multiband.LowXOver = v; setFXParam(fxSlots[activeSlot], "MBCLowXOver", v); }
+    inline function onMBCHighXOver(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].multiband.HighXOver = v; setFXParam(fxSlots[activeSlot], "MBCHighXOver", v); }
+    inline function onMBCAttack(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].multiband.Attack = v; setFXParam(fxSlots[activeSlot], "MBCAttack", v); }
+    inline function onMBCRelease(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].multiband.Release = v; setFXParam(fxSlots[activeSlot], "MBCRelease", v); }
+    inline function onMBCMix(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].multiband.Mix = v; setFXParam(fxSlots[activeSlot], "MBCMix", v); }
+
+    inline function onMBCLowThreshold(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].multiband.LowThreshold = v; setFXParam(fxSlots[activeSlot], "MBCLowThreshold", v); }
+    inline function onMBCLowRatio(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].multiband.LowRatio = v; setFXParam(fxSlots[activeSlot], "MBCLowRatio", v); }
+    inline function onMBCLowGain(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].multiband.LowGain = v; setFXParam(fxSlots[activeSlot], "MBCLowGain", v); }
+
+    inline function onMBCMidThreshold(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].multiband.MidThreshold = v; setFXParam(fxSlots[activeSlot], "MBCMidThreshold", v); }
+    inline function onMBCMidRatio(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].multiband.MidRatio = v; setFXParam(fxSlots[activeSlot], "MBCMidRatio", v); }
+    inline function onMBCMidGain(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].multiband.MidGain = v; setFXParam(fxSlots[activeSlot], "MBCMidGain", v); }
+
+    inline function onMBCHighThreshold(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].multiband.HighThreshold = v; setFXParam(fxSlots[activeSlot], "MBCHighThreshold", v); }
+    inline function onMBCHighRatio(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].multiband.HighRatio = v; setFXParam(fxSlots[activeSlot], "MBCHighRatio", v); }
+    inline function onMBCHighGain(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].multiband.HighGain = v; setFXParam(fxSlots[activeSlot], "MBCHighGain", v); }
+
+    if (knbMBCLowXOver != 0) knbMBCLowXOver.setControlCallback(onMBCLowXOver);
+    if (knbMBCHighXOver != 0) knbMBCHighXOver.setControlCallback(onMBCHighXOver);
+    if (knbMBCAttack != 0) knbMBCAttack.setControlCallback(onMBCAttack);
+    if (knbMBCRelease != 0) knbMBCRelease.setControlCallback(onMBCRelease);
+    if (knbMBCMix != 0) knbMBCMix.setControlCallback(onMBCMix);
+
+    if (knbMBCLowThreshold != 0) knbMBCLowThreshold.setControlCallback(onMBCLowThreshold);
+    if (knbMBCLowRatio != 0) knbMBCLowRatio.setControlCallback(onMBCLowRatio);
+    if (knbMBCLowGain != 0) knbMBCLowGain.setControlCallback(onMBCLowGain);
+
+    if (knbMBCMidThreshold != 0) knbMBCMidThreshold.setControlCallback(onMBCMidThreshold);
+    if (knbMBCMidRatio != 0) knbMBCMidRatio.setControlCallback(onMBCMidRatio);
+    if (knbMBCMidGain != 0) knbMBCMidGain.setControlCallback(onMBCMidGain);
+
+    if (knbMBCHighThreshold != 0) knbMBCHighThreshold.setControlCallback(onMBCHighThreshold);
+    if (knbMBCHighRatio != 0) knbMBCHighRatio.setControlCallback(onMBCHighRatio);
+    if (knbMBCHighGain != 0) knbMBCHighGain.setControlCallback(onMBCHighGain);
+
+    // Clipper
+    inline function onClipperGain(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].clipper.Gain = v; setFXParam(fxSlots[activeSlot], "ClipperGain", v); }
+    inline function onClipperCeiling(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].clipper.Ceiling = v; setFXParam(fxSlots[activeSlot], "ClipperCeiling", v); }
+    inline function onClipperOutput(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].clipper.OutputGain = v; setFXParam(fxSlots[activeSlot], "ClipperOutputGain", v); }
+    inline function onClipperMix(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].clipper.Mix = v; setFXParam(fxSlots[activeSlot], "ClipperMix", v); }
+
+    if (knbClipperGain != 0) knbClipperGain.setControlCallback(onClipperGain);
+    if (knbClipperCeiling != 0) knbClipperCeiling.setControlCallback(onClipperCeiling);
+    if (knbClipperOutput != 0) knbClipperOutput.setControlCallback(onClipperOutput);
+    if (knbClipperMix != 0) knbClipperMix.setControlCallback(onClipperMix);
+
     // ==========================================
     // 10. PRE-FX CONTROLS
     // ==========================================
@@ -1018,6 +1316,15 @@ namespace AltarFX
         if (fxPostEQ != 0)
             preset.postEQState = fxPostEQ.exportState();
 
+        local eqIdx = 0;
+        var eqStates = [];
+        for (eqIdx = 0; eqIdx < 9; eqIdx++)
+        {
+            if (slotEQs[eqIdx] != 0)
+                eqStates[eqIdx] = slotEQs[eqIdx].exportState();
+        }
+        preset.slotEQStates = eqStates;
+
         var success = targetFile.writeObject(preset);
         if (success)
         {
@@ -1048,6 +1355,13 @@ namespace AltarFX
                 cmbSlots[s].setValue(mod + 1); // 1-based index
                 updateSlotButtonText(s);
                 pushSlotParamsToDSP(s, mod);
+
+                if (slotEQs[s] != 0)
+                {
+                    slotEQs[s].setBypassed(mod != 11);
+                    if (isDefined(preset.slotEQStates) && isDefined(preset.slotEQStates[s]))
+                        slotEQs[s].restoreState(preset.slotEQStates[s]);
+                }
 
                 if (mod == 2 && slotStates[s].amp.Mode == 2.0 && slotStates[s].amp.namPath != "")
                 {
@@ -1115,6 +1429,8 @@ namespace AltarFX
     {
         updateSlotButtonText(s);
         setFXParam(fxSlots[s], "Module", 0.0); // Start empty
+        if (slotEQs[s] != 0)
+            slotEQs[s].setBypassed(true);
     }
 
     // Select Slot 0 by default (shows Empty slot panel)

@@ -59,14 +59,14 @@
             <Control type="ScriptComboBox" id="cmbSlot0" value="1.0"/>
             <Control type="ScriptButton" id="btnSlot1" value="0"/>
             <Control type="ScriptComboBox" id="cmbSlot1" value="1.0"/>
-            <Control type="ScriptButton" id="btnSlot2" value="1"/>
-            <Control type="ScriptComboBox" id="cmbSlot2" value="1.0"/>
-            <Control type="ScriptButton" id="btnSlot3" value="0"/>
-            <Control type="ScriptComboBox" id="cmbSlot3" value="1.0"/>
+            <Control type="ScriptButton" id="btnSlot2" value="0"/>
+            <Control type="ScriptComboBox" id="cmbSlot2" value="3.0"/>
+            <Control type="ScriptButton" id="btnSlot3" value="1"/>
+            <Control type="ScriptComboBox" id="cmbSlot3" value="5.0"/>
             <Control type="ScriptButton" id="btnSlot4" value="0"/>
-            <Control type="ScriptComboBox" id="cmbSlot4" value="1.0"/>
+            <Control type="ScriptComboBox" id="cmbSlot4" value="6.0"/>
             <Control type="ScriptButton" id="btnSlot5" value="0"/>
-            <Control type="ScriptComboBox" id="cmbSlot5" value="1.0"/>
+            <Control type="ScriptComboBox" id="cmbSlot5" value="8.0"/>
             <Control type="ScriptButton" id="btnSlot6" value="0"/>
             <Control type="ScriptComboBox" id="cmbSlot6" value="1.0"/>
             <Control type="ScriptButton" id="btnSlot7" value="0"/>
@@ -82,13 +82,13 @@
             <Control type="ScriptSlider" id="knbOverdriveCircuitBend" value="0.0"/>
             <Control type="ScriptSlider" id="knbOverdriveMix" value="0.3300000131130219"/>
             <Control type="ScriptSlider" id="knbOverdriveOutputGain" value="3.576278686523438e-7"/>
-            <Control type="ScriptSlider" id="knbAmpMode" value="2.0"/>
-            <Control type="ScriptSlider" id="knbAmpInput" value="7.450580596923828e-7"/>
-            <Control type="ScriptSlider" id="knbAmpLow" value="1.788139343261719e-7"/>
+            <Control type="ScriptSlider" id="knbAmpMode" value="0.0"/>
+            <Control type="ScriptSlider" id="knbAmpInput" value="16.80000114440918"/>
+            <Control type="ScriptSlider" id="knbAmpLow" value="3.400000333786011"/>
             <Control type="ScriptSlider" id="knbAmpMid" value="-1.700000047683716"/>
-            <Control type="ScriptSlider" id="knbAmpHigh" value="3.700000286102295"/>
+            <Control type="ScriptSlider" id="knbAmpHigh" value="2.500000238418579"/>
             <Control type="ScriptSlider" id="knbAmpPresence" value="0.0"/>
-            <Control type="ScriptSlider" id="knbAmpOutput" value="5.364418029785156e-7"/>
+            <Control type="ScriptSlider" id="knbAmpOutput" value="-8.59999942779541"/>
             <Control type="ScriptComboBox" id="cmbAmpCleanToneStackMode" value="2.0"/>
             <Control type="ScriptComboBox" id="cmbAmpDirtyToneStackMode" value="2.0"/>
             <Control type="ScriptComboBox" id="cmbAmpDirtyDistortionMode" value="1.0"/>
@@ -107,19 +107,19 @@
             <Control type="ScriptSlider" id="knbCabBDelay" value="0.0"/>
             <Control type="ScriptButton" id="btnBrowseCabA" value="1.0"/>
             <Control type="ScriptButton" id="btnBrowseCabB" value="1.0"/>
-            <Control type="ScriptSlider" id="knbReverbMode" value="3.0"/>
-            <Control type="ScriptSlider" id="knbReverbMix" value="0.7799999713897705"/>
-            <Control type="ScriptSlider" id="knbReverbPreDelay" value="0.04000000283122063"/>
+            <Control type="ScriptSlider" id="knbReverbMode" value="4.0"/>
+            <Control type="ScriptSlider" id="knbReverbMix" value="0.4099999964237213"/>
+            <Control type="ScriptSlider" id="knbReverbPreDelay" value="0.03500000014901161"/>
             <Control type="ScriptSlider" id="knbReverbRoomSize" value="1.0"/>
-            <Control type="ScriptSlider" id="knbReverbDecay" value="0.6600000262260437"/>
+            <Control type="ScriptSlider" id="knbReverbDecay" value="0.66"/>
             <Control type="ScriptSlider" id="knbReverbDampingFrequency" value="20000.0"/>
-            <Control type="ScriptSlider" id="knbReverbChorusDepth" value="0.7099999785423279"/>
+            <Control type="ScriptSlider" id="knbReverbChorusDepth" value="0.3499999940395355"/>
             <Control type="ScriptSlider" id="knbDelayMode" value="2.0"/>
-            <Control type="ScriptSlider" id="knbDelayMix" value="0.429999977350235"/>
-            <Control type="ScriptSlider" id="knbDelayDelayTime" value="0.6599999666213989"/>
+            <Control type="ScriptSlider" id="knbDelayMix" value="0.43"/>
+            <Control type="ScriptSlider" id="knbDelayDelayTime" value="0.66"/>
             <Control type="ScriptSlider" id="knbDelayFeedback" value="0.5"/>
             <Control type="ScriptSlider" id="knbDelayDamping" value="5100.0"/>
-            <Control type="ScriptSlider" id="knbDelayModulation" value="0.300000011920929"/>
+            <Control type="ScriptSlider" id="knbDelayModulation" value="0.3"/>
             <Control type="ScriptSlider" id="knbDelayStereoWidth" value="0.5"/>
             <Control type="ScriptSlider" id="knbChorusMix" value="0.5"/>
             <Control type="ScriptSlider" id="knbChorusVoices" value="2.0"/>
@@ -129,12 +129,39 @@
             <Control type="ScriptSlider" id="knbChorusDelayTime" value="10.0"/>
             <Control type="ScriptSlider" id="knbChorusTone" value="5900.0"/>
             <Control type="ScriptSlider" id="knbRingmodMode" value="0.0"/>
-            <Control type="ScriptSlider" id="knbRingmodMix" value="0.429999977350235"/>
+            <Control type="ScriptSlider" id="knbRingmodMix" value="0.43"/>
             <Control type="ScriptSlider" id="knbRingmodFrequency" value="217.0"/>
             <Control type="ScriptSlider" id="knbRingmodDepth" value="0.5"/>
             <Control type="ScriptSlider" id="knbRingmodLFORate" value="1.5"/>
             <Control type="ScriptSlider" id="knbRingmodLFODepth" value="0.5"/>
             <Control type="ScriptSlider" id="knbRingmodFilterFrequency" value="1100.0"/>
+            <Control type="ScriptSlider" id="knbPitchShiftPitch" value="0.0"/>
+            <Control type="ScriptSlider" id="knbPitchShiftMix" value="1.0"/>
+            <Control type="ScriptSlider" id="knbPitchShiftAlgorithm" value="0.0"/>
+            <Control type="ScriptSlider" id="knbCompThreshold" value="-18.0"/>
+            <Control type="ScriptSlider" id="knbCompRatio" value="4.0"/>
+            <Control type="ScriptSlider" id="knbCompAttack" value="20.0"/>
+            <Control type="ScriptSlider" id="knbCompRelease" value="100.0"/>
+            <Control type="ScriptSlider" id="knbCompOutput" value="0.0"/>
+            <Control type="ScriptSlider" id="knbCompMix" value="1.0"/>
+            <Control type="ScriptSlider" id="knbMBCLowXOver" value="200.0"/>
+            <Control type="ScriptSlider" id="knbMBCHighXOver" value="2500.0"/>
+            <Control type="ScriptSlider" id="knbMBCAttack" value="20.0"/>
+            <Control type="ScriptSlider" id="knbMBCRelease" value="100.0"/>
+            <Control type="ScriptSlider" id="knbMBCMix" value="1.0"/>
+            <Control type="ScriptSlider" id="knbMBCLowThreshold" value="-18.0"/>
+            <Control type="ScriptSlider" id="knbMBCLowRatio" value="3.0"/>
+            <Control type="ScriptSlider" id="knbMBCLowGain" value="0.0"/>
+            <Control type="ScriptSlider" id="knbMBCMidThreshold" value="-18.0"/>
+            <Control type="ScriptSlider" id="knbMBCMidRatio" value="3.0"/>
+            <Control type="ScriptSlider" id="knbMBCMidGain" value="0.0"/>
+            <Control type="ScriptSlider" id="knbMBCHighThreshold" value="-18.0"/>
+            <Control type="ScriptSlider" id="knbMBCHighRatio" value="3.0"/>
+            <Control type="ScriptSlider" id="knbMBCHighGain" value="0.0"/>
+            <Control type="ScriptSlider" id="knbClipperGain" value="0.0"/>
+            <Control type="ScriptSlider" id="knbClipperCeiling" value="0.0"/>
+            <Control type="ScriptSlider" id="knbClipperOutput" value="0.0"/>
+            <Control type="ScriptSlider" id="knbClipperMix" value="1.0"/>
             <Control type="ScriptButton" id="btnSaveFXPreset" value="0.0"/>
             <Control type="ScriptButton" id="btnLoadFXPreset" value="0.0"/>
             <Control type="ScriptButton" id="btnPreEQ" value="0"/>
@@ -148,8 +175,8 @@
             <Control type="ScriptSlider" id="knbOctave" value="0.0"/>
             <Control type="ScriptSlider" id="knbChugStrength" value="0.0"/>
             <Control type="ScriptSlider" id="knbPickStrength" value="0.0"/>
-            <Control type="ScriptSlider" id="GuitarMorphKnob" value="0.0"/>
-            <Control type="ScriptComboBox" id="cmbIr" value="2.0"/>
+            <Control type="ScriptSlider" id="GuitarMorphKnob" value="1.0"/>
+            <Control type="ScriptComboBox" id="cmbIr" value="1.0"/>
             <Control type="ScriptButton" id="ShowPlayingModeButton" value="0"/>
             <Control type="ScriptButton" id="ShowArticulationsButton" value="0"/>
             <Control type="ScriptButton" id="ShowDebugPanelButton" value="0"/>
@@ -1224,51 +1251,52 @@
                   <Component type="ScriptButton" id="btnSlot0" x="3" y="2" width="98" height="24"
                              text="1: Empty" parentComponent="pnlModularNav"/>
                   <Component type="ScriptComboBox" id="cmbSlot0" x="3" y="27" width="98" height="22"
-                             items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod"
-                             max="8" parentComponent="pnlModularNav"/>
+                             items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod&#10;Pitch Shift&#10;Compressor&#10;Multiband&#10;EQ&#10;Clipper"
+                             max="13" parentComponent="pnlModularNav"/>
                   <Component type="ScriptButton" id="btnSlot1" x="110" y="2" width="98" height="24"
                              text="2: Empty" parentComponent="pnlModularNav"/>
                   <Component type="ScriptComboBox" id="cmbSlot1" x="110" y="27" width="98"
-                             height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod"
-                             max="8" parentComponent="pnlModularNav"/>
+                             height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod&#10;Pitch Shift&#10;Compressor&#10;Multiband&#10;EQ&#10;Clipper"
+                             max="13" parentComponent="pnlModularNav"/>
                   <Component type="ScriptButton" id="btnSlot2" x="217" y="2" width="98" height="24"
-                             text="3: Empty" parentComponent="pnlModularNav" defaultValue="1.0"/>
+                             text="3: Amp" parentComponent="pnlModularNav" defaultValue="1.0"/>
                   <Component type="ScriptComboBox" id="cmbSlot2" x="217" y="27" width="98"
-                             height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod"
-                             max="8" parentComponent="pnlModularNav"/>
+                             height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod&#10;Pitch Shift&#10;Compressor&#10;Multiband&#10;EQ&#10;Clipper"
+                             max="13" parentComponent="pnlModularNav"/>
                   <Component type="ScriptButton" id="btnSlot3" x="324" y="2" width="98" height="24"
-                             text="4: Empty" parentComponent="pnlModularNav"/>
+                             text="4: Reverb" parentComponent="pnlModularNav"/>
                   <Component type="ScriptComboBox" id="cmbSlot3" x="324" y="27" width="98"
-                             height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod"
-                             max="8" parentComponent="pnlModularNav"/>
+                             height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod&#10;Pitch Shift&#10;Compressor&#10;Multiband&#10;EQ&#10;Clipper"
+                             max="13" parentComponent="pnlModularNav"/>
                   <Component type="ScriptButton" id="btnSlot4" x="431" y="2" width="98" height="24"
-                             text="5: Empty" parentComponent="pnlModularNav"/>
+                             text="5: Delay" parentComponent="pnlModularNav"/>
                   <Component type="ScriptComboBox" id="cmbSlot4" x="431" y="27" width="98"
-                             height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod"
-                             max="8" parentComponent="pnlModularNav"/>
+                             height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod&#10;Pitch Shift&#10;Compressor&#10;Multiband&#10;EQ&#10;Clipper"
+                             max="13" parentComponent="pnlModularNav"/>
                   <Component type="ScriptButton" id="btnSlot5" x="538" y="2" width="98" height="24"
-                             text="6: Empty" parentComponent="pnlModularNav"/>
+                             text="6: Ringmod" parentComponent="pnlModularNav"/>
                   <Component type="ScriptComboBox" id="cmbSlot5" x="538" y="27" width="98"
-                             height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod"
-                             max="8" parentComponent="pnlModularNav"/>
+                             height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod&#10;Pitch Shift&#10;Compressor&#10;Multiband&#10;EQ&#10;Clipper"
+                             max="13" parentComponent="pnlModularNav"/>
                   <Component type="ScriptButton" id="btnSlot6" x="645" y="2" width="98" height="24"
                              text="7: Empty" parentComponent="pnlModularNav"/>
                   <Component type="ScriptComboBox" id="cmbSlot6" x="645" y="27" width="98"
-                             height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod"
-                             max="8" parentComponent="pnlModularNav"/>
+                             height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod&#10;Pitch Shift&#10;Compressor&#10;Multiband&#10;EQ&#10;Clipper"
+                             max="13" parentComponent="pnlModularNav"/>
                   <Component type="ScriptButton" id="btnSlot7" x="752" y="2" width="98" height="24"
                              text="8: Empty" parentComponent="pnlModularNav"/>
                   <Component type="ScriptComboBox" id="cmbSlot7" x="752" y="27" width="98"
-                             height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod"
-                             max="8" parentComponent="pnlModularNav"/>
+                             height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod&#10;Pitch Shift&#10;Compressor&#10;Multiband&#10;EQ&#10;Clipper"
+                             max="13" parentComponent="pnlModularNav"/>
                   <Component type="ScriptButton" id="btnSlot8" x="859" y="2" width="98" height="24"
                              text="9: Empty" parentComponent="pnlModularNav"/>
                   <Component type="ScriptComboBox" id="cmbSlot8" x="859" y="27" width="98"
-                             height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod"
-                             max="8" parentComponent="pnlModularNav"/>
+                             height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod&#10;Pitch Shift&#10;Compressor&#10;Multiband&#10;EQ&#10;Clipper"
+                             max="13" parentComponent="pnlModularNav"/>
                 </Component>
                 <Component type="ScriptPanel" id="pnlModularEmpty" x="20" y="60" width="960"
-                           height="170" itemColour="0" itemColour2="0" parentComponent="FXRackBG">
+                           height="170" itemColour="0" itemColour2="0" parentComponent="FXRackBG"
+                           visible="0">
                   <Component type="ScriptLabel" id="lblEmptySlotNotice" x="180" y="65" width="600"
                              height="40" text="Empty Slot - Select an effect module from the dropdown below"
                              editable="0" fontStyle="Bold" textColour="4288256409" fontSize="20.0"
@@ -1510,10 +1538,10 @@
                              editable="0" fontStyle="Italic" textColour="4278190080"/>
                 </Component>
                 <Component type="ScriptPanel" id="pnlModularD" x="20" y="60" width="960"
-                           height="170" itemColour="0" itemColour2="0" parentComponent="FXRackBG"
-                           visible="0">
+                           height="170" itemColour="0" itemColour2="0" parentComponent="FXRackBG">
                   <Component type="ScriptSlider" id="knbReverbMode" parentComponent="pnlModularD"
-                             x="15" y="10" width="96" height="60" max="3.0" stepSize="1.0">
+                             x="15" y="10" width="96" height="60" max="4.0" stepSize="1.0"
+                             tooltip="Reverb Mode: 0=Room, 1=Hall, 2=Spring, 3=Ambient, 4=Shimmer">
                     <Component type="ScriptLabel" id="lbl_knbReverbMode" x="0" y="38" width="96"
                                height="20" text="Reverb Mode" editable="0" fontStyle="Bold"
                                parentComponent="knbReverbMode" textColour="4278190080"/>
@@ -1708,6 +1736,300 @@
                                parentComponent="knbRingmodFilterFrequency" textColour="4278190080"/>
                   </Component>
                 </Component>
+                <Component type="ScriptPanel" id="pnlModularPitchShift" x="20" y="60" width="960"
+                           height="170" itemColour="0" itemColour2="0" parentComponent="FXRackBG"
+                           visible="0">
+                  <Component type="ScriptSlider" id="knbPitchShiftPitch" parentComponent="pnlModularPitchShift"
+                             x="40" y="15" width="110" height="65" min="-24.0" max="24.0"
+                             stepSize="1.0" suffix=" st">
+                    <Component type="ScriptLabel" id="lbl_knbPitchShiftPitch" x="0" y="38" width="110"
+                               height="20" text="Pitch" editable="0" fontStyle="Bold" parentComponent="knbPitchShiftPitch"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbPitchShiftMix" parentComponent="pnlModularPitchShift"
+                             x="180" y="15" width="110" height="65" stepSize="0.009999999776482582"
+                             suffix=" %">
+                    <Component type="ScriptLabel" id="lbl_knbPitchShiftMix" x="0" y="38" width="110"
+                               height="20" text="Pitch Mix" editable="0" fontStyle="Bold" parentComponent="knbPitchShiftMix"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbPitchShiftAlgorithm" parentComponent="pnlModularPitchShift"
+                             x="320" y="15" width="130" height="65" max="2.0" stepSize="1.0">
+                    <Component type="ScriptLabel" id="lbl_knbPitchShiftAlgorithm" x="0" y="38"
+                               width="130" height="20" text="Algorithm" editable="0" fontStyle="Bold"
+                               parentComponent="knbPitchShiftAlgorithm" textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptLabel" id="lblPitchShiftAlgoDesc" x="480" y="15"
+                             width="460" height="70" text="Algorithm 0: Spectral HQ (Vocoder/Chords)&#10;Algorithm 1: Spectral Fast (Transients/Tight)&#10;Algorithm 2: Granular (Instant Low-Latency)"
+                             editable="0" fontStyle="Bold" textColour="4278190080" parentComponent="pnlModularPitchShift"/>
+                </Component>
+                <Component type="ScriptPanel" id="pnlModularCompressor" x="20" y="60" width="960"
+                           height="170" itemColour="0" itemColour2="0" parentComponent="FXRackBG"
+                           visible="0">
+                  <Component type="ScriptSlider" id="knbCompThreshold" parentComponent="pnlModularCompressor"
+                             x="20" y="15" width="110" height="65" min="-60.0" max="0.0" stepSize="0.5"
+                             suffix=" dB">
+                    <Component type="ScriptLabel" id="lbl_knbCompThreshold" x="0" y="38" width="110"
+                               height="20" text="Threshold" editable="0" fontStyle="Bold" parentComponent="knbCompThreshold"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbCompRatio" parentComponent="pnlModularCompressor"
+                             x="150" y="15" width="110" height="65" min="1.0" max="20.0" stepSize="0.1000000014901161"
+                             suffix=" :1">
+                    <Component type="ScriptLabel" id="lbl_knbCompRatio" x="0" y="38" width="110"
+                               height="20" text="Ratio" editable="0" fontStyle="Bold" parentComponent="knbCompRatio"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbCompAttack" parentComponent="pnlModularCompressor"
+                             x="280" y="15" width="110" height="65" min="0.1000000014901161"
+                             max="200.0" stepSize="0.5" suffix=" ms">
+                    <Component type="ScriptLabel" id="lbl_knbCompAttack" x="0" y="38" width="110"
+                               height="20" text="Attack" editable="0" fontStyle="Bold" parentComponent="knbCompAttack"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbCompRelease" parentComponent="pnlModularCompressor"
+                             x="410" y="15" width="110" height="65" min="10.0" max="1000.0"
+                             stepSize="5.0" suffix=" ms">
+                    <Component type="ScriptLabel" id="lbl_knbCompRelease" x="0" y="38" width="110"
+                               height="20" text="Release" editable="0" fontStyle="Bold" parentComponent="knbCompRelease"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbCompOutput" parentComponent="pnlModularCompressor"
+                             x="540" y="15" width="110" height="65" min="-24.0" max="24.0"
+                             stepSize="0.5" suffix=" dB">
+                    <Component type="ScriptLabel" id="lbl_knbCompOutput" x="0" y="38" width="110"
+                               height="20" text="Output Gain" editable="0" fontStyle="Bold"
+                               parentComponent="knbCompOutput" textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbCompMix" parentComponent="pnlModularCompressor"
+                             x="670" y="15" width="110" height="65" stepSize="0.009999999776482582"
+                             suffix=" %">
+                    <Component type="ScriptLabel" id="lbl_knbCompMix" x="0" y="38" width="110"
+                               height="20" text="Mix" editable="0" fontStyle="Bold" parentComponent="knbCompMix"
+                               textColour="4278190080"/>
+                  </Component>
+                </Component>
+                <Component type="ScriptPanel" id="pnlModularMultiband" x="20" y="60" width="960"
+                           height="170" itemColour="0" itemColour2="0" parentComponent="FXRackBG"
+                           visible="0">
+                  <Component type="ScriptSlider" id="knbMBCLowXOver" parentComponent="pnlModularMultiband"
+                             x="15" y="5" width="90" height="55" min="40.0" max="1000.0" stepSize="5.0"
+                             suffix=" Hz">
+                    <Component type="ScriptLabel" id="lbl_knbMBCLowXOver" x="0" y="35" width="90"
+                               height="18" text="Low XOver" editable="0" fontStyle="Bold" parentComponent="knbMBCLowXOver"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbMBCHighXOver" parentComponent="pnlModularMultiband"
+                             x="115" y="5" width="90" height="55" min="1000.0" max="16000.0"
+                             stepSize="50.0" suffix=" Hz">
+                    <Component type="ScriptLabel" id="lbl_knbMBCHighXOver" x="0" y="35" width="90"
+                               height="18" text="High XOver" editable="0" fontStyle="Bold" parentComponent="knbMBCHighXOver"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbMBCAttack" parentComponent="pnlModularMultiband"
+                             x="215" y="5" width="90" height="55" min="1.0" max="100.0" stepSize="1.0"
+                             suffix=" ms">
+                    <Component type="ScriptLabel" id="lbl_knbMBCAttack" x="0" y="35" width="90"
+                               height="18" text="MBC Attack" editable="0" fontStyle="Bold" parentComponent="knbMBCAttack"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbMBCRelease" parentComponent="pnlModularMultiband"
+                             x="315" y="5" width="90" height="55" min="10.0" max="500.0" stepSize="5.0"
+                             suffix=" ms">
+                    <Component type="ScriptLabel" id="lbl_knbMBCRelease" x="0" y="35" width="90"
+                               height="18" text="MBC Release" editable="0" fontStyle="Bold"
+                               parentComponent="knbMBCRelease" textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbMBCMix" parentComponent="pnlModularMultiband"
+                             x="415" y="5" width="90" height="55" stepSize="0.009999999776482582"
+                             suffix=" %">
+                    <Component type="ScriptLabel" id="lbl_knbMBCMix" x="0" y="35" width="90"
+                               height="18" text="MBC Mix" editable="0" fontStyle="Bold" parentComponent="knbMBCMix"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbMBCLowThreshold" parentComponent="pnlModularMultiband"
+                             x="15" y="70" width="85" height="55" min="-60.0" max="0.0" stepSize="0.5"
+                             suffix=" dB">
+                    <Component type="ScriptLabel" id="lbl_knbMBCLowThresh" x="0" y="35" width="85"
+                               height="18" text="Low Thresh" editable="0" fontStyle="Bold" parentComponent="knbMBCLowThreshold"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbMBCLowRatio" parentComponent="pnlModularMultiband"
+                             x="105" y="70" width="85" height="55" min="1.0" max="20.0" stepSize="0.1000000014901161"
+                             suffix=" :1">
+                    <Component type="ScriptLabel" id="lbl_knbMBCLowRatio" x="0" y="35" width="85"
+                               height="18" text="Low Ratio" editable="0" fontStyle="Bold" parentComponent="knbMBCLowRatio"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbMBCLowGain" parentComponent="pnlModularMultiband"
+                             x="195" y="70" width="85" height="55" min="-18.0" max="18.0"
+                             stepSize="0.5" suffix=" dB">
+                    <Component type="ScriptLabel" id="lbl_knbMBCLowGain" x="0" y="35" width="85"
+                               height="18" text="Low Gain" editable="0" fontStyle="Bold" parentComponent="knbMBCLowGain"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbMBCMidThreshold" parentComponent="pnlModularMultiband"
+                             x="330" y="70" width="85" height="55" min="-60.0" max="0.0" stepSize="0.5"
+                             suffix=" dB">
+                    <Component type="ScriptLabel" id="lbl_knbMBCMidThresh" x="0" y="35" width="85"
+                               height="18" text="Mid Thresh" editable="0" fontStyle="Bold" parentComponent="knbMBCMidThreshold"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbMBCMidRatio" parentComponent="pnlModularMultiband"
+                             x="420" y="70" width="85" height="55" min="1.0" max="20.0" stepSize="0.1000000014901161"
+                             suffix=" :1">
+                    <Component type="ScriptLabel" id="lbl_knbMBCMidRatio" x="0" y="35" width="85"
+                               height="18" text="Mid Ratio" editable="0" fontStyle="Bold" parentComponent="knbMBCMidRatio"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbMBCMidGain" parentComponent="pnlModularMultiband"
+                             x="510" y="70" width="85" height="55" min="-18.0" max="18.0"
+                             stepSize="0.5" suffix=" dB">
+                    <Component type="ScriptLabel" id="lbl_knbMBCMidGain" x="0" y="35" width="85"
+                               height="18" text="Mid Gain" editable="0" fontStyle="Bold" parentComponent="knbMBCMidGain"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbMBCHighThreshold" parentComponent="pnlModularMultiband"
+                             x="645" y="70" width="85" height="55" min="-60.0" max="0.0" stepSize="0.5"
+                             suffix=" dB">
+                    <Component type="ScriptLabel" id="lbl_knbMBCHighThresh" x="0" y="35" width="85"
+                               height="18" text="High Thresh" editable="0" fontStyle="Bold"
+                               parentComponent="knbMBCHighThreshold" textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbMBCHighRatio" parentComponent="pnlModularMultiband"
+                             x="735" y="70" width="85" height="55" min="1.0" max="20.0" stepSize="0.1000000014901161"
+                             suffix=" :1">
+                    <Component type="ScriptLabel" id="lbl_knbMBCHighRatio" x="0" y="35" width="85"
+                               height="18" text="High Ratio" editable="0" fontStyle="Bold" parentComponent="knbMBCHighRatio"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbMBCHighGain" parentComponent="pnlModularMultiband"
+                             x="825" y="70" width="85" height="55" min="-18.0" max="18.0"
+                             stepSize="0.5" suffix=" dB">
+                    <Component type="ScriptLabel" id="lbl_knbMBCHighGain" x="0" y="35" width="85"
+                               height="18" text="High Gain" editable="0" fontStyle="Bold" parentComponent="knbMBCHighGain"
+                               textColour="4278190080"/>
+                  </Component>
+                </Component>
+                <Component type="ScriptPanel" id="pnlModularEQ" x="20" y="60" width="1000"
+                           height="198" itemColour="0" itemColour2="0" parentComponent="FXRackBG"
+                           visible="0">
+                  <Component type="ScriptFloatingTile" id="fltModularEQ0" x="0" y="0" width="960"
+                             height="170" parentComponent="pnlModularEQ" ContentType="DraggableFilterPanel"
+                             bgColour="16777215" itemColour="1946122793" itemColour2="4278190080"
+                             Data="{&#10;  &quot;ProcessorId&quot;: &quot;slotEQ0&quot;,&#10;  &quot;Index&quot;: -1,&#10;  &quot;FollowWorkspace&quot;: false&#10;}"
+                             textColour="4278190080" itemColour3="2634022912" Font="Shehroz"/>
+                  <Component type="ScriptFloatingTile" id="fltModularEQ1" x="0" y="0" width="960"
+                             height="170" parentComponent="pnlModularEQ" ContentType="DraggableFilterPanel"
+                             bgColour="16777215" itemColour="1946122793" itemColour2="4278190080"
+                             Data="{&#10;  &quot;ProcessorId&quot;: &quot;slotEQ1&quot;,&#10;  &quot;Index&quot;: -1,&#10;  &quot;FollowWorkspace&quot;: false&#10;}"
+                             textColour="4278190080" itemColour3="2634022912" Font="Shehroz"
+                             visible="0"/>
+                  <Component type="ScriptFloatingTile" id="fltModularEQ2" x="0" y="0" width="960"
+                             height="170" parentComponent="pnlModularEQ" ContentType="DraggableFilterPanel"
+                             bgColour="16777215" itemColour="1946122793" itemColour2="4278190080"
+                             Data="{&#10;  &quot;ProcessorId&quot;: &quot;slotEQ2&quot;,&#10;  &quot;Index&quot;: -1,&#10;  &quot;FollowWorkspace&quot;: false&#10;}"
+                             textColour="4278190080" itemColour3="2634022912" Font="Shehroz"
+                             visible="0"/>
+                  <Component type="ScriptFloatingTile" id="fltModularEQ3" x="0" y="0" width="960"
+                             height="170" parentComponent="pnlModularEQ" ContentType="DraggableFilterPanel"
+                             bgColour="16777215" itemColour="1946122793" itemColour2="4278190080"
+                             Data="{&#10;  &quot;ProcessorId&quot;: &quot;slotEQ3&quot;,&#10;  &quot;Index&quot;: -1,&#10;  &quot;FollowWorkspace&quot;: false&#10;}"
+                             textColour="4278190080" itemColour3="2634022912" Font="Shehroz"
+                             visible="0"/>
+                  <Component type="ScriptFloatingTile" id="fltModularEQ4" x="0" y="0" width="960"
+                             height="170" parentComponent="pnlModularEQ" ContentType="DraggableFilterPanel"
+                             bgColour="16777215" itemColour="1946122793" itemColour2="4278190080"
+                             Data="{&#10;  &quot;ProcessorId&quot;: &quot;slotEQ4&quot;,&#10;  &quot;Index&quot;: -1,&#10;  &quot;FollowWorkspace&quot;: false&#10;}"
+                             textColour="4278190080" itemColour3="2634022912" Font="Shehroz"
+                             visible="0"/>
+                  <Component type="ScriptFloatingTile" id="fltModularEQ5" x="0" y="0" width="960"
+                             height="170" parentComponent="pnlModularEQ" ContentType="DraggableFilterPanel"
+                             bgColour="16777215" itemColour="1946122793" itemColour2="4278190080"
+                             Data="{&#10;  &quot;ProcessorId&quot;: &quot;slotEQ5&quot;,&#10;  &quot;Index&quot;: -1,&#10;  &quot;FollowWorkspace&quot;: false&#10;}"
+                             textColour="4278190080" itemColour3="2634022912" Font="Shehroz"
+                             visible="0"/>
+                  <Component type="ScriptFloatingTile" id="fltModularEQ6" x="0" y="0" width="960"
+                             height="170" parentComponent="pnlModularEQ" ContentType="DraggableFilterPanel"
+                             bgColour="16777215" itemColour="1946122793" itemColour2="4278190080"
+                             Data="{&#10;  &quot;ProcessorId&quot;: &quot;slotEQ6&quot;,&#10;  &quot;Index&quot;: -1,&#10;  &quot;FollowWorkspace&quot;: false&#10;}"
+                             textColour="4278190080" itemColour3="2634022912" Font="Shehroz"
+                             visible="0"/>
+                  <Component type="ScriptFloatingTile" id="fltModularEQ7" x="0" y="0" width="960"
+                             height="170" parentComponent="pnlModularEQ" ContentType="DraggableFilterPanel"
+                             bgColour="16777215" itemColour="1946122793" itemColour2="4278190080"
+                             Data="{&#10;  &quot;ProcessorId&quot;: &quot;slotEQ7&quot;,&#10;  &quot;Index&quot;: -1,&#10;  &quot;FollowWorkspace&quot;: false&#10;}"
+                             textColour="4278190080" itemColour3="2634022912" Font="Shehroz"
+                             visible="0"/>
+                  <Component type="ScriptFloatingTile" id="fltModularEQ8" x="0" y="0" width="960"
+                             height="170" parentComponent="pnlModularEQ" ContentType="DraggableFilterPanel"
+                             bgColour="16777215" itemColour="1946122793" itemColour2="4278190080"
+                             Data="{&#10;  &quot;ProcessorId&quot;: &quot;slotEQ8&quot;,&#10;  &quot;Index&quot;: -1,&#10;  &quot;FollowWorkspace&quot;: false&#10;}"
+                             textColour="4278190080" itemColour3="2634022912" Font="Shehroz"
+                             visible="0"/>
+                  <Component type="ScriptLabel" id="ModEQFreq20HzPointLabel" x="-20" y="167"
+                             width="70" height="23" parentComponent="pnlModularEQ" textColour="4278190080"
+                             text="20" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="ModEQFreq50HzPointLabel" x="100" y="167"
+                             width="70" height="23" parentComponent="pnlModularEQ" textColour="4278190080"
+                             text="50" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="ModEQFreq100HzPointLabel" x="198" y="167"
+                             width="70" height="23" parentComponent="pnlModularEQ" textColour="4278190080"
+                             text="100" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="ModEQFreq200HzPointLabel" x="287" y="167"
+                             width="70" height="23" parentComponent="pnlModularEQ" textColour="4278190080"
+                             text="200" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="ModEQFreq500HzPointLabel" x="412" y="167"
+                             width="70" height="23" parentComponent="pnlModularEQ" textColour="4278190080"
+                             text="500" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="ModEQFreq1kHzPointLabel" x="510" y="167"
+                             width="70" height="23" parentComponent="pnlModularEQ" textColour="4278190080"
+                             text="1k" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="ModEQFreq2kHzPointLabel" x="605" y="167"
+                             width="70" height="23" parentComponent="pnlModularEQ" textColour="4278190080"
+                             text="2k" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="ModEQFreq5kHzPointLabel" x="730" y="167"
+                             width="70" height="23" parentComponent="pnlModularEQ" textColour="4278190080"
+                             text="5k" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="ModEQFreq10kHzPointLabel" x="830" y="167"
+                             width="70" height="23" parentComponent="pnlModularEQ" textColour="4278190080"
+                             text="10k" fontName="Shehroz" fontSize="25.0"/>
+                  <Component type="ScriptLabel" id="ModEQFreq20kHzPointLabel" x="918" y="167"
+                             width="70" height="23" parentComponent="pnlModularEQ" textColour="4278190080"
+                             text="20k" fontName="Shehroz" fontSize="25.0"/>
+                </Component>
+                <Component type="ScriptPanel" id="pnlModularClipper" x="20" y="60" width="960"
+                           height="170" itemColour="0" itemColour2="0" parentComponent="FXRackBG"
+                           visible="0">
+                  <Component type="ScriptSlider" id="knbClipperGain" parentComponent="pnlModularClipper"
+                             x="40" y="15" width="120" height="65" max="24.0" stepSize="0.5"
+                             suffix=" dB">
+                    <Component type="ScriptLabel" id="lbl_knbClipperGain" x="0" y="38" width="120"
+                               height="20" text="Clipper Drive" editable="0" fontStyle="Bold"
+                               parentComponent="knbClipperGain" textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbClipperCeiling" parentComponent="pnlModularClipper"
+                             x="190" y="15" width="120" height="65" min="-12.0" max="0.0"
+                             stepSize="0.1000000014901161" suffix=" dB">
+                    <Component type="ScriptLabel" id="lbl_knbClipperCeiling" x="0" y="38" width="120"
+                               height="20" text="Ceiling" editable="0" fontStyle="Bold" parentComponent="knbClipperCeiling"
+                               textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbClipperOutput" parentComponent="pnlModularClipper"
+                             x="340" y="15" width="120" height="65" min="-24.0" max="24.0"
+                             stepSize="0.5" suffix=" dB">
+                    <Component type="ScriptLabel" id="lbl_knbClipperOutput" x="0" y="38" width="120"
+                               height="20" text="Output Gain" editable="0" fontStyle="Bold"
+                               parentComponent="knbClipperOutput" textColour="4278190080"/>
+                  </Component>
+                  <Component type="ScriptSlider" id="knbClipperMix" parentComponent="pnlModularClipper"
+                             x="490" y="15" width="120" height="65" stepSize="0.009999999776482582"
+                             suffix=" %">
+                    <Component type="ScriptLabel" id="lbl_knbClipperMix" x="0" y="38" width="120"
+                               height="20" text="Clipper Mix" editable="0" fontStyle="Bold"
+                               parentComponent="knbClipperMix" textColour="4278190080"/>
+                  </Component>
+                </Component>
                 <Component type="ScriptPanel" id="pnlPreEQ" x="20" y="60" width="1000" height="198"
                            itemColour="0" itemColour2="0" parentComponent="FXRackBG" visible="0">
                   <Component type="ScriptFloatingTile" id="fltPreEQ" x="0" y="0" width="960"
@@ -1898,10 +2220,10 @@
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
-        <Processor Type="Convolution" ID="IRMatchGuitarsConv" Bypassed="0" DryGain="-6.0"
-                   WetGain="-100.0" Latency="0.0" ImpulseLength="1.0" ProcessInput="1.0"
+        <Processor Type="Convolution" ID="IRMatchGuitarsConv" Bypassed="0" DryGain="-100.0"
+                   WetGain="0.0" Latency="0.0" ImpulseLength="1.0" ProcessInput="1.0"
                    UseBackgroundThread="0.0" Predelay="0.0" HiCut="20000.0" Damping="0.0"
-                   FFTType="0.0" FileName="{PROJECT_FOLDER}GuitarMorphIRs/Darken2.wav"
+                   FFTType="0.0" FileName="{PROJECT_FOLDER}GuitarMorphIRs/Darken1.wav"
                    min="0" max="8192" loopStart="0" loopEnd="8192">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
@@ -1958,7 +2280,15 @@
                    ChorusFeedback="0.3799999952316284" ChorusDelayTime="10.0" ChorusTone="5900.0"
                    RingmodMode="0.0" RingmodMix="0.429999977350235" RingmodFrequency="217.0"
                    RingmodDepth="0.5" RingmodLFORate="1.5" RingmodLFODepth="0.5"
-                   RingmodFilterFrequency="1100.0">
+                   RingmodFilterFrequency="1100.0" PitchShiftPitch="0.0" PitchShiftMix="1.0"
+                   PitchShiftAlgorithm="0.0" CompThreshold="-20.0" CompRatio="4.0"
+                   CompAttack="10.0" CompRelease="100.0" CompOutputGain="0.0" CompMix="1.0"
+                   MBCLowXOver="200.0" MBCHighXOver="2500.0" MBCLowThreshold="-20.0"
+                   MBCLowRatio="3.0" MBCLowGain="0.0" MBCMidThreshold="-20.0" MBCMidRatio="3.0"
+                   MBCMidGain="0.0" MBCHighThreshold="-20.0" MBCHighRatio="3.0"
+                   MBCHighGain="0.0" MBCAttack="15.0" MBCRelease="100.0" MBCMix="1.0"
+                   ClipperGain="0.0" ClipperCeiling="-0.1000000014901161" ClipperOutputGain="0.0"
+                   ClipperMix="1.0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
           <AudioFiles>
@@ -1967,6 +2297,14 @@
             <AudioFile EmbeddedData="{PROJECT_FOLDER}Cabs/2off-pres8.wav" MinValue="0"
                        MaxValue="1839"/>
           </AudioFiles>
+        </Processor>
+        <Processor Type="CurveEq" ID="slotEQ0" Bypassed="1" NumFilters="4" Band0="0.0"
+                   Band1="100.0" Band2="1.0" Band3="1.0" Band4="2.0" Band5="0.0"
+                   Band6="500.0" Band7="1.0" Band8="1.0" Band9="4.0" Band10="0.0"
+                   Band11="2500.0" Band12="1.0" Band13="1.0" Band14="4.0" Band15="0.0"
+                   Band16="8000.0" Band17="1.0" Band18="1.0" Band19="3.0" FFTEnabled="0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
         <Processor Type="HardcodedMasterFX" ID="modularSlot1" Bypassed="0" Network="slot"
                    Module="0.0" ODMode="0.0" ODDrive="5.0" ODTone="0.0" ODFoldAmount="2.0"
@@ -1986,7 +2324,15 @@
                    ChorusVoices="2.0" ChorusRate="2.0" ChorusDepth="0.5" ChorusFeedback="0.3799999952316284"
                    ChorusDelayTime="10.0" ChorusTone="5900.0" RingmodMode="0.0"
                    RingmodMix="0.4300000071525574" RingmodFrequency="217.0" RingmodDepth="0.5"
-                   RingmodLFORate="1.5" RingmodLFODepth="0.5" RingmodFilterFrequency="1100.0">
+                   RingmodLFORate="1.5" RingmodLFODepth="0.5" RingmodFilterFrequency="1100.0"
+                   PitchShiftPitch="0.0" PitchShiftMix="1.0" PitchShiftAlgorithm="0.0"
+                   CompThreshold="-20.0" CompRatio="4.0" CompAttack="10.0" CompRelease="100.0"
+                   CompOutputGain="0.0" CompMix="1.0" MBCLowXOver="200.0" MBCHighXOver="2500.0"
+                   MBCLowThreshold="-20.0" MBCLowRatio="3.0" MBCLowGain="0.0" MBCMidThreshold="-20.0"
+                   MBCMidRatio="3.0" MBCMidGain="0.0" MBCHighThreshold="-20.0" MBCHighRatio="3.0"
+                   MBCHighGain="0.0" MBCAttack="15.0" MBCRelease="100.0" MBCMix="1.0"
+                   ClipperGain="0.0" ClipperCeiling="-0.1000000014901161" ClipperOutputGain="0.0"
+                   ClipperMix="1.0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
           <AudioFiles>
@@ -1996,45 +2342,24 @@
                        MaxValue="1839"/>
           </AudioFiles>
         </Processor>
-        <Processor Type="HardcodedMasterFX" ID="modularSlot2" Bypassed="0" Network="slot"
-                   Module="0.0" ODMode="0.0" ODDrive="5.0" ODTone="0.0" ODFoldAmount="2.0"
-                   ODBits="16.0" ODSRReduction="1.0" ODCircuitBend="0.0" ODMix="1.0"
-                   ODOutputGain="0.0" ODMono="0.0" AmpMode="0.0" AmpInputGain="11.19999980926514"
-                   AmpLow="4.199999809265137" AmpMid="-1.700000047683716" AmpHigh="3.700000047683716"
-                   AmpPresence="0.0" AmpOutputGain="-12.10000038146973" AmpSlim="1.0"
-                   AmpCleanToneStackMode="1.0" AmpDirtyToneStackMode="1.0" AmpDistortionMode="0.0"
-                   AmpMono="0.0" CabMix="0.5399999618530273" CabAGain="0.0" CabAPan="0.0"
-                   CabAAxis="0.0" CabADistance="20000.0" CabADelay="0.0" CabBGain="1.490116119384766e-6"
-                   CabBPan="0.0" CabBAxis="0.0" CabBDistance="6000.0" CabBDelay="0.0"
-                   CabDesignerBypass="0.0" ReverbMode="3.0" ReverbMix="0.2800000011920929"
-                   ReverbPreDelay="0.0" ReverbRoomSize="1.0" ReverbDecay="0.6600000262260437"
-                   ReverbDampingFrequency="20000.0" ReverbChorusDepth="0.0" DelayMode="2.0"
-                   DelayMix="0.4300000071525574" DelayTime="0.6600000262260437"
-                   DelayFeedback="0.5" DelayDamping="5100.0" DelayModulation="0.300000011920929"
-                   DelayStereoWidth="0.5" ChorusMix="0.5" ChorusVoices="2.0" ChorusRate="2.0"
-                   ChorusDepth="0.5" ChorusFeedback="0.3799999952316284" ChorusDelayTime="10.0"
-                   ChorusTone="5900.0" RingmodMode="0.0" RingmodMix="0.4300000071525574"
-                   RingmodFrequency="217.0" RingmodDepth="0.5" RingmodLFORate="1.5"
-                   RingmodLFODepth="0.5" RingmodFilterFrequency="1100.0">
+        <Processor Type="CurveEq" ID="slotEQ1" Bypassed="1" NumFilters="4" Band0="0.0"
+                   Band1="100.0" Band2="1.0" Band3="1.0" Band4="2.0" Band5="0.0"
+                   Band6="500.0" Band7="1.0" Band8="1.0" Band9="4.0" Band10="0.0"
+                   Band11="2500.0" Band12="1.0" Band13="1.0" Band14="4.0" Band15="0.0"
+                   Band16="8000.0" Band17="1.0" Band18="1.0" Band19="3.0" FFTEnabled="0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
-          <AudioFiles>
-            <AudioFile EmbeddedData="{PROJECT_FOLDER}Cabs/2off-pres5.wav" MinValue="0"
-                       MaxValue="460"/>
-            <AudioFile EmbeddedData="{PROJECT_FOLDER}Cabs/AL-Antera.wav" MinValue="0"
-                       MaxValue="1024"/>
-          </AudioFiles>
         </Processor>
-        <Processor Type="HardcodedMasterFX" ID="modularSlot3" Bypassed="0" Network="slot"
-                   Module="0.0" ODMode="1.0" ODDrive="0.1000000014901161" ODTone="0.7899999618530273"
+        <Processor Type="HardcodedMasterFX" ID="modularSlot2" Bypassed="0" Network="slot"
+                   Module="2.0" ODMode="1.0" ODDrive="0.1000000014901161" ODTone="0.7899999618530273"
                    ODFoldAmount="1.0" ODBits="8.0" ODSRReduction="16.0" ODCircuitBend="0.0"
                    ODMix="0.3300000131130219" ODOutputGain="3.576278686523438e-7"
-                   ODMono="0.0" AmpMode="2.0" AmpInputGain="7.450580596923828e-7"
-                   AmpLow="1.788139343261719e-7" AmpMid="-1.700000047683716" AmpHigh="3.700000286102295"
-                   AmpPresence="0.0" AmpOutputGain="5.364418029785156e-7" AmpSlim="1.0"
-                   AmpCleanToneStackMode="1.0" AmpDirtyToneStackMode="1.0" AmpDistortionMode="0.0"
-                   AmpMono="0.0" CabMix="0.5399999618530273" CabAGain="0.0" CabAPan="0.0"
-                   CabAAxis="0.0" CabADistance="20000.0" CabADelay="0.0" CabBGain="1.490116119384766e-6"
+                   ODMono="0.0" AmpMode="0.0" AmpInputGain="16.80000114440918" AmpLow="3.400000333786011"
+                   AmpMid="-1.700000047683716" AmpHigh="2.500000238418579" AmpPresence="0.0"
+                   AmpOutputGain="-8.59999942779541" AmpSlim="1.0" AmpCleanToneStackMode="1.0"
+                   AmpDirtyToneStackMode="1.0" AmpDistortionMode="0.0" AmpMono="0.0"
+                   CabMix="0.5399999618530273" CabAGain="0.0" CabAPan="0.0" CabAAxis="0.0"
+                   CabADistance="20000.0" CabADelay="0.0" CabBGain="1.490116119384766e-6"
                    CabBPan="0.0" CabBAxis="0.0" CabBDistance="6000.0" CabBDelay="0.0"
                    CabDesignerBypass="0.0" ReverbMode="3.0" ReverbMix="0.7799999713897705"
                    ReverbPreDelay="0.04000000283122063" ReverbRoomSize="1.0" ReverbDecay="0.6600000262260437"
@@ -2045,7 +2370,61 @@
                    ChorusDepth="0.5" ChorusFeedback="0.3799999952316284" ChorusDelayTime="10.0"
                    ChorusTone="5900.0" RingmodMode="0.0" RingmodMix="0.429999977350235"
                    RingmodFrequency="217.0" RingmodDepth="0.5" RingmodLFORate="1.5"
-                   RingmodLFODepth="0.5" RingmodFilterFrequency="1100.0">
+                   RingmodLFODepth="0.5" RingmodFilterFrequency="1100.0" PitchShiftPitch="0.0"
+                   PitchShiftMix="1.0" PitchShiftAlgorithm="0.0" CompThreshold="-18.0"
+                   CompRatio="4.0" CompAttack="20.0" CompRelease="100.0" CompOutputGain="0.0"
+                   CompMix="1.0" MBCLowXOver="200.0" MBCHighXOver="2500.0" MBCLowThreshold="-18.0"
+                   MBCLowRatio="3.0" MBCLowGain="0.0" MBCMidThreshold="-18.0" MBCMidRatio="3.0"
+                   MBCMidGain="0.0" MBCHighThreshold="-18.0" MBCHighRatio="3.0"
+                   MBCHighGain="0.0" MBCAttack="20.0" MBCRelease="100.0" MBCMix="1.0"
+                   ClipperGain="0.0" ClipperCeiling="0.0" ClipperOutputGain="0.0"
+                   ClipperMix="1.0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+          <AudioFiles>
+            <AudioFile EmbeddedData="{PROJECT_FOLDER}Cabs/2off-pres5.wav" MinValue="0"
+                       MaxValue="460"/>
+            <AudioFile EmbeddedData="{PROJECT_FOLDER}Cabs/AL-Antera.wav" MinValue="0"
+                       MaxValue="1024"/>
+          </AudioFiles>
+        </Processor>
+        <Processor Type="CurveEq" ID="slotEQ2" Bypassed="1" NumFilters="4" Band0="0.0"
+                   Band1="100.0" Band2="1.0" Band3="1.0" Band4="2.0" Band5="0.0"
+                   Band6="500.0" Band7="1.0" Band8="1.0" Band9="4.0" Band10="0.0"
+                   Band11="2500.0" Band12="1.0" Band13="1.0" Band14="4.0" Band15="0.0"
+                   Band16="8000.0" Band17="1.0" Band18="1.0" Band19="3.0" FFTEnabled="0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
+        <Processor Type="HardcodedMasterFX" ID="modularSlot3" Bypassed="0" Network="slot"
+                   Module="4.0" ODMode="1.0" ODDrive="0.1000000014901161" ODTone="0.7899999618530273"
+                   ODFoldAmount="1.0" ODBits="8.0" ODSRReduction="16.0" ODCircuitBend="0.0"
+                   ODMix="0.3300000131130219" ODOutputGain="3.576278686523438e-7"
+                   ODMono="0.0" AmpMode="2.0" AmpInputGain="7.450580596923828e-7"
+                   AmpLow="1.788139343261719e-7" AmpMid="-1.700000047683716" AmpHigh="3.700000286102295"
+                   AmpPresence="0.0" AmpOutputGain="5.364418029785156e-7" AmpSlim="1.0"
+                   AmpCleanToneStackMode="1.0" AmpDirtyToneStackMode="1.0" AmpDistortionMode="0.0"
+                   AmpMono="0.0" CabMix="0.5399999618530273" CabAGain="0.0" CabAPan="0.0"
+                   CabAAxis="0.0" CabADistance="20000.0" CabADelay="0.0" CabBGain="1.490116119384766e-6"
+                   CabBPan="0.0" CabBAxis="0.0" CabBDistance="6000.0" CabBDelay="0.0"
+                   CabDesignerBypass="0.0" ReverbMode="4.0" ReverbMix="0.4099999964237213"
+                   ReverbPreDelay="0.03500000014901161" ReverbRoomSize="1.0" ReverbDecay="0.6600000262260437"
+                   ReverbDampingFrequency="20000.0" ReverbChorusDepth="0.3499999940395355"
+                   DelayMode="2.0" DelayMix="0.429999977350235" DelayTime="0.6599999666213989"
+                   DelayFeedback="0.5" DelayDamping="5100.0" DelayModulation="0.300000011920929"
+                   DelayStereoWidth="0.5" ChorusMix="0.5" ChorusVoices="2.0" ChorusRate="2.0"
+                   ChorusDepth="0.5" ChorusFeedback="0.3799999952316284" ChorusDelayTime="10.0"
+                   ChorusTone="5900.0" RingmodMode="0.0" RingmodMix="0.429999977350235"
+                   RingmodFrequency="217.0" RingmodDepth="0.5" RingmodLFORate="1.5"
+                   RingmodLFODepth="0.5" RingmodFilterFrequency="1100.0" PitchShiftPitch="0.0"
+                   PitchShiftMix="1.0" PitchShiftAlgorithm="0.0" CompThreshold="-20.0"
+                   CompRatio="4.0" CompAttack="10.0" CompRelease="100.0" CompOutputGain="0.0"
+                   CompMix="1.0" MBCLowXOver="200.0" MBCHighXOver="2500.0" MBCLowThreshold="-20.0"
+                   MBCLowRatio="3.0" MBCLowGain="0.0" MBCMidThreshold="-20.0" MBCMidRatio="3.0"
+                   MBCMidGain="0.0" MBCHighThreshold="-20.0" MBCHighRatio="3.0"
+                   MBCHighGain="0.0" MBCAttack="15.0" MBCRelease="100.0" MBCMix="1.0"
+                   ClipperGain="0.0" ClipperCeiling="-0.1000000014901161" ClipperOutputGain="0.0"
+                   ClipperMix="1.0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
           <AudioFiles>
@@ -2054,9 +2433,17 @@
             <AudioFile EmbeddedData="{PROJECT_FOLDER}Cabs/2off-pres8.wav" MinValue="0"
                        MaxValue="1839"/>
           </AudioFiles>
+        </Processor>
+        <Processor Type="CurveEq" ID="slotEQ3" Bypassed="1" NumFilters="4" Band0="0.0"
+                   Band1="100.0" Band2="1.0" Band3="1.0" Band4="2.0" Band5="0.0"
+                   Band6="500.0" Band7="1.0" Band8="1.0" Band9="4.0" Band10="0.0"
+                   Band11="2500.0" Band12="1.0" Band13="1.0" Band14="4.0" Band15="0.0"
+                   Band16="8000.0" Band17="1.0" Band18="1.0" Band19="3.0" FFTEnabled="0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
         <Processor Type="HardcodedMasterFX" ID="modularSlot4" Bypassed="0" Network="slot"
-                   Module="0.0" ODMode="0.0" ODDrive="5.0" ODTone="0.0" ODFoldAmount="2.0"
+                   Module="5.0" ODMode="0.0" ODDrive="5.0" ODTone="0.0" ODFoldAmount="2.0"
                    ODBits="16.0" ODSRReduction="1.0" ODCircuitBend="0.0" ODMix="1.0"
                    ODOutputGain="0.0" ODMono="0.0" AmpMode="1.0" AmpInputGain="0.0"
                    AmpLow="0.0" AmpMid="0.0" AmpHigh="0.0" AmpPresence="0.0" AmpOutputGain="0.0"
@@ -2073,7 +2460,15 @@
                    ChorusDepth="0.5" ChorusFeedback="0.3799999952316284" ChorusDelayTime="10.0"
                    ChorusTone="5900.0" RingmodMode="0.0" RingmodMix="0.4300000071525574"
                    RingmodFrequency="217.0" RingmodDepth="0.5" RingmodLFORate="1.5"
-                   RingmodLFODepth="0.5" RingmodFilterFrequency="1100.0">
+                   RingmodLFODepth="0.5" RingmodFilterFrequency="1100.0" PitchShiftPitch="0.0"
+                   PitchShiftMix="1.0" PitchShiftAlgorithm="0.0" CompThreshold="-20.0"
+                   CompRatio="4.0" CompAttack="10.0" CompRelease="100.0" CompOutputGain="0.0"
+                   CompMix="1.0" MBCLowXOver="200.0" MBCHighXOver="2500.0" MBCLowThreshold="-20.0"
+                   MBCLowRatio="3.0" MBCLowGain="0.0" MBCMidThreshold="-20.0" MBCMidRatio="3.0"
+                   MBCMidGain="0.0" MBCHighThreshold="-20.0" MBCHighRatio="3.0"
+                   MBCHighGain="0.0" MBCAttack="15.0" MBCRelease="100.0" MBCMix="1.0"
+                   ClipperGain="0.0" ClipperCeiling="-0.1000000014901161" ClipperOutputGain="0.0"
+                   ClipperMix="1.0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
           <AudioFiles>
@@ -2083,8 +2478,16 @@
                        MaxValue="1839"/>
           </AudioFiles>
         </Processor>
+        <Processor Type="CurveEq" ID="slotEQ4" Bypassed="1" NumFilters="4" Band0="0.0"
+                   Band1="100.0" Band2="1.0" Band3="1.0" Band4="2.0" Band5="0.0"
+                   Band6="500.0" Band7="1.0" Band8="1.0" Band9="4.0" Band10="0.0"
+                   Band11="2500.0" Band12="1.0" Band13="1.0" Band14="4.0" Band15="0.0"
+                   Band16="8000.0" Band17="1.0" Band18="1.0" Band19="3.0" FFTEnabled="0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+        </Processor>
         <Processor Type="HardcodedMasterFX" ID="modularSlot5" Bypassed="0" Network="slot"
-                   Module="0.0" ODMode="0.0" ODDrive="5.0" ODTone="0.0" ODFoldAmount="2.0"
+                   Module="7.0" ODMode="0.0" ODDrive="5.0" ODTone="0.0" ODFoldAmount="2.0"
                    ODBits="16.0" ODSRReduction="1.0" ODCircuitBend="0.0" ODMix="1.0"
                    ODOutputGain="0.0" ODMono="0.0" AmpMode="1.0" AmpInputGain="0.0"
                    AmpLow="0.0" AmpMid="0.0" AmpHigh="0.0" AmpPresence="0.0" AmpOutputGain="0.0"
@@ -2101,7 +2504,15 @@
                    ChorusDepth="0.5" ChorusFeedback="0.3799999952316284" ChorusDelayTime="10.0"
                    ChorusTone="5900.0" RingmodMode="0.0" RingmodMix="0.4300000071525574"
                    RingmodFrequency="217.0" RingmodDepth="0.5" RingmodLFORate="1.5"
-                   RingmodLFODepth="0.5" RingmodFilterFrequency="1100.0">
+                   RingmodLFODepth="0.5" RingmodFilterFrequency="1100.0" PitchShiftPitch="0.0"
+                   PitchShiftMix="1.0" PitchShiftAlgorithm="0.0" CompThreshold="-20.0"
+                   CompRatio="4.0" CompAttack="10.0" CompRelease="100.0" CompOutputGain="0.0"
+                   CompMix="1.0" MBCLowXOver="200.0" MBCHighXOver="2500.0" MBCLowThreshold="-20.0"
+                   MBCLowRatio="3.0" MBCLowGain="0.0" MBCMidThreshold="-20.0" MBCMidRatio="3.0"
+                   MBCMidGain="0.0" MBCHighThreshold="-20.0" MBCHighRatio="3.0"
+                   MBCHighGain="0.0" MBCAttack="15.0" MBCRelease="100.0" MBCMix="1.0"
+                   ClipperGain="0.0" ClipperCeiling="-0.1000000014901161" ClipperOutputGain="0.0"
+                   ClipperMix="1.0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
           <AudioFiles>
@@ -2110,6 +2521,14 @@
             <AudioFile EmbeddedData="{PROJECT_FOLDER}Cabs/2off-pres8.wav" MinValue="0"
                        MaxValue="1839"/>
           </AudioFiles>
+        </Processor>
+        <Processor Type="CurveEq" ID="slotEQ5" Bypassed="1" NumFilters="4" Band0="0.0"
+                   Band1="100.0" Band2="1.0" Band3="1.0" Band4="2.0" Band5="0.0"
+                   Band6="500.0" Band7="1.0" Band8="1.0" Band9="4.0" Band10="0.0"
+                   Band11="2500.0" Band12="1.0" Band13="1.0" Band14="4.0" Band15="0.0"
+                   Band16="8000.0" Band17="1.0" Band18="1.0" Band19="3.0" FFTEnabled="0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
         <Processor Type="HardcodedMasterFX" ID="modularSlot6" Bypassed="0" Network="slot"
                    Module="0.0" ODMode="0.0" ODDrive="5.0" ODTone="0.0" ODFoldAmount="2.0"
@@ -2129,7 +2548,15 @@
                    ChorusDepth="0.5" ChorusFeedback="0.3799999952316284" ChorusDelayTime="10.0"
                    ChorusTone="5900.0" RingmodMode="0.0" RingmodMix="0.4300000071525574"
                    RingmodFrequency="217.0" RingmodDepth="0.5" RingmodLFORate="1.5"
-                   RingmodLFODepth="0.5" RingmodFilterFrequency="1100.0">
+                   RingmodLFODepth="0.5" RingmodFilterFrequency="1100.0" PitchShiftPitch="0.0"
+                   PitchShiftMix="1.0" PitchShiftAlgorithm="0.0" CompThreshold="-20.0"
+                   CompRatio="4.0" CompAttack="10.0" CompRelease="100.0" CompOutputGain="0.0"
+                   CompMix="1.0" MBCLowXOver="200.0" MBCHighXOver="2500.0" MBCLowThreshold="-20.0"
+                   MBCLowRatio="3.0" MBCLowGain="0.0" MBCMidThreshold="-20.0" MBCMidRatio="3.0"
+                   MBCMidGain="0.0" MBCHighThreshold="-20.0" MBCHighRatio="3.0"
+                   MBCHighGain="0.0" MBCAttack="15.0" MBCRelease="100.0" MBCMix="1.0"
+                   ClipperGain="0.0" ClipperCeiling="-0.1000000014901161" ClipperOutputGain="0.0"
+                   ClipperMix="1.0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
           <AudioFiles>
@@ -2138,6 +2565,14 @@
             <AudioFile EmbeddedData="{PROJECT_FOLDER}Cabs/2off-pres8.wav" MinValue="0"
                        MaxValue="1839"/>
           </AudioFiles>
+        </Processor>
+        <Processor Type="CurveEq" ID="slotEQ6" Bypassed="1" NumFilters="4" Band0="0.0"
+                   Band1="100.0" Band2="1.0" Band3="1.0" Band4="2.0" Band5="0.0"
+                   Band6="500.0" Band7="1.0" Band8="1.0" Band9="4.0" Band10="0.0"
+                   Band11="2500.0" Band12="1.0" Band13="1.0" Band14="4.0" Band15="0.0"
+                   Band16="8000.0" Band17="1.0" Band18="1.0" Band19="3.0" FFTEnabled="0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
         <Processor Type="HardcodedMasterFX" ID="modularSlot7" Bypassed="0" Network="slot"
                    Module="0.0" ODMode="0.0" ODDrive="5.0" ODTone="0.0" ODFoldAmount="2.0"
@@ -2157,7 +2592,15 @@
                    ChorusDepth="0.5" ChorusFeedback="0.3799999952316284" ChorusDelayTime="10.0"
                    ChorusTone="5900.0" RingmodMode="0.0" RingmodMix="0.4300000071525574"
                    RingmodFrequency="217.0" RingmodDepth="0.5" RingmodLFORate="1.5"
-                   RingmodLFODepth="0.5" RingmodFilterFrequency="1100.0">
+                   RingmodLFODepth="0.5" RingmodFilterFrequency="1100.0" PitchShiftPitch="0.0"
+                   PitchShiftMix="1.0" PitchShiftAlgorithm="0.0" CompThreshold="-20.0"
+                   CompRatio="4.0" CompAttack="10.0" CompRelease="100.0" CompOutputGain="0.0"
+                   CompMix="1.0" MBCLowXOver="200.0" MBCHighXOver="2500.0" MBCLowThreshold="-20.0"
+                   MBCLowRatio="3.0" MBCLowGain="0.0" MBCMidThreshold="-20.0" MBCMidRatio="3.0"
+                   MBCMidGain="0.0" MBCHighThreshold="-20.0" MBCHighRatio="3.0"
+                   MBCHighGain="0.0" MBCAttack="15.0" MBCRelease="100.0" MBCMix="1.0"
+                   ClipperGain="0.0" ClipperCeiling="-0.1000000014901161" ClipperOutputGain="0.0"
+                   ClipperMix="1.0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
           <AudioFiles>
@@ -2166,6 +2609,14 @@
             <AudioFile EmbeddedData="{PROJECT_FOLDER}Cabs/2off-pres8.wav" MinValue="0"
                        MaxValue="1839"/>
           </AudioFiles>
+        </Processor>
+        <Processor Type="CurveEq" ID="slotEQ7" Bypassed="1" NumFilters="4" Band0="0.0"
+                   Band1="100.0" Band2="1.0" Band3="1.0" Band4="2.0" Band5="0.0"
+                   Band6="500.0" Band7="1.0" Band8="1.0" Band9="4.0" Band10="0.0"
+                   Band11="2500.0" Band12="1.0" Band13="1.0" Band14="4.0" Band15="0.0"
+                   Band16="8000.0" Band17="1.0" Band18="1.0" Band19="3.0" FFTEnabled="0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
         <Processor Type="HardcodedMasterFX" ID="modularSlot8" Bypassed="0" Network="slot"
                    Module="0.0" ODMode="0.0" ODDrive="3.400000095367432" ODTone="0.0599999763071537"
@@ -2187,7 +2638,15 @@
                    ChorusFeedback="0.3799999952316284" ChorusDelayTime="10.0" ChorusTone="5900.0"
                    RingmodMode="0.0" RingmodMix="0.429999977350235" RingmodFrequency="217.0"
                    RingmodDepth="0.5" RingmodLFORate="1.5" RingmodLFODepth="0.5"
-                   RingmodFilterFrequency="1100.0">
+                   RingmodFilterFrequency="1100.0" PitchShiftPitch="0.0" PitchShiftMix="1.0"
+                   PitchShiftAlgorithm="0.0" CompThreshold="-20.0" CompRatio="4.0"
+                   CompAttack="10.0" CompRelease="100.0" CompOutputGain="0.0" CompMix="1.0"
+                   MBCLowXOver="200.0" MBCHighXOver="2500.0" MBCLowThreshold="-20.0"
+                   MBCLowRatio="3.0" MBCLowGain="0.0" MBCMidThreshold="-20.0" MBCMidRatio="3.0"
+                   MBCMidGain="0.0" MBCHighThreshold="-20.0" MBCHighRatio="3.0"
+                   MBCHighGain="0.0" MBCAttack="15.0" MBCRelease="100.0" MBCMix="1.0"
+                   ClipperGain="0.0" ClipperCeiling="-0.1000000014901161" ClipperOutputGain="0.0"
+                   ClipperMix="1.0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
           <AudioFiles>
@@ -2196,6 +2655,14 @@
             <AudioFile EmbeddedData="{PROJECT_FOLDER}Cabs/2off-pres8.wav" MinValue="0"
                        MaxValue="1839"/>
           </AudioFiles>
+        </Processor>
+        <Processor Type="CurveEq" ID="slotEQ8" Bypassed="1" NumFilters="4" Band0="0.0"
+                   Band1="100.0" Band2="1.0" Band3="1.0" Band4="2.0" Band5="0.0"
+                   Band6="500.0" Band7="1.0" Band8="1.0" Band9="4.0" Band10="0.0"
+                   Band11="2500.0" Band12="1.0" Band13="1.0" Band14="4.0" Band15="0.0"
+                   Band16="8000.0" Band17="1.0" Band18="1.0" Band19="3.0" FFTEnabled="0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
         <Processor Type="CurveEq" ID="postEQ" Bypassed="1" NumFilters="5" Band0="-24.0"
                    Band1="2042.489990234375" Band2="8.0" Band3="1.0" Band4="4.0"
