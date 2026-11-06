@@ -1053,7 +1053,21 @@ if (isDefined(cmbIr)) {
                                 Content.getComponent("SustainModulatorsSustain"),
                                 Content.getComponent("SustainModulatorsRelease")];
  
- const var SusAHDSRModulators = Synth.getAllModulators("SusAHDSR");
+const var SusAHDSRModulators = Synth.getAllModulators("SusAHDSR");
+ 
+const var SusVelToVolModulators = Synth.getAllModulators("SusVelModulator");
+ 
+ 
+ 
+ inline function onSustainVelToVolModulatorKnobControl(component, value)
+ {
+
+
+ 	for(i = 0; i < SusVelToVolModulators.length; i++)
+ 		SusVelToVolModulators[i].setIntensity(value);
+ };
+ 
+ Content.getComponent("SustainVelToVolModulatorKnob").setControlCallback(onSustainVelToVolModulatorKnobControl);
  
  
  const var RightSusGain = Synth.getEffect("RightSusGain");
@@ -1084,6 +1098,8 @@ if (isDefined(cmbIr)) {
  for (i = 0; i < SustainAHDSRKnobs.length; i++)
      SustainAHDSRKnobs[i].setControlCallback(onSustainAHDSRControl);
      
+  
+     
  for(i = 0; i < SustainAHDSRModulators.length; i++){
  	SustainAHDSRModulators[i].setAttribute(SampleAHDSR.AttackCurve, 0.5);
  	SustainAHDSRModulators[i].setAttribute(SampleAHDSR.DecayCurve, 0.5);
@@ -1097,6 +1113,20 @@ if (isDefined(cmbIr)) {
  
  
  const var MuteAHDSRModulators = Synth.getAllModulators("MuteAHDSR");
+ 
+ const var MuteVelToVolModulators = Synth.getAllModulators("MuteVelModulator");
+  
+  
+  
+  inline function onMuteVelToVolModulatorKnobControl(component, value)
+  {
+ 
+ 
+  	for(i = 0; i < MuteVelToVolModulators.length; i++)
+  		MuteVelToVolModulators[i].setIntensity(value);
+  };
+  
+  Content.getComponent("MuteVelToVolModulatorKnob").setControlCallback(onMuteVelToVolModulatorKnobControl);
  
  const var RightMuteGain = Synth.getEffect("RightMuteGain");
  const var LeftMuteGain = Synth.getEffect("LeftMuteGain");
@@ -1141,6 +1171,20 @@ if (isDefined(cmbIr)) {
  	RightHarmonicGain.setAttribute(RightHarmonicGain.Gain, value);
  	LeftHarmonicGain.setAttribute(LeftHarmonicGain.Gain, value);
  };
+ 
+ const var HarmonicVelToVolModulators = Synth.getAllModulators("HarmonicVelModulator");
+  
+  
+  
+  inline function onHarmonicVelToVolModulatorKnobControl(component, value)
+  {
+ 
+ 
+  	for(i = 0; i < HarmonicVelToVolModulators.length; i++)
+  		HarmonicVelToVolModulators[i].setIntensity(value);
+  };
+  
+  Content.getComponent("HarmonicVelToVolModulatorKnob").setControlCallback(onHarmonicVelToVolModulatorKnobControl);
  
  Content.getComponent("HarmonicModulatorsVolume").setControlCallback(onHarmonicModulatorsVolumeControl);
  
@@ -1188,6 +1232,19 @@ inline function onTremoloModulatorsVolumeControl(component, value)
 
 Content.getComponent("TremoloModulatorsVolume").setControlCallback(onTremoloModulatorsVolumeControl);
   
+const var TremoloVelToVolModulators = Synth.getAllModulators("TremoloVelModulator");
+ 
+ 
+ 
+ inline function onTremoloVelToVolModulatorKnobControl(component, value)
+ {
+
+
+ 	for(i = 0; i < TremoloVelToVolModulators.length; i++)
+ 		TremoloVelToVolModulators[i].setIntensity(value);
+ };
+ 
+ Content.getComponent("TremoloVelToVolModulatorKnob").setControlCallback(onTremoloVelToVolModulatorKnobControl);  
   
   inline function onTremoloAHDSRControl(component, value)
   {
@@ -1284,6 +1341,20 @@ Content.getComponent("TremoloModulatorsVolume").setControlCallback(onTremoloModu
  	SFXAHDSRModulators[i].setAttribute(SampleAHDSR.DecayCurve, 0.5);
  }
  
+ 
+ const var SFXVelToVolModulators = Synth.getAllModulators("SFXVelModulator");
+  
+  
+  
+  inline function onSFXVelToVolModulatorKnobControl(component, value)
+  {
+ 
+ 
+  	for(i = 0; i < SFXVelToVolModulators.length; i++)
+  		SFXVelToVolModulators[i].setIntensity(value);
+  };
+  
+  Content.getComponent("SFXVelToVolModulatorKnob").setControlCallback(onSFXVelToVolModulatorKnobControl);
  
 // setting up GUI to control the strumming engine
 
