@@ -9,18 +9,18 @@
         <Processor Type="ScriptProcessor" ID="Interface" Bypassed="0" NumAudioFiles="2">
           <ChildProcessors/>
           <Content>
-            <Control type="ScriptSlider" id="HandPositionFretForceKnob" value="14.0"/>
+            <Control type="ScriptSlider" id="HandPositionFretForceKnob" value="8.0"/>
             <Control type="ScriptSlider" id="StringForceKnob" value="1.0"/>
             <Control type="ScriptComboBox" id="FrettingEngineComboBox" value="1.0"/>
             <Control type="ScriptButton" id="ResetGlobalRRButton" value="0.0"/>
             <Control type="ScriptSlider" id="VibratoDepthKnob" value="0.0"/>
             <Control type="ScriptSlider" id="VibratoFreqKnob" value="8.5"/>
             <Control type="ScriptSlider" id="PitchBendRangeKnob" value="2.0"/>
-            <Control type="ScriptButton" id="DoubleTrackingBtn" value="0.0"/>
+            <Control type="ScriptButton" id="DoubleTrackingBtn" value="1.0"/>
             <Control type="ScriptButton" id="StrummingModeEnableBtn" value="0.0"/>
             <Control type="ScriptSlider" id="StrumSpeedKnob" value="127.0"/>
             <Control type="ScriptButton" id="EnableStrumSpeedWithVelBtn" value="0.0"/>
-            <Control type="ScriptSlider" id="IRMixKnob" value="0.4300000071525574"/>
+            <Control type="ScriptSlider" id="IRMixKnob" value="0.0"/>
             <Control type="ScriptSlider" id="SustainModulatorsAttack" value="4.46999979019165"/>
             <Control type="ScriptSlider" id="SustainModulatorsDecay" value="0.0"/>
             <Control type="ScriptSlider" id="SustainModulatorsSustain" value="0.0"/>
@@ -60,24 +60,33 @@
             <Control type="ScriptSlider" id="SFXVelToVolModulatorKnob" value="1.0"/>
             <Control type="ScriptButton" id="NextPageBtn" value="0.0"/>
             <Control type="ScriptButton" id="PrevPageBtn" value="0.0"/>
-            <Control type="ScriptButton" id="btnSlot0" value="0"/>
-            <Control type="ScriptComboBox" id="cmbSlot0" value="1.0"/>
+            <Control type="ScriptButton" id="btnSlot0" value="1"/>
+            <Control type="ScriptComboBox" id="cmbSlot0" value="9.0"/>
+            <Control type="ScriptButton" id="btnBypassSlot0" value="0"/>
             <Control type="ScriptButton" id="btnSlot1" value="0"/>
             <Control type="ScriptComboBox" id="cmbSlot1" value="10.0"/>
-            <Control type="ScriptButton" id="btnSlot2" value="1"/>
+            <Control type="ScriptButton" id="btnBypassSlot1" value="0"/>
+            <Control type="ScriptButton" id="btnSlot2" value="0"/>
             <Control type="ScriptComboBox" id="cmbSlot2" value="3.0"/>
+            <Control type="ScriptButton" id="btnBypassSlot2" value="0"/>
             <Control type="ScriptButton" id="btnSlot3" value="0"/>
-            <Control type="ScriptComboBox" id="cmbSlot3" value="6.0"/>
+            <Control type="ScriptComboBox" id="cmbSlot3" value="5.0"/>
+            <Control type="ScriptButton" id="btnBypassSlot3" value="0"/>
             <Control type="ScriptButton" id="btnSlot4" value="0"/>
-            <Control type="ScriptComboBox" id="cmbSlot4" value="5.0"/>
+            <Control type="ScriptComboBox" id="cmbSlot4" value="1.0"/>
+            <Control type="ScriptButton" id="btnBypassSlot4" value="0"/>
             <Control type="ScriptButton" id="btnSlot5" value="0"/>
             <Control type="ScriptComboBox" id="cmbSlot5" value="1.0"/>
+            <Control type="ScriptButton" id="btnBypassSlot5" value="0"/>
             <Control type="ScriptButton" id="btnSlot6" value="0"/>
             <Control type="ScriptComboBox" id="cmbSlot6" value="1.0"/>
+            <Control type="ScriptButton" id="btnBypassSlot6" value="0"/>
             <Control type="ScriptButton" id="btnSlot7" value="0"/>
             <Control type="ScriptComboBox" id="cmbSlot7" value="1.0"/>
+            <Control type="ScriptButton" id="btnBypassSlot7" value="0"/>
             <Control type="ScriptButton" id="btnSlot8" value="0"/>
             <Control type="ScriptComboBox" id="cmbSlot8" value="1.0"/>
+            <Control type="ScriptButton" id="btnBypassSlot8" value="0"/>
             <Control type="ScriptSlider" id="knbOverdriveMode" value="1.0"/>
             <Control type="ScriptSlider" id="knbOverdriveDrive" value="0.1000000014901161"/>
             <Control type="ScriptSlider" id="knbOverdriveTone" value="0.7899999618530273"/>
@@ -88,12 +97,12 @@
             <Control type="ScriptSlider" id="knbOverdriveMix" value="0.3300000131130219"/>
             <Control type="ScriptSlider" id="knbOverdriveOutputGain" value="3.576278686523438e-7"/>
             <Control type="ScriptSlider" id="knbAmpMode" value="2.0"/>
-            <Control type="ScriptSlider" id="knbAmpInput" value="26.60000038146973"/>
-            <Control type="ScriptSlider" id="knbAmpLow" value="4.199999809265137"/>
-            <Control type="ScriptSlider" id="knbAmpMid" value="-1.700000047683716"/>
-            <Control type="ScriptSlider" id="knbAmpHigh" value="3.700000047683716"/>
+            <Control type="ScriptSlider" id="knbAmpInput" value="11.2"/>
+            <Control type="ScriptSlider" id="knbAmpLow" value="4.2"/>
+            <Control type="ScriptSlider" id="knbAmpMid" value="-1.7"/>
+            <Control type="ScriptSlider" id="knbAmpHigh" value="3.7"/>
             <Control type="ScriptSlider" id="knbAmpPresence" value="0.0"/>
-            <Control type="ScriptSlider" id="knbAmpOutput" value="-12.10000038146973"/>
+            <Control type="ScriptSlider" id="knbAmpOutput" value="5.364418029785156e-7"/>
             <Control type="ScriptComboBox" id="cmbAmpCleanToneStackMode" value="2.0"/>
             <Control type="ScriptComboBox" id="cmbAmpDirtyToneStackMode" value="2.0"/>
             <Control type="ScriptComboBox" id="cmbAmpDirtyDistortionMode" value="1.0"/>
@@ -112,19 +121,19 @@
             <Control type="ScriptSlider" id="knbCabBDelay" value="0.0"/>
             <Control type="ScriptButton" id="btnBrowseCabA" value="1.0"/>
             <Control type="ScriptButton" id="btnBrowseCabB" value="1.0"/>
-            <Control type="ScriptSlider" id="knbReverbMode" value="3.0"/>
+            <Control type="ScriptSlider" id="knbReverbMode" value="0.0"/>
             <Control type="ScriptSlider" id="knbReverbMix" value="0.28"/>
             <Control type="ScriptSlider" id="knbReverbPreDelay" value="0.0"/>
-            <Control type="ScriptSlider" id="knbReverbRoomSize" value="1.0"/>
+            <Control type="ScriptSlider" id="knbReverbRoomSize" value="0.3799999952316284"/>
             <Control type="ScriptSlider" id="knbReverbDecay" value="0.66"/>
             <Control type="ScriptSlider" id="knbReverbDampingFrequency" value="20000.0"/>
             <Control type="ScriptSlider" id="knbReverbChorusDepth" value="0.0"/>
             <Control type="ScriptSlider" id="knbDelayMode" value="0.0"/>
-            <Control type="ScriptSlider" id="knbDelayMix" value="0.43"/>
-            <Control type="ScriptSlider" id="knbDelayDelayTime" value="0.66"/>
-            <Control type="ScriptSlider" id="knbDelayFeedback" value="0.5"/>
+            <Control type="ScriptSlider" id="knbDelayMix" value="0.25"/>
+            <Control type="ScriptSlider" id="knbDelayDelayTime" value="0.6600000262260437"/>
+            <Control type="ScriptSlider" id="knbDelayFeedback" value="0.2899999916553497"/>
             <Control type="ScriptSlider" id="knbDelayDamping" value="5100.0"/>
-            <Control type="ScriptSlider" id="knbDelayModulation" value="0.3"/>
+            <Control type="ScriptSlider" id="knbDelayModulation" value="0.300000011920929"/>
             <Control type="ScriptSlider" id="knbDelayStereoWidth" value="0.5"/>
             <Control type="ScriptSlider" id="knbChorusMix" value="0.5"/>
             <Control type="ScriptSlider" id="knbChorusVoices" value="2.0"/>
@@ -140,14 +149,14 @@
             <Control type="ScriptSlider" id="knbRingmodLFORate" value="1.5"/>
             <Control type="ScriptSlider" id="knbRingmodLFODepth" value="0.5"/>
             <Control type="ScriptSlider" id="knbRingmodFilterFrequency" value="1100.0"/>
-            <Control type="ScriptSlider" id="knbPitchShiftPitch" value="0.0"/>
-            <Control type="ScriptSlider" id="knbPitchShiftMix" value="1.0"/>
-            <Control type="ScriptSlider" id="knbPitchShiftAlgorithm" value="0.0"/>
+            <Control type="ScriptSlider" id="knbPitchShiftPitch" value="-12.0"/>
+            <Control type="ScriptSlider" id="knbPitchShiftMix" value="0.3400000035762787"/>
+            <Control type="ScriptSlider" id="knbPitchShiftAlgorithm" value="1.0"/>
             <Control type="ScriptSlider" id="knbCompThreshold" value="-18.0"/>
             <Control type="ScriptSlider" id="knbCompRatio" value="4.0"/>
             <Control type="ScriptSlider" id="knbCompAttack" value="20.0"/>
             <Control type="ScriptSlider" id="knbCompRelease" value="100.0"/>
-            <Control type="ScriptSlider" id="knbCompOutput" value="5.0"/>
+            <Control type="ScriptSlider" id="knbCompOutput" value="0.0"/>
             <Control type="ScriptSlider" id="knbCompMix" value="1.0"/>
             <Control type="ScriptSlider" id="knbMBCLowXOver" value="200.0"/>
             <Control type="ScriptSlider" id="knbMBCHighXOver" value="2500.0"/>
@@ -169,17 +178,18 @@
             <Control type="ScriptSlider" id="knbClipperMix" value="1.0"/>
             <Control type="ScriptButton" id="btnSaveFXPreset" value="0.0"/>
             <Control type="ScriptButton" id="btnLoadFXPreset" value="0.0"/>
+            <Control type="ScriptButton" id="btnDelayComp" value="1"/>
             <Control type="ScriptButton" id="btnPreEQ" value="0"/>
-            <Control type="ScriptButton" id="btnBypassPreEQ" value="0.0"/>
+            <Control type="ScriptButton" id="btnBypassPreEQ" value="1.0"/>
             <Control type="ScriptButton" id="btnPostEQ" value="0"/>
-            <Control type="ScriptButton" id="btnBypassPostEQ" value="0.0"/>
+            <Control type="ScriptButton" id="btnBypassPostEQ" value="1.0"/>
             <Control type="ScriptSlider" id="knbGateThreshold" value="-24.0"/>
             <Control type="ScriptSlider" id="knbGateAttack" value="1.0"/>
             <Control type="ScriptSlider" id="knbGateRelease" value="40.0"/>
             <Control type="ScriptSlider" id="knbTranspose" value="0.0"/>
             <Control type="ScriptSlider" id="knbOctave" value="0.0"/>
             <Control type="ScriptSlider" id="knbChugStrength" value="0.0"/>
-            <Control type="ScriptSlider" id="knbPickStrength" value="0.0"/>
+            <Control type="ScriptSlider" id="knbPickStrength" value="0.9000000357627869"/>
             <Control type="ScriptSlider" id="GuitarMorphKnob" value="1.0"/>
             <Control type="ScriptComboBox" id="cmbIr" value="1.0"/>
             <Control type="ScriptButton" id="ShowPlayingModeButton" value="0"/>
@@ -573,10 +583,10 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret14Marker" x="559" y="18" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret15Marker" x="576" y="18" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret16Marker" x="592" y="17" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -652,7 +662,7 @@
                                height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret13Marker" x="541" y="16" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret14Marker" x="558" y="16" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -816,16 +826,16 @@
                                height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String1Fret13Marker" x="539" y="12" width="11"
-                               height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String1Fret14Marker" x="556" y="12" width="11"
                                height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String1Fret15Marker" x="573" y="11" width="11"
-                               height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String1Fret16Marker" x="589" y="11" width="11"
-                               height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String1Fret17Marker" x="604" y="11" width="11"
                                height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -866,22 +876,22 @@
                 <Component type="ScriptPanel" id="FretBorderPanel" x="210" y="250" itemColour="0"
                            itemColour2="0" textColour="16777215" bgColour="16777215" width="500"
                            parentComponent="PlayingModeBG">
-                  <Component type="ScriptImage" id="FretBorderLow" x="302" y="25" parentComponent="FretBorderPanel"
+                  <Component type="ScriptImage" id="FretBorderLow" x="160" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder.png" scale="0.25"
                              height="15" width="10" text="FretBorderLowForced"/>
-                  <Component type="ScriptImage" id="FretBorderLowForced" x="302" y="25" parentComponent="FretBorderPanel"
+                  <Component type="ScriptImage" id="FretBorderLowForced" x="160" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder_Forced.png"
                              scale="0.25" height="15" width="10"/>
-                  <Component type="ScriptImage" id="FretBorderHigh" x="387" y="25" parentComponent="FretBorderPanel"
+                  <Component type="ScriptImage" id="FretBorderHigh" x="282" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder.png" scale="0.25"
                              height="15" width="10" text="FretBorderLowForced"/>
-                  <Component type="ScriptImage" id="FretBorderHighForced" x="387" y="25" parentComponent="FretBorderPanel"
+                  <Component type="ScriptImage" id="FretBorderHighForced" x="282" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder_Forced.png"
                              scale="0.25" height="15" width="10"/>
-                  <Component type="ScriptImage" id="FretBorderCenter" x="344" y="23" parentComponent="FretBorderPanel"
+                  <Component type="ScriptImage" id="FretBorderCenter" x="221" y="23" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandCenter.png" height="15"
                              width="15" text="FretBorderLowForced" scale="0.4000000059604645"/>
-                  <Component type="ScriptImage" id="FretBorderCenterForced" x="344" y="23"
+                  <Component type="ScriptImage" id="FretBorderCenterForced" x="221" y="23"
                              parentComponent="FretBorderPanel" fileName="{PROJECT_FOLDER}PlayingMode_HandCenter_Forced.png"
                              height="15" width="15" text="FretBorderLowForced" scale="0.4000000059604645"/>
                   <Component type="ScriptImage" id="FretBorderLowForcedRef" x="496" y="25"
@@ -1018,7 +1028,7 @@
                 <Component type="ScriptImage" id="NerdDetails_BG" x="3" y="3" width="597"
                            height="100" parentComponent="DebugPanel" fileName="{PROJECT_FOLDER}PlayingMode_NerdDetails_BG.png"/>
                 <Component type="ScriptLabel" id="handPositionFretLabel" x="388" y="9" width="39"
-                           fontSize="20.0" height="13" text="12.0" parentComponent="DebugPanel"
+                           fontSize="20.0" height="13" text="6.0" parentComponent="DebugPanel"
                            textColour="4278190080"/>
                 <Component type="ScriptLabel" id="String1RRLabel" x="498" y="50" width="100"
                            height="21" parentComponent="DebugPanel" text="-1" textColour="4278190080"
@@ -1279,53 +1289,71 @@
               </Component>
               <Component type="ScriptImage" id="FXRackBG" x="0" y="-60" width="1020" height="600"
                          fileName="{PROJECT_FOLDER}Empty_BG.png" scale="0.699999988079071">
-                <Component type="ScriptPanel" id="pnlModularNav" x="20" y="352" width="960"
-                           height="52" itemColour="0" itemColour2="0" parentComponent="FXRackBG">
-                  <Component type="ScriptButton" id="btnSlot0" x="3" y="2" width="98" height="24"
-                             text="1: Empty" parentComponent="pnlModularNav"/>
-                  <Component type="ScriptComboBox" id="cmbSlot0" x="3" y="27" width="98" height="22"
+                <Component type="ScriptPanel" id="pnlModularNav" x="20" y="348" width="960"
+                           height="74" itemColour="0" itemColour2="0" parentComponent="FXRackBG">
+                  <Component type="ScriptButton" id="btnSlot0" x="3" y="2" width="98" height="22"
+                             text="1: Pitch Shift" parentComponent="pnlModularNav"/>
+                  <Component type="ScriptComboBox" id="cmbSlot0" x="3" y="25" width="98" height="22"
                              items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod&#10;Pitch Shift&#10;Compressor&#10;Multiband&#10;EQ&#10;Clipper"
                              max="13" parentComponent="pnlModularNav"/>
-                  <Component type="ScriptButton" id="btnSlot1" x="110" y="2" width="98" height="24"
+                  <Component type="ScriptButton" id="btnBypassSlot0" x="3" y="49" width="98"
+                             height="20" text="Active" parentComponent="pnlModularNav" tooltip="Bypass Slot 1"/>
+                  <Component type="ScriptButton" id="btnSlot1" x="110" y="2" width="98" height="22"
                              text="2: Compressor" parentComponent="pnlModularNav"/>
-                  <Component type="ScriptComboBox" id="cmbSlot1" x="110" y="27" width="98"
+                  <Component type="ScriptComboBox" id="cmbSlot1" x="110" y="25" width="98"
                              height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod&#10;Pitch Shift&#10;Compressor&#10;Multiband&#10;EQ&#10;Clipper"
                              max="13" parentComponent="pnlModularNav"/>
-                  <Component type="ScriptButton" id="btnSlot2" x="217" y="2" width="98" height="24"
+                  <Component type="ScriptButton" id="btnBypassSlot1" x="110" y="49" width="98"
+                             height="20" text="Active" parentComponent="pnlModularNav" tooltip="Bypass Slot 2"/>
+                  <Component type="ScriptButton" id="btnSlot2" x="217" y="2" width="98" height="22"
                              text="3: Amp" parentComponent="pnlModularNav" defaultValue="1.0"/>
-                  <Component type="ScriptComboBox" id="cmbSlot2" x="217" y="27" width="98"
+                  <Component type="ScriptComboBox" id="cmbSlot2" x="217" y="25" width="98"
                              height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod&#10;Pitch Shift&#10;Compressor&#10;Multiband&#10;EQ&#10;Clipper"
                              max="13" parentComponent="pnlModularNav"/>
-                  <Component type="ScriptButton" id="btnSlot3" x="324" y="2" width="98" height="24"
-                             text="4: Delay" parentComponent="pnlModularNav"/>
-                  <Component type="ScriptComboBox" id="cmbSlot3" x="324" y="27" width="98"
+                  <Component type="ScriptButton" id="btnBypassSlot2" x="217" y="49" width="98"
+                             height="20" text="Active" parentComponent="pnlModularNav" tooltip="Bypass Slot 3"/>
+                  <Component type="ScriptButton" id="btnSlot3" x="324" y="2" width="98" height="22"
+                             text="4: Reverb" parentComponent="pnlModularNav"/>
+                  <Component type="ScriptComboBox" id="cmbSlot3" x="324" y="25" width="98"
                              height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod&#10;Pitch Shift&#10;Compressor&#10;Multiband&#10;EQ&#10;Clipper"
                              max="13" parentComponent="pnlModularNav"/>
-                  <Component type="ScriptButton" id="btnSlot4" x="431" y="2" width="98" height="24"
-                             text="5: Reverb" parentComponent="pnlModularNav"/>
-                  <Component type="ScriptComboBox" id="cmbSlot4" x="431" y="27" width="98"
+                  <Component type="ScriptButton" id="btnBypassSlot3" x="324" y="49" width="98"
+                             height="20" text="Active" parentComponent="pnlModularNav" tooltip="Bypass Slot 4"/>
+                  <Component type="ScriptButton" id="btnSlot4" x="431" y="2" width="98" height="22"
+                             text="5: Empty" parentComponent="pnlModularNav"/>
+                  <Component type="ScriptComboBox" id="cmbSlot4" x="431" y="25" width="98"
                              height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod&#10;Pitch Shift&#10;Compressor&#10;Multiband&#10;EQ&#10;Clipper"
                              max="13" parentComponent="pnlModularNav"/>
-                  <Component type="ScriptButton" id="btnSlot5" x="538" y="2" width="98" height="24"
+                  <Component type="ScriptButton" id="btnBypassSlot4" x="431" y="49" width="98"
+                             height="20" text="Active" parentComponent="pnlModularNav" tooltip="Bypass Slot 5"/>
+                  <Component type="ScriptButton" id="btnSlot5" x="538" y="2" width="98" height="22"
                              text="6: Empty" parentComponent="pnlModularNav"/>
-                  <Component type="ScriptComboBox" id="cmbSlot5" x="538" y="27" width="98"
+                  <Component type="ScriptComboBox" id="cmbSlot5" x="538" y="25" width="98"
                              height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod&#10;Pitch Shift&#10;Compressor&#10;Multiband&#10;EQ&#10;Clipper"
                              max="13" parentComponent="pnlModularNav"/>
-                  <Component type="ScriptButton" id="btnSlot6" x="645" y="2" width="98" height="24"
+                  <Component type="ScriptButton" id="btnBypassSlot5" x="538" y="49" width="98"
+                             height="20" text="Active" parentComponent="pnlModularNav" tooltip="Bypass Slot 6"/>
+                  <Component type="ScriptButton" id="btnSlot6" x="645" y="2" width="98" height="22"
                              text="7: Empty" parentComponent="pnlModularNav"/>
-                  <Component type="ScriptComboBox" id="cmbSlot6" x="645" y="27" width="98"
+                  <Component type="ScriptComboBox" id="cmbSlot6" x="645" y="25" width="98"
                              height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod&#10;Pitch Shift&#10;Compressor&#10;Multiband&#10;EQ&#10;Clipper"
                              max="13" parentComponent="pnlModularNav"/>
-                  <Component type="ScriptButton" id="btnSlot7" x="752" y="2" width="98" height="24"
+                  <Component type="ScriptButton" id="btnBypassSlot6" x="645" y="49" width="98"
+                             height="20" text="Active" parentComponent="pnlModularNav" tooltip="Bypass Slot 7"/>
+                  <Component type="ScriptButton" id="btnSlot7" x="752" y="2" width="98" height="22"
                              text="8: Empty" parentComponent="pnlModularNav"/>
-                  <Component type="ScriptComboBox" id="cmbSlot7" x="752" y="27" width="98"
+                  <Component type="ScriptComboBox" id="cmbSlot7" x="752" y="25" width="98"
                              height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod&#10;Pitch Shift&#10;Compressor&#10;Multiband&#10;EQ&#10;Clipper"
                              max="13" parentComponent="pnlModularNav"/>
-                  <Component type="ScriptButton" id="btnSlot8" x="859" y="2" width="98" height="24"
+                  <Component type="ScriptButton" id="btnBypassSlot7" x="752" y="49" width="98"
+                             height="20" text="Active" parentComponent="pnlModularNav" tooltip="Bypass Slot 8"/>
+                  <Component type="ScriptButton" id="btnSlot8" x="859" y="2" width="98" height="22"
                              text="9: Empty" parentComponent="pnlModularNav"/>
-                  <Component type="ScriptComboBox" id="cmbSlot8" x="859" y="27" width="98"
+                  <Component type="ScriptComboBox" id="cmbSlot8" x="859" y="25" width="98"
                              height="22" items="Empty&#10;Overdrive&#10;Amp&#10;Cab&#10;Reverb&#10;Delay&#10;Chorus&#10;Ringmod&#10;Pitch Shift&#10;Compressor&#10;Multiband&#10;EQ&#10;Clipper"
                              max="13" parentComponent="pnlModularNav"/>
+                  <Component type="ScriptButton" id="btnBypassSlot8" x="859" y="49" width="98"
+                             height="20" text="Active" parentComponent="pnlModularNav" tooltip="Bypass Slot 9"/>
                 </Component>
                 <Component type="ScriptPanel" id="pnlModularEmpty" x="20" y="60" width="960"
                            height="170" itemColour="0" itemColour2="0" parentComponent="FXRackBG"
@@ -1399,7 +1427,7 @@
                 </Component>
                 <Component type="ScriptPanel" id="pnlModularB" x="20" y="60" width="960"
                            height="170" itemColour="0" itemColour2="0" parentComponent="FXRackBG"
-                           textColour="4278190080">
+                           textColour="4278190080" visible="0">
                   <Component type="ScriptSlider" id="knbAmpMode" parentComponent="pnlModularB"
                              x="15" y="10" width="96" height="60" stepSize="1.0" defaultValue="1.0"
                              max="2.0">
@@ -1473,7 +1501,7 @@
                   <Component type="ScriptButton" id="btnBrowseNAM" parentComponent="pnlModularB"
                              x="15" y="85" width="96" height="30" text="Load NAM" tooltip="Browse and load a Neural Amp Modeler (.nam / .json) model"/>
                   <Component type="ScriptLabel" id="lblNAMName" parentComponent="pnlModularB"
-                             x="15" y="118" width="96" height="24" text="SinMix Soldano SLO100.nam"
+                             x="15" y="118" width="96" height="24" text="Revvolutionary.nam"
                              editable="0" fontStyle="Italic" textColour="4278190080"/>
                   <Component type="ScriptSlider" id="knbAmpSlim" parentComponent="pnlModularB"
                              x="360" y="85" width="96" height="60" stepSize="0.009999999776482582"
@@ -1771,11 +1799,10 @@
                   </Component>
                 </Component>
                 <Component type="ScriptPanel" id="pnlModularPitchShift" x="20" y="60" width="960"
-                           height="170" itemColour="0" itemColour2="0" parentComponent="FXRackBG"
-                           visible="0">
+                           height="170" itemColour="0" itemColour2="0" parentComponent="FXRackBG">
                   <Component type="ScriptSlider" id="knbPitchShiftPitch" parentComponent="pnlModularPitchShift"
                              x="40" y="15" width="110" height="65" min="-24.0" max="24.0"
-                             stepSize="1.0" suffix=" st">
+                             stepSize="1.0" suffix=" st" showValuePopup="Below">
                     <Component type="ScriptLabel" id="lbl_knbPitchShiftPitch" x="0" y="38" width="110"
                                height="20" text="Pitch" editable="0" fontStyle="Bold" parentComponent="knbPitchShiftPitch"
                                textColour="4278190080"/>
@@ -2147,6 +2174,12 @@
                 <Component type="ScriptButton" id="btnLoadFXPreset" x="75" y="445" width="50"
                            height="26" text="Load FX" tooltip="Load an FX chain preset file"
                            parentComponent="FXRackBG" isMomentary="1"/>
+                <Component type="ScriptButton" id="btnDelayComp" x="132" y="445" width="96"
+                           height="26" text="PDC: Playback" tooltip="Delay Compensation Mode: Click to toggle between Playback (DAW Grid Alignment) and Live (0ms Low Latency)"
+                           parentComponent="FXRackBG"/>
+                <Component type="ScriptLabel" id="lblDelayCompStatus" x="232" y="445" width="70"
+                           height="26" text="31 ms" parentComponent="FXRackBG" editable="0"
+                           fontStyle="Bold" textColour="4288256409"/>
                 <Component type="ScriptButton" id="btnPreEQ" x="20" y="342" width="95" height="22"
                            text="Pre EQ" tooltip="View Pre EQ" parentComponent="FXRackBG"/>
                 <Component type="ScriptButton" id="btnBypassPreEQ" x="118" y="342" width="28"
@@ -2246,10 +2279,10 @@
     </Processor>
     <Processor Type="EffectChain" ID="FX" Bypassed="0">
       <ChildProcessors>
-        <Processor Type="Convolution" ID="ConvolutionReverb1" Bypassed="0" DryGain="-10.03937721252441"
-                   WetGain="-5.965089797973633" Latency="0.0" ImpulseLength="1.0"
-                   ProcessInput="1.0" UseBackgroundThread="0.0" Predelay="0.0" HiCut="20000.0"
-                   Damping="0.0" FFTType="0.0" FileName="{PROJECT_FOLDER}AggressiveIRActual2.wav"
+        <Processor Type="Convolution" ID="ConvolutionReverb1" Bypassed="0" DryGain="-6.0"
+                   WetGain="-100.0" Latency="0.0" ImpulseLength="1.0" ProcessInput="1.0"
+                   UseBackgroundThread="0.0" Predelay="0.0" HiCut="20000.0" Damping="0.0"
+                   FFTType="0.0" FileName="{PROJECT_FOLDER}AggressiveIRActual2.wav"
                    min="0" max="8192" loopStart="0" loopEnd="8192">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
@@ -2267,13 +2300,13 @@
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
-        <Processor Type="HardcodedMasterFX" ID="transpose" Bypassed="0" Network="transpose"
+        <Processor Type="HardcodedMasterFX" ID="transpose" Bypassed="1" Network="transpose"
                    FreqRatio="1.0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
         <Processor Type="HardcodedMasterFX" ID="pick" Bypassed="0" Network="pick"
-                   Strength="0.0">
+                   Strength="0.9000000357627869">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
@@ -2287,39 +2320,40 @@
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
-        <Processor Type="CurveEq" ID="preEQ" Bypassed="1" NumFilters="2" Band0="-12.16438293457031"
+        <Processor Type="CurveEq" ID="preEQ" Bypassed="0" NumFilters="3" Band0="-12.16438293457031"
                    Band1="102.6966705322266" Band2="1.50659191608429" Band3="1.0"
                    Band4="4.0" Band5="-24.0" Band6="98.22505187988281" Band7="3.637343406677246"
-                   Band8="1.0" Band9="1.0" FFTEnabled="0">
+                   Band8="1.0" Band9="1.0" Band10="8.219178199768066" Band11="7427.58251953125"
+                   Band12="0.9224032759666443" Band13="1.0" Band14="4.0" FFTEnabled="1">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
         <Processor Type="HardcodedMasterFX" ID="modularSlot0" Bypassed="0" Network="slot"
-                   Module="0.0" ODMode="1.0" ODDrive="0.1000000014901161" ODTone="0.7899999618530273"
+                   Module="8.0" ODMode="1.0" ODDrive="0.1000000014901161" ODTone="0.7899999618530273"
                    ODFoldAmount="1.0" ODBits="8.0" ODSRReduction="16.0" ODCircuitBend="0.0"
                    ODMix="0.3300000131130219" ODOutputGain="3.576278686523438e-7"
-                   ODMono="1.0" AmpMode="2.0" AmpInputGain="-17.19999885559082"
-                   AmpLow="1.700000166893005" AmpMid="-3.699999809265137" AmpHigh="1.100000143051147"
-                   AmpPresence="0.0" AmpOutputGain="-6.09999942779541" AmpSlim="0.0"
-                   AmpCleanToneStackMode="1.0" AmpDirtyToneStackMode="1.0" AmpDistortionMode="0.0"
-                   AmpMono="1.0" CabMix="0.5399999618530273" CabAGain="0.0" CabAPan="0.0"
-                   CabAAxis="0.0" CabADistance="20000.0" CabADelay="0.0" CabBGain="1.490116119384766e-6"
+                   ODMono="0.0" AmpMode="2.0" AmpInputGain="11.19999980926514" AmpLow="4.0"
+                   AmpMid="-1.699999809265137" AmpHigh="0.9000002145767212" AmpPresence="1.800000190734863"
+                   AmpOutputGain="5.364418029785156e-7" AmpSlim="1.0" AmpCleanToneStackMode="1.0"
+                   AmpDirtyToneStackMode="1.0" AmpDistortionMode="0.0" AmpMono="0.0"
+                   CabMix="0.5399999618530273" CabAGain="0.0" CabAPan="0.0" CabAAxis="0.0"
+                   CabADistance="20000.0" CabADelay="0.0" CabBGain="1.490116119384766e-6"
                    CabBPan="0.0" CabBAxis="0.0" CabBDistance="6000.0" CabBDelay="0.0"
-                   CabDesignerBypass="0.0" ReverbMode="4.0" ReverbMix="0.4099999964237213"
-                   ReverbPreDelay="0.03500000014901161" ReverbRoomSize="1.0" ReverbDecay="0.6600000262260437"
-                   ReverbDampingFrequency="20000.0" ReverbChorusDepth="0.3499999940395355"
-                   DelayMode="2.0" DelayMix="0.4300000071525574" DelayTime="0.6600000262260437"
-                   DelayFeedback="0.5" DelayDamping="5100.0" DelayModulation="0.300000011920929"
-                   DelayStereoWidth="0.5" ChorusMix="0.5" ChorusVoices="2.0" ChorusRate="2.0"
-                   ChorusDepth="0.5" ChorusFeedback="0.3799999952316284" ChorusDelayTime="10.0"
-                   ChorusTone="5900.0" RingmodMode="0.0" RingmodMix="0.4300000071525574"
-                   RingmodFrequency="217.0" RingmodDepth="0.5" RingmodLFORate="1.5"
-                   RingmodLFODepth="0.5" RingmodFilterFrequency="1100.0" PitchShiftPitch="0.0"
-                   PitchShiftMix="1.0" PitchShiftAlgorithm="0.0" CompThreshold="-25.0"
-                   CompRatio="12.0" CompAttack="18.10000038146973" CompRelease="100.0"
-                   CompOutputGain="8.5" CompMix="1.0" MBCLowXOver="200.0" MBCHighXOver="2500.0"
-                   MBCLowThreshold="-18.0" MBCLowRatio="3.0" MBCLowGain="0.0" MBCMidThreshold="-18.0"
-                   MBCMidRatio="3.0" MBCMidGain="0.0" MBCHighThreshold="-18.0" MBCHighRatio="3.0"
+                   CabDesignerBypass="0.0" ReverbMode="0.0" ReverbMix="0.1499999910593033"
+                   ReverbPreDelay="0.0" ReverbRoomSize="0.8199999928474426" ReverbDecay="0.6600000262260437"
+                   ReverbDampingFrequency="20000.0" ReverbChorusDepth="0.0" DelayMode="0.0"
+                   DelayMix="0.25" DelayTime="0.6600000262260437" DelayFeedback="0.2899999916553497"
+                   DelayDamping="5100.0" DelayModulation="0.300000011920929" DelayStereoWidth="0.5"
+                   ChorusMix="0.5" ChorusVoices="2.0" ChorusRate="2.0" ChorusDepth="0.5"
+                   ChorusFeedback="0.3799999952316284" ChorusDelayTime="10.0" ChorusTone="5900.0"
+                   RingmodMode="0.0" RingmodMix="0.4300000071525574" RingmodFrequency="217.0"
+                   RingmodDepth="0.5" RingmodLFORate="1.5" RingmodLFODepth="0.5"
+                   RingmodFilterFrequency="1100.0" PitchShiftPitch="-12.0" PitchShiftMix="0.3400000035762787"
+                   PitchShiftAlgorithm="1.0" CompThreshold="-18.0" CompRatio="4.0"
+                   CompAttack="20.0" CompRelease="100.0" CompOutputGain="0.0" CompMix="1.0"
+                   MBCLowXOver="200.0" MBCHighXOver="2500.0" MBCLowThreshold="-18.0"
+                   MBCLowRatio="3.0" MBCLowGain="0.0" MBCMidThreshold="-18.0" MBCMidRatio="3.0"
+                   MBCMidGain="0.0" MBCHighThreshold="-18.0" MBCHighRatio="3.0"
                    MBCHighGain="0.0" MBCAttack="20.0" MBCRelease="100.0" MBCMix="1.0"
                    ClipperGain="0.0" ClipperCeiling="0.0" ClipperOutputGain="0.0"
                    ClipperMix="1.0">
@@ -2343,11 +2377,11 @@
         <Processor Type="HardcodedMasterFX" ID="modularSlot1" Bypassed="0" Network="slot"
                    Module="9.0" ODMode="0.0" ODDrive="5.0" ODTone="0.0" ODFoldAmount="2.0"
                    ODBits="16.0" ODSRReduction="1.0" ODCircuitBend="0.0" ODMix="1.0"
-                   ODOutputGain="0.0" ODMono="1.0" AmpMode="0.0" AmpInputGain="11.19999980926514"
+                   ODOutputGain="0.0" ODMono="0.0" AmpMode="0.0" AmpInputGain="11.19999980926514"
                    AmpLow="4.199999809265137" AmpMid="-1.700000047683716" AmpHigh="3.700000047683716"
                    AmpPresence="0.0" AmpOutputGain="-12.10000038146973" AmpSlim="1.0"
                    AmpCleanToneStackMode="1.0" AmpDirtyToneStackMode="1.0" AmpDistortionMode="0.0"
-                   AmpMono="1.0" CabMix="0.0" CabAGain="0.0" CabAPan="0.0" CabAAxis="0.0"
+                   AmpMono="0.0" CabMix="0.0" CabAGain="0.0" CabAPan="0.0" CabAAxis="0.0"
                    CabADistance="20000.0" CabADelay="0.0" CabBGain="0.0" CabBPan="0.0"
                    CabBAxis="0.0" CabBDistance="20000.0" CabBDelay="0.0" CabDesignerBypass="0.0"
                    ReverbMode="3.0" ReverbMix="0.2800000011920929" ReverbPreDelay="0.0"
@@ -2361,7 +2395,7 @@
                    RingmodLFORate="1.5" RingmodLFODepth="0.5" RingmodFilterFrequency="1100.0"
                    PitchShiftPitch="0.0" PitchShiftMix="1.0" PitchShiftAlgorithm="0.0"
                    CompThreshold="-18.0" CompRatio="4.0" CompAttack="20.0" CompRelease="100.0"
-                   CompOutputGain="5.0" CompMix="1.0" MBCLowXOver="200.0" MBCHighXOver="2500.0"
+                   CompOutputGain="0.0" CompMix="1.0" MBCLowXOver="200.0" MBCHighXOver="2500.0"
                    MBCLowThreshold="-20.0" MBCLowRatio="3.0" MBCLowGain="0.0" MBCMidThreshold="-20.0"
                    MBCMidRatio="3.0" MBCMidGain="0.0" MBCHighThreshold="-20.0" MBCHighRatio="3.0"
                    MBCHighGain="0.0" MBCAttack="15.0" MBCRelease="100.0" MBCMix="1.0"
@@ -2388,28 +2422,28 @@
                    Module="2.0" ODMode="1.0" ODDrive="0.1000000014901161" ODTone="0.7899999618530273"
                    ODFoldAmount="1.0" ODBits="8.0" ODSRReduction="16.0" ODCircuitBend="0.0"
                    ODMix="0.3300000131130219" ODOutputGain="3.576278686523438e-7"
-                   ODMono="1.0" AmpMode="2.0" AmpInputGain="26.60000038146973" AmpLow="4.199999809265137"
+                   ODMono="0.0" AmpMode="2.0" AmpInputGain="11.19999980926514" AmpLow="4.199999809265137"
                    AmpMid="-1.700000047683716" AmpHigh="3.700000047683716" AmpPresence="0.0"
-                   AmpOutputGain="-12.10000038146973" AmpSlim="1.0" AmpCleanToneStackMode="1.0"
-                   AmpDirtyToneStackMode="1.0" AmpDistortionMode="0.0" AmpMono="1.0"
+                   AmpOutputGain="5.364418029785156e-7" AmpSlim="1.0" AmpCleanToneStackMode="1.0"
+                   AmpDirtyToneStackMode="1.0" AmpDistortionMode="0.0" AmpMono="0.0"
                    CabMix="0.5399999618530273" CabAGain="0.0" CabAPan="0.0" CabAAxis="0.0"
                    CabADistance="20000.0" CabADelay="0.0" CabBGain="1.490116119384766e-6"
                    CabBPan="0.0" CabBAxis="0.0" CabBDistance="6000.0" CabBDelay="0.0"
-                   CabDesignerBypass="0.0" ReverbMode="1.0" ReverbMix="0.1799999922513962"
-                   ReverbPreDelay="0.04200000315904617" ReverbRoomSize="1.0" ReverbDecay="0.6600000262260437"
+                   CabDesignerBypass="0.0" ReverbMode="0.0" ReverbMix="0.3299999833106995"
+                   ReverbPreDelay="0.02500000037252903" ReverbRoomSize="1.0" ReverbDecay="0.6600000262260437"
                    ReverbDampingFrequency="20000.0" ReverbChorusDepth="0.0" DelayMode="0.0"
-                   DelayMix="0.4300000071525574" DelayTime="0.6600000262260437"
-                   DelayFeedback="0.5" DelayDamping="5100.0" DelayModulation="0.300000011920929"
-                   DelayStereoWidth="0.5" ChorusMix="0.5" ChorusVoices="2.0" ChorusRate="2.0"
-                   ChorusDepth="0.5" ChorusFeedback="0.3799999952316284" ChorusDelayTime="10.0"
-                   ChorusTone="5900.0" RingmodMode="0.0" RingmodMix="0.4300000071525574"
-                   RingmodFrequency="217.0" RingmodDepth="0.5" RingmodLFORate="1.5"
-                   RingmodLFODepth="0.5" RingmodFilterFrequency="1100.0" PitchShiftPitch="0.0"
-                   PitchShiftMix="1.0" PitchShiftAlgorithm="0.0" CompThreshold="-18.0"
-                   CompRatio="6.800000190734863" CompAttack="20.0" CompRelease="100.0"
-                   CompOutputGain="2.5" CompMix="1.0" MBCLowXOver="200.0" MBCHighXOver="2500.0"
-                   MBCLowThreshold="-18.0" MBCLowRatio="3.0" MBCLowGain="0.0" MBCMidThreshold="-18.0"
-                   MBCMidRatio="3.0" MBCMidGain="0.0" MBCHighThreshold="-18.0" MBCHighRatio="3.0"
+                   DelayMix="0.25" DelayTime="0.6600000262260437" DelayFeedback="0.2899999916553497"
+                   DelayDamping="5100.0" DelayModulation="0.300000011920929" DelayStereoWidth="0.5"
+                   ChorusMix="0.5" ChorusVoices="2.0" ChorusRate="2.0" ChorusDepth="0.5"
+                   ChorusFeedback="0.3799999952316284" ChorusDelayTime="10.0" ChorusTone="5900.0"
+                   RingmodMode="0.0" RingmodMix="0.4300000071525574" RingmodFrequency="217.0"
+                   RingmodDepth="0.5" RingmodLFORate="1.5" RingmodLFODepth="0.5"
+                   RingmodFilterFrequency="1100.0" PitchShiftPitch="0.0" PitchShiftMix="1.0"
+                   PitchShiftAlgorithm="0.0" CompThreshold="-18.0" CompRatio="4.0"
+                   CompAttack="20.0" CompRelease="100.0" CompOutputGain="5.0" CompMix="1.0"
+                   MBCLowXOver="200.0" MBCHighXOver="2500.0" MBCLowThreshold="-18.0"
+                   MBCLowRatio="3.0" MBCLowGain="0.0" MBCMidThreshold="-18.0" MBCMidRatio="3.0"
+                   MBCMidGain="0.0" MBCHighThreshold="-18.0" MBCHighRatio="3.0"
                    MBCHighGain="0.0" MBCAttack="20.0" MBCRelease="100.0" MBCMix="1.0"
                    ClipperGain="0.0" ClipperCeiling="0.0" ClipperOutputGain="0.0"
                    ClipperMix="1.0">
@@ -2431,29 +2465,29 @@
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
         <Processor Type="HardcodedMasterFX" ID="modularSlot3" Bypassed="0" Network="slot"
-                   Module="5.0" ODMode="1.0" ODDrive="0.1000000014901161" ODTone="0.7899999618530273"
+                   Module="4.0" ODMode="1.0" ODDrive="0.1000000014901161" ODTone="0.7899999618530273"
                    ODFoldAmount="1.0" ODBits="8.0" ODSRReduction="16.0" ODCircuitBend="0.0"
                    ODMix="0.3300000131130219" ODOutputGain="3.576278686523438e-7"
-                   ODMono="1.0" AmpMode="0.0" AmpInputGain="16.80000114440918" AmpLow="3.400000333786011"
+                   ODMono="0.0" AmpMode="0.0" AmpInputGain="16.80000114440918" AmpLow="3.400000333786011"
                    AmpMid="-1.700000047683716" AmpHigh="2.500000238418579" AmpPresence="0.0"
                    AmpOutputGain="-8.59999942779541" AmpSlim="1.0" AmpCleanToneStackMode="1.0"
-                   AmpDirtyToneStackMode="1.0" AmpDistortionMode="0.0" AmpMono="1.0"
+                   AmpDirtyToneStackMode="1.0" AmpDistortionMode="0.0" AmpMono="0.0"
                    CabMix="0.5399999618530273" CabAGain="0.0" CabAPan="0.0" CabAAxis="0.0"
                    CabADistance="20000.0" CabADelay="0.0" CabBGain="1.490116119384766e-6"
                    CabBPan="0.0" CabBAxis="0.0" CabBDistance="6000.0" CabBDelay="0.0"
-                   CabDesignerBypass="0.0" ReverbMode="4.0" ReverbMix="0.4099999964237213"
-                   ReverbPreDelay="0.03500000014901161" ReverbRoomSize="1.0" ReverbDecay="0.6600000262260437"
-                   ReverbDampingFrequency="20000.0" ReverbChorusDepth="0.3499999940395355"
-                   DelayMode="0.0" DelayMix="0.4300000071525574" DelayTime="0.4300000071525574"
-                   DelayFeedback="0.5" DelayDamping="5100.0" DelayModulation="0.300000011920929"
-                   DelayStereoWidth="0.5" ChorusMix="0.5" ChorusVoices="2.0" ChorusRate="2.0"
-                   ChorusDepth="0.5" ChorusFeedback="0.3799999952316284" ChorusDelayTime="10.0"
-                   ChorusTone="5900.0" RingmodMode="0.0" RingmodMix="0.4300000071525574"
-                   RingmodFrequency="217.0" RingmodDepth="0.5" RingmodLFORate="1.5"
-                   RingmodLFODepth="0.5" RingmodFilterFrequency="1100.0" PitchShiftPitch="0.0"
-                   PitchShiftMix="1.0" PitchShiftAlgorithm="0.0" CompThreshold="-18.0"
-                   CompRatio="4.0" CompAttack="20.0" CompRelease="100.0" CompOutputGain="0.0"
-                   CompMix="1.0" MBCLowXOver="200.0" MBCHighXOver="2500.0" MBCLowThreshold="-18.0"
+                   CabDesignerBypass="0.0" ReverbMode="0.0" ReverbMix="0.2800000011920929"
+                   ReverbPreDelay="0.0" ReverbRoomSize="0.3799999952316284" ReverbDecay="0.6600000262260437"
+                   ReverbDampingFrequency="20000.0" ReverbChorusDepth="0.0" DelayMode="0.0"
+                   DelayMix="0.25" DelayTime="0.4300000071525574" DelayFeedback="0.2899999916553497"
+                   DelayDamping="5100.0" DelayModulation="0.300000011920929" DelayStereoWidth="0.5"
+                   ChorusMix="0.5" ChorusVoices="2.0" ChorusRate="2.0" ChorusDepth="0.5"
+                   ChorusFeedback="0.3799999952316284" ChorusDelayTime="10.0" ChorusTone="5900.0"
+                   RingmodMode="0.0" RingmodMix="0.4300000071525574" RingmodFrequency="217.0"
+                   RingmodDepth="0.5" RingmodLFORate="1.5" RingmodLFODepth="0.5"
+                   RingmodFilterFrequency="1100.0" PitchShiftPitch="0.0" PitchShiftMix="1.0"
+                   PitchShiftAlgorithm="0.0" CompThreshold="-18.0" CompRatio="4.0"
+                   CompAttack="20.0" CompRelease="100.0" CompOutputGain="0.0" CompMix="1.0"
+                   MBCLowXOver="200.0" MBCHighXOver="2500.0" MBCLowThreshold="-18.0"
                    MBCLowRatio="3.0" MBCLowGain="0.0" MBCMidThreshold="-18.0" MBCMidRatio="3.0"
                    MBCMidGain="0.0" MBCHighThreshold="-18.0" MBCHighRatio="3.0"
                    MBCHighGain="0.0" MBCAttack="20.0" MBCRelease="100.0" MBCMix="1.0"
@@ -2477,18 +2511,18 @@
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
         <Processor Type="HardcodedMasterFX" ID="modularSlot4" Bypassed="0" Network="slot"
-                   Module="4.0" ODMode="1.0" ODDrive="0.1000000014901161" ODTone="0.7899999618530273"
+                   Module="0.0" ODMode="1.0" ODDrive="0.1000000014901161" ODTone="0.7899999618530273"
                    ODFoldAmount="1.0" ODBits="8.0" ODSRReduction="16.0" ODCircuitBend="0.0"
                    ODMix="0.3300000131130219" ODOutputGain="3.576278686523438e-7"
-                   ODMono="1.0" AmpMode="2.0" AmpInputGain="23.80000114440918" AmpLow="4.199999809265137"
+                   ODMono="0.0" AmpMode="2.0" AmpInputGain="23.80000114440918" AmpLow="4.199999809265137"
                    AmpMid="-1.700000047683716" AmpHigh="3.700000286102295" AmpPresence="1.788139343261719e-7"
                    AmpOutputGain="-3.799999475479126" AmpSlim="1.0" AmpCleanToneStackMode="1.0"
-                   AmpDirtyToneStackMode="1.0" AmpDistortionMode="0.0" AmpMono="1.0"
+                   AmpDirtyToneStackMode="1.0" AmpDistortionMode="0.0" AmpMono="0.0"
                    CabMix="0.5399999618530273" CabAGain="0.0" CabAPan="0.0" CabAAxis="0.0"
                    CabADistance="20000.0" CabADelay="0.0" CabBGain="1.490116119384766e-6"
                    CabBPan="0.0" CabBAxis="0.0" CabBDistance="6000.0" CabBDelay="0.0"
-                   CabDesignerBypass="0.0" ReverbMode="3.0" ReverbMix="0.2800000011920929"
-                   ReverbPreDelay="0.0" ReverbRoomSize="1.0" ReverbDecay="0.6600000262260437"
+                   CabDesignerBypass="0.0" ReverbMode="0.0" ReverbMix="0.3299999833106995"
+                   ReverbPreDelay="0.02500000037252903" ReverbRoomSize="1.0" ReverbDecay="0.6600000262260437"
                    ReverbDampingFrequency="20000.0" ReverbChorusDepth="0.0" DelayMode="0.0"
                    DelayMix="0.25" DelayTime="0.4300000071525574" DelayFeedback="0.3100000023841858"
                    DelayDamping="5100.0" DelayModulation="0.300000011920929" DelayStereoWidth="0.5"
@@ -2525,10 +2559,10 @@
         <Processor Type="HardcodedMasterFX" ID="modularSlot5" Bypassed="0" Network="slot"
                    Module="0.0" ODMode="0.0" ODDrive="5.0" ODTone="0.0" ODFoldAmount="2.0"
                    ODBits="16.0" ODSRReduction="1.0" ODCircuitBend="0.0" ODMix="1.0"
-                   ODOutputGain="0.0" ODMono="1.0" AmpMode="1.0" AmpInputGain="0.0"
+                   ODOutputGain="0.0" ODMono="0.0" AmpMode="1.0" AmpInputGain="0.0"
                    AmpLow="0.0" AmpMid="0.0" AmpHigh="0.0" AmpPresence="0.0" AmpOutputGain="0.0"
                    AmpSlim="0.0" AmpCleanToneStackMode="0.0" AmpDirtyToneStackMode="0.0"
-                   AmpDistortionMode="0.0" AmpMono="1.0" CabMix="0.0" CabAGain="0.0"
+                   AmpDistortionMode="0.0" AmpMono="0.0" CabMix="0.0" CabAGain="0.0"
                    CabAPan="0.0" CabAAxis="0.0" CabADistance="20000.0" CabADelay="0.0"
                    CabBGain="0.0" CabBPan="0.0" CabBAxis="0.0" CabBDistance="20000.0"
                    CabBDelay="0.0" CabDesignerBypass="0.0" ReverbMode="3.0" ReverbMix="0.2800000011920929"
@@ -2569,10 +2603,10 @@
         <Processor Type="HardcodedMasterFX" ID="modularSlot6" Bypassed="0" Network="slot"
                    Module="0.0" ODMode="0.0" ODDrive="5.0" ODTone="0.0" ODFoldAmount="2.0"
                    ODBits="16.0" ODSRReduction="1.0" ODCircuitBend="0.0" ODMix="1.0"
-                   ODOutputGain="0.0" ODMono="1.0" AmpMode="1.0" AmpInputGain="0.0"
+                   ODOutputGain="0.0" ODMono="0.0" AmpMode="1.0" AmpInputGain="0.0"
                    AmpLow="0.0" AmpMid="0.0" AmpHigh="0.0" AmpPresence="0.0" AmpOutputGain="0.0"
                    AmpSlim="0.0" AmpCleanToneStackMode="0.0" AmpDirtyToneStackMode="0.0"
-                   AmpDistortionMode="0.0" AmpMono="1.0" CabMix="0.0" CabAGain="0.0"
+                   AmpDistortionMode="0.0" AmpMono="0.0" CabMix="0.0" CabAGain="0.0"
                    CabAPan="0.0" CabAAxis="0.0" CabADistance="20000.0" CabADelay="0.0"
                    CabBGain="0.0" CabBPan="0.0" CabBAxis="0.0" CabBDistance="20000.0"
                    CabBDelay="0.0" CabDesignerBypass="0.0" ReverbMode="3.0" ReverbMix="0.2800000011920929"
@@ -2613,10 +2647,10 @@
         <Processor Type="HardcodedMasterFX" ID="modularSlot7" Bypassed="0" Network="slot"
                    Module="0.0" ODMode="0.0" ODDrive="5.0" ODTone="0.0" ODFoldAmount="2.0"
                    ODBits="16.0" ODSRReduction="1.0" ODCircuitBend="0.0" ODMix="1.0"
-                   ODOutputGain="0.0" ODMono="1.0" AmpMode="1.0" AmpInputGain="0.0"
+                   ODOutputGain="0.0" ODMono="0.0" AmpMode="1.0" AmpInputGain="0.0"
                    AmpLow="0.0" AmpMid="0.0" AmpHigh="0.0" AmpPresence="0.0" AmpOutputGain="0.0"
                    AmpSlim="0.0" AmpCleanToneStackMode="0.0" AmpDirtyToneStackMode="0.0"
-                   AmpDistortionMode="0.0" AmpMono="1.0" CabMix="0.0" CabAGain="0.0"
+                   AmpDistortionMode="0.0" AmpMono="0.0" CabMix="0.0" CabAGain="0.0"
                    CabAPan="0.0" CabAAxis="0.0" CabADistance="20000.0" CabADelay="0.0"
                    CabBGain="0.0" CabBPan="0.0" CabBAxis="0.0" CabBDistance="20000.0"
                    CabBDelay="0.0" CabDesignerBypass="0.0" ReverbMode="3.0" ReverbMix="0.2800000011920929"
@@ -2658,11 +2692,11 @@
                    Module="0.0" ODMode="1.0" ODDrive="0.1000000014901161" ODTone="0.7899999618530273"
                    ODFoldAmount="1.0" ODBits="8.0" ODSRReduction="16.0" ODCircuitBend="0.0"
                    ODMix="0.3300000131130219" ODOutputGain="3.576278686523438e-7"
-                   ODMono="1.0" AmpMode="2.0" AmpInputGain="-17.19999885559082"
+                   ODMono="0.0" AmpMode="2.0" AmpInputGain="-17.19999885559082"
                    AmpLow="1.700000166893005" AmpMid="-3.699999809265137" AmpHigh="1.100000143051147"
                    AmpPresence="0.0" AmpOutputGain="-6.09999942779541" AmpSlim="0.0"
                    AmpCleanToneStackMode="1.0" AmpDirtyToneStackMode="1.0" AmpDistortionMode="0.0"
-                   AmpMono="1.0" CabMix="0.5399999618530273" CabAGain="0.0" CabAPan="0.0"
+                   AmpMono="0.0" CabMix="0.5399999618530273" CabAGain="0.0" CabAPan="0.0"
                    CabAAxis="0.0" CabADistance="20000.0" CabADelay="0.0" CabBGain="1.490116119384766e-6"
                    CabBPan="0.0" CabBAxis="0.0" CabBDistance="6000.0" CabBDelay="0.0"
                    CabDesignerBypass="0.0" ReverbMode="4.0" ReverbMix="0.4099999964237213"
@@ -2700,14 +2734,15 @@
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
-        <Processor Type="CurveEq" ID="postEQ" Bypassed="1" NumFilters="5" Band0="-24.0"
-                   Band1="2042.489990234375" Band2="8.0" Band3="1.0" Band4="4.0"
-                   Band5="0.0" Band6="310.2309875488281" Band7="2.197000026702881"
-                   Band8="1.0" Band9="4.0" Band10="0.328767716884613" Band11="3670.498046875"
-                   Band12="1.920799970626831" Band13="1.0" Band14="4.0" Band15="0.9863017797470093"
-                   Band16="108.1714630126953" Band17="1.999269962310791" Band18="1.0"
-                   Band19="4.0" Band20="-24.0" Band21="66.28849792480469" Band22="1.112211227416992"
-                   Band23="1.0" Band24="2.0" FFTEnabled="0">
+        <Processor Type="CurveEq" ID="postEQ" Bypassed="0" NumFilters="5" Band0="-24.0"
+                   Band1="1982.762451171875" Band2="6.624799728393555" Band3="1.0"
+                   Band4="4.0" Band5="-6.246574401855469" Band6="307.9377136230469"
+                   Band7="2.197000026702881" Band8="1.0" Band9="4.0" Band10="4.273971557617188"
+                   Band11="7427.58251953125" Band12="0.4111338257789612" Band13="1.0"
+                   Band14="4.0" Band15="-2.958904266357422" Band16="85.30958557128906"
+                   Band17="0.300000011920929" Band18="1.0" Band19="4.0" Band20="-24.0"
+                   Band21="53.85333633422852" Band22="3.176586627960205" Band23="1.0"
+                   Band24="2.0" FFTEnabled="1">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
@@ -2775,7 +2810,7 @@
             <Processor Type="EffectChain" ID="FX" Bypassed="0">
               <ChildProcessors>
                 <Processor Type="SimpleGain" ID="LeftGuitarGain" Bypassed="0" Gain="0.0"
-                           Delay="0.0" Width="100.0" Balance="0.0" InvertPolarity="0.0">
+                           Delay="0.0" Width="100.0" Balance="-100.0" InvertPolarity="0.0">
                   <ChildProcessors>
                     <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors/>
@@ -2861,7 +2896,7 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
                                    Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="4.46999979019165"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="10.6899995803833"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="38.04982376098633"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -13539,14 +13574,16 @@
                 <Processor Type="MidiMuter" ID="RightContainerMute" Bypassed="0">
                   <ChildProcessors/>
                   <Content>
-                    <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
+                    <Control type="ScriptButton" id="ignoreButton" value="0.0"/>
                     <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
                   </Content>
                 </Processor>
                 <Processor Type="ScriptProcessor" ID="TranspositionTrick" Bypassed="0">
                   <ChildProcessors/>
                   <Content/>
-                  <UIData Source="BonkiGuitar_testingHammeronsUIData"/>
+                  <UIData>
+                    <ContentProperties DeviceType="Desktop"/>
+                  </UIData>
                 </Processor>
               </ChildProcessors>
             </Processor>
@@ -13558,7 +13595,7 @@
             </Processor>
             <Processor Type="EffectChain" ID="FX" Bypassed="0">
               <ChildProcessors>
-                <Processor Type="SimpleGain" ID="RightGuitarGain" Bypassed="0" Gain="-100.0"
+                <Processor Type="SimpleGain" ID="RightGuitarGain" Bypassed="0" Gain="0.0"
                            Delay="0.0" Width="100.0" Balance="100.0" InvertPolarity="0.0">
                   <ChildProcessors>
                     <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">

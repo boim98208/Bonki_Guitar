@@ -73,6 +73,12 @@ template <int NV> struct pitchshifter: public data::base
         if (grainSize < 256.0f) grainSize = 256.0f;
         if (grainSize > 2048.0f) grainSize = 2048.0f;
 
+        // Dry delay alignment buffer for phase vocoder wet/dry blending
+        dryRingSize = 8192;
+        dryDelayRing.setSize(numChannels, dryRingSize);
+        dryDelayRing.clear();
+        dryRingWritePos = 0;
+
         reset();
     }
 
@@ -81,7 +87,9 @@ template <int NV> struct pitchshifter: public data::base
         stretchHQ.reset();
         stretchFast.reset();
         delayBuffer.clear();
+        dryDelayRing.clear();
         writePos = 0;
+        dryRingWritePos = 0;
         grainPhase0 = 0.0f;
     }
 
@@ -100,8 +108,8 @@ template <int NV> struct pitchshifter: public data::base
         for (int ch = 0; ch < numChannels; ++ch)
             std::memcpy(dryBuffer.getWritePointer(ch), ptrs[ch], sizeof(float) * numSamples);
 
-        // If pitch is 0 and mix is dry, bypass heavy processing
-        if (std::abs(pitchSemitones) < 0.01f && mix >= 0.99f)
+        // If pitch is 0 or mix is dry (mix <= 0.001f), bypass heavy processing (0 latency pass-through)
+        if (std::abs(pitchSemitones) < 0.01f || mix <= 0.001f)
         {
             return;
         }
@@ -112,13 +120,34 @@ template <int NV> struct pitchshifter: public data::base
             float* out[2] = { tmp.getWritePointer(0), tmp.getWritePointer(1) };
             stretchHQ.process(in, numSamples, out, numSamples);
 
-            for (int ch = 0; ch < numChannels; ++ch)
+            const int lat = std::clamp(stretchHQ.outputLatency(), 0, dryRingSize - 1);
+
+            if (mix >= 0.999f)
             {
-                const float* dry = dryBuffer.getReadPointer(ch);
-                const float* wet = tmp.getReadPointer(ch);
-                float* dst = ptrs[ch];
+                std::memcpy(ptrs[0], tmp.getReadPointer(0), sizeof(float) * numSamples);
+                std::memcpy(ptrs[1], tmp.getReadPointer(1), sizeof(float) * numSamples);
                 for (int s = 0; s < numSamples; ++s)
-                    dst[s] = dry[s] * (1.0f - mix) + wet[s] * mix;
+                {
+                    dryDelayRing.setSample(0, dryRingWritePos, dryBuffer.getReadPointer(0)[s]);
+                    dryDelayRing.setSample(1, dryRingWritePos, dryBuffer.getReadPointer(1)[s]);
+                    dryRingWritePos = (dryRingWritePos + 1) % dryRingSize;
+                }
+            }
+            else
+            {
+                for (int s = 0; s < numSamples; ++s)
+                {
+                    int readPos = (dryRingWritePos - lat + dryRingSize) % dryRingSize;
+                    for (int ch = 0; ch < numChannels; ++ch)
+                    {
+                        float drySamp = dryBuffer.getReadPointer(ch)[s];
+                        dryDelayRing.setSample(ch, dryRingWritePos, drySamp);
+                        float delayedDry = dryDelayRing.getSample(ch, readPos);
+                        float wetSamp = tmp.getReadPointer(ch)[s];
+                        ptrs[ch][s] = delayedDry * (1.0f - mix) + wetSamp * mix;
+                    }
+                    dryRingWritePos = (dryRingWritePos + 1) % dryRingSize;
+                }
             }
         }
         else if (algorithm == 1) // Spectral Fast
@@ -127,13 +156,34 @@ template <int NV> struct pitchshifter: public data::base
             float* out[2] = { tmp.getWritePointer(0), tmp.getWritePointer(1) };
             stretchFast.process(in, numSamples, out, numSamples);
 
-            for (int ch = 0; ch < numChannels; ++ch)
+            const int lat = std::clamp(stretchFast.outputLatency(), 0, dryRingSize - 1);
+
+            if (mix >= 0.999f)
             {
-                const float* dry = dryBuffer.getReadPointer(ch);
-                const float* wet = tmp.getReadPointer(ch);
-                float* dst = ptrs[ch];
+                std::memcpy(ptrs[0], tmp.getReadPointer(0), sizeof(float) * numSamples);
+                std::memcpy(ptrs[1], tmp.getReadPointer(1), sizeof(float) * numSamples);
                 for (int s = 0; s < numSamples; ++s)
-                    dst[s] = dry[s] * (1.0f - mix) + wet[s] * mix;
+                {
+                    dryDelayRing.setSample(0, dryRingWritePos, dryBuffer.getReadPointer(0)[s]);
+                    dryDelayRing.setSample(1, dryRingWritePos, dryBuffer.getReadPointer(1)[s]);
+                    dryRingWritePos = (dryRingWritePos + 1) % dryRingSize;
+                }
+            }
+            else
+            {
+                for (int s = 0; s < numSamples; ++s)
+                {
+                    int readPos = (dryRingWritePos - lat + dryRingSize) % dryRingSize;
+                    for (int ch = 0; ch < numChannels; ++ch)
+                    {
+                        float drySamp = dryBuffer.getReadPointer(ch)[s];
+                        dryDelayRing.setSample(ch, dryRingWritePos, drySamp);
+                        float delayedDry = dryDelayRing.getSample(ch, readPos);
+                        float wetSamp = tmp.getReadPointer(ch)[s];
+                        ptrs[ch][s] = delayedDry * (1.0f - mix) + wetSamp * mix;
+                    }
+                    dryRingWritePos = (dryRingWritePos + 1) % dryRingSize;
+                }
             }
         }
         else // Algorithm 2: Granular Low-Latency
@@ -192,6 +242,8 @@ template <int NV> struct pitchshifter: public data::base
         {
         case 0:
             pitchSemitones = static_cast<float>(v);
+            if (std::abs(pitchSemitones) < 0.01f)
+                reset();
             updateRatio();
             break;
         case 1:
@@ -239,6 +291,9 @@ private:
     juce::AudioBuffer<float> tmp;
     juce::AudioBuffer<float> dryBuffer;
     juce::AudioBuffer<float> delayBuffer;
+    juce::AudioBuffer<float> dryDelayRing;
+    int dryRingSize = 8192;
+    int dryRingWritePos = 0;
 
     double sampleRate = 44100.0;
     double ratio = 1.0;

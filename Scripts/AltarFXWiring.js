@@ -270,8 +270,26 @@ namespace AltarFX
         Content.getComponent("cmbSlot8")
     ];
 
+    const var btnBypassSlots = [
+        Content.getComponent("btnBypassSlot0"),
+        Content.getComponent("btnBypassSlot1"),
+        Content.getComponent("btnBypassSlot2"),
+        Content.getComponent("btnBypassSlot3"),
+        Content.getComponent("btnBypassSlot4"),
+        Content.getComponent("btnBypassSlot5"),
+        Content.getComponent("btnBypassSlot6"),
+        Content.getComponent("btnBypassSlot7"),
+        Content.getComponent("btnBypassSlot8")
+    ];
+
+    var slotBypassed = [false, false, false, false, false, false, false, false, false];
+
     const var btnPreEQ = Content.getComponent("btnPreEQ");
     const var btnPostEQ = Content.getComponent("btnPostEQ");
+
+    const var btnDelayComp = Content.getComponent("btnDelayComp");
+    const var lblDelayCompStatus = Content.getComponent("lblDelayCompStatus");
+    var isDelayCompEnabled = true;
 
     // ==========================================
     // 4. UI CONTROLS DEFINITIONS
@@ -861,6 +879,80 @@ namespace AltarFX
     }
 
     // ==========================================
+    // 7.5. AUTOMATIC DELAY COMPENSATION (PDC)
+    // ==========================================
+    inline function updateDelayCompensation()
+    {
+        local sr = Engine.getSampleRate();
+        if (sr <= 0.0) sr = 44100.0;
+
+        local totalLatencySamples = 0;
+
+        if (isDelayCompEnabled)
+        {
+            // 1. Sample Pre-Transient (~20ms recorded pick scrape before transient peak)
+            totalLatencySamples += Math.round(sr * 0.020);
+
+            // 2. Master Transpose (if non-zero semitones and active)
+            if (fxTranspose != 0 && knbTranspose != 0)
+            {
+                local transSemi = knbTranspose.getValue();
+                if (Math.abs(transSemi) >= 0.01)
+                {
+                    totalLatencySamples += Math.round(sr * 0.02125); // Signalsmith Stretch interval
+                }
+            }
+
+            // 3. Modular Slots (check each slot for active Pitch Shifter)
+            local s = 0;
+            for (s = 0; s < 9; s++)
+            {
+                if (!slotBypassed[s] && slotStates[s].module == 8) // Pitch Shifter
+                {
+                    local ps = slotStates[s].pitchshifter;
+                    if (Math.abs(ps.Pitch) >= 0.01 && ps.Mix > 0.001)
+                    {
+                        if (ps.Algorithm == 0.0) // Spectral HQ
+                        {
+                            totalLatencySamples += Math.round(sr * 0.025); // 25ms
+                        }
+                        else if (ps.Algorithm == 1.0) // Spectral Fast
+                        {
+                            totalLatencySamples += Math.round(sr * 0.011); // 11ms
+                        }
+                        // Algorithm 2: Granular Low-Latency (0ms FFT latency)
+                    }
+                }
+            }
+        }
+
+        // Report to DAW Plugin Delay Compensation (PDC) engine
+        Engine.setLatencySamples(totalLatencySamples);
+
+        // Update UI
+        if (btnDelayComp != 0)
+        {
+            btnDelayComp.setValue(isDelayCompEnabled ? 1 : 0);
+            btnDelayComp.set("text", isDelayCompEnabled ? "PDC: Playback" : "PDC: Live");
+        }
+
+        if (lblDelayCompStatus != 0)
+        {
+            local ms = Math.round((totalLatencySamples / sr) * 1000.0);
+            lblDelayCompStatus.set("text", isDelayCompEnabled ? (ms + " ms") : "0 ms");
+        }
+    }
+
+    inline function onBtnDelayComp(c, v)
+    {
+        isDelayCompEnabled = (v > 0.5);
+        updateDelayCompensation();
+    }
+
+    if (btnDelayComp != 0)
+        btnDelayComp.setControlCallback(onBtnDelayComp);
+
+    // ==========================================
     // 8. COMBOBOX & SLOT BUTTON CALLBACKS
     // ==========================================
     inline function handleSlotChange(slotIdx, value)
@@ -874,10 +966,16 @@ namespace AltarFX
         // Send Module to C++ DSP processor
         setFXParam(fxSlots[slotIdx], "Module", newMod);
 
-        // Manage slotEQ bypass (bypassed unless module is EQ)
-        if (slotEQs[slotIdx] != 0)
+        // Manage slot processor and slotEQ bypass
+        if (slotBypassed[slotIdx])
         {
-            slotEQs[slotIdx].setBypassed(newMod != 11);
+            if (fxSlots[slotIdx] != 0) fxSlots[slotIdx].setBypassed(true);
+            if (slotEQs[slotIdx] != 0) slotEQs[slotIdx].setBypassed(true);
+        }
+        else
+        {
+            if (fxSlots[slotIdx] != 0) fxSlots[slotIdx].setBypassed(false);
+            if (slotEQs[slotIdx] != 0) slotEQs[slotIdx].setBypassed(newMod != 11);
         }
 
         // Push slot's memorized settings for this module to C++
@@ -921,6 +1019,8 @@ namespace AltarFX
                 }
             }
         }
+
+        updateDelayCompensation();
     }
 
     // Connect Slot Buttons & Combos
@@ -963,6 +1063,45 @@ namespace AltarFX
     cmbSlots[6].setControlCallback(onCmbSlot6);
     cmbSlots[7].setControlCallback(onCmbSlot7);
     cmbSlots[8].setControlCallback(onCmbSlot8);
+
+    inline function setSlotBypassed(slotIdx, isBypassed)
+    {
+        slotBypassed[slotIdx] = isBypassed ? true : false;
+
+        if (fxSlots[slotIdx] != 0)
+            fxSlots[slotIdx].setBypassed(slotBypassed[slotIdx]);
+
+        if (slotEQs[slotIdx] != 0)
+            slotEQs[slotIdx].setBypassed(slotBypassed[slotIdx] || (slotStates[slotIdx].module != 11));
+
+        if (btnBypassSlots[slotIdx] != 0)
+        {
+            btnBypassSlots[slotIdx].setValue(slotBypassed[slotIdx] ? 1 : 0);
+            btnBypassSlots[slotIdx].set("text", slotBypassed[slotIdx] ? "Bypassed" : "Active");
+        }
+
+        updateDelayCompensation();
+    }
+
+    inline function onBtnBypassSlot0(c, v) { setSlotBypassed(0, v > 0.5); }
+    inline function onBtnBypassSlot1(c, v) { setSlotBypassed(1, v > 0.5); }
+    inline function onBtnBypassSlot2(c, v) { setSlotBypassed(2, v > 0.5); }
+    inline function onBtnBypassSlot3(c, v) { setSlotBypassed(3, v > 0.5); }
+    inline function onBtnBypassSlot4(c, v) { setSlotBypassed(4, v > 0.5); }
+    inline function onBtnBypassSlot5(c, v) { setSlotBypassed(5, v > 0.5); }
+    inline function onBtnBypassSlot6(c, v) { setSlotBypassed(6, v > 0.5); }
+    inline function onBtnBypassSlot7(c, v) { setSlotBypassed(7, v > 0.5); }
+    inline function onBtnBypassSlot8(c, v) { setSlotBypassed(8, v > 0.5); }
+
+    if (btnBypassSlots[0] != 0) btnBypassSlots[0].setControlCallback(onBtnBypassSlot0);
+    if (btnBypassSlots[1] != 0) btnBypassSlots[1].setControlCallback(onBtnBypassSlot1);
+    if (btnBypassSlots[2] != 0) btnBypassSlots[2].setControlCallback(onBtnBypassSlot2);
+    if (btnBypassSlots[3] != 0) btnBypassSlots[3].setControlCallback(onBtnBypassSlot3);
+    if (btnBypassSlots[4] != 0) btnBypassSlots[4].setControlCallback(onBtnBypassSlot4);
+    if (btnBypassSlots[5] != 0) btnBypassSlots[5].setControlCallback(onBtnBypassSlot5);
+    if (btnBypassSlots[6] != 0) btnBypassSlots[6].setControlCallback(onBtnBypassSlot6);
+    if (btnBypassSlots[7] != 0) btnBypassSlots[7].setControlCallback(onBtnBypassSlot7);
+    if (btnBypassSlots[8] != 0) btnBypassSlots[8].setControlCallback(onBtnBypassSlot8);
 
     // ==========================================
     // 9. KNOB PARAMETER CALLBACKS (ROUTED TO ACTIVE SLOT)
@@ -1129,9 +1268,9 @@ namespace AltarFX
     knbRingmodFilterFrequency.setControlCallback(onRingmodFilterFrequency);
 
     // Pitch Shifter
-    inline function onPitchShiftPitch(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].pitchshifter.Pitch = v; setFXParam(fxSlots[activeSlot], "PitchShiftPitch", v); }
-    inline function onPitchShiftMix(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].pitchshifter.Mix = v; setFXParam(fxSlots[activeSlot], "PitchShiftMix", v); }
-    inline function onPitchShiftAlgorithm(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].pitchshifter.Algorithm = v; setFXParam(fxSlots[activeSlot], "PitchShiftAlgorithm", v); }
+    inline function onPitchShiftPitch(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].pitchshifter.Pitch = v; setFXParam(fxSlots[activeSlot], "PitchShiftPitch", v); updateDelayCompensation(); }
+    inline function onPitchShiftMix(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].pitchshifter.Mix = v; setFXParam(fxSlots[activeSlot], "PitchShiftMix", v); updateDelayCompensation(); }
+    inline function onPitchShiftAlgorithm(c, v) { if (isUpdatingUI) return; slotStates[activeSlot].pitchshifter.Algorithm = v; setFXParam(fxSlots[activeSlot], "PitchShiftAlgorithm", v); updateDelayCompensation(); }
 
     if (knbPitchShiftPitch != 0) knbPitchShiftPitch.setControlCallback(onPitchShiftPitch);
     if (knbPitchShiftMix != 0) knbPitchShiftMix.setControlCallback(onPitchShiftMix);
@@ -1209,6 +1348,9 @@ namespace AltarFX
     inline function onTranspose(c, v) { 
         local ratio = Math.pow(2.0, v / 12.0);
         setFXParam(fxTranspose, "FreqRatio", ratio); 
+        if (fxTranspose != 0)
+            fxTranspose.setBypassed(Math.abs(v) < 0.01);
+        updateDelayCompensation();
     }
     inline function onOctave(c, v) { setFXParam(fxOctave, "Octave", v); }
     inline function onChugStrength(c, v) { setFXParam(fxChug, "Strength", v); }
@@ -1309,6 +1451,8 @@ namespace AltarFX
 
         var preset = {};
         preset.slotStates = slotStates;
+        preset.slotBypassed = slotBypassed;
+        preset.isDelayCompEnabled = isDelayCompEnabled;
 
         // Save CurveEQ states
         if (fxPreEQ != 0)
@@ -1358,7 +1502,7 @@ namespace AltarFX
 
                 if (slotEQs[s] != 0)
                 {
-                    slotEQs[s].setBypassed(mod != 11);
+                    slotEQs[s].setBypassed(slotBypassed[s] || (mod != 11));
                     if (isDefined(preset.slotEQStates) && isDefined(preset.slotEQStates[s]))
                         slotEQs[s].restoreState(preset.slotEQStates[s]);
                 }
@@ -1389,6 +1533,20 @@ namespace AltarFX
                 }
             }
 
+            if (isDefined(preset.slotBypassed))
+            {
+                slotBypassed = preset.slotBypassed;
+                local bpIdx = 0;
+                for (bpIdx = 0; bpIdx < 9; bpIdx++)
+                    setSlotBypassed(bpIdx, slotBypassed[bpIdx]);
+            }
+            else
+            {
+                local bpIdx2 = 0;
+                for (bpIdx2 = 0; bpIdx2 < 9; bpIdx2++)
+                    setSlotBypassed(bpIdx2, false);
+            }
+
             selectSlot(0);
         }
 
@@ -1397,6 +1555,13 @@ namespace AltarFX
             fxPreEQ.restoreState(preset.preEQState);
         if (isDefined(preset.postEQState) && fxPostEQ != 0)
             fxPostEQ.restoreState(preset.postEQState);
+
+        if (isDefined(preset.isDelayCompEnabled))
+            isDelayCompEnabled = preset.isDelayCompEnabled;
+        else
+            isDelayCompEnabled = true;
+
+        updateDelayCompensation();
 
         if (lblFXPresetName != 0)
             lblFXPresetName.set("text", file.toString(3));
@@ -1424,14 +1589,24 @@ namespace AltarFX
     // ==========================================
     // 14. INITIALIZE MODULAR SYSTEM
     // ==========================================
-    // Initialize all slot button labels and DSP states
+    // Initialize all slot button labels, DSP states, and bypass buttons
     for (var s = 0; s < 9; s++)
     {
         updateSlotButtonText(s);
         setFXParam(fxSlots[s], "Module", 0.0); // Start empty
         if (slotEQs[s] != 0)
             slotEQs[s].setBypassed(true);
+        if (btnBypassSlots[s] != 0)
+        {
+            btnBypassSlots[s].setValue(0);
+            btnBypassSlots[s].set("text", "Active");
+        }
     }
+
+    if (fxTranspose != 0)
+        fxTranspose.setBypassed(true);
+
+    updateDelayCompensation();
 
     // Select Slot 0 by default (shows Empty slot panel)
     selectSlot(0);

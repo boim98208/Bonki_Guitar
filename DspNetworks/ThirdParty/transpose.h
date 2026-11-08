@@ -105,6 +105,10 @@ template <int NV> struct transpose: public data::base, public cable_manager_t
 	
 	template <typename T> void process(T& data)
 	{
+		// Bypass processing if ratio is 1.0 (0 semitones transpose) - 0 latency pass-through
+		if (std::abs(ratio - 1.0) < 0.0001)
+			return;
+
 		auto ptrs = data.getRawDataPointers();
 		const int numSamples = data.getNumSamples();
 		
@@ -127,7 +131,10 @@ template <int NV> struct transpose: public data::base, public cable_manager_t
 		if (P == 0)
 		{
 			ratio = v;
-			stretch.setTransposeFactor(ratio);
+			if (std::abs(ratio - 1.0) < 0.0001)
+				reset();
+			else
+				stretch.setTransposeFactor(ratio);
 		}
 	}
 	
