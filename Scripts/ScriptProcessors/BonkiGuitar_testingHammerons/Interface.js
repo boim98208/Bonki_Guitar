@@ -971,6 +971,20 @@ if (isDefined(cmbIr)) {
  const var MuteRelAHDSR = Synth.getAllModulators("MuteRelAHDSR");
  
  
+const var PITCHBENDSMOOTHTIMEINDEX = 2;
+inline function onPitchBendSmoothingKnobControl(component, value)
+{
+	
+
+	SourcePitchBendModulator.setAttribute(PITCHBENDSMOOTHTIMEINDEX, value);
+	for(var j = 0; j < PitchBendModulators.length; j++){
+		PitchBendModulators[j].setAttribute(PITCHBENDSMOOTHTIMEINDEX, value);
+	}
+};
+
+Content.getComponent("PitchBendSmoothingKnob").setControlCallback(onPitchBendSmoothingKnobControl);
+
+
  copyModulatorParams(SourceMuteRelAHDSR, MuteRelAHDSR);
  
  copyModulatorParams(SourceSusRelAHDSR, SusRelAHDSR);
@@ -1677,8 +1691,12 @@ function onController()
 	
 	
 	
-	
-	handPositionFretLabel.set("text", Globals.g_handPositionFret != -1 ? Globals.g_handPositionFret : "");
+	if(Globals.g_handPositionFret == NO_FRET){
+		handPositionFretLabel.set("text", "");
+	}else{	
+		handPositionFretLabel.set("text", Globals.g_handPositionFret);
+	}
+//	handPositionFretLabel.set("text", Globals.g_handPositionFret != -1 ? Globals.g_handPositionFret : "");
 	
 	
 	if(Globals.g_forcedHandPositionFret != -1)

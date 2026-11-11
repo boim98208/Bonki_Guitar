@@ -16,6 +16,8 @@
  
  
  const var NO_NOTE = -1;
+ const var NO_STRING_FOUND = -1;
+ const var NO_FRET = -1;
  
  const var NOTESPERSTRING = 25;
  

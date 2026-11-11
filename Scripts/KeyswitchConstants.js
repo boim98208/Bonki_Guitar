@@ -35,6 +35,32 @@
  	//SFX will just be separate keys down low... maybe
  }
  
+ 
+ 
+ 
+ const var articLowestFretOnString = [];
+ const var articHighestFretOnString = [];
+ 
+ /*
+  the format of these is the first bracket gets the string and the second bracket gets the articulation. 
+ By default lowest fret will be 0 (open string) and highest fret will be the NOTESPERSTRING. These variables are primarily for articulations that take multiple strings or just can't be done on all strings like chords. If highest and lowest fret are both NO_NOTE, that means none of the articulation can be played there.
+ */
+ 
+ for(i = 0; i < NUMOFSTRINGS; i++){
+ 	articLowestFretOnString.push([]);
+ 	articHighestFretOnString.push([]);
+ 	for(var j = 0; j < PerformanceType.NUMOFPERFORMANCES; j++){
+ 		articLowestFretOnString[i].push(0);
+ 		articHighestFretOnString[i].push(NOTESPERSTRING - 1);
+ 		// NOTESPERSTRING is not inclusive 0 but fret does include 0 as part of open string, so minus 1 to compensate
+ 	}
+ }
+ 
+articLowestFretOnString[StringType.STRING1][PerformanceType.SUSTAIN] = -1;
+ 
+articHighestFretOnString[StringType.STRING1][PerformanceType.SUSTAIN] = -1;
+ 
+ 
  namespace FrettingEngine
  {
  	//make sure this lines up with the item list from the combo box

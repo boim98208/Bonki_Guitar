@@ -244,15 +244,16 @@ Message.setAllNotesOffCallback(resetNotes);
 
 
 
-
+var lastStringPlayed = StringType.LOWESTSTRING;
 
 // functions to ensure only one sampler plays a voice at a time
 // this should only take the StringType enum
 inline function playString(stringToPlay){
 	
+
 	Message.ignoreEvent(true);
 	local stringChannelToSend = stringEnumToMidiChannel(stringToPlay);
-	
+	lastStringPlayed = stringToPlay;
 	 
 	// consider refactoring stringNote to be updated here rather than the melody fretting point
 	
@@ -385,12 +386,10 @@ inline function updateGlobalStringNote(stringToUpdate, notePlayed, RRPlayed){
 
 
 
-
-
 /* 
 The main logic for the "Natural" fretting mode in polyphony
 */
-inline function stringWithClosestNote(notePlayed, currentHandPos){
+inline function stringWithClosestNote(notePlayed, currentHandPos, currArticPlaying){
 	
 	// there's still something going on with string selection that makes it just go beyond 1 and 16 even when there's no avialable string
 	
@@ -402,9 +401,10 @@ inline function stringWithClosestNote(notePlayed, currentHandPos){
 	for(i = NUMOFSTRINGS - 1; i > -1; i--){
 
 	
-		if(stringNote[i] == -1 && isBetweenIncl(notePlayed, OPENSTRINGNOTES[i], OPENSTRINGNOTES[i] + NOTESPERSTRING - 1)){
+		if(stringNote[i] == -1 && isBetweenIncl(notePlayed, OPENSTRINGNOTES[i] + articLowestFretOnString[i][currArticPlaying], OPENSTRINGNOTES[i] + articHighestFretOnString[i][currArticPlaying])){
 		
-		
+
+
 		// the - 2 fixes it for some reason. It seems that without it the system just straight up misses notes
 		
 		distToCompare = Math.abs((notePlayed - OPENSTRINGNOTES[i] - 2) - currentHandPos);
@@ -433,7 +433,7 @@ inline function stringWithClosestNote(notePlayed, currentHandPos){
 /* 
 The main logic for the "Melody" fretting mode
 */
-inline function stringWithMelodyNote(notePlayed, currentHandPos)
+inline function stringWithMelodyNote(notePlayed, currentHandPos, currArticulationPlaying)
 {
 	
 	
@@ -448,11 +448,11 @@ inline function stringWithMelodyNote(notePlayed, currentHandPos)
 		
 		
 		// the - 2 fixes it for some reason. It seems that without it the system just straight up misses notes
-		distToCompare = Math.abs((notePlayed - OPENSTRINGNOTES[i] - 2) - currentHandPos);
+		distToCompare = Math.abs((notePlayed - OPENSTRINGNOTES[i] - 4) - currentHandPos);
 	
 		
 		
-			if(Math.min(currDist - (i* 2), distToCompare) == distToCompare){
+			if(Math.min(currDist, distToCompare) == distToCompare){
 				currString = i;
 				currDist = distToCompare;
 			}
@@ -463,15 +463,17 @@ inline function stringWithMelodyNote(notePlayed, currentHandPos)
 }
 
 
-inline function forceStringLogic(notePlayed, currentHandPos, fretSpaceToChange)
+inline function forceStringLogic(notePlayed, currentHandPos, fretSpaceToChange, currArticPlaying)
 {
+
 
 
 	local newFretFromForceString;
 	local distanceBetweenForceAndAutoFret;
 	
 
-	if(isBetweenIncl(notePlayed, OPENSTRINGNOTES[Globals.g_forcedString], OPENSTRINGNOTES[Globals.g_forcedString] + (NOTESPERSTRING - 1)) && stringNote[Globals.g_forcedString] == -1)
+
+	if(stringNote[Globals.g_forcedString] == NO_NOTE)
 	{
 	
 
@@ -513,7 +515,7 @@ Will change fret position if polyphony leads to a really far fret
 */
 
 // the function returns the next fret for the algorithm and sets the message's midi channel
-inline function naturalFretting2_2_1(notePlayed, currentHandPos)
+inline function naturalFretting2_2_1(notePlayed, currentHandPos, currArticPlaying)
 {
 	
 	
@@ -528,6 +530,7 @@ inline function naturalFretting2_2_1(notePlayed, currentHandPos)
 	local newHandPos;
 	local forceStringLowBound;
 	local forceStringHighBound;
+	local forceStringWorked;
 	
 	if(!isBetweenIncl(notePlayed, LOWESTNOTE, HIGHESTNOTE)){
 	    return currentHandPos;
@@ -535,19 +538,19 @@ inline function naturalFretting2_2_1(notePlayed, currentHandPos)
 	
 	
 	//Going to force string mode
-	if(Globals.g_forcedString != -1)
+	if(Globals.g_forcedString != NO_STRING)
 	{
 
 
 	// Yes, that -1 of NOTESPERSTRING is needed.
-	forceStringLowBound = OPENSTRINGNOTES[Globals.g_forcedString];
-	forceStringHighBound = OPENSTRINGNOTES[Globals.g_forcedString] + NOTESPERSTRING - 1;
+	forceStringLowBound = OPENSTRINGNOTES[Globals.g_forcedString] + articLowestFretOnString[Globals.g_forcedString][currArticPlaying];
+	forceStringHighBound = OPENSTRINGNOTES[Globals.g_forcedString] + articHighestFretOnString[Globals.g_forcedString][currArticPlaying];
 	
 		if(isBetweenIncl(notePlayed, forceStringLowBound, forceStringHighBound) && stringNote[Globals.g_forcedString] == -1)
 		{
 
 		
-			return forceStringLogic(notePlayed, currentHandPos, fretSpaceToChange);
+			return forceStringLogic(notePlayed, currentHandPos, fretSpaceToChange, Globals.g_currArticulationPlaying);
 			
 		}
 	}
@@ -556,13 +559,13 @@ inline function naturalFretting2_2_1(notePlayed, currentHandPos)
 	//no forced string and therefore just goes as normal
 	
 	
-	stringToPlay = stringWithClosestNote(notePlayed, currentHandPos);
+	stringToPlay = stringWithClosestNote(notePlayed, currentHandPos, currArticPlaying);
 	stringNote[stringToPlay] = notePlayed;
 	Globals.g_stringPerformance[stringToPlay] = Globals.g_currArticulationPlaying;
 	
 	playString(stringToPlay);
 	
-	
+
 	
 	//when there's polyphony, virtual guitarist moves hand to wherever the biggest change in pos is
 	if(Synth.getNumPressedKeys() >= 2 && stringToPlay != StringType.NOSTRING){
@@ -640,13 +643,15 @@ inline function melodyFretting1_0_0(notePlayed, currentHandPos)
 	
 	
 	//Going to force string mode
-	if(Globals.g_forcedString != -1)
+	if(Globals.g_forcedString != NO_STRING)
 	{
 
-		if(isBetweenIncl(notePlayed, OPENSTRINGNOTES[Globals.g_forcedString], OPENSTRINGNOTES[Globals.g_forcedString] + NOTESPERSTRING - 1) && stringNote[Globals.g_forcedString] == NO_NOTE)
-		{
+	local forceStringLowBound = OPENSTRINGNOTES[Globals.g_forcedString] + articLowestFretOnString[Globals.g_forcedString][currArticPlaying];
+	local forceStringHighBound = OPENSTRINGNOTES[Globals.g_forcedString] + articHighestFretOnString[Globals.g_forcedString][currArticPlaying];
+	
+		if(isBetweenIncl(notePlayed, forceStringLowBound, forceStringHighBound) && stringNote[Globals.g_forcedString] == -1){
 		
-			return forceStringLogic(notePlayed, currentHandPos, fretSpaceToChange);
+			return forceStringLogic(notePlayed, currentHandPos, fretSpaceToChange, Globals.g_currArticulationPlaying);
 			
 		}
 	}
@@ -655,23 +660,32 @@ inline function melodyFretting1_0_0(notePlayed, currentHandPos)
 	//no forced string and therefore just goes as normal
 	
 	
-	stringToPlay = stringWithMelodyNote(notePlayed, currentHandPos);
+	stringToPlay = stringWithMelodyNote(notePlayed, currentHandPos, Globals.g_currArticulationPlaying);
 	stringNote[stringToPlay] = notePlayed;
+	
+	local fretPlayed = stringNote[stringToPlay] - OPENSTRINGNOTES[stringToPlay];
+	
+	if(stringToPlay != lastStringPlayed){
+		newHandPos = fretPlayed;
+	}else{
+		newHandPos = currentHandPos;
+	}
+	
+	
 	playString(stringToPlay);
 	
 	
 	
 	//when there's polyphony, virtual guitarist moves hand to wherever the biggest change in pos is
+	// need to modify this to number of stringNote
 	if(Synth.getNumPressedKeys() >= 2){
 	newFretFromPolyphony = stringNote[stringToPlay] - OPENSTRINGNOTES[stringToPlay];
 	distBetweenNewFretAndAutoFret = Math.abs(newFretFromPolyphony - currentHandPos);
 	}
 	
-
-	
 	//I dont really understand why, but + 2 seems like a number that makes this work
 	
-	if(distBetweenNewFretAndAutoFret < fretSpaceToChange + 2)
+/*	if(fretPlayed < fretSpaceToChange)
 	{
 		
 		// Figure out the stringWithMelodyNote first and then figure where the fret position changes
@@ -680,8 +694,12 @@ inline function melodyFretting1_0_0(notePlayed, currentHandPos)
 		}
 	}else
 	{
-		return currentHandPos;
-	}
+		newHandPos = fretPlayed - 5;
+
+		return newHandPos;
+	}*/
+	
+	return newHandPos;
 }
 
 
@@ -769,19 +787,19 @@ inline function melodyFretting1_0_0(notePlayed, currentHandPos)
  				if(Globals.g_forcedHandPositionFret == -1)
  				{
  		
- 					Globals.g_handPositionFret = naturalFretting2_2_1(notePlayed, Globals.g_handPositionFret);
+ 					Globals.g_handPositionFret = naturalFretting2_2_1(notePlayed, Globals.g_handPositionFret, Globals.g_currArticulationPlaying);
  					
  				}else{
  					
  	
- 					Globals.g_handPositionFret = naturalFretting2_2_1(notePlayed, Globals.g_forcedHandPositionFret);
+ 					Globals.g_handPositionFret = naturalFretting2_2_1(notePlayed, Globals.g_forcedHandPositionFret, Globals.g_currArticulationPlaying);
  				}
  			}else if(Globals.g_frettingEngine == FrettingEngine.MELODY)
  			{
  		
  				if(Globals.g_forcedHandPositionFret == -1)
  						{
- 							Globals.g_handPositionFret = melodyFretting1_0_0(notePlayed, Globals.g_handPositionFret);
+ 							Globals.g_handPositionFret = melodyFretting1_0_0(notePlayed, Globals.g_handPositionFret, );
  							
  						}else
  						{
@@ -981,6 +999,10 @@ numOfRRs.reserve(PerformanceType.NUMOFPERFORMANCES);
 for(i = 0; i < PerformanceType.NUMOFPERFORMANCES; i++){
 	numOfRRs.push(-1);
 }
+
+
+
+
 
 
 // I'd rather do this manually but the functions are bugging out on me for some reason
