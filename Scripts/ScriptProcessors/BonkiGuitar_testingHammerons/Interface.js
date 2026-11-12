@@ -1,4 +1,4 @@
- Globals.g_forcedHandPositionFret = -1;
+  Globals.g_forcedHandPositionFret = -1;
  Globals.g_forcedString = -1;
  Globals.g_handPositionFret = 0;
  Globals.g_strumSpeed = 1;
@@ -784,6 +784,8 @@ inline function distributeFretMarkersVertically(stringToDistribute, fretImages){
  	}else if(Globals.g_frettingEngine == FrettingEngine.MELODY){
 	 highFret = lowFret + 8;
  	}
+ 	
+ 	highFret = cap(highFret, xPosOfFretBorder.length - 1);
  	
  	distBetweenFrets = xPosOfFretBorder[highFret] - xPosOfFretBorder[lowFret];
  	
@@ -1655,7 +1657,7 @@ Content.getComponent("StrumSpeedKnob").setControlCallback(onStrumSpeedKnobContro
 	
 	moveForceString(Globals.g_forcedString);
 	
-	Synth.startTimer(0.05);
+	Synth.startTimer(0.02);
 	
 
 }
