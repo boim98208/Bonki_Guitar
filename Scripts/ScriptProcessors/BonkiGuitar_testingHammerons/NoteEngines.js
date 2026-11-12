@@ -433,32 +433,37 @@ inline function stringWithClosestNote(notePlayed, currentHandPos, currArticPlayi
 /* 
 The main logic for the "Melody" fretting mode
 */
-inline function stringWithMelodyNote(notePlayed, currentHandPos, currArticulationPlaying)
+inline function stringWithMelodyNote(notePlayed, currentHandPos, currArticPlaying)
 {
-	
-	
 	local currString = StringType.NOSTRING;
-	//arbitrary big number to replace later
 	local currDist = POSINFINITY;
 	local distToCompare;
-	
-	for(i = NUMOFSTRINGS - 1; i > -1; i--)
+	local stringFromBottom;
+	local targetNote;
+
+	local NOTES_PER_STRING = 7;
+	local halfSpan = (NOTES_PER_STRING - 1) * 0.5;
+	local ascendingOrder = OPENSTRINGNOTES[0] < OPENSTRINGNOTES[NUMOFSTRINGS - 1];
+	local lowestOpenNote = ascendingOrder ? OPENSTRINGNOTES[0] : OPENSTRINGNOTES[NUMOFSTRINGS - 1];
+
+	for (i = NUMOFSTRINGS - 1; i > -1; i--)
 	{
-		if(stringNote[i] == -1 && isBetweenIncl(notePlayed, OPENSTRINGNOTES[i], OPENSTRINGNOTES[i] + NOTESPERSTRING)){
-		
-		
-		// the - 2 fixes it for some reason. It seems that without it the system just straight up misses notes
-		distToCompare = Math.abs((notePlayed - OPENSTRINGNOTES[i] - 4) - currentHandPos);
-	
-		
-		
-			if(Math.min(currDist, distToCompare) == distToCompare){
+		if (stringNote[i] == -1 && isBetweenIncl(notePlayed,
+			OPENSTRINGNOTES[i] + articLowestFretOnString[i][currArticPlaying],
+			OPENSTRINGNOTES[i] + articHighestFretOnString[i][currArticPlaying]))
+		{
+			stringFromBottom = ascendingOrder ? i : (NUMOFSTRINGS - 1) - i;
+			targetNote = lowestOpenNote + currentHandPos + (stringFromBottom * NOTES_PER_STRING) + halfSpan;
+			distToCompare = Math.abs(notePlayed - targetNote);
+
+			if (distToCompare < currDist)
+			{
 				currString = i;
 				currDist = distToCompare;
 			}
 		}
 	}
-	
+
 	return currString;
 }
 
@@ -665,13 +670,6 @@ inline function melodyFretting1_0_0(notePlayed, currentHandPos)
 	
 	local fretPlayed = stringNote[stringToPlay] - OPENSTRINGNOTES[stringToPlay];
 	
-	if(stringToPlay != lastStringPlayed){
-		newHandPos = fretPlayed;
-	}else{
-		newHandPos = currentHandPos;
-	}
-	
-	
 	playString(stringToPlay);
 	
 	
@@ -683,23 +681,18 @@ inline function melodyFretting1_0_0(notePlayed, currentHandPos)
 	distBetweenNewFretAndAutoFret = Math.abs(newFretFromPolyphony - currentHandPos);
 	}
 	
-	//I dont really understand why, but + 2 seems like a number that makes this work
 	
-/*	if(fretPlayed < fretSpaceToChange)
+	if(Math.abs(currentHandPos - fretPlayed) >= 5)
 	{
 		
 		// Figure out the stringWithMelodyNote first and then figure where the fret position changes
-		if(notePlayed > OPENSTRINGNOTES[stringToPlay] + 3){
-			return currentHandPos;
-		}
-	}else
-	{
-		newHandPos = fretPlayed - 5;
-
+		newHandPos = fretPlayed - 4;
+		
 		return newHandPos;
-	}*/
+		
+	}
 	
-	return newHandPos;
+	return currentHandPos;
 }
 
 

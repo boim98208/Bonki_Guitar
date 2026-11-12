@@ -779,7 +779,11 @@ inline function distributeFretMarkersVertically(stringToDistribute, fretImages){
  		lowFret = capLow(0, fretPos);
  	}
  		
+ 	if(Globals.g_frettingEngine == FrettingEngine.NATURAL){
  	highFret = lowFret + 5;
+ 	}else if(Globals.g_frettingEngine == FrettingEngine.MELODY){
+	 highFret = lowFret + 8;
+ 	}
  	
  	distBetweenFrets = xPosOfFretBorder[highFret] - xPosOfFretBorder[lowFret];
  	
