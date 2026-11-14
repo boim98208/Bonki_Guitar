@@ -67,6 +67,13 @@
  	const var MELODY = 2;
  }
  
+ namespace FrettingEngineKeySwitch{
+	const var NATURAL = 0;
+	const var MELODY = 1;
+	const var FIRSTENGINE = FrettingEngineKeySwitch.NATURAL;
+	const var LASTENGINE = FrettingEngineKeySwitch.MELODY;
+ }
+ 
  
  namespace RRBehaviour{
 	 const var SEPARATE = 0;

@@ -32,7 +32,7 @@
  {
  
  // these dictate the midi channel and array index these values come in at
- 
+ // might need to change since this implementation won't allow for 9+ strings to do legato
      const var STRING1 = 0;
      const var STRING2 = 1;
      const var STRING3 = 2;

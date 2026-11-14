@@ -413,7 +413,9 @@ namespace AltarFX
     const var knbGateThreshold = Content.getComponent("knbGateThreshold");
     const var knbGateAttack = Content.getComponent("knbGateAttack");
     const var knbGateRelease = Content.getComponent("knbGateRelease");
+    const var btnTranspose = Content.getComponent("btnTranspose");
     const var knbTranspose = Content.getComponent("knbTranspose");
+    const var btnOctave = Content.getComponent("btnOctave");
     const var knbOctave = Content.getComponent("knbOctave");
     const var knbChugStrength = Content.getComponent("knbChugStrength");
     const var knbPickStrength = Content.getComponent("knbPickStrength");
@@ -893,14 +895,16 @@ namespace AltarFX
             // 1. Sample Pre-Transient (~20ms recorded pick scrape before transient peak)
             totalLatencySamples += Math.round(sr * 0.020);
 
-            // 2. Master Transpose (if non-zero semitones and active)
-            if (fxTranspose != 0 && knbTranspose != 0)
+            // 2. Master Transpose (enabled via button)
+            if (btnTranspose != 0 && btnTranspose.getValue() > 0.5)
             {
-                local transSemi = knbTranspose.getValue();
-                if (Math.abs(transSemi) >= 0.01)
-                {
-                    totalLatencySamples += Math.round(sr * 0.02125); // Signalsmith Stretch interval
-                }
+                totalLatencySamples += Math.round(sr * 0.02125); // Signalsmith Stretch interval
+            }
+
+            // 2b. Master Octave (enabled via button)
+            if (btnOctave != 0 && btnOctave.getValue() > 0.5)
+            {
+                totalLatencySamples += Math.round(sr * 0.02125); // Signalsmith Stretch interval
             }
 
             // 3. Modular Slots (check each slot for active Pitch Shifter)
@@ -1345,20 +1349,37 @@ namespace AltarFX
     inline function onGateThreshold(c, v) { setFXParam(fxGate, "Threshold", v); }
     inline function onGateAttack(c, v) { setFXParam(fxGate, "Attack", v); }
     inline function onGateRelease(c, v) { setFXParam(fxGate, "Release", v); }
+    inline function onBtnTranspose(c, v)
+    {
+        c.set("text", v ? "On" : "BP");
+        if (fxTranspose != 0)
+            fxTranspose.setBypassed(!v);
+        updateDelayCompensation();
+    }
+
+    inline function onBtnOctave(c, v)
+    {
+        c.set("text", v ? "On" : "BP");
+        if (fxOctave != 0)
+            fxOctave.setBypassed(!v);
+        updateDelayCompensation();
+    }
+
     inline function onTranspose(c, v) { 
         local ratio = Math.pow(2.0, v / 12.0);
         setFXParam(fxTranspose, "FreqRatio", ratio); 
-        if (fxTranspose != 0)
-            fxTranspose.setBypassed(Math.abs(v) < 0.01);
-        updateDelayCompensation();
     }
-    inline function onOctave(c, v) { setFXParam(fxOctave, "Octave", v); }
+    inline function onOctave(c, v) { 
+        setFXParam(fxOctave, "Octave", v); 
+    }
     inline function onChugStrength(c, v) { setFXParam(fxChug, "Strength", v); }
     inline function onPickStrength(c, v) { setFXParam(fxPick, "Strength", v); }
 
     knbGateThreshold.setControlCallback(onGateThreshold);
     knbGateAttack.setControlCallback(onGateAttack);
     knbGateRelease.setControlCallback(onGateRelease);
+    if (btnTranspose != 0) btnTranspose.setControlCallback(onBtnTranspose);
+    if (btnOctave != 0) btnOctave.setControlCallback(onBtnOctave);
     knbTranspose.setControlCallback(onTranspose);
     knbOctave.setControlCallback(onOctave);
     knbChugStrength.setControlCallback(onChugStrength);
@@ -1603,8 +1624,23 @@ namespace AltarFX
         }
     }
 
+    if (btnTranspose != 0)
+    {
+        btnTranspose.setValue(0);
+        btnTranspose.set("text", "BP");
+    }
+
+    if (btnOctave != 0)
+    {
+        btnOctave.setValue(0);
+        btnOctave.set("text", "BP");
+    }
+
     if (fxTranspose != 0)
         fxTranspose.setBypassed(true);
+
+    if (fxOctave != 0)
+        fxOctave.setBypassed(true);
 
     updateDelayCompensation();
 

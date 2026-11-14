@@ -41,6 +41,7 @@
  	const var PERCUSSION = Colours.withAlpha(Colours.green, 0.5);
  	const var LEGATO = Colours.withAlpha(Colours.cornflowerblue, 0.5);
  	const var FORCEFRETHAND = Colours.withAlpha(Colours.deeppink, 0.5);
+ 	const var FRETTINGENGINEKEYSWITCH = Colours.withAlpha(Colours.orange, 0.5)
  }
  
  
@@ -309,6 +310,20 @@ AltarFX.setMonoProcessing(Content.getComponent("DoubleTrackingBtn").getValue() =
  };
  
  Content.getComponent("FrettingEngineComboBox").setControlCallback(onFrettingEngineComboBoxControl);
+ 
+inline function changeFrettingEngine(notePlayed){
+	if(notePlayed == FrettingEngineKeySwitch.NATURAL){
+		Globals.g_frettingEngine = FrettingEngine.NATURAL;
+		FrettingEngineComboBox.setValue(FrettingEngine.NATURAL);
+		return true;
+	}else if(notePlayed == FrettingEngineKeySwitch.MELODY){
+		Globals.g_frettingEngine = FrettingEngine.MELODY;
+		FrettingEngineComboBox.setValue(FrettingEngine.MELODY);
+		return true;
+	}else{
+		return false;
+	}
+}
  
  
  const var StringRRLabel = [];
@@ -1606,22 +1621,27 @@ Content.getComponent("StrumSpeedKnob").setControlCallback(onStrumSpeedKnobContro
  // setting up the keyboard
  
  // reset the keyboard
- for(i = 0; i < 127; i++){
+ for(i = 0; i <= 127; i++){
  	Engine.setKeyColour(i, Colours.withAlpha(Colours.red, 0.0));
  }
  
  
- for(var i = LOWESTNOTE; i < HIGHESTNOTE + 1; i++){
+ for(var i = LOWESTNOTE; i <= HIGHESTNOTE; i++){
  	Engine.setKeyColour(i, KeyboardColors.NOTES);
  }
  
- for(var i = FIRSTKEYSWITCH; i < LASTKEYSWITCH + 1; i++){
+ for(var i = FIRSTKEYSWITCH; i <= LASTKEYSWITCH; i++){
  	Engine.setKeyColour(i, KeyboardColors.KEYSWITCHES);
  }
  
- for(var i = FIRSTPERCUSSION; i < LASTPERCUSSION + 1; i++){
+ for(var i = FIRSTPERCUSSION; i <= LASTPERCUSSION; i++){
  	Engine.setKeyColour(i, KeyboardColors.PERCUSSION);
  }
+ 
+for(var i = FrettingEngineKeySwitch.FIRSTENGINE; i <= FrettingEngineKeySwitch.LASTENGINE; i++){
+
+	Engine.setKeyColour(i, KeyboardColors.FRETTINGENGINEKEYSWITCH);
+}
  
  
  Engine.setKeyColour(legatoKeySwitchNote, KeyboardColors.LEGATO);
@@ -1654,6 +1674,8 @@ Content.getComponent("StrumSpeedKnob").setControlCallback(onStrumSpeedKnobContro
 		}
 	}
 	
+	changeFrettingEngine(notePlayed);
+	
 	keyswitchForceFret(notePlayed, velocityPlayed);
 	
 	moveForceString(Globals.g_forcedString);
@@ -1670,16 +1692,18 @@ Content.getComponent("StrumSpeedKnob").setControlCallback(onStrumSpeedKnobContro
 
 function onController()
 {
-	
-	// once midi guitar mode comes in, put an if statement to do that
-		
-		for (midiChannel = 1; midiChannel <= 16; midiChannel++){
-			Synth.addController(midiChannel, Message.getControllerNumber(), Message.getControllerValue(), 0);
-			}
-	    
+	local inChannel = Message.getChannel();
+	local ccNum = Message.getControllerNumber();
+	local ccVal = Message.getControllerValue();
 
-	    
-	
+	// Broadcast only to active guitar strings (1..NUMOFSTRINGS), skipping incoming channel to prevent event duplication & buffer overflow
+	for (midiChannel = 1; midiChannel <= NUMOFSTRINGS; midiChannel++)
+	{
+		if (midiChannel != inChannel)
+		{
+			Synth.addController(midiChannel, ccNum, ccVal, 0);
+		}
+	}
 }
  function onTimer()
 {
