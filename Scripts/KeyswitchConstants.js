@@ -56,9 +56,7 @@
  	}
  }
  
-articLowestFretOnString[StringType.STRING1][PerformanceType.SUSTAIN] = -1;
- 
-articHighestFretOnString[StringType.STRING1][PerformanceType.SUSTAIN] = -1;
+
  
  
  namespace FrettingEngine

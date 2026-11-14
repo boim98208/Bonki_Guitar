@@ -10,8 +10,9 @@
  const var OPENSTRING1NOTE = 76;
  
  const var NUMOFSTRINGS = 8;
+ const var NOTESPERSTRING = 25;
  const var LOWESTNOTE = OPENSTRING8NOTE;
- const var HIGHESTNOTE = 100;
+ const var HIGHESTNOTE = OPENSTRING1NOTE + NOTESPERSTRING - 1;
  
  
  
@@ -19,7 +20,7 @@
  const var NO_STRING_FOUND = -1;
  const var NO_FRET = -1;
  
- const var NOTESPERSTRING = 25;
+
  
  const var OPENSTRINGNONOTE = POSINFINITY;
  

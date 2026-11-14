@@ -383,8 +383,11 @@ inline function updateGlobalStringNote(stringToUpdate, notePlayed, RRPlayed){
  }
 
 
-
-
+const var isStringEnabled = [];
+isStringEnabled.reserve(NUMOFSTRINGS + 1);
+for(i = 0; i < NUMOFSTRINGS + 1; i++){
+	isStringEnabled.push(true);
+}
 
 /* 
 The main logic for the "Natural" fretting mode in polyphony
@@ -398,10 +401,12 @@ inline function stringWithClosestNote(notePlayed, currentHandPos, currArticPlayi
 	local currDist = POSINFINITY;
 	local distToCompare;
 	
+
+	
 	for(i = NUMOFSTRINGS - 1; i > -1; i--){
 
 	
-		if(stringNote[i] == -1 && isBetweenIncl(notePlayed, OPENSTRINGNOTES[i] + articLowestFretOnString[i][currArticPlaying], OPENSTRINGNOTES[i] + articHighestFretOnString[i][currArticPlaying])){
+		if(stringNote[i] == -1 && isBetweenIncl(notePlayed, OPENSTRINGNOTES[i] + articLowestFretOnString[i][currArticPlaying], OPENSTRINGNOTES[i] + articHighestFretOnString[i][currArticPlaying]) && isStringEnabled[i]){
 		
 
 
@@ -409,15 +414,23 @@ inline function stringWithClosestNote(notePlayed, currentHandPos, currArticPlayi
 		
 		distToCompare = Math.abs((notePlayed - OPENSTRINGNOTES[i] - 2) - currentHandPos);
 		
+
+		
 			if(Math.min(currDist, distToCompare) == distToCompare)
 			{
 				currString = i;
 				currDist = distToCompare;
 			}
 		}
+		
+
 	}
 	
+
+	
 	// setting up debugging possibly
+	
+	
 	
 	if(currString > 16){
 		return 16;
@@ -430,9 +443,23 @@ inline function stringWithClosestNote(notePlayed, currentHandPos, currArticPlayi
 	
 }
 
+
+
 /* 
 The main logic for the "Melody" fretting mode
 */
+
+// melodyStringWeight allows you to prioritze one string over another. The higher the weight, the less it'll play that string. The lower the weight, like making it negative, the more it'll play that string
+const var melodyStringWeight = [];
+melodyStringWeight.reserve(NUMOFSTRINGS + 1);
+for(i = 0; i < NUMOFSTRINGS + 1; i++){
+	melodyStringWeight.push(0);
+}
+melodyStringWeight[StringType.STRING8] = 5;
+melodyStringWeight[StringType.STRING7] = 5;
+melodyStringWeight[StringType.STRING1] = -5;
+
+
 inline function stringWithMelodyNote(notePlayed, currentHandPos, currArticPlaying)
 {
 	local currString = StringType.NOSTRING;
@@ -441,7 +468,7 @@ inline function stringWithMelodyNote(notePlayed, currentHandPos, currArticPlayin
 	local stringFromBottom;
 	local targetNote;
 
-	local NOTES_PER_STRING = 7;
+	local NOTES_PER_STRING = 6;
 	local halfSpan = (NOTES_PER_STRING - 1) * 0.5;
 	local ascendingOrder = OPENSTRINGNOTES[0] < OPENSTRINGNOTES[NUMOFSTRINGS - 1];
 	local lowestOpenNote = ascendingOrder ? OPENSTRINGNOTES[0] : OPENSTRINGNOTES[NUMOFSTRINGS - 1];
@@ -450,11 +477,11 @@ inline function stringWithMelodyNote(notePlayed, currentHandPos, currArticPlayin
 	{
 		if (stringNote[i] == -1 && isBetweenIncl(notePlayed,
 			OPENSTRINGNOTES[i] + articLowestFretOnString[i][currArticPlaying],
-			OPENSTRINGNOTES[i] + articHighestFretOnString[i][currArticPlaying]))
+			OPENSTRINGNOTES[i] + articHighestFretOnString[i][currArticPlaying]) && isStringEnabled[i])
 		{
 			stringFromBottom = ascendingOrder ? i : (NUMOFSTRINGS - 1) - i;
 			targetNote = lowestOpenNote + currentHandPos + (stringFromBottom * NOTES_PER_STRING) + halfSpan;
-			distToCompare = Math.abs(notePlayed - targetNote);
+			distToCompare = Math.abs(notePlayed - targetNote) + melodyStringWeight[i];
 
 			if (distToCompare < currDist)
 			{
@@ -638,7 +665,7 @@ inline function melodyFretting1_0_0(notePlayed, currentHandPos)
 	
 	local distBetweenNewFretAndAutoFret = 0;
 	local newFretFromPolyphony;
-	local fretSpaceToChange = 5;
+	local fretSpaceToChange = 10;
 	local stringToPlay;
 	local newHandPos;
 	
@@ -667,6 +694,7 @@ inline function melodyFretting1_0_0(notePlayed, currentHandPos)
 	
 	stringToPlay = stringWithMelodyNote(notePlayed, currentHandPos, Globals.g_currArticulationPlaying);
 	stringNote[stringToPlay] = notePlayed;
+	Globals.g_stringPerformance[stringToPlay] = Globals.g_currArticulationPlaying;
 	
 	local fretPlayed = stringNote[stringToPlay] - OPENSTRINGNOTES[stringToPlay];
 	
@@ -682,17 +710,21 @@ inline function melodyFretting1_0_0(notePlayed, currentHandPos)
 	}
 	
 	
-	if(Math.abs(currentHandPos - fretPlayed) >= 5)
+	if(Math.abs(fretPlayed - currentHandPos) > fretSpaceToChange)
 	{
 		
 		// Figure out the stringWithMelodyNote first and then figure where the fret position changes
-		newHandPos = fretPlayed - 4;
+		newHandPos = fretPlayed - fretSpaceToChange;
 		
 		return newHandPos;
 		
+	}else if(fretPlayed < currentHandPos)
+	{
+		return fretPlayed;
+	}else
+	{
+		return currentHandPos;
 	}
-	
-	return currentHandPos;
 }
 
 

@@ -1,4 +1,4 @@
-  Globals.g_forcedHandPositionFret = -1;
+    Globals.g_forcedHandPositionFret = -1;
  Globals.g_forcedString = -1;
  Globals.g_handPositionFret = 0;
  Globals.g_strumSpeed = 1;
@@ -782,7 +782,8 @@ inline function distributeFretMarkersVertically(stringToDistribute, fretImages){
  	if(Globals.g_frettingEngine == FrettingEngine.NATURAL){
  	highFret = lowFret + 5;
  	}else if(Globals.g_frettingEngine == FrettingEngine.MELODY){
-	 highFret = lowFret + 8;
+ 	// make this match the fretSpaceToChange in melodyFretting in NoteEngines.js
+	 highFret = lowFret + 10;
  	}
  	
  	highFret = cap(highFret, xPosOfFretBorder.length - 1);

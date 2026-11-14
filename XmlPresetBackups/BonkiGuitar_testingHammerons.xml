@@ -9,9 +9,9 @@
         <Processor Type="ScriptProcessor" ID="Interface" Bypassed="0" NumAudioFiles="2">
           <ChildProcessors/>
           <Content>
-            <Control type="ScriptSlider" id="HandPositionFretForceKnob" value="6.0"/>
+            <Control type="ScriptSlider" id="HandPositionFretForceKnob" value="1.0"/>
             <Control type="ScriptSlider" id="StringForceKnob" value="1.0"/>
-            <Control type="ScriptComboBox" id="FrettingEngineComboBox" value="2.0"/>
+            <Control type="ScriptComboBox" id="FrettingEngineComboBox" value="1.0"/>
             <Control type="ScriptButton" id="ResetGlobalRRButton" value="0.0"/>
             <Control type="ScriptSlider" id="VibratoDepthKnob" value="0.0"/>
             <Control type="ScriptSlider" id="VibratoFreqKnob" value="8.5"/>
@@ -20,7 +20,7 @@
             <Control type="ScriptButton" id="StrummingModeEnableBtn" value="0.0"/>
             <Control type="ScriptSlider" id="StrumSpeedKnob" value="127.0"/>
             <Control type="ScriptButton" id="EnableStrumSpeedWithVelBtn" value="0.0"/>
-            <Control type="ScriptSlider" id="IRMixKnob" value="0.0"/>
+            <Control type="ScriptSlider" id="IRMixKnob" value="1.0"/>
             <Control type="ScriptSlider" id="SustainModulatorsAttack" value="12.80000019073486"/>
             <Control type="ScriptSlider" id="SustainModulatorsDecay" value="0.0"/>
             <Control type="ScriptSlider" id="SustainModulatorsSustain" value="0.0"/>
@@ -179,10 +179,10 @@
             <Control type="ScriptButton" id="btnSaveFXPreset" value="0.0"/>
             <Control type="ScriptButton" id="btnLoadFXPreset" value="0.0"/>
             <Control type="ScriptButton" id="btnDelayComp" value="1"/>
-            <Control type="ScriptButton" id="btnPreEQ" value="0"/>
+            <Control type="ScriptButton" id="btnPreEQ" value="1.0"/>
             <Control type="ScriptButton" id="btnBypassPreEQ" value="0.0"/>
-            <Control type="ScriptButton" id="btnPostEQ" value="1.0"/>
-            <Control type="ScriptButton" id="btnBypassPostEQ" value="1.0"/>
+            <Control type="ScriptButton" id="btnPostEQ" value="0"/>
+            <Control type="ScriptButton" id="btnBypassPostEQ" value="0.0"/>
             <Control type="ScriptSlider" id="knbGateThreshold" value="-24.0"/>
             <Control type="ScriptSlider" id="knbGateAttack" value="1.0"/>
             <Control type="ScriptSlider" id="knbGateRelease" value="40.0"/>
@@ -190,20 +190,21 @@
             <Control type="ScriptSlider" id="knbOctave" value="0.0"/>
             <Control type="ScriptSlider" id="knbChugStrength" value="0.0"/>
             <Control type="ScriptSlider" id="knbPickStrength" value="0.0"/>
-            <Control type="ScriptSlider" id="GuitarMorphKnob" value="1.0"/>
-            <Control type="ScriptComboBox" id="cmbIr" value="2.0"/>
-            <Control type="ScriptSlider" id="PitchBendSmoothingKnob" value="78.0"/>
-            <Control type="ScriptButton" id="ShowPlayingModeButton" value="1"/>
+            <Control type="ScriptSlider" id="GuitarMorphKnob" value="0.0"/>
+            <Control type="ScriptComboBox" id="cmbIr" value="1.0"/>
+            <Control type="ScriptSlider" id="PitchBendSmoothingKnob" value="55.0"/>
+            <Control type="ScriptButton" id="ShowPlayingModeButton" value="0"/>
             <Control type="ScriptButton" id="ShowArticulationsButton" value="0"/>
             <Control type="ScriptButton" id="ShowDebugPanelButton" value="0"/>
-            <Control type="ScriptButton" id="ShowFXRackButton" value="0"/>
+            <Control type="ScriptButton" id="ShowFXRackButton" value="1"/>
           </Content>
           <UIData>
             <ContentProperties DeviceType="Desktop">
               <Component type="ScriptImage" id="CreditsBG" x="0" y="-60" width="1020"
                          height="800" fileName="{PROJECT_FOLDER}Credits_BG.png" scale="0.699999988079071"/>
               <Component type="ScriptImage" id="PlayingModeBG" x="0" y="-60" width="1020"
-                         height="800" fileName="{PROJECT_FOLDER}Empty_BG.png" scale="0.699999988079071">
+                         height="800" fileName="{PROJECT_FOLDER}Empty_BG.png" scale="0.699999988079071"
+                         visible="0">
                 <Component type="ScriptImage" id="PlayingModeGuitarImg" x="10" y="160" width="1006"
                            height="314" parentComponent="PlayingModeBG" fileName="{PROJECT_FOLDER}Bonki_GuitarRender.png"/>
                 <Component type="ScriptPanel" id="StringFretMarkersPnl" x="0" y="0" width="1020"
@@ -237,7 +238,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret8Marker" x="434" y="23" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret9Marker" x="459" y="24" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -246,7 +247,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret11Marker" x="504" y="24" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret12Marker" x="527" y="25" width="11"
                                height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -255,7 +256,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret14Marker" x="565" y="25" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret15Marker" x="582" y="25" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -319,19 +320,19 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret8Marker" x="434" y="23" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret9Marker" x="459" y="23" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret10Marker" x="481" y="23" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret11Marker" x="503" y="23" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret12Marker" x="526" y="24" width="11"
-                               height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret13Marker" x="545" y="24" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -383,7 +384,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret2Marker" x="252" y="19" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret3Marker" x="287" y="19" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -392,13 +393,13 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret5Marker" x="351" y="19" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret6Marker" x="382" y="20" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret7Marker" x="409" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret8Marker" x="434" y="20" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -428,7 +429,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret17Marker" x="611" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret18Marker" x="626" y="21" width="11"
                                height="35" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -501,7 +502,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret14Marker" x="561" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret15Marker" x="578" y="21" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -571,10 +572,10 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret10Marker" x="481" y="18" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret11Marker" x="502" y="18" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret12Marker" x="523" y="18" width="11"
                                height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -583,7 +584,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret14Marker" x="559" y="18" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret15Marker" x="576" y="18" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -644,7 +645,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret7Marker" x="409" y="17" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret8Marker" x="434" y="17" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -717,7 +718,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret4Marker" x="323" y="19" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret5Marker" x="353" y="18" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -747,7 +748,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret14Marker" x="557" y="15" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret15Marker" x="574" y="15" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -820,10 +821,10 @@
                                height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String1Fret11Marker" x="502" y="13" width="11"
-                               height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String1FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String1Fret12Marker" x="521" y="12" width="11"
-                               height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
                                parentComponent="String1FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String1Fret13Marker" x="539" y="12" width="11"
                                height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -868,7 +869,7 @@
                 </Component>
                 <Component type="ScriptLabel" id="CurrArticulationPlayingLabel" x="530"
                            y="490" width="100" height="34" parentComponent="PlayingModeBG"
-                           text="Mute" textColour="4278190080" fontName="Shehroz" fontSize="18.0"
+                           text="Sustain" textColour="4278190080" fontName="Shehroz" fontSize="18.0"
                            alignment="left"/>
                 <Component type="ScriptLabel" id="ArticulationPlayingLabel" x="430" y="490"
                            width="100" height="34" parentComponent="PlayingModeBG" text="Articulation:"
@@ -876,24 +877,25 @@
                 <Component type="ScriptPanel" id="FretBorderPanel" x="210" y="250" itemColour="0"
                            itemColour2="0" textColour="16777215" bgColour="16777215" width="500"
                            parentComponent="PlayingModeBG">
-                  <Component type="ScriptImage" id="FretBorderLow" x="101" y="25" parentComponent="FretBorderPanel"
+                  <Component type="ScriptImage" id="FretBorderLow" x="0" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder.png" scale="0.25"
                              height="15" width="10" text="FretBorderLowForced"/>
-                  <Component type="ScriptImage" id="FretBorderLowForced" x="101" y="25" parentComponent="FretBorderPanel"
+                  <Component type="ScriptImage" id="FretBorderLowForced" x="0" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder_Forced.png"
-                             scale="0.25" height="15" width="10"/>
-                  <Component type="ScriptImage" id="FretBorderHigh" x="302" y="25" parentComponent="FretBorderPanel"
+                             scale="0.25" height="15" width="10" visible="0"/>
+                  <Component type="ScriptImage" id="FretBorderHigh" x="132" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder.png" scale="0.25"
                              height="15" width="10" text="FretBorderLowForced"/>
-                  <Component type="ScriptImage" id="FretBorderHighForced" x="302" y="25" parentComponent="FretBorderPanel"
+                  <Component type="ScriptImage" id="FretBorderHighForced" x="132" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder_Forced.png"
-                             scale="0.25" height="15" width="10"/>
-                  <Component type="ScriptImage" id="FretBorderCenter" x="201" y="23" parentComponent="FretBorderPanel"
+                             scale="0.25" height="15" width="10" visible="0"/>
+                  <Component type="ScriptImage" id="FretBorderCenter" x="66" y="23" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandCenter.png" height="15"
                              width="15" text="FretBorderLowForced" scale="0.4000000059604645"/>
-                  <Component type="ScriptImage" id="FretBorderCenterForced" x="201" y="23"
+                  <Component type="ScriptImage" id="FretBorderCenterForced" x="66" y="23"
                              parentComponent="FretBorderPanel" fileName="{PROJECT_FOLDER}PlayingMode_HandCenter_Forced.png"
-                             height="15" width="15" text="FretBorderLowForced" scale="0.4000000059604645"/>
+                             height="15" width="15" text="FretBorderLowForced" scale="0.4000000059604645"
+                             visible="0"/>
                   <Component type="ScriptImage" id="FretBorderLowForcedRef" x="496" y="25"
                              parentComponent="FretBorderPanel" fileName="{PROJECT_FOLDER}PlayingMode_HandBorder_Forced.png"
                              scale="0.25" height="15" width="10" visible="0"/>
@@ -1034,7 +1036,7 @@
                 <Component type="ScriptImage" id="NerdDetails_BG" x="3" y="3" width="597"
                            height="100" parentComponent="DebugPanel" fileName="{PROJECT_FOLDER}PlayingMode_NerdDetails_BG.png"/>
                 <Component type="ScriptLabel" id="handPositionFretLabel" x="388" y="9" width="39"
-                           fontSize="20.0" height="13" text="6" parentComponent="DebugPanel"
+                           fontSize="20.0" height="13" text="1" parentComponent="DebugPanel"
                            textColour="4278190080"/>
                 <Component type="ScriptLabel" id="String1RRLabel" x="498" y="50" width="100"
                            height="21" parentComponent="DebugPanel" text="-1" textColour="4278190080"
@@ -1294,8 +1296,7 @@
                            itemColour="16777215" editable="0" alignment="left"/>
               </Component>
               <Component type="ScriptImage" id="FXRackBG" x="0" y="-60" width="1020" height="600"
-                         fileName="{PROJECT_FOLDER}Empty_BG.png" scale="0.699999988079071"
-                         visible="0">
+                         fileName="{PROJECT_FOLDER}Empty_BG.png" scale="0.699999988079071">
                 <Component type="ScriptPanel" id="pnlModularNav" x="20" y="348" width="960"
                            height="74" itemColour="0" itemColour2="0" parentComponent="FXRackBG">
                   <Component type="ScriptButton" id="btnSlot0" x="3" y="2" width="98" height="22"
@@ -2100,7 +2101,7 @@
                   </Component>
                 </Component>
                 <Component type="ScriptPanel" id="pnlPreEQ" x="20" y="60" width="1000" height="198"
-                           itemColour="0" itemColour2="0" parentComponent="FXRackBG" visible="0">
+                           itemColour="0" itemColour2="0" parentComponent="FXRackBG">
                   <Component type="ScriptFloatingTile" id="fltPreEQ" x="0" y="0" width="960"
                              height="170" parentComponent="pnlPreEQ" ContentType="DraggableFilterPanel"
                              bgColour="16777215" itemColour="1946122793" itemColour2="4278190080"
@@ -2138,7 +2139,8 @@
                              text="20k" fontName="Shehroz" fontSize="25.0"/>
                 </Component>
                 <Component type="ScriptPanel" id="pnlPostEQ" x="20" y="60" width="1000"
-                           height="198" itemColour="0" itemColour2="0" parentComponent="FXRackBG">
+                           height="198" itemColour="0" itemColour2="0" parentComponent="FXRackBG"
+                           visible="0">
                   <Component type="ScriptFloatingTile" id="fltPostEQ" x="0" y="0" width="960"
                              height="170" parentComponent="pnlPostEQ" ContentType="DraggableFilterPanel"
                              bgColour="16777215" itemColour="1946122793" itemColour2="4278190080"
@@ -2251,7 +2253,7 @@
                            items="Darken1&#10;Darken2"/>
                 <Component type="ScriptSlider" id="PitchBendSmoothingKnob" x="100" y="480"
                            parentComponent="FXRackBG" height="59" max="1000.0" stepSize="0.1000000014901161"
-                           mode="Time" showValuePopup="Below" middlePosition="110.0"/>
+                           mode="Time" showValuePopup="Below" middlePosition="110.0" defaultValue="55.0"/>
               </Component>
               <Component type="ScriptButton" id="ShowPlayingModeButton" x="259" y="478"
                          text="Show Main Playing Controls" width="188" filmstripImage="{PROJECT_FOLDER}PlayingMode_Button_Filmstrip.png"
@@ -2289,18 +2291,18 @@
     </Processor>
     <Processor Type="EffectChain" ID="FX" Bypassed="0">
       <ChildProcessors>
-        <Processor Type="Convolution" ID="ConvolutionReverb1" Bypassed="0" DryGain="-6.0"
-                   WetGain="-100.0" Latency="0.0" ImpulseLength="1.0" ProcessInput="1.0"
+        <Processor Type="Convolution" ID="ConvolutionReverb1" Bypassed="0" DryGain="-100.0"
+                   WetGain="0.0" Latency="0.0" ImpulseLength="1.0" ProcessInput="1.0"
                    UseBackgroundThread="0.0" Predelay="0.0" HiCut="20000.0" Damping="0.0"
                    FFTType="0.0" FileName="{PROJECT_FOLDER}AggressiveIRActual2.wav"
                    min="0" max="8192" loopStart="0" loopEnd="8192">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
-        <Processor Type="Convolution" ID="IRMatchGuitarsConv" Bypassed="0" DryGain="-100.0"
-                   WetGain="0.0" Latency="0.0" ImpulseLength="1.0" ProcessInput="1.0"
+        <Processor Type="Convolution" ID="IRMatchGuitarsConv" Bypassed="0" DryGain="-6.0"
+                   WetGain="-100.0" Latency="0.0" ImpulseLength="1.0" ProcessInput="1.0"
                    UseBackgroundThread="0.0" Predelay="0.0" HiCut="20000.0" Damping="0.0"
-                   FFTType="0.0" FileName="{PROJECT_FOLDER}GuitarMorphIRs/Darken2.wav"
+                   FFTType="0.0" FileName="{PROJECT_FOLDER}GuitarMorphIRs/Darken1.wav"
                    min="0" max="8192" loopStart="0" loopEnd="8192">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
@@ -2737,7 +2739,7 @@
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
-        <Processor Type="CurveEq" ID="postEQ" Bypassed="0" NumFilters="4" Band0="-24.0"
+        <Processor Type="CurveEq" ID="postEQ" Bypassed="1" NumFilters="4" Band0="-24.0"
                    Band1="2088.4638671875" Band2="6.624799728393555" Band3="1.0"
                    Band4="4.0" Band5="5.589041233062744" Band6="5686.4736328125"
                    Band7="0.4611840844154358" Band8="1.0" Band9="4.0" Band10="-13.80822086334229"
@@ -2756,7 +2758,7 @@
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
-        <Processor Type="ScriptFX" ID="ScriptFX" Bypassed="0">
+        <Processor Type="ScriptFX" ID="ScriptFX" Bypassed="1">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
           <Content/>
@@ -2838,7 +2840,7 @@
                     <Processor Type="MidiMuter" ID="LeftSusContainerMute" Bypassed="0">
                       <ChildProcessors/>
                       <Content>
-                        <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
+                        <Control type="ScriptButton" id="ignoreButton" value="0.0"/>
                         <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
                       </Content>
                     </Processor>
@@ -2931,7 +2933,7 @@
                         </Processor>
                         <Processor Type="PitchWheel" ID="SourcePitchBendModulator" Bypassed="0"
                                    Intensity="0.1666666716337204" Bipolar="1" UseTable="0.0" Inverted="0.0"
-                                   SmoothTime="78.0">
+                                   SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="SourceVibratoLFO" Bypassed="0" Intensity="0.0"
@@ -3070,7 +3072,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -3157,7 +3159,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -3296,7 +3298,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -3383,7 +3385,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -3522,7 +3524,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -3609,7 +3611,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -3748,7 +3750,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -3835,7 +3837,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -3974,7 +3976,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -4061,7 +4063,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -4200,7 +4202,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -4287,7 +4289,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -4426,7 +4428,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -4513,7 +4515,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -4652,7 +4654,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -4692,7 +4694,7 @@
                     <Processor Type="MidiMuter" ID="LeftMuteContainerMute" Bypassed="0">
                       <ChildProcessors/>
                       <Content>
-                        <Control type="ScriptButton" id="ignoreButton" value="0.0"/>
+                        <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
                         <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
                       </Content>
                     </Processor>
@@ -4784,7 +4786,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -4923,7 +4925,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -5010,7 +5012,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -5149,7 +5151,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -5236,7 +5238,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -5375,7 +5377,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -5462,7 +5464,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -5601,7 +5603,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -5688,7 +5690,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -5827,7 +5829,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -5914,7 +5916,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -6053,7 +6055,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -6140,7 +6142,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -6279,7 +6281,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -6366,7 +6368,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -6505,7 +6507,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -6660,7 +6662,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -6793,7 +6795,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -6926,7 +6928,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -7059,7 +7061,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -7192,7 +7194,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -7325,7 +7327,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -7458,7 +7460,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -7591,7 +7593,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -7751,7 +7753,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -7882,7 +7884,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -8013,7 +8015,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -8144,7 +8146,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -8275,7 +8277,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -8406,7 +8408,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -8537,7 +8539,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -8668,7 +8670,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -8847,7 +8849,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -8978,7 +8980,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -9109,7 +9111,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -9240,7 +9242,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -9371,7 +9373,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -9502,7 +9504,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -9633,7 +9635,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -9764,7 +9766,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -9941,7 +9943,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -10081,7 +10083,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -10168,7 +10170,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -10308,7 +10310,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -10395,7 +10397,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -10535,7 +10537,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -10622,7 +10624,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -10762,7 +10764,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -10849,7 +10851,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -10989,7 +10991,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -11076,7 +11078,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -11216,7 +11218,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -11303,7 +11305,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -11443,7 +11445,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -11530,7 +11532,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -11670,7 +11672,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -11804,7 +11806,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -11944,7 +11946,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -12032,7 +12034,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -12172,7 +12174,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -12260,7 +12262,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -12400,7 +12402,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -12488,7 +12490,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -12628,7 +12630,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -12716,7 +12718,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -12856,7 +12858,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -12944,7 +12946,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -13084,7 +13086,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -13172,7 +13174,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -13312,7 +13314,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -13400,7 +13402,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -13540,7 +13542,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -13632,7 +13634,7 @@
                     <Processor Type="MidiMuter" ID="RightSusContainerMute" Bypassed="0">
                       <ChildProcessors/>
                       <Content>
-                        <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
+                        <Control type="ScriptButton" id="ignoreButton" value="0.0"/>
                         <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
                       </Content>
                     </Processor>
@@ -13724,7 +13726,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -13863,7 +13865,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -13950,7 +13952,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -14089,7 +14091,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -14176,7 +14178,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -14315,7 +14317,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -14402,7 +14404,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -14541,7 +14543,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -14628,7 +14630,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -14767,7 +14769,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -14854,7 +14856,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -14993,7 +14995,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -15080,7 +15082,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -15219,7 +15221,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -15306,7 +15308,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -15445,7 +15447,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -15485,7 +15487,7 @@
                     <Processor Type="MidiMuter" ID="RightMuteContainerMute" Bypassed="0">
                       <ChildProcessors/>
                       <Content>
-                        <Control type="ScriptButton" id="ignoreButton" value="0.0"/>
+                        <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
                         <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
                       </Content>
                     </Processor>
@@ -15577,7 +15579,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -15716,7 +15718,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -15803,7 +15805,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -15942,7 +15944,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -16029,7 +16031,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -16168,7 +16170,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -16255,7 +16257,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -16394,7 +16396,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -16481,7 +16483,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -16620,7 +16622,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -16707,7 +16709,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -16846,7 +16848,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -16933,7 +16935,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -17072,7 +17074,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -17159,7 +17161,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -17298,7 +17300,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -17453,7 +17455,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -17586,7 +17588,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -17719,7 +17721,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -17852,7 +17854,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -17985,7 +17987,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -18118,7 +18120,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -18251,7 +18253,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -18384,7 +18386,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -18544,7 +18546,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -18675,7 +18677,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -18806,7 +18808,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -18937,7 +18939,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -19068,7 +19070,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -19199,7 +19201,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -19330,7 +19332,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -19461,7 +19463,7 @@
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                       Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                               <ChildProcessors/>
                             </Processor>
                             <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -19640,7 +19642,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -19771,7 +19773,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -19902,7 +19904,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -20033,7 +20035,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -20164,7 +20166,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -20295,7 +20297,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -20426,7 +20428,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -20557,7 +20559,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -20734,7 +20736,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -20874,7 +20876,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -20961,7 +20963,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -21101,7 +21103,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -21188,7 +21190,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -21328,7 +21330,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -21415,7 +21417,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -21555,7 +21557,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -21642,7 +21644,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -21782,7 +21784,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -21869,7 +21871,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -22009,7 +22011,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -22096,7 +22098,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -22236,7 +22238,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -22323,7 +22325,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -22463,7 +22465,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -22597,7 +22599,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -22737,7 +22739,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -22825,7 +22827,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -22965,7 +22967,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -23053,7 +23055,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -23193,7 +23195,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -23281,7 +23283,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -23421,7 +23423,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -23509,7 +23511,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -23649,7 +23651,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -23737,7 +23739,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -23877,7 +23879,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -23965,7 +23967,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -24105,7 +24107,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -24193,7 +24195,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="LFO" ID="VibratoLFO" Bypassed="0" Intensity="0.0" Bipolar="0"
@@ -24333,7 +24335,7 @@
                           <ChildProcessors/>
                         </Processor>
                         <Processor Type="PitchWheel" ID="PitchBendModulator" Bypassed="0" Intensity="0.1666666716337204"
-                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="78.0">
+                                   Bipolar="1" UseTable="0.0" Inverted="0.0" SmoothTime="55.0">
                           <ChildProcessors/>
                         </Processor>
                       </ChildProcessors>
@@ -24402,9 +24404,9 @@
                 Interval="0.01" Converter="37.nT6K8CBGgC..VEFa0U1Pu4lckIGckIG.ADPXiQWZ1UF.ADf..."
                 Attribute="DSPPanel" Inverted="0"/>
     <Controller Controller="1" Channel="-1" Processor="Interface" MacroIndex="-1"
-                Start="0.0" End="1.0" FullStart="0.0" FullEnd="1.0" Skew="1.0"
+                Start="0.0" End="3.5" FullStart="0.0" FullEnd="3.5" Skew="0.5532947556651122"
                 Interval="0.01" Converter="37.nT6K8CBGgC..VEFa0U1Pu4lckIGckIG.ADPXiQWZ1UF.ADf..."
-                Attribute="IRMixKnob" Inverted="0"/>
+                Attribute="VibratoDepthKnob" Inverted="0"/>
     <Controller Controller="2" Channel="-1" Processor="Interface" MacroIndex="-1"
                 Start="0.0" End="127.0" FullStart="0.0" FullEnd="127.0" Skew="0.9887238386782449"
                 Interval="1.0" Converter="37.nT6K8CBGgC..VEFa0U1Pu4lckIGckIG.ADPXiQWZ1UF.ADf..."
