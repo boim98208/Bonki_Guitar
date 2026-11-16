@@ -21,11 +21,9 @@ Globals.g_stringPerformance.reserve(NUMOFSTRINGS * 2);
 for(var i = 0; i < NUMOFSTRINGS * 2; i++){
 	Globals.g_stringPerformance.push(PerformanceType.SUSTAIN);
 }
-
-var legatoKeySwitchPlaying = false;
  
 
- var legatoKeySwitchPlaying = false;
+var legatoKeySwitchPlaying = false;
  
  // setting up keyswitches to mute samplers
  
@@ -43,10 +41,6 @@ inline function createAllMutersArray(articulationName){
 }
  
 const var susSamplerName = "Sus";
-
-const var legDownSamplerName = "Leg";
-
-const var legUpSamplerName = "Leg";
   
 const var muteSamplerName = "Mute";
 
@@ -54,12 +48,18 @@ const var harmonicSamplerName = "Harmonic";
   
 const var tremoloSamplerName = "Tremolo";
 
+const var legatoUpSamplerName = "LegatoUp";
+
+const var legatoDownSamplerName = "LegatoDown";
+
  
  // skipping SFX samplers for now. Do later if it exists
  
 const var AllSusMuters = createAllMutersArray(susSamplerName);
 const var AllMuteMuters = createAllMutersArray(muteSamplerName);
 const var AllHarmonicMuters = createAllMutersArray(harmonicSamplerName);
+const var AllLegatoUpMuters = createAllMutersArray(legatoUpSamplerName);
+const var AllLegatoDownMuters = createAllMutersArray(legatoDownSamplerName);
 
 // I'll need to do some reworking for anything timestretching
 //const var AllTremoloMuters = createAllMutersArray(tremoloSamplerName);
@@ -81,6 +81,8 @@ AllContainerMuters[PerformanceType.SUSTAIN] = AllSusMuters;
 AllContainerMuters[PerformanceType.MUTE] = AllMuteMuters;
 AllContainerMuters[PerformanceType.HARMONIC] = AllHarmonicMuters;
 AllContainerMuters[PerformanceType.TREMOLO] = AllTremoloMuters;
+AllContainerMuters[PerformanceType.LEGATOUP] = AllLegatoUpMuters;
+AllContainerMuters[PerformanceType.LEGATODOWN] = AllLegatoDownMuters;
 
 
 const var NUMOFKEYSWITCHES = 4;
@@ -113,10 +115,12 @@ const var NUMOFKEYSWITCHES = 4;
  inline function detectKeySwitch(notePlayed){
 	 
  
-	if(!isBetweenIncl(notePlayed, SUSTAINKEYSWITCHNOTE, SUSTAINKEYSWITCHNOTE + NUMOFKEYSWITCHES - 1)){
+	if(!isBetweenIncl(notePlayed, SUSTAINKEYSWITCHNOTE, LEGATOKEYSWITCHNOTE))
+	{
 		//keyswitch was not pressed
 		return 0;
 	}
+	
 	
 	
 	setAllSamplersMuted();
@@ -142,7 +146,14 @@ const var NUMOFKEYSWITCHES = 4;
 		 
 		 setSamplerUnmuted(PerformanceType.TREMOLO);
 		 Globals.g_currArticulationPlaying = PerformanceType.TREMOLO;
-	 }else if(notePlayed == SFXKEYSWITCHNOTE){
+	 }else if(notePlayed == LEGATOKEYSWITCHNOTE){
+		 // setSamplerUnmuted is dictated by the note played in the playNextNoteLegato function
+		 
+		 
+		 Console.print("are you going here");
+		 Globals.g_currArticulationPlaying = PerformanceType.LEGATOUP;
+// for now do legato down because there's no samplers for LEGATOGENERAL. Later make it so that LEGATOGENERAL can be used and can still increment the things
+	 } else if(notePlayed == SFXKEYSWITCHNOTE){
 	 
 		 Globals.g_currArticulationPlaying = PerformanceType.SFX;
 		 
@@ -338,7 +349,14 @@ inline function updateGlobalStringNote(stringToUpdate, notePlayed, RRPlayed){
 
  
  inline function isPolyphonyPlaying(){
-	 return Synth.getNumPressedKeys() > 1;
+ 
+	 for(i = 0; i < NUMOFSTRINGS; i++){
+		 if(stringNote[i] != NO_NOTE){
+			 return true;
+		 }
+	 }
+	 
+	 return false;
  }
  
  
@@ -881,11 +899,11 @@ inline function createAllRightArticSamplerArray(articName, lowBound, highBound){
 
 
 
-const var legDownSamplerLowestStringNum = 1;
-const var legDownSamplerHighestStringNum = NUMOFSTRINGS;
+const var legatoDownSamplerLowestStringNum = 1;
+const var legatoDownSamplerHighestStringNum = NUMOFSTRINGS;
 
-const var legUpSamplerLowestStringNum = 1;
-const var legUpSamplerHighestStringNum = NUMOFSTRINGS;
+const var legatoUpSamplerLowestStringNum = 1;
+const var legatoUpSamplerHighestStringNum = NUMOFSTRINGS;
 
 
 const var susSamplerLowestStringNum = 1;
@@ -907,13 +925,13 @@ const var AllSusLeftSamplers = createAllLeftArticSamplerArray(susSamplerName, su
 const var AllSusRightSamplers = createAllRightArticSamplerArray(susSamplerName, susSamplerLowestStringNum, susSamplerHighestStringNum);
 
  
-//const var AllLegDownLeftSamplers = createAllLeftArticSamplerArray(legDownSamplerName, legDownSamplerLowestStringNum, legDownSamplerHighestStringNum);
+const var AllLegatoDownLeftSamplers = createAllLeftArticSamplerArray(legatoDownSamplerName, legatoDownSamplerLowestStringNum, legatoDownSamplerHighestStringNum);
 
-//const var AllLegDownRightSamplers = createAllRightArticSamplerArray(legDownSamplerName, legDownSamplerLowestStringNum, legDownSamplerHighestStringNum);
+const var AllLegatoDownRightSamplers = createAllRightArticSamplerArray(legatoDownSamplerName, legatoDownSamplerLowestStringNum, legatoDownSamplerHighestStringNum);
 
-//const var AllLegUpLeftSamplers = createAllLeftArticSamplerArray(legUpSamplerName, legUpSamplerLowestStringNum, legUpSamplerHighestStringNum);
+const var AllLegatoUpLeftSamplers = createAllLeftArticSamplerArray(legatoUpSamplerName, legatoUpSamplerLowestStringNum, legatoUpSamplerHighestStringNum);
 
-//const var AllLegUpRightSamplers = createAllRightArticSamplerArray(legUpSamplerName, legUpSamplerLowestStringNum, legUpSamplerHighestStringNum);
+const var AllLegatoUpRightSamplers = createAllRightArticSamplerArray(legatoUpSamplerName, legatoUpSamplerLowestStringNum, legatoUpSamplerHighestStringNum);
 
 
  
@@ -950,8 +968,8 @@ AllLeftSamplers[PerformanceType.SUSTAIN] = AllSusLeftSamplers;
 AllLeftSamplers[PerformanceType.MUTE] = AllMuteLeftSamplers;
 AllLeftSamplers[PerformanceType.HARMONIC] = AllHarmonicLeftSamplers;
 AllLeftSamplers[PerformanceType.TREMOLO] = AllTremoloLeftSamplers;
-AllLeftSamplers[PerformanceType.LEGATOUP] = AllLegUpLeftSamplers;
-AllLeftSamplers[PerformanceType.LEGATODOWN] = AllLegDownLeftSamplers;
+AllLeftSamplers[PerformanceType.LEGATOUP] = AllLegatoUpLeftSamplers;
+AllLeftSamplers[PerformanceType.LEGATODOWN] = AllLegatoDownLeftSamplers;
 
 
 
@@ -959,8 +977,8 @@ AllRightSamplers[PerformanceType.SUSTAIN] = AllSusRightSamplers;
 AllRightSamplers[PerformanceType.MUTE] = AllMuteRightSamplers;
 AllRightSamplers[PerformanceType.HARMONIC] = AllHarmonicRightSamplers;
 AllRightSamplers[PerformanceType.TREMOLO] = AllTremoloRightSamplers;
-AllRightSamplers[PerformanceType.LEGATOUP] = AllLegUpRightSamplers;
-AllRightSamplers[PerformanceType.LEGATODOWN] = AllLegDownRightSamplers;
+AllRightSamplers[PerformanceType.LEGATOUP] = AllLegatoUpRightSamplers;
+AllRightSamplers[PerformanceType.LEGATODOWN] = AllLegatoDownRightSamplers;
 
 
 
@@ -1098,6 +1116,7 @@ inline function linearRR_incrementSamplersRR(stringPlaying){
 		
 		// make sure any sampler for this does the transposition trick for whatever RR needs it
 	
+
 		rightSamplerToIncrement.asSampler().setActiveGroup(1);
 		leftSamplerToIncrement.asSampler().setActiveGroup(1);
 	}
@@ -1674,17 +1693,16 @@ inline function randomAddOrSub(deviation){
 	if(Globals.g_resetNotes == true)
 		resetNotes();
 	
-	if(notePlayed == legatoKeySwitchNote)
-		legatoKeySwitchPlaying = true;
 	
 	if(isBetweenIncl(notePlayed, LOWESTNOTE, HIGHESTNOTE)){
-	
-	
-		if(legatoKeySwitchPlaying){
-			
+
+		if(Globals.g_currArticulationPlaying == PerformanceType.LEGATOUP){ // change it later to LEGATOGENERAL when you figure it out
+
 			didPlayNoteLegato = playNextNoteLegato(notePlayed, velocityPlayed);
 			if(!didPlayNoteLegato){
-		
+			// Later will need to hold the latest articulation played before legato was pressed
+			detectKeySwitch(SUSTAINKEYSWITCHNOTE);
+			Console.print("you should only be here once");
 			playNextNoteOnNewString(notePlayed, velocityPlayed);
 			
 			}else{

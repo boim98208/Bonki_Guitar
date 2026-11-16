@@ -5,7 +5,7 @@
  const var TREMOLOKEYSWITCHNOTE = 27;
  const var SFXKEYSWITCHNOTE = 28;
  
- const var legatoKeySwitchNote = 37; //Db4 in cakewalk
+ const var LEGATOKEYSWITCHNOTE = 37; //Db4 in cakewalk
  
  const var FIRSTKEYSWITCH = SUSTAINKEYSWITCHNOTE;
  const var LASTKEYSWITCH = SFXKEYSWITCHNOTE;
@@ -23,15 +23,16 @@
  namespace PerformanceType
  {
  	const var SUSTAIN = 0;
- 	const var LEGATOUP = 1;
- 	const var LEGATODOWN = 2;
- 	const var MUTE = 3;
- 	const var HARMONIC = 4;
- 	const var TREMOLO = 5;
+ 	const var MUTE = 1;
+ 	const var HARMONIC = 2;
+ 	const var TREMOLO = 3;
+ 	const var SFX = 4;
  	
- 	const var SFX = 6;
+ 	const var LEGATOUP = 5;
+ 	const var LEGATODOWN = 6;
+ 	const var LEGATOGENERAL = 7;
  	
- 	const var NUMOFPERFORMANCES = 7;
+ 	const var NUMOFPERFORMANCES = 8;
  	//SFX will just be separate keys down low... maybe
  }
  
