@@ -12,6 +12,11 @@ reg transitionFromNoteId = NO_NOTE;
 var transitionFromNote = NO_NOTE;
 var currentRealNote = NO_NOTE;
 
+// Transition timing and destination tracking registers
+reg slideStartTimeSec = 0.0;
+reg slideTotalDurationMS = 0.0;
+reg slideDestinationVoiceId = NO_NOTE;
+
 const var eventIdArray = [];
 eventIdArray.reserve(127);
 
@@ -31,19 +36,64 @@ inline function isBetweenIncl(lowBound, highBound, num)
 }
 
 /**
- * Terminates all active and queued notes in the target event ID array and clears it.
+ * Terminates all active and queued notes in the target event ID array.
+ * If the transition reached the destination note, it seamlessly releases the destination note.
+ * If the transition ended early before reaching the last note, it seamlessly fades out the
+ * currently active note and mutes/notes-off all incoming queued notes so they do not explode the volume.
  */
 inline function endSlide(targetEventIdArray)
 {
-    for (i = 0; i < targetEventIdArray.length; i++)
+    local currentTimeSec = Engine.getUptime();
+    local elapsedMS = (currentTimeSec - slideStartTimeSec) * 1000.0;
+    local reachedLastNote = (slideDestinationVoiceId != NO_NOTE) && ((elapsedMS >= slideTotalDurationMS) || Synth.isArtificialEventActive(slideDestinationVoiceId));
+    
+    if (reachedLastNote)
     {
-        local evId = targetEventIdArray[i];
-        if (evId > 0)
+        // Transition successfully reached the destination note.
+        // Cleanly release destination note with a smooth fade out
+        if (slideDestinationVoiceId != NO_NOTE && Synth.isArtificialEventActive(slideDestinationVoiceId))
         {
-            Synth.noteOffByEventId(evId);
+            Synth.addVolumeFade(slideDestinationVoiceId, 25, -100);
+            Synth.noteOffDelayedByEventId(slideDestinationVoiceId, Engine.getSamplesForMilliSeconds(25));
+        }
+        else if (slideDestinationVoiceId != NO_NOTE)
+        {
+            Synth.noteOffByEventId(slideDestinationVoiceId);
         }
     }
+    else
+    {
+        // Destination note ended early before reaching the last note!
+        // 1. Seamlessly fade out whichever intermediate voice is currently sounding
+        for (i = 0; i < targetEventIdArray.length; i++)
+        {
+            local activeEvId = targetEventIdArray[i];
+            if (activeEvId > 0 && Synth.isArtificialEventActive(activeEvId))
+            {
+                Synth.addVolumeFade(activeEvId, 25, -100);
+                Synth.noteOffDelayedByEventId(activeEvId, Engine.getSamplesForMilliSeconds(25));
+            }
+        }
+        
+        // 2. Note-off every other note that's coming in, and add volume fade so they don't explode
+        for (i = 0; i < targetEventIdArray.length; i++)
+        {
+            local queuedEvId = targetEventIdArray[i];
+            if (queuedEvId > 0)
+            {
+                Synth.noteOffByEventId(queuedEvId);
+                if (Synth.isArtificialEventActive(queuedEvId))
+                {
+                    Synth.addVolumeFade(queuedEvId, 5, -100);
+                }
+            }
+        }
+    }
+    
     targetEventIdArray.clear();
+    slideDestinationVoiceId = NO_NOTE;
+    slideTotalDurationMS = 0.0;
+    slideStartTimeSec = 0.0;
 }
 
 /**
@@ -76,6 +126,10 @@ inline function triggerSlide(startNote, endNote, targetEventIdArray, velocity)
         if (evId > 0 && evId != prevVoiceId)
         {
             Synth.noteOffByEventId(evId);
+            if (Synth.isArtificialEventActive(evId))
+            {
+                Synth.addVolumeFade(evId, 5, -100);
+            }
         }
     }
     targetEventIdArray.clear();
@@ -116,6 +170,13 @@ inline function triggerSlide(startNote, endNote, targetEventIdArray, velocity)
             Synth.noteOffDelayedByEventId(voiceId, currentOffsetSamples + stepDurSamples + stepOverlapSamples);
             currentOffsetSamples += stepDurSamples;
         }
+        else
+        {
+            // Destination note: record transition timing and voice ID for early-abort checking
+            slideDestinationVoiceId = voiceId;
+            slideTotalDurationMS = (currentOffsetSamples / Engine.getSampleRate()) * 1000.0;
+            slideStartTimeSec = Engine.getUptime();
+        }
     }
 }
 
@@ -141,6 +202,10 @@ function onNoteOn()
         transitionFromNoteId = Synth.addNoteOn(1, newNotePlayed, newNoteVelocity, 0);
         eventIdArray.push(transitionFromNoteId);
         
+        slideDestinationVoiceId = transitionFromNoteId;
+        slideTotalDurationMS = 0.0;
+        slideStartTimeSec = Engine.getUptime();
+        
         transitionFromNote = newNotePlayed;
         currentRealNote = newNotePlayed;
     }
@@ -159,6 +224,10 @@ function onNoteOn()
             endSlide(eventIdArray);
             transitionFromNoteId = Synth.addNoteOn(1, newNotePlayed, newNoteVelocity, 0);
             eventIdArray.push(transitionFromNoteId);
+            
+            slideDestinationVoiceId = transitionFromNoteId;
+            slideTotalDurationMS = 0.0;
+            slideStartTimeSec = Engine.getUptime();
             return;
         }
         
@@ -212,4 +281,3 @@ function onController()
 {
 	
 }
- 
