@@ -1644,7 +1644,7 @@ for(var i = FrettingEngineKeySwitch.FIRSTENGINE; i <= FrettingEngineKeySwitch.LA
 }
  
  
- Engine.setKeyColour(legatoKeySwitchNote, KeyboardColors.LEGATO);
+ Engine.setKeyColour(LEGATOKEYSWITCHNOTE, KeyboardColors.LEGATO);
  Engine.setKeyColour(FORCEFRETMODEKEYSWITCH, KeyboardColors.FORCEFRETHAND);
  Engine.setKeyColour(AUTOFRETMODEKEYSWITCH, KeyboardColors.FORCEFRETHAND);
  Engine.setKeyColour(StrummingKeyswitches.downStrumKeyswitch, KeyboardColors.FULLSTRUMKEYSWITCHES);

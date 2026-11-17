@@ -36,6 +36,12 @@
  	//SFX will just be separate keys down low... maybe
  }
  
+ namespace LegatoDirection
+ {
+	 const var LegatoUp = 0;
+	 const var LegatoDown = 1;
+ }
+ 
  
  
  

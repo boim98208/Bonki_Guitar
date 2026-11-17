@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<samplemap ID="SlideDown_HalfSpread" CrossfadeGamma="1.0" RRGroupAmount="1.0"
+           MicPositions=";">
+  <sample Root="52" LoKey="51" HiKey="52" LoVel="0" HiVel="127" FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Slidedown_String8_Dynamic1_Tuned_E4_D#4_RR01.wav"
+          Duplicate="1" LoopXFade="0" LoopStart="9794" SampleStart="9794"/>
+  <sample Root="50" LoKey="49" HiKey="50" LoVel="0" HiVel="127" FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Slidedown_String8_Dynamic1_Tuned_D4_C#4_RR01.wav"
+          Duplicate="1" LoopXFade="0" LoopStart="16413" SampleStart="16413"/>
+  <sample Root="48" LoKey="47" HiKey="48" LoVel="0" HiVel="127" FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Slidedown_String8_Dynamic1_Tuned_C4_B3_RR01.wav"
+          Duplicate="1" LoopXFade="0" LoopStart="9023" SampleStart="9023"/>
+  <sample Root="46" LoKey="45" HiKey="46" LoVel="0" HiVel="127" FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Slidedown_String8_Dynamic1_Tuned_A#3_A3_RR01.wav"
+          Duplicate="1" LoopXFade="0" LoopStart="9098" SampleStart="9098"/>
+  <sample Root="44" LoKey="43" HiKey="44" LoVel="0" HiVel="127" FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Slidedown_String8_Dynamic1_Tuned_G#3_G3_RR01.wav"
+          Duplicate="1" LoopXFade="0" LoopStart="11421" SampleStart="11421"/>
+  <sample Root="42" LoKey="41" HiKey="42" LoVel="0" HiVel="127" FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Slidedown_String8_Dynamic1_Tuned_F#3_F3_RR01.wav"
+          Duplicate="1" LoopXFade="0" LoopStart="11931" SampleStart="11931"/>
+  <sample Root="40" LoKey="39" HiKey="40" LoVel="0" HiVel="127" FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Slidedown_String8_Dynamic1_Tuned_E3_D#3_RR01.wav"
+          Duplicate="1" LoopXFade="0" LoopStart="19012" SampleStart="19012"/>
+  <sample Root="38" LoKey="37" HiKey="38" LoVel="0" HiVel="127" FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Slidedown_String8_Dynamic1_Tuned_D3_C#3_RR01.wav"
+          Duplicate="1" LoopXFade="0" LoopStart="12026" SampleStart="12026"/>
+  <sample Root="36" LoKey="35" HiKey="36" LoVel="0" HiVel="127" FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Slidedown_String8_Dynamic1_Tuned_C3_B2_RR01.wav"
+          Duplicate="1" LoopXFade="0" LoopStart="14079" SampleStart="14079"/>
+  <sample Root="34" LoKey="33" HiKey="34" LoVel="0" HiVel="127" FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Slidedown_String8_Dynamic1_Tuned_A#2_A2_RR01.wav"
+          Duplicate="1" LoopXFade="0" LoopStart="13395" SampleStart="13395"/>
+  <sample Root="32" LoKey="31" HiKey="32" LoVel="0" HiVel="127" FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Slidedown_String8_Dynamic1_Tuned_G#2_G2_RR01.wav"
+          Duplicate="1" LoopXFade="0" LoopStart="14074" SampleStart="14074"/>
+  <sample Root="30" LoKey="29" HiKey="30" LoVel="0" HiVel="127" FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Slidedown_String8_Dynamic1_Tuned_F#2_F2_RR01.wav"
+          Duplicate="1" LoopXFade="0" LoopStart="13430" SampleStart="13430"/>
+</samplemap>
