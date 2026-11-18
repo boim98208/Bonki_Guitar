@@ -4,6 +4,13 @@
  
  Content.makeFrontInterface(800, 400);
  
+ const var LegatoDecayGraph = Content.addTable("LegatoDecayGraph", 10, 10);
+ LegatoDecayGraph.set("width", 260);
+ LegatoDecayGraph.set("height", 120);
+ LegatoDecayGraph.reset();
+ LegatoDecayGraph.setTablePoint(0, 0.0, 1.0, 0.35);
+ LegatoDecayGraph.setTablePoint(1, 1.0, 0.0, 0.5);
+ 
  reg i = 0;
  reg linearRRCounter = 1;
  
@@ -288,6 +295,9 @@ slideDestinationVoiceId.reserve(NUMOFSTRINGS);
 const var slideStartFret = [];
 slideStartFret.reserve(NUMOFSTRINGS);
 
+const var stringNoteStartTime = [];
+stringNoteStartTime.reserve(NUMOFSTRINGS);
+
 for (var dIdx = 0; dIdx < NUM_LEGATO_DIRECTIONS; dIdx++)
 {
     var tDir = [];
@@ -338,6 +348,7 @@ for (var sIdx = 0; sIdx < NUMOFSTRINGS; sIdx++)
     slideTotalDurationMS.push(0.0);
     slideDestinationVoiceId.push(NO_NOTE);
     slideStartFret.push(NO_NOTE);
+    stringNoteStartTime.push(0.0);
 }
 
 // Hardcoded Upward Slide Transit Times for String 8 (LegatoDirection.LegatoUp = 0)
@@ -521,6 +532,39 @@ inline function endSlide(stringIndex)
     slideStartFret[stringIndex] = NO_NOTE;
     slideTotalDurationMS[stringIndex] = 0.0;
     slideStartTimeSec[stringIndex] = 0.0;
+    stringNoteStartTime[stringIndex] = 0.0;
+}
+
+const var legatoMessageHolder = Engine.createMessageHolder();
+
+var LEGATO_MAX_DECAY_TIME_SEC = 10;
+var LEGATO_DECAY_FLOOR_DB = -39.0;
+var isRealisticSlideVolEnabled = true;
+
+/**
+ * Calculates the attenuated gain in decibels for a legato transition
+ * based on elapsed time since the note was initially plucked.
+ * Uses the interactive UI Table (LegatoDecayGraph) with an inverse exponential fallback.
+ */
+inline function getDecayGainDB(elapsedSec)
+{
+    if (!isRealisticSlideVolEnabled)
+        return 0.0;
+        
+    local normTime = elapsedSec / LEGATO_MAX_DECAY_TIME_SEC;
+    if (normTime < 0.0) normTime = 0.0;
+    if (normTime > 1.0) normTime = 1.0;
+    
+    local decayFactor = LegatoDecayGraph.getTableValue(normTime);
+    
+    // Safety fallback: if table returns uninitialized/zero value at t=0, use exponential curve
+    if (normTime < 0.02 && decayFactor <= 0.001)
+    {
+        decayFactor = Math.exp(-2.5 * normTime);
+    }
+    
+    local gainDB = (1.0 - decayFactor) * LEGATO_DECAY_FLOOR_DB;
+    return gainDB;
 }
 
 /**
@@ -610,6 +654,11 @@ inline function triggerSlide(stringIndex, startNote, endNote, targetEventIdArray
     local voiceId;
     local step;
     
+    if (stringNoteStartTime[stringIndex] <= 0.0)
+    {
+        stringNoteStartTime[stringIndex] = Engine.getUptime();
+    }
+    
     for (step = 0; step < numSteps; step++)
     {
         if (isUp)
@@ -626,7 +675,26 @@ inline function triggerSlide(stringIndex, startNote, endNote, targetEventIdArray
         stepDurMS = transitDurations[direction][stringIndex][durLookupNote] * speedFactor;
         stepDurSamples = Engine.getSamplesForMilliSeconds(stepDurMS);
         
-        voiceId = Synth.addNoteOn(slideChannel, stepNote, velocity, currentOffsetSamples);
+        legatoMessageHolder.setType(1); // 1 = NoteOn
+        legatoMessageHolder.setChannel(slideChannel);
+        legatoMessageHolder.setNoteNumber(stepNote);
+        legatoMessageHolder.setVelocity(velocity);
+        legatoMessageHolder.setTimestamp(currentOffsetSamples);
+        
+        if (isRealisticSlideVolEnabled)
+        {
+            local offsetSec = currentOffsetSamples / Engine.getSampleRate();
+            local elapsedSec = (Engine.getUptime() - stringNoteStartTime[stringIndex]) + offsetSec;
+            if (elapsedSec < 0.0) elapsedSec = 0.0;
+            local stepGainDB = getDecayGainDB(elapsedSec);
+            legatoMessageHolder.setGain(Math.round(stepGainDB));
+        }
+        else
+        {
+            legatoMessageHolder.setGain(0);
+        }
+        
+        voiceId = Synth.addMessageFromHolder(legatoMessageHolder);
         targetEventIdArray.push(voiceId);
         targetStepNoteArray.push(stepNote);
         
@@ -657,6 +725,7 @@ inline function resetNotes(){
 		stringNote[i] = NO_NOTE;
 	}
 	for(var s = 0; s < NUMOFSTRINGS; s++){
+		stringNoteStartTime[s] = 0.0;
 		if (eventIdArray[s].length > 0)
 		{
 			endSlide(s);
@@ -765,6 +834,10 @@ inline function noteOffStringSound(stringToOff, stringNotesToUpdate, stringIdsTo
 	else
 	{
 		Synth.noteOffByEventId(stringIdsToUpdate[stringToOff]);
+		if (stringToOff < NUMOFSTRINGS)
+		{
+			stringNoteStartTime[stringToOff] = 0.0;
+		}
 	}
 }
 
@@ -2160,6 +2233,14 @@ inline function randomAddOrSub(deviation){
 	
 	local didPlayNoteLegato = false;
 	local didPlayOnNewString = false;
+	
+	local s;
+	local oldStringNoteId = [];
+	oldStringNoteId.reserve(NUMOFSTRINGS);
+	for (s = 0; s < NUMOFSTRINGS; s++)
+	{
+		oldStringNoteId.push(stringNoteId[s]);
+	}
 
 //	eventIds.setValue(notePlayed, notePlayedId);
 
@@ -2217,15 +2298,20 @@ inline function randomAddOrSub(deviation){
 	
 	individualNoteStrum(notePlayed, velocityPlayed, stringNote, stringNoteId, indivNoteStrumIds);
 	
+	for (s = 0; s < NUMOFSTRINGS; s++)
+	{
+		if (stringNoteId[s] != oldStringNoteId[s] && !didPlayNoteLegato)
+		{
+			stringNoteStartTime[s] = Engine.getUptime();
+		}
+	}
+	
 	
 	
 /*	for(i = 0; i < NoteIdLabels.length; i++){
 		NoteIdLabels[i].set("text", stringNoteId[i]);
 	}*/
 
-//	strumIfStrumKeyPressed(notePlayed, IdsToTest, notesToTest, velocityPlayed);
-	
-//	individualNoteStrum(notePlayed, velocityPlayed, notesToTest, IdsToTest, indivNoteStrumIds);
 
 	
 }

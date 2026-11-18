@@ -357,7 +357,12 @@ for(i = 0; i < NUMOFSTRINGS; i++){
  		CurrArticulationPlayingLabel.set("text", "Tremolo");
  	else if(Globals.g_currArticulationPlaying == PerformanceType.SFX)
  			CurrArticulationPlayingLabel.set("text", "SFX");
- 	
+ 	else if(Globals.g_currArticulationPlaying == PerformanceType.LEGATODOWN)
+ 			CurrArticulationPlayingLabel.set("text", "Slide");
+ 	else if(Globals.g_currArticulationPlaying == PerformanceType.LEGATOUP)
+ 			CurrArticulationPlayingLabel.set("text", "Slide");
+ 	else if(Globals.g_currArticulationPlaying == PerformanceType.LEGATOGENERAL)
+ 			CurrArticulationPlayingLabel.set("text", "Slide");
  }
  
  

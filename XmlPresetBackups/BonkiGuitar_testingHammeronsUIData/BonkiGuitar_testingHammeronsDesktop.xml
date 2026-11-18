@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<ContentProperties DeviceType="Desktop"/>
+<ContentProperties DeviceType="Desktop">
+  <Component type="ScriptTable" id="LegatoDecayGraph" x="10" y="10" width="260"
+             height="120"/>
+</ContentProperties>
