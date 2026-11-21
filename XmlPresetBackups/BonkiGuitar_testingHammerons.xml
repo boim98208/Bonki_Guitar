@@ -21,6 +21,13 @@
             <Control type="ScriptSlider" id="StrumSpeedKnob" value="127.0"/>
             <Control type="ScriptButton" id="EnableStrumSpeedWithVelBtn" value="0.0"/>
             <Control type="ScriptSlider" id="IRMixKnob" value="0.0"/>
+            <Control type="ScriptSlider" id="NeckPickupXFadeKnob" value="0.0"/>
+            <Control type="ScriptSlider" id="NeckPositionKnob" value="1.0"/>
+            <Control type="ScriptSlider" id="NeckCombDepthKnob" value="0.85"/>
+            <Control type="ScriptSlider" id="NeckBodyKnob" value="0.0"/>
+            <Control type="ScriptSlider" id="NeckToneKnob" value="8000.0"/>
+            <Control type="ScriptSlider" id="NeckBiteCutKnob" value="-4.0"/>
+            <Control type="ScriptSlider" id="NeckResonanceKnob" value="2.0"/>
             <Control type="ScriptSlider" id="SustainModulatorsAttack" value="12.80000019073486"/>
             <Control type="ScriptSlider" id="SustainModulatorsDecay" value="0.0"/>
             <Control type="ScriptSlider" id="SustainModulatorsSustain" value="0.0"/>
@@ -981,7 +988,7 @@
                              height="40" parentComponent="VibratoPnl" text="Frequency" textColour="4278190080"
                              fontName="Shehroz" fontSize="18.0"/>
                 </Component>
-                <Component type="ScriptPanel" id="PitchBendRangePnl" x="590" y="110" width="102"
+                <Component type="ScriptPanel" id="PitchBendRangePnl" x="890" y="110" width="102"
                            height="86" parentComponent="PlayingModeBG" itemColour="0" itemColour2="0"
                            textColour="16777215" bgColour="16777215">
                   <Component type="ScriptLabel" id="PitchBendRangeLabel" x="0" y="10" width="100"
@@ -1027,6 +1034,55 @@
                 <Component type="ScriptSlider" id="IRMixKnob" x="270" y="140" width="125"
                            height="30" parentComponent="PlayingModeBG" middlePosition="0.5"
                            text="Bonk (bite)"/>
+                <Component type="ScriptSlider" id="NeckPickupXFadeKnob" x="410" y="140" width="125"
+                           height="30" parentComponent="PlayingModeBG" middlePosition="0.5"
+                           text="Pickup Blend" min="0.0" max="1.0" stepSize="0.01"/>
+                <Component type="ScriptPanel" id="NeckControlsPnl" x="545" y="125" width="335"
+                           height="75" parentComponent="PlayingModeBG" itemColour="0" itemColour2="0"
+                           textColour="16777215" bgColour="16777215">
+                  <Component type="ScriptSlider" id="NeckPositionKnob" x="5" y="0" width="36"
+                             height="38" parentComponent="NeckControlsPnl" filmstripImage="{PROJECT_FOLDER}General_Knob_Filmstrip.png"
+                             numStrips="100.0" scaleFactor="0.2000000029802322" mouseSensitivity="0.5"
+                             min="0.7" max="1.3" defaultValue="1.0" stepSize="0.01" showValuePopup="Above"/>
+                  <Component type="ScriptLabel" id="NeckPositionLabel" x="-10" y="32" width="66"
+                             height="26" parentComponent="NeckControlsPnl" text="Pos" textColour="4278190080"
+                             fontName="Shehroz" fontSize="16.0" editable="0"/>
+                  <Component type="ScriptSlider" id="NeckCombDepthKnob" x="60" y="0" width="36"
+                             height="38" parentComponent="NeckControlsPnl" filmstripImage="{PROJECT_FOLDER}General_Knob_Filmstrip.png"
+                             numStrips="100.0" scaleFactor="0.2000000029802322" mouseSensitivity="0.5"
+                             min="0.4" max="0.98" defaultValue="0.85" stepSize="0.01" showValuePopup="Above"/>
+                  <Component type="ScriptLabel" id="NeckCombDepthLabel" x="45" y="32" width="66"
+                             height="26" parentComponent="NeckControlsPnl" text="Depth" textColour="4278190080"
+                             fontName="Shehroz" fontSize="16.0" editable="0"/>
+                  <Component type="ScriptSlider" id="NeckBodyKnob" x="115" y="0" width="36"
+                             height="38" parentComponent="NeckControlsPnl" filmstripImage="{PROJECT_FOLDER}General_Knob_Filmstrip.png"
+                             numStrips="100.0" scaleFactor="0.2000000029802322" mouseSensitivity="0.5"
+                             min="-8.0" max="8.0" defaultValue="0.0" stepSize="0.1" middlePosition="0.0" showValuePopup="Above"/>
+                  <Component type="ScriptLabel" id="NeckBodyLabel" x="100" y="32" width="66"
+                             height="26" parentComponent="NeckControlsPnl" text="Body" textColour="4278190080"
+                             fontName="Shehroz" fontSize="16.0" editable="0"/>
+                  <Component type="ScriptSlider" id="NeckToneKnob" x="170" y="0" width="36"
+                             height="38" parentComponent="NeckControlsPnl" filmstripImage="{PROJECT_FOLDER}General_Knob_Filmstrip.png"
+                             numStrips="100.0" scaleFactor="0.2000000029802322" mouseSensitivity="0.5"
+                             min="3000.0" max="14000.0" defaultValue="8000.0" middlePosition="8000.0" stepSize="10.0" showValuePopup="Above"/>
+                  <Component type="ScriptLabel" id="NeckToneLabel" x="155" y="32" width="66"
+                             height="26" parentComponent="NeckControlsPnl" text="Tone" textColour="4278190080"
+                             fontName="Shehroz" fontSize="16.0" editable="0"/>
+                  <Component type="ScriptSlider" id="NeckBiteCutKnob" x="225" y="0" width="36"
+                             height="38" parentComponent="NeckControlsPnl" filmstripImage="{PROJECT_FOLDER}General_Knob_Filmstrip.png"
+                             numStrips="100.0" scaleFactor="0.2000000029802322" mouseSensitivity="0.5"
+                             min="-12.0" max="0.0" defaultValue="-4.0" middlePosition="-6.0" stepSize="0.1" showValuePopup="Above"/>
+                  <Component type="ScriptLabel" id="NeckBiteCutLabel" x="210" y="32" width="66"
+                             height="26" parentComponent="NeckControlsPnl" text="Bite" textColour="4278190080"
+                             fontName="Shehroz" fontSize="16.0" editable="0"/>
+                  <Component type="ScriptSlider" id="NeckResonanceKnob" x="280" y="0" width="36"
+                             height="38" parentComponent="NeckControlsPnl" filmstripImage="{PROJECT_FOLDER}General_Knob_Filmstrip.png"
+                             numStrips="100.0" scaleFactor="0.2000000029802322" mouseSensitivity="0.5"
+                             min="0.0" max="8.0" defaultValue="2.0" middlePosition="4.0" stepSize="0.1" showValuePopup="Above"/>
+                  <Component type="ScriptLabel" id="NeckResonanceLabel" x="265" y="32" width="66"
+                             height="26" parentComponent="NeckControlsPnl" text="Glass" textColour="4278190080"
+                             fontName="Shehroz" fontSize="16.0" editable="0"/>
+                </Component>
               </Component>
               <Component type="ScriptPanel" id="DebugPanel" x="120" y="0" itemColour="0"
                          itemColour2="0" bgColour="16777215" textColour="16777215" borderSize="0.0"
@@ -2992,11 +3048,16 @@
                     </Processor>
                     <Processor Type="EffectChain" ID="FX" Bypassed="0">
                       <ChildProcessors>
-                        <Processor Type="Convolution" ID="LeftString8SusConvolution" Bypassed="0"
+                        <Processor Type="Convolution" ID="LeftString8SusConvolution" Bypassed="1"
                                    DryGain="-11.96508884429932" WetGain="-4.03937816619873" Latency="0.0"
                                    ImpulseLength="1.0" ProcessInput="1.0" UseBackgroundThread="0.0"
                                    Predelay="0.0" HiCut="20000.0" Damping="0.0" FFTType="0.0" FileName=""
                                    min="0" max="0" loopStart="0" loopEnd="0">
+                          <ChildProcessors/>
+                          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+                        </Processor>
+                        <Processor Type="HardcodedMasterFX" ID="LeftString8NeckPickup" Bypassed="0"
+                                   Network="neck_pickup" XFade="0.0" StringNumber="8.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -3218,11 +3279,16 @@
                     </Processor>
                     <Processor Type="EffectChain" ID="FX" Bypassed="0">
                       <ChildProcessors>
-                        <Processor Type="Convolution" ID="LeftString7SusConvolution" Bypassed="0"
+                        <Processor Type="Convolution" ID="LeftString7SusConvolution" Bypassed="1"
                                    DryGain="-11.96508884429932" WetGain="-4.03937816619873" Latency="0.0"
                                    ImpulseLength="1.0" ProcessInput="1.0" UseBackgroundThread="0.0"
                                    Predelay="0.0" HiCut="20000.0" Damping="0.0" FFTType="0.0" FileName=""
                                    min="0" max="0" loopStart="0" loopEnd="0">
+                          <ChildProcessors/>
+                          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+                        </Processor>
+                        <Processor Type="HardcodedMasterFX" ID="LeftString7NeckPickup" Bypassed="0"
+                                   Network="neck_pickup" XFade="0.0" StringNumber="7.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -3444,11 +3510,16 @@
                     </Processor>
                     <Processor Type="EffectChain" ID="FX" Bypassed="0">
                       <ChildProcessors>
-                        <Processor Type="Convolution" ID="LeftString6SusConvolution" Bypassed="0"
+                        <Processor Type="Convolution" ID="LeftString6SusConvolution" Bypassed="1"
                                    DryGain="-11.96508884429932" WetGain="-4.03937816619873" Latency="0.0"
                                    ImpulseLength="1.0" ProcessInput="1.0" UseBackgroundThread="0.0"
                                    Predelay="0.0" HiCut="20000.0" Damping="0.0" FFTType="0.0" FileName=""
                                    min="0" max="0" loopStart="0" loopEnd="0">
+                          <ChildProcessors/>
+                          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+                        </Processor>
+                        <Processor Type="HardcodedMasterFX" ID="LeftString6NeckPickup" Bypassed="0"
+                                   Network="neck_pickup" XFade="0.0" StringNumber="6.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -3670,11 +3741,16 @@
                     </Processor>
                     <Processor Type="EffectChain" ID="FX" Bypassed="0">
                       <ChildProcessors>
-                        <Processor Type="Convolution" ID="LeftString5SusConvolution" Bypassed="0"
+                        <Processor Type="Convolution" ID="LeftString5SusConvolution" Bypassed="1"
                                    DryGain="-11.96508884429932" WetGain="-4.03937816619873" Latency="0.0"
                                    ImpulseLength="1.0" ProcessInput="1.0" UseBackgroundThread="0.0"
                                    Predelay="0.0" HiCut="20000.0" Damping="0.0" FFTType="0.0" FileName=""
                                    min="0" max="0" loopStart="0" loopEnd="0">
+                          <ChildProcessors/>
+                          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+                        </Processor>
+                        <Processor Type="HardcodedMasterFX" ID="LeftString5NeckPickup" Bypassed="0"
+                                   Network="neck_pickup" XFade="0.0" StringNumber="5.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -3896,11 +3972,16 @@
                     </Processor>
                     <Processor Type="EffectChain" ID="FX" Bypassed="0">
                       <ChildProcessors>
-                        <Processor Type="Convolution" ID="LeftString4SusConvolution" Bypassed="0"
+                        <Processor Type="Convolution" ID="LeftString4SusConvolution" Bypassed="1"
                                    DryGain="-11.96508884429932" WetGain="-4.03937816619873" Latency="0.0"
                                    ImpulseLength="1.0" ProcessInput="1.0" UseBackgroundThread="0.0"
                                    Predelay="0.0" HiCut="20000.0" Damping="0.0" FFTType="0.0" FileName=""
                                    min="0" max="0" loopStart="0" loopEnd="0">
+                          <ChildProcessors/>
+                          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+                        </Processor>
+                        <Processor Type="HardcodedMasterFX" ID="LeftString4NeckPickup" Bypassed="0"
+                                   Network="neck_pickup" XFade="0.0" StringNumber="4.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -4122,11 +4203,16 @@
                     </Processor>
                     <Processor Type="EffectChain" ID="FX" Bypassed="0">
                       <ChildProcessors>
-                        <Processor Type="Convolution" ID="LeftString3SusConvolution" Bypassed="0"
+                        <Processor Type="Convolution" ID="LeftString3SusConvolution" Bypassed="1"
                                    DryGain="-11.96508884429932" WetGain="-4.03937816619873" Latency="0.0"
                                    ImpulseLength="1.0" ProcessInput="1.0" UseBackgroundThread="0.0"
                                    Predelay="0.0" HiCut="20000.0" Damping="0.0" FFTType="0.0" FileName=""
                                    min="0" max="0" loopStart="0" loopEnd="0">
+                          <ChildProcessors/>
+                          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+                        </Processor>
+                        <Processor Type="HardcodedMasterFX" ID="LeftString3NeckPickup" Bypassed="0"
+                                   Network="neck_pickup" XFade="0.0" StringNumber="3.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -4348,11 +4434,16 @@
                     </Processor>
                     <Processor Type="EffectChain" ID="FX" Bypassed="0">
                       <ChildProcessors>
-                        <Processor Type="Convolution" ID="LeftString2SusConvolution" Bypassed="0"
+                        <Processor Type="Convolution" ID="LeftString2SusConvolution" Bypassed="1"
                                    DryGain="-11.96508884429932" WetGain="-4.03937816619873" Latency="0.0"
                                    ImpulseLength="1.0" ProcessInput="1.0" UseBackgroundThread="0.0"
                                    Predelay="0.0" HiCut="20000.0" Damping="0.0" FFTType="0.0" FileName=""
                                    min="0" max="0" loopStart="0" loopEnd="0">
+                          <ChildProcessors/>
+                          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+                        </Processor>
+                        <Processor Type="HardcodedMasterFX" ID="LeftString2NeckPickup" Bypassed="0"
+                                   Network="neck_pickup" XFade="0.0" StringNumber="2.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -4574,11 +4665,16 @@
                     </Processor>
                     <Processor Type="EffectChain" ID="FX" Bypassed="0">
                       <ChildProcessors>
-                        <Processor Type="Convolution" ID="LeftString1SusConvolution" Bypassed="0"
+                        <Processor Type="Convolution" ID="LeftString1SusConvolution" Bypassed="1"
                                    DryGain="-11.96508884429932" WetGain="-4.03937816619873" Latency="0.0"
                                    ImpulseLength="1.0" ProcessInput="1.0" UseBackgroundThread="0.0"
                                    Predelay="0.0" HiCut="20000.0" Damping="0.0" FFTType="0.0" FileName=""
                                    min="0" max="0" loopStart="0" loopEnd="0">
+                          <ChildProcessors/>
+                          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+                        </Processor>
+                        <Processor Type="HardcodedMasterFX" ID="LeftString1NeckPickup" Bypassed="0"
+                                   Network="neck_pickup" XFade="0.0" StringNumber="1.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -17493,11 +17589,16 @@
                     </Processor>
                     <Processor Type="EffectChain" ID="FX" Bypassed="0">
                       <ChildProcessors>
-                        <Processor Type="Convolution" ID="RightString8SusConvolution" Bypassed="0"
+                        <Processor Type="Convolution" ID="RightString8SusConvolution" Bypassed="1"
                                    DryGain="-11.96508884429932" WetGain="-4.03937816619873" Latency="0.0"
                                    ImpulseLength="1.0" ProcessInput="1.0" UseBackgroundThread="0.0"
                                    Predelay="0.0" HiCut="20000.0" Damping="0.0" FFTType="0.0" FileName=""
                                    min="0" max="0" loopStart="0" loopEnd="0">
+                          <ChildProcessors/>
+                          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+                        </Processor>
+                        <Processor Type="HardcodedMasterFX" ID="RightString8NeckPickup" Bypassed="0"
+                                   Network="neck_pickup" XFade="0.0" StringNumber="8.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -17719,11 +17820,16 @@
                     </Processor>
                     <Processor Type="EffectChain" ID="FX" Bypassed="0">
                       <ChildProcessors>
-                        <Processor Type="Convolution" ID="RightString7SusConvolution" Bypassed="0"
+                        <Processor Type="Convolution" ID="RightString7SusConvolution" Bypassed="1"
                                    DryGain="-11.96508884429932" WetGain="-4.03937816619873" Latency="0.0"
                                    ImpulseLength="1.0" ProcessInput="1.0" UseBackgroundThread="0.0"
                                    Predelay="0.0" HiCut="20000.0" Damping="0.0" FFTType="0.0" FileName=""
                                    min="0" max="0" loopStart="0" loopEnd="0">
+                          <ChildProcessors/>
+                          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+                        </Processor>
+                        <Processor Type="HardcodedMasterFX" ID="RightString7NeckPickup" Bypassed="0"
+                                   Network="neck_pickup" XFade="0.0" StringNumber="7.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -17945,11 +18051,16 @@
                     </Processor>
                     <Processor Type="EffectChain" ID="FX" Bypassed="0">
                       <ChildProcessors>
-                        <Processor Type="Convolution" ID="RightString6SusConvolution" Bypassed="0"
+                        <Processor Type="Convolution" ID="RightString6SusConvolution" Bypassed="1"
                                    DryGain="-11.96508884429932" WetGain="-4.03937816619873" Latency="0.0"
                                    ImpulseLength="1.0" ProcessInput="1.0" UseBackgroundThread="0.0"
                                    Predelay="0.0" HiCut="20000.0" Damping="0.0" FFTType="0.0" FileName=""
                                    min="0" max="0" loopStart="0" loopEnd="0">
+                          <ChildProcessors/>
+                          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+                        </Processor>
+                        <Processor Type="HardcodedMasterFX" ID="RightString6NeckPickup" Bypassed="0"
+                                   Network="neck_pickup" XFade="0.0" StringNumber="6.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -18171,11 +18282,16 @@
                     </Processor>
                     <Processor Type="EffectChain" ID="FX" Bypassed="0">
                       <ChildProcessors>
-                        <Processor Type="Convolution" ID="RightString5SusConvolution" Bypassed="0"
+                        <Processor Type="Convolution" ID="RightString5SusConvolution" Bypassed="1"
                                    DryGain="-11.96508884429932" WetGain="-4.03937816619873" Latency="0.0"
                                    ImpulseLength="1.0" ProcessInput="1.0" UseBackgroundThread="0.0"
                                    Predelay="0.0" HiCut="20000.0" Damping="0.0" FFTType="0.0" FileName=""
                                    min="0" max="0" loopStart="0" loopEnd="0">
+                          <ChildProcessors/>
+                          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+                        </Processor>
+                        <Processor Type="HardcodedMasterFX" ID="RightString5NeckPickup" Bypassed="0"
+                                   Network="neck_pickup" XFade="0.0" StringNumber="5.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -18397,11 +18513,16 @@
                     </Processor>
                     <Processor Type="EffectChain" ID="FX" Bypassed="0">
                       <ChildProcessors>
-                        <Processor Type="Convolution" ID="RightString4SusConvolution" Bypassed="0"
+                        <Processor Type="Convolution" ID="RightString4SusConvolution" Bypassed="1"
                                    DryGain="-11.96508884429932" WetGain="-4.03937816619873" Latency="0.0"
                                    ImpulseLength="1.0" ProcessInput="1.0" UseBackgroundThread="0.0"
                                    Predelay="0.0" HiCut="20000.0" Damping="0.0" FFTType="0.0" FileName=""
                                    min="0" max="0" loopStart="0" loopEnd="0">
+                          <ChildProcessors/>
+                          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+                        </Processor>
+                        <Processor Type="HardcodedMasterFX" ID="RightString4NeckPickup" Bypassed="0"
+                                   Network="neck_pickup" XFade="0.0" StringNumber="4.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -18623,11 +18744,16 @@
                     </Processor>
                     <Processor Type="EffectChain" ID="FX" Bypassed="0">
                       <ChildProcessors>
-                        <Processor Type="Convolution" ID="RightString3SusConvolution" Bypassed="0"
+                        <Processor Type="Convolution" ID="RightString3SusConvolution" Bypassed="1"
                                    DryGain="-11.96508884429932" WetGain="-4.03937816619873" Latency="0.0"
                                    ImpulseLength="1.0" ProcessInput="1.0" UseBackgroundThread="0.0"
                                    Predelay="0.0" HiCut="20000.0" Damping="0.0" FFTType="0.0" FileName=""
                                    min="0" max="0" loopStart="0" loopEnd="0">
+                          <ChildProcessors/>
+                          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+                        </Processor>
+                        <Processor Type="HardcodedMasterFX" ID="RightString3NeckPickup" Bypassed="0"
+                                   Network="neck_pickup" XFade="0.0" StringNumber="3.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -18849,11 +18975,16 @@
                     </Processor>
                     <Processor Type="EffectChain" ID="FX" Bypassed="0">
                       <ChildProcessors>
-                        <Processor Type="Convolution" ID="RightString2SusConvolution" Bypassed="0"
+                        <Processor Type="Convolution" ID="RightString2SusConvolution" Bypassed="1"
                                    DryGain="-11.96508884429932" WetGain="-4.03937816619873" Latency="0.0"
                                    ImpulseLength="1.0" ProcessInput="1.0" UseBackgroundThread="0.0"
                                    Predelay="0.0" HiCut="20000.0" Damping="0.0" FFTType="0.0" FileName=""
                                    min="0" max="0" loopStart="0" loopEnd="0">
+                          <ChildProcessors/>
+                          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+                        </Processor>
+                        <Processor Type="HardcodedMasterFX" ID="RightString2NeckPickup" Bypassed="0"
+                                   Network="neck_pickup" XFade="0.0" StringNumber="2.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -19075,11 +19206,16 @@
                     </Processor>
                     <Processor Type="EffectChain" ID="FX" Bypassed="0">
                       <ChildProcessors>
-                        <Processor Type="Convolution" ID="RightString1SusConvolution" Bypassed="0"
+                        <Processor Type="Convolution" ID="RightString1SusConvolution" Bypassed="1"
                                    DryGain="-11.96508884429932" WetGain="-4.03937816619873" Latency="0.0"
                                    ImpulseLength="1.0" ProcessInput="1.0" UseBackgroundThread="0.0"
                                    Predelay="0.0" HiCut="20000.0" Damping="0.0" FFTType="0.0" FileName=""
                                    min="0" max="0" loopStart="0" loopEnd="0">
+                          <ChildProcessors/>
+                          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+                        </Processor>
+                        <Processor Type="HardcodedMasterFX" ID="RightString1NeckPickup" Bypassed="0"
+                                   Network="neck_pickup" XFade="0.0" StringNumber="1.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>

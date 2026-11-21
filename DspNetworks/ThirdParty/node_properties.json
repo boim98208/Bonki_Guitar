@@ -23,6 +23,10 @@
                  "IsPolyphonic",
                  "AllowPolyphonic"
              ],
+    "neck_pickup":  [
+                 "IsPolyphonic",
+                 "AllowPolyphonic"
+             ],
     "overdrive":  [
                       "IsPolyphonic",
                       "AllowPolyphonic"

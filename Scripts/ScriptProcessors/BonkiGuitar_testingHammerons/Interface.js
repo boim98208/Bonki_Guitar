@@ -959,6 +959,107 @@ if (isDefined(cmbIr)) {
  };
  
  Content.getComponent("GuitarMorphKnob").setControlCallback(onGuitarMorphKnobControl);
+
+// ==============================================================================
+// Neck Pickup Emulation Comb Filter Controls
+// ==============================================================================
+
+const var NeckPickupXFadeKnob = Content.getComponent("NeckPickupXFadeKnob");
+const var NeckPositionKnob = Content.getComponent("NeckPositionKnob");
+const var NeckCombDepthKnob = Content.getComponent("NeckCombDepthKnob");
+const var NeckBodyKnob = Content.getComponent("NeckBodyKnob");
+const var NeckToneKnob = Content.getComponent("NeckToneKnob");
+const var NeckBiteCutKnob = Content.getComponent("NeckBiteCutKnob");
+const var NeckResonanceKnob = Content.getComponent("NeckResonanceKnob");
+
+const var neckPickupFX = [
+	Synth.getEffect("LeftString1NeckPickup"),
+	Synth.getEffect("LeftString2NeckPickup"),
+	Synth.getEffect("LeftString3NeckPickup"),
+	Synth.getEffect("LeftString4NeckPickup"),
+	Synth.getEffect("LeftString5NeckPickup"),
+	Synth.getEffect("LeftString6NeckPickup"),
+	Synth.getEffect("LeftString7NeckPickup"),
+	Synth.getEffect("LeftString8NeckPickup"),
+	Synth.getEffect("RightString1NeckPickup"),
+	Synth.getEffect("RightString2NeckPickup"),
+	Synth.getEffect("RightString3NeckPickup"),
+	Synth.getEffect("RightString4NeckPickup"),
+	Synth.getEffect("RightString5NeckPickup"),
+	Synth.getEffect("RightString6NeckPickup"),
+	Synth.getEffect("RightString7NeckPickup"),
+	Synth.getEffect("RightString8NeckPickup")
+];
+
+inline function onNeckPickupXFadeKnobControl(component, value)
+{
+	for (var i = 0; i < neckPickupFX.length; i++)
+	{
+		if (neckPickupFX[i])
+			neckPickupFX[i].setAttribute(0, value);
+	}
+}
+NeckPickupXFadeKnob.setControlCallback(onNeckPickupXFadeKnobControl);
+
+inline function onNeckPositionKnobControl(component, value)
+{
+	for (var i = 0; i < neckPickupFX.length; i++)
+	{
+		if (neckPickupFX[i])
+			neckPickupFX[i].setAttribute(3, value);
+	}
+}
+NeckPositionKnob.setControlCallback(onNeckPositionKnobControl);
+
+inline function onNeckCombDepthKnobControl(component, value)
+{
+	for (var i = 0; i < neckPickupFX.length; i++)
+	{
+		if (neckPickupFX[i])
+			neckPickupFX[i].setAttribute(4, value);
+	}
+}
+NeckCombDepthKnob.setControlCallback(onNeckCombDepthKnobControl);
+
+inline function onNeckBodyKnobControl(component, value)
+{
+	for (var i = 0; i < neckPickupFX.length; i++)
+	{
+		if (neckPickupFX[i])
+			neckPickupFX[i].setAttribute(5, value);
+	}
+}
+NeckBodyKnob.setControlCallback(onNeckBodyKnobControl);
+
+inline function onNeckToneKnobControl(component, value)
+{
+	for (var i = 0; i < neckPickupFX.length; i++)
+	{
+		if (neckPickupFX[i])
+			neckPickupFX[i].setAttribute(6, value);
+	}
+}
+NeckToneKnob.setControlCallback(onNeckToneKnobControl);
+
+inline function onNeckBiteCutKnobControl(component, value)
+{
+	for (var i = 0; i < neckPickupFX.length; i++)
+	{
+		if (neckPickupFX[i])
+			neckPickupFX[i].setAttribute(7, value);
+	}
+}
+NeckBiteCutKnob.setControlCallback(onNeckBiteCutKnobControl);
+
+inline function onNeckResonanceKnobControl(component, value)
+{
+	for (var i = 0; i < neckPickupFX.length; i++)
+	{
+		if (neckPickupFX[i])
+			neckPickupFX[i].setAttribute(8, value);
+	}
+}
+NeckResonanceKnob.setControlCallback(onNeckResonanceKnobControl);
  
  
  

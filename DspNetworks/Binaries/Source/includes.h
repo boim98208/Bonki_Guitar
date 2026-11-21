@@ -18,6 +18,7 @@
 #include "clipper.h"
 #include "delay.h"
 #include "gate.h"
+#include "neck_pickup.h"
 #include "overdrive.h"
 #include "reverb.h"
 #include "ringmod.h"

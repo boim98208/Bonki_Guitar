@@ -32,6 +32,7 @@ struct Factory: public scriptnode::dll::StaticLibraryHostFactory
 		registerPolyNode<project::ringmod<1>, project::ringmod<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::reverb<1>, project::reverb<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::overdrive<1>, project::overdrive<NUM_POLYPHONIC_VOICES>>();
+		registerPolyNode<project::neck_pickup<1>, project::neck_pickup<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::gate<1>, project::gate<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::delay<1>, project::delay<NUM_POLYPHONIC_VOICES>>();
 		registerPolyNode<project::clipper<1>, project::clipper<NUM_POLYPHONIC_VOICES>>();
