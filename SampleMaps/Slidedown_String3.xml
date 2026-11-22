@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<samplemap CrossfadeGamma="1.0" ID="Slidedown_String3" RRGroupAmount="1.0" MicPositions=";">
+<samplemap CrossfadeGamma="1.0" ID="Slidedown_String3" RRGroupAmount="1.0"
+           MicPositions=";">
   <sample Root="68" LoKey="67" HiKey="68" LoVel="0" HiVel="127" RRGroup="1"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Slidedown_String3_Dynamic1_Tuned_A3_G#3_RR01_Timbrematch.wav"
           Duplicate="1" LoopXFade="0" LoopStart="7625" SampleStart="7625"/>
@@ -34,7 +35,7 @@
   <sample Root="88" LoKey="87" HiKey="88" LoVel="0" HiVel="127" RRGroup="1"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Slidedown_String3_Dynamic1_Tuned_F5_E5_RR01_Timbrematch.wav"
           Duplicate="1" LoopXFade="0" LoopStart="9667" SampleStart="9667"/>
-  <sample Root="90" LoKey="89" HiKey="90" LoVel="0" HiVel="127" RRGroup="1"
+  <sample Root="90" LoKey="89" HiKey="110" LoVel="0" HiVel="127" RRGroup="1"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Bonki2\audio\Bonki_Slidedown_String3_Dynamic1_Tuned_G5_F#5_RR01_Timbrematch.wav"
           Duplicate="1" LoopXFade="0" LoopStart="9962" SampleStart="9962"/>
 </samplemap>

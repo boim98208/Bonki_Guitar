@@ -9,8 +9,8 @@
         <Processor Type="ScriptProcessor" ID="Interface" Bypassed="0" NumAudioFiles="2">
           <ChildProcessors/>
           <Content>
-            <Control type="ScriptSlider" id="HandPositionFretForceKnob" value="-1"/>
-            <Control type="ScriptSlider" id="StringForceKnob" value="4.0"/>
+            <Control type="ScriptSlider" id="HandPositionFretForceKnob" value="-1.0"/>
+            <Control type="ScriptSlider" id="StringForceKnob" value="1.0"/>
             <Control type="ScriptComboBox" id="FrettingEngineComboBox" value="1.0"/>
             <Control type="ScriptButton" id="ResetGlobalRRButton" value="0.0"/>
             <Control type="ScriptSlider" id="VibratoDepthKnob" value="0.0"/>
@@ -22,10 +22,10 @@
             <Control type="ScriptButton" id="EnableStrumSpeedWithVelBtn" value="0.0"/>
             <Control type="ScriptSlider" id="IRMixKnob" value="0.0"/>
             <Control type="ScriptSlider" id="NeckPickupXFadeKnob" value="0.0"/>
-            <Control type="ScriptSlider" id="NeckPositionKnob" value="1.0"/>
-            <Control type="ScriptSlider" id="NeckCombDepthKnob" value="0.85"/>
-            <Control type="ScriptSlider" id="NeckBodyKnob" value="0.0"/>
-            <Control type="ScriptSlider" id="NeckToneKnob" value="8000.0"/>
+            <Control type="ScriptSlider" id="NeckPositionKnob" value="0.699999988079071"/>
+            <Control type="ScriptSlider" id="NeckCombDepthKnob" value="0.8500000238418579"/>
+            <Control type="ScriptSlider" id="NeckBodyKnob" value="1.192092895507812e-7"/>
+            <Control type="ScriptSlider" id="NeckToneKnob" value="14000.0"/>
             <Control type="ScriptSlider" id="NeckBiteCutKnob" value="-4.0"/>
             <Control type="ScriptSlider" id="NeckResonanceKnob" value="2.0"/>
             <Control type="ScriptSlider" id="SustainModulatorsAttack" value="12.80000019073486"/>
@@ -202,7 +202,7 @@
             <Control type="ScriptSlider" id="GuitarMorphKnob" value="0.0"/>
             <Control type="ScriptComboBox" id="cmbIr" value="1.0"/>
             <Control type="ScriptSlider" id="PitchBendSmoothingKnob" value="120.3000030517578"/>
-            <Control type="ScriptButton" id="ShowPlayingModeButton" value="1"/>
+            <Control type="ScriptButton" id="ShowPlayingModeButton" value="0"/>
             <Control type="ScriptButton" id="ShowArticulationsButton" value="0"/>
             <Control type="ScriptButton" id="ShowDebugPanelButton" value="0"/>
             <Control type="ScriptButton" id="ShowFXRackButton" value="0"/>
@@ -225,7 +225,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret1Marker" x="211" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret2Marker" x="250" y="20" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -243,7 +243,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret7Marker" x="409" y="23" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret8Marker" x="434" y="23" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -264,7 +264,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret14Marker" x="565" y="25" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret15Marker" x="582" y="25" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -322,7 +322,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret6Marker" x="382" y="22" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret7Marker" x="409" y="23" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -331,7 +331,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret9Marker" x="459" y="23" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret10Marker" x="481" y="23" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -367,7 +367,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret21Marker" x="665" y="25" width="11"
-                               height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret22Marker" x="677" y="25" width="11"
                                height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -404,7 +404,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret6Marker" x="382" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret7Marker" x="409" y="20" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -458,7 +458,7 @@
                                height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret24Marker" x="698" y="21" width="11"
-                               height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret25Marker" x="708" y="22" width="11"
                                height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -525,7 +525,7 @@
                                height="35" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret19Marker" x="638" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret20Marker" x="650" y="21" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -595,7 +595,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret15Marker" x="576" y="18" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret16Marker" x="592" y="17" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -632,22 +632,22 @@
                              height="54" parentComponent="StringFretMarkersPnl" itemColour="0"
                              itemColour2="0" textColour="16777215" bgColour="16777215">
                     <Component type="ScriptImage" id="String3Fret0Marker" x="200" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret1Marker" x="220" y="19" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret2Marker" x="257" y="19" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret3Marker" x="290" y="19" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret4Marker" x="322" y="18" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret5Marker" x="353" y="18" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret6Marker" x="382" y="18" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -659,7 +659,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret9Marker" x="459" y="17" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret10Marker" x="481" y="17" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -671,16 +671,16 @@
                                height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret13Marker" x="541" y="16" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret14Marker" x="558" y="16" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret15Marker" x="575" y="16" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret16Marker" x="591" y="16" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret17Marker" x="606" y="15" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -689,7 +689,7 @@
                                height="35" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret19Marker" x="635" y="15" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret20Marker" x="647" y="15" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -720,7 +720,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret2Marker" x="258" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret3Marker" x="291" y="19" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -729,7 +729,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret5Marker" x="353" y="18" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret6Marker" x="382" y="18" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -744,16 +744,16 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret10Marker" x="481" y="16" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret11Marker" x="502" y="16" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret12Marker" x="521" y="15" width="11"
-                               height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret13Marker" x="540" y="15" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret14Marker" x="557" y="15" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -796,10 +796,10 @@
                              height="54" parentComponent="StringFretMarkersPnl" itemColour="0"
                              itemColour2="0" textColour="16777215" bgColour="16777215">
                     <Component type="ScriptImage" id="String1Fret0Marker" x="204" y="20" width="11"
-                               height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String1Fret1Marker" x="225" y="19" width="11"
-                               height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Mute.png"
+                               height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String1Fret2Marker" x="260" y="18" width="11"
                                height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -885,25 +885,24 @@
                 <Component type="ScriptPanel" id="FretBorderPanel" x="210" y="250" itemColour="0"
                            itemColour2="0" textColour="16777215" bgColour="16777215" width="500"
                            parentComponent="PlayingModeBG">
-                  <Component type="ScriptImage" id="FretBorderLow" x="428" y="25" parentComponent="FretBorderPanel"
+                  <Component type="ScriptImage" id="FretBorderLow" x="0" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder.png" scale="0.25"
                              height="15" width="10" text="FretBorderLowForced"/>
-                  <Component type="ScriptImage" id="FretBorderLowForced" x="428" y="25" parentComponent="FretBorderPanel"
+                  <Component type="ScriptImage" id="FretBorderLowForced" x="0" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder_Forced.png"
-                             scale="0.25" height="15" width="10" visible="0"/>
-                  <Component type="ScriptImage" id="FretBorderHigh" x="483" y="25" parentComponent="FretBorderPanel"
+                             scale="0.25" height="15" width="10"/>
+                  <Component type="ScriptImage" id="FretBorderHigh" x="132" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder.png" scale="0.25"
                              height="15" width="10" text="FretBorderLowForced"/>
-                  <Component type="ScriptImage" id="FretBorderHighForced" x="483" y="25" parentComponent="FretBorderPanel"
+                  <Component type="ScriptImage" id="FretBorderHighForced" x="132" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder_Forced.png"
-                             scale="0.25" height="15" width="10" visible="0"/>
-                  <Component type="ScriptImage" id="FretBorderCenter" x="455" y="23" parentComponent="FretBorderPanel"
+                             scale="0.25" height="15" width="10"/>
+                  <Component type="ScriptImage" id="FretBorderCenter" x="66" y="23" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandCenter.png" height="15"
                              width="15" text="FretBorderLowForced" scale="0.4000000059604645"/>
-                  <Component type="ScriptImage" id="FretBorderCenterForced" x="455" y="23"
+                  <Component type="ScriptImage" id="FretBorderCenterForced" x="66" y="23"
                              parentComponent="FretBorderPanel" fileName="{PROJECT_FOLDER}PlayingMode_HandCenter_Forced.png"
-                             height="15" width="15" text="FretBorderLowForced" scale="0.4000000059604645"
-                             visible="0"/>
+                             height="15" width="15" text="FretBorderLowForced" scale="0.4000000059604645"/>
                   <Component type="ScriptImage" id="FretBorderLowForcedRef" x="496" y="25"
                              parentComponent="FretBorderPanel" fileName="{PROJECT_FOLDER}PlayingMode_HandBorder_Forced.png"
                              scale="0.25" height="15" width="10" visible="0"/>
@@ -1034,51 +1033,57 @@
                 <Component type="ScriptSlider" id="IRMixKnob" x="270" y="140" width="125"
                            height="30" parentComponent="PlayingModeBG" middlePosition="0.5"
                            text="Bonk (bite)"/>
-                <Component type="ScriptSlider" id="NeckPickupXFadeKnob" x="410" y="140" width="125"
-                           height="30" parentComponent="PlayingModeBG" middlePosition="0.5"
-                           text="Pickup Blend" min="0.0" max="1.0" stepSize="0.01"/>
+                <Component type="ScriptSlider" id="NeckPickupXFadeKnob" x="410" y="140"
+                           width="125" height="30" parentComponent="PlayingModeBG" middlePosition="0.5"
+                           text="Pickup Blend" stepSize="0.009999999776482582"/>
                 <Component type="ScriptPanel" id="NeckControlsPnl" x="545" y="125" width="335"
                            height="75" parentComponent="PlayingModeBG" itemColour="0" itemColour2="0"
                            textColour="16777215" bgColour="16777215">
                   <Component type="ScriptSlider" id="NeckPositionKnob" x="5" y="0" width="36"
                              height="38" parentComponent="NeckControlsPnl" filmstripImage="{PROJECT_FOLDER}General_Knob_Filmstrip.png"
                              numStrips="100.0" scaleFactor="0.2000000029802322" mouseSensitivity="0.5"
-                             min="0.7" max="1.3" defaultValue="1.0" stepSize="0.01" showValuePopup="Above"/>
+                             min="0.699999988079071" max="1.299999952316284" defaultValue="1.0"
+                             stepSize="0.009999999776482582" showValuePopup="Above"/>
                   <Component type="ScriptLabel" id="NeckPositionLabel" x="-10" y="32" width="66"
                              height="26" parentComponent="NeckControlsPnl" text="Pos" textColour="4278190080"
                              fontName="Shehroz" fontSize="16.0" editable="0"/>
                   <Component type="ScriptSlider" id="NeckCombDepthKnob" x="60" y="0" width="36"
                              height="38" parentComponent="NeckControlsPnl" filmstripImage="{PROJECT_FOLDER}General_Knob_Filmstrip.png"
                              numStrips="100.0" scaleFactor="0.2000000029802322" mouseSensitivity="0.5"
-                             min="0.4" max="0.98" defaultValue="0.85" stepSize="0.01" showValuePopup="Above"/>
+                             min="0.4000000059604645" max="0.9800000190734863" defaultValue="0.8500000238418579"
+                             stepSize="0.009999999776482582" showValuePopup="Above"/>
                   <Component type="ScriptLabel" id="NeckCombDepthLabel" x="45" y="32" width="66"
                              height="26" parentComponent="NeckControlsPnl" text="Depth" textColour="4278190080"
                              fontName="Shehroz" fontSize="16.0" editable="0"/>
                   <Component type="ScriptSlider" id="NeckBodyKnob" x="115" y="0" width="36"
                              height="38" parentComponent="NeckControlsPnl" filmstripImage="{PROJECT_FOLDER}General_Knob_Filmstrip.png"
                              numStrips="100.0" scaleFactor="0.2000000029802322" mouseSensitivity="0.5"
-                             min="-8.0" max="8.0" defaultValue="0.0" stepSize="0.1" middlePosition="0.0" showValuePopup="Above"/>
+                             min="-8.0" max="8.0" stepSize="0.1000000014901161" middlePosition="0.0"
+                             showValuePopup="Above"/>
                   <Component type="ScriptLabel" id="NeckBodyLabel" x="100" y="32" width="66"
                              height="26" parentComponent="NeckControlsPnl" text="Body" textColour="4278190080"
                              fontName="Shehroz" fontSize="16.0" editable="0"/>
                   <Component type="ScriptSlider" id="NeckToneKnob" x="170" y="0" width="36"
                              height="38" parentComponent="NeckControlsPnl" filmstripImage="{PROJECT_FOLDER}General_Knob_Filmstrip.png"
                              numStrips="100.0" scaleFactor="0.2000000029802322" mouseSensitivity="0.5"
-                             min="3000.0" max="14000.0" defaultValue="8000.0" middlePosition="8000.0" stepSize="10.0" showValuePopup="Above"/>
+                             min="3000.0" max="14000.0" defaultValue="8000.0" middlePosition="8000.0"
+                             stepSize="10.0" showValuePopup="Above"/>
                   <Component type="ScriptLabel" id="NeckToneLabel" x="155" y="32" width="66"
                              height="26" parentComponent="NeckControlsPnl" text="Tone" textColour="4278190080"
                              fontName="Shehroz" fontSize="16.0" editable="0"/>
                   <Component type="ScriptSlider" id="NeckBiteCutKnob" x="225" y="0" width="36"
                              height="38" parentComponent="NeckControlsPnl" filmstripImage="{PROJECT_FOLDER}General_Knob_Filmstrip.png"
                              numStrips="100.0" scaleFactor="0.2000000029802322" mouseSensitivity="0.5"
-                             min="-12.0" max="0.0" defaultValue="-4.0" middlePosition="-6.0" stepSize="0.1" showValuePopup="Above"/>
+                             min="-12.0" max="0.0" defaultValue="-4.0" middlePosition="-6.0"
+                             stepSize="0.1000000014901161" showValuePopup="Above"/>
                   <Component type="ScriptLabel" id="NeckBiteCutLabel" x="210" y="32" width="66"
                              height="26" parentComponent="NeckControlsPnl" text="Bite" textColour="4278190080"
                              fontName="Shehroz" fontSize="16.0" editable="0"/>
                   <Component type="ScriptSlider" id="NeckResonanceKnob" x="280" y="0" width="36"
                              height="38" parentComponent="NeckControlsPnl" filmstripImage="{PROJECT_FOLDER}General_Knob_Filmstrip.png"
                              numStrips="100.0" scaleFactor="0.2000000029802322" mouseSensitivity="0.5"
-                             min="0.0" max="8.0" defaultValue="2.0" middlePosition="4.0" stepSize="0.1" showValuePopup="Above"/>
+                             max="8.0" defaultValue="2.0" middlePosition="4.0" stepSize="0.1000000014901161"
+                             showValuePopup="Above"/>
                   <Component type="ScriptLabel" id="NeckResonanceLabel" x="265" y="32" width="66"
                              height="26" parentComponent="NeckControlsPnl" text="Glass" textColour="4278190080"
                              fontName="Shehroz" fontSize="16.0" editable="0"/>
@@ -1094,7 +1099,7 @@
                 <Component type="ScriptImage" id="NerdDetails_BG" x="3" y="3" width="597"
                            height="100" parentComponent="DebugPanel" fileName="{PROJECT_FOLDER}PlayingMode_NerdDetails_BG.png"/>
                 <Component type="ScriptLabel" id="handPositionFretLabel" x="388" y="9" width="39"
-                           fontSize="20.0" height="13" text="20" parentComponent="DebugPanel"
+                           fontSize="20.0" height="13" text="0" parentComponent="DebugPanel"
                            textColour="4278190080"/>
                 <Component type="ScriptLabel" id="String1RRLabel" x="498" y="50" width="100"
                            height="21" parentComponent="DebugPanel" text="-1" textColour="4278190080"
@@ -2847,7 +2852,7 @@
             <Processor Type="ScriptProcessor" ID="NoteEngines" Bypassed="0">
               <ChildProcessors/>
               <Content>
-                <Control type="ScriptTable" id="LegatoDecayGraph" value="0.0" data="24..........9C...vO...f+......opp1O"/>
+                <Control type="ScriptTable" id="LegatoDecayGraph" value="0.0" data="24..........9C...vO...f+......LyLyO"/>
               </Content>
               <UIData Source="BonkiGuitar_testingHammeronsUIData"/>
             </Processor>
@@ -3057,7 +3062,9 @@
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
                         <Processor Type="HardcodedMasterFX" ID="LeftString8NeckPickup" Bypassed="0"
-                                   Network="neck_pickup" XFade="0.0" StringNumber="8.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Network="neck_pickup" XFade="0.0" StringNumber="8.0" Gain="0.0"
+                                   Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -3288,7 +3295,9 @@
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
                         <Processor Type="HardcodedMasterFX" ID="LeftString7NeckPickup" Bypassed="0"
-                                   Network="neck_pickup" XFade="0.0" StringNumber="7.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Network="neck_pickup" XFade="0.0" StringNumber="7.0" Gain="0.0"
+                                   Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -3519,7 +3528,9 @@
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
                         <Processor Type="HardcodedMasterFX" ID="LeftString6NeckPickup" Bypassed="0"
-                                   Network="neck_pickup" XFade="0.0" StringNumber="6.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Network="neck_pickup" XFade="0.0" StringNumber="6.0" Gain="0.0"
+                                   Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -3750,7 +3761,9 @@
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
                         <Processor Type="HardcodedMasterFX" ID="LeftString5NeckPickup" Bypassed="0"
-                                   Network="neck_pickup" XFade="0.0" StringNumber="5.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Network="neck_pickup" XFade="0.0" StringNumber="5.0" Gain="0.0"
+                                   Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -3981,7 +3994,9 @@
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
                         <Processor Type="HardcodedMasterFX" ID="LeftString4NeckPickup" Bypassed="0"
-                                   Network="neck_pickup" XFade="0.0" StringNumber="4.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Network="neck_pickup" XFade="0.0" StringNumber="4.0" Gain="0.0"
+                                   Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -4212,7 +4227,9 @@
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
                         <Processor Type="HardcodedMasterFX" ID="LeftString3NeckPickup" Bypassed="0"
-                                   Network="neck_pickup" XFade="0.0" StringNumber="3.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Network="neck_pickup" XFade="0.0" StringNumber="3.0" Gain="0.0"
+                                   Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -4443,7 +4460,9 @@
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
                         <Processor Type="HardcodedMasterFX" ID="LeftString2NeckPickup" Bypassed="0"
-                                   Network="neck_pickup" XFade="0.0" StringNumber="2.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Network="neck_pickup" XFade="0.0" StringNumber="2.0" Gain="0.0"
+                                   Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -4674,7 +4693,9 @@
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
                         <Processor Type="HardcodedMasterFX" ID="LeftString1NeckPickup" Bypassed="0"
-                                   Network="neck_pickup" XFade="0.0" StringNumber="1.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Network="neck_pickup" XFade="0.0" StringNumber="1.0" Gain="0.0"
+                                   Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -13743,7 +13764,7 @@
                     </Processor>
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
-                        <Processor Type="AHDSR" ID="LegatoUpAHDSR" Bypassed="0" Monophonic="0.0"
+                        <Processor Type="AHDSR" ID="SourceLegatoUpAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.6480000019073486"
                                    DecayCurve="0.5" Attack="5.0" AttackLevel="0.0" Hold="0.0" Decay="1.0"
                                    Sustain="0.0" Release="6.161658763885498" EcoMode="1.0">
@@ -13831,10 +13852,10 @@
                     <Processor Type="EffectChain" ID="FX" Bypassed="0">
                       <ChildProcessors>
                         <Processor Type="Convolution" ID="LeftString8LegatoUpConvolution" Bypassed="0"
-                                   DryGain="-11.96508884429932" WetGain="-4.03937816619873" Latency="0.0"
-                                   ImpulseLength="1.0" ProcessInput="1.0" UseBackgroundThread="0.0"
-                                   Predelay="0.0" HiCut="20000.0" Damping="0.0" FFTType="0.0" FileName=""
-                                   min="0" max="0" loopStart="0" loopEnd="0">
+                                   DryGain="0.0" WetGain="-100.0" Latency="0.0" ImpulseLength="1.0"
+                                   ProcessInput="1.0" UseBackgroundThread="0.0" Predelay="0.0" HiCut="20000.0"
+                                   Damping="0.0" FFTType="0.0" FileName="" min="0" max="0" loopStart="0"
+                                   loopEnd="0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -13950,11 +13971,11 @@
                 <Processor Type="StreamingSampler" ID="LeftString7LegatoUpSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slideup_String7">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -13971,9 +13992,10 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="LegatoUpAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="12.80000019073486" AttackLevel="0.0" Hold="10.0" Decay="1.0"
-                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.7240000367164612"
+                                   DecayCurve="0.5" Attack="5.87272834777832" AttackLevel="0.0"
+                                   Hold="0.0" Decay="1.0" Sustain="0.0" Release="6.161658763885498"
+                                   EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -14057,10 +14079,10 @@
                     <Processor Type="EffectChain" ID="FX" Bypassed="0">
                       <ChildProcessors>
                         <Processor Type="Convolution" ID="LeftString7LegatoUpConvolution" Bypassed="0"
-                                   DryGain="-11.96508884429932" WetGain="-4.03937816619873" Latency="0.0"
-                                   ImpulseLength="1.0" ProcessInput="1.0" UseBackgroundThread="0.0"
-                                   Predelay="0.0" HiCut="20000.0" Damping="0.0" FFTType="0.0" FileName=""
-                                   min="0" max="0" loopStart="0" loopEnd="0">
+                                   DryGain="0.0" WetGain="-100.0" Latency="0.0" ImpulseLength="1.0"
+                                   ProcessInput="1.0" UseBackgroundThread="0.0" Predelay="0.0" HiCut="20000.0"
+                                   Damping="0.0" FFTType="0.0" FileName="" min="0" max="0" loopStart="0"
+                                   loopEnd="0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -14085,7 +14107,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String7_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -14152,10 +14174,10 @@
                     <Processor Type="EffectChain" ID="FX" Bypassed="0">
                       <ChildProcessors>
                         <Processor Type="Convolution" ID="LeftString7LegatoUpRelConvolution" Bypassed="0"
-                                   DryGain="-11.96508884429932" WetGain="-4.03937816619873" Latency="0.0"
-                                   ImpulseLength="1.0" ProcessInput="1.0" UseBackgroundThread="0.0"
-                                   Predelay="0.0" HiCut="20000.0" Damping="0.0" FFTType="0.0" FileName=""
-                                   min="0" max="0" loopStart="0" loopEnd="0">
+                                   DryGain="0.0" WetGain="-100.0" Latency="0.0" ImpulseLength="1.0"
+                                   ProcessInput="1.0" UseBackgroundThread="0.0" Predelay="0.0" HiCut="20000.0"
+                                   Damping="0.0" FFTType="0.0" FileName="" min="0" max="0" loopStart="0"
+                                   loopEnd="0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -14176,11 +14198,11 @@
                 <Processor Type="StreamingSampler" ID="LeftString6LegatoUpSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slideup_String6">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -14197,9 +14219,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="LegatoUpAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="12.80000019073486" AttackLevel="0.0" Hold="10.0" Decay="1.0"
-                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.6480000019073486"
+                                   DecayCurve="0.5" Attack="5.0" AttackLevel="0.0" Hold="0.0" Decay="1.0"
+                                   Sustain="0.0" Release="6.161658763885498" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -14283,10 +14305,10 @@
                     <Processor Type="EffectChain" ID="FX" Bypassed="0">
                       <ChildProcessors>
                         <Processor Type="Convolution" ID="LeftString6LegatoUpConvolution" Bypassed="0"
-                                   DryGain="-11.96508884429932" WetGain="-4.03937816619873" Latency="0.0"
-                                   ImpulseLength="1.0" ProcessInput="1.0" UseBackgroundThread="0.0"
-                                   Predelay="0.0" HiCut="20000.0" Damping="0.0" FFTType="0.0" FileName=""
-                                   min="0" max="0" loopStart="0" loopEnd="0">
+                                   DryGain="0.0" WetGain="-100.0" Latency="0.0" ImpulseLength="1.0"
+                                   ProcessInput="1.0" UseBackgroundThread="0.0" Predelay="0.0" HiCut="20000.0"
+                                   Damping="0.0" FFTType="0.0" FileName="" min="0" max="0" loopStart="0"
+                                   loopEnd="0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -14311,7 +14333,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String6_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -14402,11 +14424,11 @@
                 <Processor Type="StreamingSampler" ID="LeftString5LegatoUpSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slideup_String5">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -14423,9 +14445,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="LegatoUpAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="12.80000019073486" AttackLevel="0.0" Hold="10.0" Decay="1.0"
-                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.6480000019073486"
+                                   DecayCurve="0.5" Attack="5.0" AttackLevel="0.0" Hold="0.0" Decay="1.0"
+                                   Sustain="0.0" Release="6.161658763885498" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -14537,7 +14559,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String5_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -14628,11 +14650,11 @@
                 <Processor Type="StreamingSampler" ID="LeftString4LegatoUpSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slideup_String4">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -14649,9 +14671,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="LegatoUpAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="12.80000019073486" AttackLevel="0.0" Hold="10.0" Decay="1.0"
-                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.6480000019073486"
+                                   DecayCurve="0.5" Attack="5.0" AttackLevel="0.0" Hold="0.0" Decay="1.0"
+                                   Sustain="0.0" Release="6.161658763885498" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -14763,7 +14785,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String8-4_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -14875,9 +14897,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="LegatoUpAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="12.80000019073486" AttackLevel="0.0" Hold="10.0" Decay="1.0"
-                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.6480000019073486"
+                                   DecayCurve="0.5" Attack="5.0" AttackLevel="0.0" Hold="0.0" Decay="1.0"
+                                   Sustain="0.0" Release="6.161658763885498" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -15080,11 +15102,11 @@
                 <Processor Type="StreamingSampler" ID="LeftString2LegatoUpSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slideup_String3">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -15101,9 +15123,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="LegatoUpAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="12.80000019073486" AttackLevel="0.0" Hold="10.0" Decay="1.0"
-                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.6480000019073486"
+                                   DecayCurve="0.5" Attack="5.0" AttackLevel="0.0" Hold="0.0" Decay="1.0"
+                                   Sustain="0.0" Release="6.161658763885498" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -15215,7 +15237,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String4_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -15306,11 +15328,11 @@
                 <Processor Type="StreamingSampler" ID="LeftString1LegatoUpSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slideup_String3">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -15327,9 +15349,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="LegatoUpAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="12.80000019073486" AttackLevel="0.0" Hold="10.0" Decay="1.0"
-                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.6480000019073486"
+                                   DecayCurve="0.5" Attack="5.0" AttackLevel="0.0" Hold="0.0" Decay="1.0"
+                                   Sustain="0.0" Release="6.161658763885498" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -15441,7 +15463,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String4_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -15804,11 +15826,11 @@
                 <Processor Type="StreamingSampler" ID="LeftString7LegatoDownSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slidedown_String7">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -15939,7 +15961,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String7_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -16030,11 +16052,11 @@
                 <Processor Type="StreamingSampler" ID="LeftString6LegatoDownSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slidedown_String6">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -16165,7 +16187,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String6_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -16256,11 +16278,11 @@
                 <Processor Type="StreamingSampler" ID="LeftString5LegatoDownSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slidedown_String5">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -16391,7 +16413,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String5_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -16482,11 +16504,11 @@
                 <Processor Type="StreamingSampler" ID="LeftString4LegatoDownSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slidedown_String4">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -16617,7 +16639,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String4_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -16934,11 +16956,11 @@
                 <Processor Type="StreamingSampler" ID="LeftString2LegatoDownSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slidedown_String3">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -17069,7 +17091,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String4_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -17160,11 +17182,11 @@
                 <Processor Type="StreamingSampler" ID="LeftString1LegatoDownSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slidedown_String3">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -17295,7 +17317,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String4_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -17598,7 +17620,9 @@
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
                         <Processor Type="HardcodedMasterFX" ID="RightString8NeckPickup" Bypassed="0"
-                                   Network="neck_pickup" XFade="0.0" StringNumber="8.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Network="neck_pickup" XFade="0.0" StringNumber="8.0" Gain="0.0"
+                                   Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -17829,7 +17853,9 @@
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
                         <Processor Type="HardcodedMasterFX" ID="RightString7NeckPickup" Bypassed="0"
-                                   Network="neck_pickup" XFade="0.0" StringNumber="7.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Network="neck_pickup" XFade="0.0" StringNumber="7.0" Gain="0.0"
+                                   Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -18060,7 +18086,9 @@
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
                         <Processor Type="HardcodedMasterFX" ID="RightString6NeckPickup" Bypassed="0"
-                                   Network="neck_pickup" XFade="0.0" StringNumber="6.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Network="neck_pickup" XFade="0.0" StringNumber="6.0" Gain="0.0"
+                                   Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -18291,7 +18319,9 @@
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
                         <Processor Type="HardcodedMasterFX" ID="RightString5NeckPickup" Bypassed="0"
-                                   Network="neck_pickup" XFade="0.0" StringNumber="5.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Network="neck_pickup" XFade="0.0" StringNumber="5.0" Gain="0.0"
+                                   Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -18522,7 +18552,9 @@
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
                         <Processor Type="HardcodedMasterFX" ID="RightString4NeckPickup" Bypassed="0"
-                                   Network="neck_pickup" XFade="0.0" StringNumber="4.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Network="neck_pickup" XFade="0.0" StringNumber="4.0" Gain="0.0"
+                                   Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -18753,7 +18785,9 @@
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
                         <Processor Type="HardcodedMasterFX" ID="RightString3NeckPickup" Bypassed="0"
-                                   Network="neck_pickup" XFade="0.0" StringNumber="3.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Network="neck_pickup" XFade="0.0" StringNumber="3.0" Gain="0.0"
+                                   Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -18984,7 +19018,9 @@
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
                         <Processor Type="HardcodedMasterFX" ID="RightString2NeckPickup" Bypassed="0"
-                                   Network="neck_pickup" XFade="0.0" StringNumber="2.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Network="neck_pickup" XFade="0.0" StringNumber="2.0" Gain="0.0"
+                                   Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -19215,7 +19251,9 @@
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
                         <Processor Type="HardcodedMasterFX" ID="RightString1NeckPickup" Bypassed="0"
-                                   Network="neck_pickup" XFade="0.0" StringNumber="1.0" Gain="0.0" Position="1.0" CombDepth="0.85" BodyWarmth="0.0" Tone="8000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Network="neck_pickup" XFade="0.0" StringNumber="1.0" Gain="0.0"
+                                   Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -28285,9 +28323,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="LegatoUpAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="12.80000019073486" AttackLevel="0.0" Hold="10.0" Decay="1.0"
-                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.6480000019073486"
+                                   DecayCurve="0.5" Attack="5.0" AttackLevel="0.0" Hold="0.0" Decay="1.0"
+                                   Sustain="0.0" Release="6.161658763885498" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -28490,11 +28528,11 @@
                 <Processor Type="StreamingSampler" ID="RightString7LegatoUpSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slideup_String7">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -28511,9 +28549,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="LegatoUpAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="12.80000019073486" AttackLevel="0.0" Hold="10.0" Decay="1.0"
-                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.6480000019073486"
+                                   DecayCurve="0.5" Attack="5.0" AttackLevel="0.0" Hold="0.0" Decay="1.0"
+                                   Sustain="0.0" Release="6.161658763885498" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -28625,7 +28663,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String7_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -28716,11 +28754,11 @@
                 <Processor Type="StreamingSampler" ID="RightString6LegatoUpSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slideup_String6">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -28737,9 +28775,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="LegatoUpAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="12.80000019073486" AttackLevel="0.0" Hold="10.0" Decay="1.0"
-                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.6480000019073486"
+                                   DecayCurve="0.5" Attack="5.0" AttackLevel="0.0" Hold="0.0" Decay="1.0"
+                                   Sustain="0.0" Release="6.161658763885498" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -28851,7 +28889,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String6_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -28942,11 +28980,11 @@
                 <Processor Type="StreamingSampler" ID="RightString5LegatoUpSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slideup_String5">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -28963,9 +29001,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="LegatoUpAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="12.80000019073486" AttackLevel="0.0" Hold="10.0" Decay="1.0"
-                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.6480000019073486"
+                                   DecayCurve="0.5" Attack="5.0" AttackLevel="0.0" Hold="0.0" Decay="1.0"
+                                   Sustain="0.0" Release="6.161658763885498" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -29077,7 +29115,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String5_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -29168,11 +29206,11 @@
                 <Processor Type="StreamingSampler" ID="RightString4LegatoUpSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slideup_String4">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -29189,9 +29227,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="LegatoUpAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="12.80000019073486" AttackLevel="0.0" Hold="10.0" Decay="1.0"
-                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.6480000019073486"
+                                   DecayCurve="0.5" Attack="5.0" AttackLevel="0.0" Hold="0.0" Decay="1.0"
+                                   Sustain="0.0" Release="6.161658763885498" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -29303,7 +29341,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String4_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -29415,9 +29453,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="LegatoUpAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="12.80000019073486" AttackLevel="0.0" Hold="10.0" Decay="1.0"
-                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.6480000019073486"
+                                   DecayCurve="0.5" Attack="5.0" AttackLevel="0.0" Hold="0.0" Decay="1.0"
+                                   Sustain="0.0" Release="6.161658763885498" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -29620,11 +29658,11 @@
                 <Processor Type="StreamingSampler" ID="RightString2LegatoUpSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slideup_String3">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -29641,9 +29679,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="LegatoUpAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="12.80000019073486" AttackLevel="0.0" Hold="10.0" Decay="1.0"
-                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.6480000019073486"
+                                   DecayCurve="0.5" Attack="5.0" AttackLevel="0.0" Hold="0.0" Decay="1.0"
+                                   Sustain="0.0" Release="6.161658763885498" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -29755,7 +29793,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String4_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -29846,11 +29884,11 @@
                 <Processor Type="StreamingSampler" ID="RightString1LegatoUpSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slideup_String3">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -29867,9 +29905,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="LegatoUpAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0"
-                                   Attack="12.80000019073486" AttackLevel="0.0" Hold="10.0" Decay="1.0"
-                                   Sustain="0.0" Release="10.6899995803833" EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.6480000019073486"
+                                   DecayCurve="0.5" Attack="5.0" AttackLevel="0.0" Hold="0.0" Decay="1.0"
+                                   Sustain="0.0" Release="6.161658763885498" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -29981,7 +30019,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String4_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -30344,11 +30382,11 @@
                 <Processor Type="StreamingSampler" ID="RightString7LegatoDownSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slidedown_String7">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -30479,7 +30517,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String7_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -30570,11 +30608,11 @@
                 <Processor Type="StreamingSampler" ID="RightString6LegatoDownSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slidedown_String6">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -30705,7 +30743,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String6_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -30796,11 +30834,11 @@
                 <Processor Type="StreamingSampler" ID="RightString5LegatoDownSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slidedown_String5">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -30931,7 +30969,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String5_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -31022,11 +31060,11 @@
                 <Processor Type="StreamingSampler" ID="RightString4LegatoDownSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slidedown_String4">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -31157,7 +31195,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String4_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -31474,11 +31512,11 @@
                 <Processor Type="StreamingSampler" ID="RightString2LegatoDownSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slidedown_String3">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -31609,7 +31647,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String4_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -31700,11 +31738,11 @@
                 <Processor Type="StreamingSampler" ID="RightString1LegatoDownSampler" Bypassed="0"
                            Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="8.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Slidedown_String3">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -31835,7 +31873,7 @@
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String4_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>

@@ -11,10 +11,10 @@
   <sample Root="56" LoKey="62" HiKey="62" LoVel="0" HiVel="127" RRGroup="2"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_G#2_RR2.wav"
           Duplicate="1" LoopXFade="0" LoopStart="194689" SampleStart="192000"/>
-  <sample Root="80" LoKey="86" HiKey="99" LoVel="0" HiVel="127" RRGroup="1"
+  <sample Root="80" LoKey="86" HiKey="111" LoVel="0" HiVel="127" RRGroup="1"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_G#4_RR1.wav"
           Duplicate="1" LoopXFade="0" LoopStart="194689" SampleStart="192000"/>
-  <sample Root="80" LoKey="86" HiKey="99" LoVel="0" HiVel="127" RRGroup="2"
+  <sample Root="80" LoKey="86" HiKey="111" LoVel="0" HiVel="127" RRGroup="2"
           FileName="D:\Reaper Projects\Reaper Projects\Batch editing for libraries\Chonki\exports\Release\AllString\Chonki_sustain_rel_allString_G#4_RR2.wav"
           Duplicate="1" LoopXFade="0" LoopStart="194689" SampleStart="192000"/>
   <sample Root="57" LoKey="63" HiKey="64" LoVel="0" HiVel="127" RRGroup="1"
