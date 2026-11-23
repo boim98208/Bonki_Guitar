@@ -3,7 +3,7 @@
  
 
 // Note buffer and chord voicing configuration
-var excludeOpenStringsFromFretSpread = true; // If true, exclude fret 0 from fret spread and leftmost fret calculation; if false, include it
+var excludeOpenStringsFromFretSpread = false; // If true, exclude fret 0 from fret spread and leftmost fret calculation; if false, include it
 const var UPTIME_CHORD_THRESHOLD = 0.00002; // 20 microseconds buffer threshold
 var chordArrivalCount = 0;
  
@@ -13,9 +13,9 @@ var chordArrivalCount = 0;
  const var LegatoDecayGraph = Content.addTable("LegatoDecayGraph", 10, 10);
  LegatoDecayGraph.set("width", 260);
  LegatoDecayGraph.set("height", 120);
- LegatoDecayGraph.reset();
- LegatoDecayGraph.setTablePoint(0, 0.0, 1.0, 0.35);
- LegatoDecayGraph.setTablePoint(1, 1.0, 0.0, 0.5);
+ //LegatoDecayGraph.reset();
+ //LegatoDecayGraph.setTablePoint(0, 0.0, 1.0, 0.35);
+ //LegatoDecayGraph.setTablePoint(1, 1.0, 0.0, 0.5);
  
  reg i = 0;
  reg linearRRCounter = 1;
@@ -55,6 +55,25 @@ chordStrChoice.reserve(128);
 
 const var oldStringNoteId = [];
 oldStringNoteId.reserve(128);
+
+// Pre-reserved scratch arrays for polyphonic legato portamento voice matching
+const var activeStrings = [];
+activeStrings.reserve(128);
+
+const var activeNotes = [];
+activeNotes.reserve(128);
+
+const var targetSlid = [];
+targetSlid.reserve(128);
+
+const var usedActive = [];
+usedActive.reserve(128);
+
+const var sortedTargetNotes = [];
+sortedTargetNotes.reserve(128);
+
+const var sortedTargetVels = [];
+sortedTargetVels.reserve(128);
 
 
 Globals.g_stringPerformance = [];
@@ -481,7 +500,7 @@ inline function endSlide(stringIndex)
 const var legatoMessageHolder = Engine.createMessageHolder();
 
 var LEGATO_MAX_DECAY_TIME_SEC = 7;
-var LEGATO_DECAY_FLOOR_DB = -30.0;
+var LEGATO_DECAY_FLOOR_DB = -10.0;
 var isRealisticSlideVolEnabled = true;
 
 
@@ -1667,6 +1686,256 @@ inline function melodyFretting1_0_0(notePlayed, currentHandPos)
 	
 	return true;
 }
+
+/**
+ * Executes a portamento slide on a specific string for a voice pair.
+ */
+inline function executeSlideOnString(strIdx, startNote, targetNote, targetVelocity, isUp)
+{
+	local targetPerformance = isUp ? PerformanceType.LegatoUp : PerformanceType.LegatoDown;
+	
+	triggerSlide(strIdx, startNote, targetNote, eventIdArray[strIdx], targetVelocity);
+	
+	local destVoiceId = NO_NOTE;
+	if (eventIdArray[strIdx].length > 0)
+	{
+		destVoiceId = eventIdArray[strIdx][eventIdArray[strIdx].length - 1];
+	}
+	
+	stringNote[strIdx] = targetNote;
+	stringNoteId[strIdx] = destVoiceId;
+	notePlayedMethod[strIdx] = StringPlayingMethod.pianoRoll;
+	Globals.g_stringNotes[strIdx] = targetNote;
+	Globals.g_stringPerformance[strIdx] = targetPerformance;
+	
+	lastStringPlayed = strIdx;
+}
+
+/**
+ * Polyphonic buffered legato portamento engine.
+ * Handles single notes and simultaneous chords when LEGATOKEYSWITCHNOTE is active.
+ *
+ * Rules:
+ * 1. Match from highest active note onto highest target note descending.
+ * 2. Single slide direction per buffered slide (based on highest target vs highest active).
+ * 3. If target note exceeds range or mismatches direction, skip to next active string.
+ * 4. Active strings not slid remain sustaining untouched.
+ * 5. Incoming target notes that cannot slide play as normal sustain notes on available strings via fretting engine.
+ * 6. If no active notes exist (M == 0), voice all notes as normal sustain.
+ */
+inline function processBufferedLegato(targetNotes, targetVels)
+{
+	local s;
+	local i;
+	local j;
+	
+	activeStrings.clear();
+	activeNotes.clear();
+	
+	for (s = 0; s < NUMOFSTRINGS; s++)
+	{
+		if (stringNote[s] != NO_NOTE)
+		{
+			activeStrings.push(s);
+			activeNotes.push(stringNote[s]);
+		}
+	}
+	
+	local M = activeNotes.length;
+	local K = targetNotes.length;
+	
+	// Case: No active notes currently sounding -> Play as normal sustain notes
+	if (M == 0)
+	{
+		setSamplerUnmuted(PerformanceType.SUSTAIN);
+		if (K > 1)
+		{
+			Globals.g_handPositionFret = naturalChordFretting(targetNotes, targetVels, Globals.g_handPositionFret, PerformanceType.SUSTAIN);
+		}
+		else if (K == 1)
+		{
+			playNextNoteOnNewString(targetNotes[0], targetVels[0]);
+		}
+		return;
+	}
+	
+	// Active notes exist -> All voices handled via artificial slide/sustain events
+	Message.ignoreEvent(true);
+	
+	// Sort active notes descending (highest note first)
+	for (i = 0; i < M - 1; i++)
+	{
+		for (j = 0; j < M - 1 - i; j++)
+		{
+			if (activeNotes[j] < activeNotes[j + 1])
+			{
+				local tempN = activeNotes[j];
+				activeNotes[j] = activeNotes[j + 1];
+				activeNotes[j + 1] = tempN;
+				
+				local tempS = activeStrings[j];
+				activeStrings[j] = activeStrings[j + 1];
+				activeStrings[j + 1] = tempS;
+			}
+		}
+	}
+	
+	// Sort target notes descending (highest note first)
+	sortedTargetNotes.clear();
+	sortedTargetVels.clear();
+	for (i = 0; i < K; i++)
+	{
+		sortedTargetNotes.push(targetNotes[i]);
+		sortedTargetVels.push(targetVels[i]);
+	}
+	for (i = 0; i < K - 1; i++)
+	{
+		for (j = 0; j < K - 1 - i; j++)
+		{
+			if (sortedTargetNotes[j] < sortedTargetNotes[j + 1])
+			{
+				local tempTN = sortedTargetNotes[j];
+				sortedTargetNotes[j] = sortedTargetNotes[j + 1];
+				sortedTargetNotes[j + 1] = tempTN;
+				
+				local tempTV = sortedTargetVels[j];
+				sortedTargetVels[j] = sortedTargetVels[j + 1];
+				sortedTargetVels[j + 1] = tempTV;
+			}
+		}
+	}
+	
+	// Determine dominant slide direction from primary pair (highest target vs highest active)
+	local isUp = (sortedTargetNotes[0] >= activeNotes[0]);
+	
+	if (isUp)
+	{
+		setSamplerMuted(PerformanceType.LegatoDown);
+		setSamplerUnmuted(PerformanceType.LegatoUp);
+	}
+	else
+	{
+		setSamplerMuted(PerformanceType.LegatoUp);
+		setSamplerUnmuted(PerformanceType.LegatoDown);
+	}
+	
+	targetSlid.clear();
+	for (j = 0; j < K; j++)
+	{
+		targetSlid.push(false);
+	}
+	
+	usedActive.clear();
+	for (i = 0; i < M; i++)
+	{
+		usedActive.push(false);
+	}
+	
+	// Match target notes from highest to lowest with active strings
+	for (j = 0; j < K; j++)
+	{
+		local targetN = sortedTargetNotes[j];
+		local targetV = sortedTargetVels[j];
+		
+		for (i = 0; i < M; i++)
+		{
+			if (usedActive[i])
+				continue;
+				
+			local str = activeStrings[i];
+			local startN = activeNotes[i];
+			
+			if (targetN == startN)
+				continue;
+				
+			// Direction check: single direction per buffered slide
+			local pairIsUp = (targetN > startN);
+			if (pairIsUp != isUp)
+			{
+				continue; // Direction mismatch: skip to next active string
+			}
+			
+			// Range check on this string
+			local fret = targetN - OPENSTRINGNOTES[str];
+			local targetArtic = isUp ? PerformanceType.LegatoUp : PerformanceType.LegatoDown;
+			if (fret < articLowestFretOnString[str][targetArtic] || 
+			    fret > articHighestFretOnString[str][targetArtic] || 
+			    !isStringEnabled[str])
+			{
+				continue; // Out of range: skip to next active string
+			}
+			
+			// Valid match found: execute slide
+			usedActive[i] = true;
+			targetSlid[j] = true;
+			executeSlideOnString(str, startN, targetN, targetV, isUp);
+			break;
+		}
+	}
+	
+	// Handle unslid incoming target notes: voice as normal sustain on available strings
+	for (j = 0; j < K; j++)
+	{
+		if (!targetSlid[j])
+		{
+			local unslidN = sortedTargetNotes[j];
+			local unslidV = sortedTargetVels[j];
+			local candStr = stringWithClosestNote(unslidN, Globals.g_handPositionFret, PerformanceType.SUSTAIN);
+			
+			if (candStr != StringType.NOSTRING)
+			{
+				setSamplerUnmuted(PerformanceType.SUSTAIN);
+				stringNote[candStr] = unslidN;
+				Globals.g_stringPerformance[candStr] = PerformanceType.SUSTAIN;
+				playChordString(candStr, unslidN, unslidV);
+			}
+		}
+	}
+	
+	// Update hand position based on resulting sounding voicing
+	local leftmostFret = POSINFINITY;
+	for (s = 0; s < NUMOFSTRINGS; s++)
+	{
+		if (stringNote[s] != NO_NOTE)
+		{
+			local f = stringNote[s] - OPENSTRINGNOTES[s];
+			if (excludeOpenStringsFromFretSpread && f == 0)
+			{
+				continue;
+			}
+			if (f >= 0 && f < leftmostFret)
+			{
+				leftmostFret = f;
+			}
+		}
+	}
+	if (leftmostFret != POSINFINITY)
+	{
+		local dist = leftmostFret - Globals.g_handPositionFret;
+		if (dist > 5)
+		{
+			Globals.g_handPositionFret = leftmostFret - 5;
+		}
+		else if (dist < -2)
+		{
+			Globals.g_handPositionFret = leftmostFret;
+		}
+	}
+	if (Globals.g_handPositionFret < 0)
+	{
+		Globals.g_handPositionFret = 0;
+	}
+	
+	// Preserve legato keyswitch state
+	if (legatoKeySwitchPlaying || Synth.isKeyDown(LEGATOKEYSWITCHNOTE) || Globals.g_currArticulationPlaying == PerformanceType.LEGATOGENERAL)
+	{
+		Globals.g_currArticulationPlaying = PerformanceType.LEGATOGENERAL;
+	}
+	else
+	{
+		Globals.g_currArticulationPlaying = isUp ? PerformanceType.LegatoUp : PerformanceType.LegatoDown;
+	}
+}
  
  
  // interfacing between different fretting engines
@@ -2617,6 +2886,9 @@ inline function randomAddOrSub(deviation){
 
 		if (isChord)
 		{
+			// Final note callback of chord cluster: ignore original event so only artificial voices sound
+			Message.ignoreEvent(true);
+
 			// Mark all notes in this chord cluster as processed
 			for (i = 0; i < clusterCount; i++)
 			{
@@ -2631,8 +2903,17 @@ inline function randomAddOrSub(deviation){
 				chordVelocities.push(Globals.g_noteToPlayBufferData.inputtedNoteVelocities[clusterIndices[i]]);
 			}
 
-			// Apply natural chord fretting algorithm
-			Globals.g_handPositionFret = naturalChordFretting(chordNotes, chordVelocities, Globals.g_handPositionFret, Globals.g_currArticulationPlaying);
+			local isLegatoActiveChord = legatoKeySwitchPlaying || Synth.isKeyDown(LEGATOKEYSWITCHNOTE);
+
+			if (isLegatoActiveChord)
+			{
+				processBufferedLegato(chordNotes, chordVelocities);
+			}
+			else
+			{
+				// Apply natural chord fretting algorithm
+				Globals.g_handPositionFret = naturalChordFretting(chordNotes, chordVelocities, Globals.g_handPositionFret, Globals.g_currArticulationPlaying);
+			}
 
 			for (i = 0; i < stringNote.length - 1; i++)
 			{
@@ -2684,46 +2965,39 @@ inline function randomAddOrSub(deviation){
 			Globals.g_noteToPlayBufferData.inputtedNoteProcessed.clear();
 		}
 
-		local isLegatoActive = legatoKeySwitchPlaying || 
-		                       Synth.isKeyDown(LEGATOKEYSWITCHNOTE) || 
-		                       (Globals.g_currArticulationPlaying == PerformanceType.LEGATOGENERAL) || 
-		                       (Globals.g_currArticulationPlaying == PerformanceType.LEGATOUP) ||
-		                       (Globals.g_currArticulationPlaying == PerformanceType.LEGATODOWN);
+		local isLegatoActive = legatoKeySwitchPlaying || Synth.isKeyDown(LEGATOKEYSWITCHNOTE);
 
-		if(isLegatoActive){
+		if (isLegatoActive)
+		{
+			chordNotes.clear();
+			chordVelocities.clear();
+			chordNotes.push(notePlayed);
+			chordVelocities.push(velocityPlayed);
 
-			didPlayNoteLegato = playNextNoteLegato(notePlayed, velocityPlayed);
-			if(!didPlayNoteLegato){
-				// First note in legato phrase (no previous active lower note to slide from)
-				// Unmute sustain sampler and play note normally on a string, but preserve legato keyswitch state
-				setSamplerUnmuted(PerformanceType.SUSTAIN);
-				playNextNoteOnNewString(notePlayed, velocityPlayed);
-			}
-		
-		}else{
-	
-			 playNextNoteOnNewString(notePlayed, velocityPlayed);
-			
-			
-			
+			processBufferedLegato(chordNotes, chordVelocities);
 		}
-		
-		for(i = 0; i < stringNote.length - 1; i++){
-			if(stringNote[i] != NO_NOTE){
-			
+		else
+		{
+			playNextNoteOnNewString(notePlayed, velocityPlayed);
+		}
+
+		for (i = 0; i < stringNote.length - 1; i++)
+		{
+			if (stringNote[i] != NO_NOTE)
+			{
 				eventIds.setValue(stringNote[i], stringNoteId[i]);
 			}
 		}
-		
+
 	}
-	
+
 	strumIfStrumKeyPressed(notePlayed, stringNoteId, stringNote, velocityPlayed);
-	
+
 	individualNoteStrum(notePlayed, velocityPlayed, stringNote, stringNoteId, indivNoteStrumIds);
-	
+
 	for (s = 0; s < NUMOFSTRINGS; s++)
 	{
-		if (stringNoteId[s] != oldStringNoteId[s] && !didPlayNoteLegato)
+		if (stringNoteId[s] != oldStringNoteId[s])
 		{
 			stringNoteStartTime[s] = Engine.getUptime();
 		}
