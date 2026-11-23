@@ -9,7 +9,7 @@
         <Processor Type="ScriptProcessor" ID="Interface" Bypassed="0" NumAudioFiles="2">
           <ChildProcessors/>
           <Content>
-            <Control type="ScriptSlider" id="HandPositionFretForceKnob" value="-1.0"/>
+            <Control type="ScriptSlider" id="HandPositionFretForceKnob" value="1.0"/>
             <Control type="ScriptSlider" id="StringForceKnob" value="1.0"/>
             <Control type="ScriptComboBox" id="FrettingEngineComboBox" value="1.0"/>
             <Control type="ScriptButton" id="ResetGlobalRRButton" value="0.0"/>
@@ -18,8 +18,8 @@
             <Control type="ScriptSlider" id="PitchBendRangeKnob" value="2.0"/>
             <Control type="ScriptButton" id="DoubleTrackingBtn" value="0.0"/>
             <Control type="ScriptButton" id="StrummingModeEnableBtn" value="0.0"/>
-            <Control type="ScriptSlider" id="StrumSpeedKnob" value="127.0"/>
-            <Control type="ScriptButton" id="EnableStrumSpeedWithVelBtn" value="0.0"/>
+            <Control type="ScriptSlider" id="StrumSpeedKnob" value="71.0"/>
+            <Control type="ScriptButton" id="EnableStrumSpeedWithVelBtn" value="1.0"/>
             <Control type="ScriptSlider" id="IRMixKnob" value="0.0"/>
             <Control type="ScriptSlider" id="NeckPickupXFadeKnob" value="0.0"/>
             <Control type="ScriptSlider" id="NeckPositionKnob" value="0.699999988079071"/>
@@ -27,7 +27,7 @@
             <Control type="ScriptSlider" id="NeckBodyKnob" value="1.192092895507812e-7"/>
             <Control type="ScriptSlider" id="NeckToneKnob" value="14000.0"/>
             <Control type="ScriptSlider" id="NeckBiteCutKnob" value="-4.0"/>
-            <Control type="ScriptSlider" id="NeckResonanceKnob" value="2.0"/>
+            <Control type="ScriptSlider" id="NeckResonanceKnob" value="0.0"/>
             <Control type="ScriptSlider" id="SustainModulatorsAttack" value="12.80000019073486"/>
             <Control type="ScriptSlider" id="SustainModulatorsDecay" value="0.0"/>
             <Control type="ScriptSlider" id="SustainModulatorsSustain" value="0.0"/>
@@ -322,7 +322,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret6Marker" x="382" y="22" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret7Marker" x="409" y="23" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -331,7 +331,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret9Marker" x="459" y="23" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret10Marker" x="481" y="23" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -367,7 +367,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret21Marker" x="665" y="25" width="11"
-                               height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret22Marker" x="677" y="25" width="11"
                                height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -404,7 +404,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret6Marker" x="382" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret7Marker" x="409" y="20" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -890,19 +890,20 @@
                              height="15" width="10" text="FretBorderLowForced"/>
                   <Component type="ScriptImage" id="FretBorderLowForced" x="0" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder_Forced.png"
-                             scale="0.25" height="15" width="10"/>
+                             scale="0.25" height="15" width="10" visible="0"/>
                   <Component type="ScriptImage" id="FretBorderHigh" x="132" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder.png" scale="0.25"
                              height="15" width="10" text="FretBorderLowForced"/>
                   <Component type="ScriptImage" id="FretBorderHighForced" x="132" y="25" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandBorder_Forced.png"
-                             scale="0.25" height="15" width="10"/>
+                             scale="0.25" height="15" width="10" visible="0"/>
                   <Component type="ScriptImage" id="FretBorderCenter" x="66" y="23" parentComponent="FretBorderPanel"
                              fileName="{PROJECT_FOLDER}PlayingMode_HandCenter.png" height="15"
                              width="15" text="FretBorderLowForced" scale="0.4000000059604645"/>
                   <Component type="ScriptImage" id="FretBorderCenterForced" x="66" y="23"
                              parentComponent="FretBorderPanel" fileName="{PROJECT_FOLDER}PlayingMode_HandCenter_Forced.png"
-                             height="15" width="15" text="FretBorderLowForced" scale="0.4000000059604645"/>
+                             height="15" width="15" text="FretBorderLowForced" scale="0.4000000059604645"
+                             visible="0"/>
                   <Component type="ScriptImage" id="FretBorderLowForcedRef" x="496" y="25"
                              parentComponent="FretBorderPanel" fileName="{PROJECT_FOLDER}PlayingMode_HandBorder_Forced.png"
                              scale="0.25" height="15" width="10" visible="0"/>
@@ -912,15 +913,15 @@
                            textColour="16777215" borderSize="0.0" parentComponent="PlayingModeBG">
                   <Component type="ScriptSlider" id="HandPositionFretForceKnob" x="224" y="12"
                              text="Fret: Auto" width="726" mode="Discrete" stepSize="1.0"
-                             middlePosition="10.0" min="1.0" max="22.0" parentComponent="PerformanceOptionsPanel"
-                             filmstripImage="{PROJECT_FOLDER}ForceFretPosition_Knob_Filmstrip.png"
-                             height="47" scaleFactor="0.25" numStrips="19.0" mouseSensitivity="0.699999988079071"
+                             middlePosition="10.0" min="1.0" max="23.0" parentComponent="PerformanceOptionsPanel"
+                             filmstripImage="{PROJECT_FOLDER}ForceFretPosition_Knob_Filmstrip_V2.png"
+                             height="47" scaleFactor="0.25" numStrips="24.0" mouseSensitivity="0.699999988079071"
                              showValuePopup="Above"/>
                   <Component type="ScriptSlider" id="StringForceKnob" x="224" y="62" width="185"
                              text="string: 6.0" mode="Discrete" stepSize="1.0" middlePosition="4.0"
                              max="9.0" min="1.0" defaultValue="1.0" parentComponent="PerformanceOptionsPanel"
-                             filmstripImage="{PROJECT_FOLDER}ForceString_Knob_Filmstrip.png"
-                             numStrips="7.0" scaleFactor="0.25" mouseSensitivity="0.699999988079071"
+                             filmstripImage="{PROJECT_FOLDER}ForceString_Knob__Filmstrip_V2.png"
+                             numStrips="9.0" scaleFactor="0.25" mouseSensitivity="0.699999988079071"
                              showValuePopup="Below"/>
                   <Component type="ScriptComboBox" id="FrettingEngineComboBox" x="230" y="122"
                              max="2" items="Natural&#10;Melody" enableMidiLearn="1" parentComponent="PerformanceOptionsPanel"/>
@@ -3064,7 +3065,7 @@
                         <Processor Type="HardcodedMasterFX" ID="LeftString8NeckPickup" Bypassed="0"
                                    Network="neck_pickup" XFade="0.0" StringNumber="8.0" Gain="0.0"
                                    Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
-                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="0.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -3297,7 +3298,7 @@
                         <Processor Type="HardcodedMasterFX" ID="LeftString7NeckPickup" Bypassed="0"
                                    Network="neck_pickup" XFade="0.0" StringNumber="7.0" Gain="0.0"
                                    Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
-                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="0.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -3530,7 +3531,7 @@
                         <Processor Type="HardcodedMasterFX" ID="LeftString6NeckPickup" Bypassed="0"
                                    Network="neck_pickup" XFade="0.0" StringNumber="6.0" Gain="0.0"
                                    Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
-                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="0.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -3763,7 +3764,7 @@
                         <Processor Type="HardcodedMasterFX" ID="LeftString5NeckPickup" Bypassed="0"
                                    Network="neck_pickup" XFade="0.0" StringNumber="5.0" Gain="0.0"
                                    Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
-                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="0.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -3996,7 +3997,7 @@
                         <Processor Type="HardcodedMasterFX" ID="LeftString4NeckPickup" Bypassed="0"
                                    Network="neck_pickup" XFade="0.0" StringNumber="4.0" Gain="0.0"
                                    Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
-                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="0.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -4229,7 +4230,7 @@
                         <Processor Type="HardcodedMasterFX" ID="LeftString3NeckPickup" Bypassed="0"
                                    Network="neck_pickup" XFade="0.0" StringNumber="3.0" Gain="0.0"
                                    Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
-                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="0.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -4462,7 +4463,7 @@
                         <Processor Type="HardcodedMasterFX" ID="LeftString2NeckPickup" Bypassed="0"
                                    Network="neck_pickup" XFade="0.0" StringNumber="2.0" Gain="0.0"
                                    Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
-                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="0.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -4695,7 +4696,7 @@
                         <Processor Type="HardcodedMasterFX" ID="LeftString1NeckPickup" Bypassed="0"
                                    Network="neck_pickup" XFade="0.0" StringNumber="1.0" Gain="0.0"
                                    Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
-                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="0.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -13992,10 +13993,9 @@
                     <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="LegatoUpAHDSR" Bypassed="0" Monophonic="0.0"
-                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.7240000367164612"
-                                   DecayCurve="0.5" Attack="5.87272834777832" AttackLevel="0.0"
-                                   Hold="0.0" Decay="1.0" Sustain="0.0" Release="6.161658763885498"
-                                   EcoMode="1.0">
+                                   Retrigger="1.0" Intensity="1.0" AttackCurve="0.6480000019073486"
+                                   DecayCurve="0.5" Attack="5.0" AttackLevel="0.0" Hold="0.0" Decay="1.0"
+                                   Sustain="0.0" Release="6.161658763885498" EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
                               <ChildProcessors/>
@@ -17622,7 +17622,7 @@
                         <Processor Type="HardcodedMasterFX" ID="RightString8NeckPickup" Bypassed="0"
                                    Network="neck_pickup" XFade="0.0" StringNumber="8.0" Gain="0.0"
                                    Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
-                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="0.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -17855,7 +17855,7 @@
                         <Processor Type="HardcodedMasterFX" ID="RightString7NeckPickup" Bypassed="0"
                                    Network="neck_pickup" XFade="0.0" StringNumber="7.0" Gain="0.0"
                                    Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
-                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="0.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -18088,7 +18088,7 @@
                         <Processor Type="HardcodedMasterFX" ID="RightString6NeckPickup" Bypassed="0"
                                    Network="neck_pickup" XFade="0.0" StringNumber="6.0" Gain="0.0"
                                    Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
-                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="0.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -18321,7 +18321,7 @@
                         <Processor Type="HardcodedMasterFX" ID="RightString5NeckPickup" Bypassed="0"
                                    Network="neck_pickup" XFade="0.0" StringNumber="5.0" Gain="0.0"
                                    Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
-                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="0.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -18554,7 +18554,7 @@
                         <Processor Type="HardcodedMasterFX" ID="RightString4NeckPickup" Bypassed="0"
                                    Network="neck_pickup" XFade="0.0" StringNumber="4.0" Gain="0.0"
                                    Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
-                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="0.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -18787,7 +18787,7 @@
                         <Processor Type="HardcodedMasterFX" ID="RightString3NeckPickup" Bypassed="0"
                                    Network="neck_pickup" XFade="0.0" StringNumber="3.0" Gain="0.0"
                                    Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
-                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="0.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -19020,7 +19020,7 @@
                         <Processor Type="HardcodedMasterFX" ID="RightString2NeckPickup" Bypassed="0"
                                    Network="neck_pickup" XFade="0.0" StringNumber="2.0" Gain="0.0"
                                    Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
-                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="0.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>
@@ -19253,7 +19253,7 @@
                         <Processor Type="HardcodedMasterFX" ID="RightString1NeckPickup" Bypassed="0"
                                    Network="neck_pickup" XFade="0.0" StringNumber="1.0" Gain="0.0"
                                    Position="0.699999988079071" CombDepth="0.8500000238418579" BodyWarmth="1.192092895507812e-7"
-                                   Tone="14000.0" BiteCut="-4.0" Resonance="2.0">
+                                   Tone="14000.0" BiteCut="-4.0" Resonance="0.0">
                           <ChildProcessors/>
                           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
                         </Processor>

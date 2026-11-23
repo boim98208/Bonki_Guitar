@@ -1,10 +1,12 @@
-    Globals.g_forcedHandPositionFret = -1;
+reg i = 0;
+
+ Globals.g_forcedHandPositionFret = -1;
  Globals.g_forcedString = -1;
  Globals.g_handPositionFret = 0;
  Globals.g_strumSpeed = 1;
- 
- reg midiChannel;
- reg i = 0;
+
+
+
  
  
  include("KeyswitchConstants.js");
@@ -17,7 +19,7 @@
  Globals.g_frettingEngine = FrettingEngine.NATURAL;
  Globals.g_legatoRange = 2;
  
- Globals.g_releaseVolume = 5;
+ //Globals.g_releaseVolume = 5;
  
  Globals.g_timeStretchRatio = 1;
  
@@ -187,13 +189,7 @@ if (isDefined(btnResetRR))
  							 439, 451, 462, 472, 483, 496];
  
  
- 
- Globals.g_string6ActiveRR = "not playing";
- Globals.g_string5ActiveRR = "not playing";
- Globals.g_string4ActiveRR = "not playing";
- Globals.g_string3ActiveRR = "not playing";
- Globals.g_string2ActiveRR = "not playing";
- Globals.g_string1ActiveRR = "not playing";
+
  
  Globals.g_stringActiveRRs = [];
  Globals.g_stringActiveRRs.reserve(NUMOFSTRINGS * 2);
@@ -206,10 +202,6 @@ for(i = 0; i < NUMOFSTRINGS * 2; i++){
  Synth.deferCallbacks(true);
   Content.makeFrontInterface(1020, 600);
 include("AltarFXWiring.js");
-  
- // connecting with fret markers on the UI
- 
- Globals.g_pitchBendOffset = 0;
  
  
  
@@ -504,7 +496,7 @@ Content.getComponent("ShowFXRackButton").setControlCallback(onShowFXRackButtonCo
 	 fretImageGroups.push(Content.getComponent("String" + (i + 1) + "FretMarkers"));
  }
  
- Console.print(fretImageGroups[0].getId());
+
  
  
  const var String1Fret0Marker = Content.getComponent("String1Fret0Marker");
@@ -1781,6 +1773,7 @@ for(var i = FrettingEngineKeySwitch.FIRSTENGINE; i <= FrettingEngineKeySwitch.LA
 
 	local notePlayed = Message.getNoteNumber();
 	local velocityPlayed = Message.getVelocity();
+	local EngUpTime = Engine.getUptime();
 	
 	
 	if(notePlayed == StrummingKeyswitches.downStrumKeyswitch || notePlayed == StrummingKeyswitches.upStrumKeyswitch){
@@ -1788,6 +1781,9 @@ for(var i = FrettingEngineKeySwitch.FIRSTENGINE; i <= FrettingEngineKeySwitch.LA
 			Globals.g_strumSpeed = velocityPlayed;
 		}
 	}
+	
+
+	
 	
 	changeFrettingEngine(notePlayed);
 	
@@ -1801,6 +1797,9 @@ for(var i = FrettingEngineKeySwitch.FIRSTENGINE; i <= FrettingEngineKeySwitch.LA
 }
       function onNoteOff()
 {
+	
+
+
 	Synth.startTimer(0.05);
 }
  //const var MAX_BEND_PIXELS = 15;

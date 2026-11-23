@@ -1,6 +1,12 @@
  Synth.deferCallbacks(false);
  Synth.setFixNoteOnAfterNoteOff(true);
  
+
+var numNoteBeingProcessed = NO_NOTE;
+reg numOfNotesToProcess = 1;
+var noteTimeToProcess = NO_NOTE;
+var noteBufferProcessed = false;
+ 
  
  Content.makeFrontInterface(800, 400);
  
@@ -692,6 +698,7 @@ inline function playString(stringToPlay){
 	
 	
 	// adding 1 because the enum starts on 0 but channels start on 1
+
 	Message.setChannel(stringEnumToMidiChannel(stringToPlay));
 }
 
@@ -2146,17 +2153,61 @@ inline function randomAddOrSub(deviation){
 	
 	local s;
 	local oldStringNoteId = [];
+	
+	
+	if(isBetweenIncl(notePlayed, LOWESTNOTE, HIGHESTNOTE) && noteBufferProcessed){
+		Message.ignoreEvent(true);
+		return;
+	}
+	
+	
+	if(isBetweenIncl(notePlayed, LOWESTNOTE, HIGHESTNOTE)){
+		local numOfBufferNotes = Globals.g_noteToPlayBufferData.inputtedNotesOnTime.length;
+		local noteUpTimeMatches = true;
+		noteTimeToProcess = Globals.g_noteToPlayBufferData.inputtedNotesOnTime[0];
+		
+		for(i = 1; i < numOfBufferNotes && noteUpTimeMatches; i++){
+			
+			if(noteTimeToProcess == Globals.g_noteToPlayBufferData.inputtedNotesOnTime[i]){
+			numOfNotesToProcess++;
+			}
+			else{
+			
+				noteUpTimeMatches = false;
+			}
+		}
+		
+	}
+	
+
+	
+	noteBufferProcessed = true;
+
+	
+	
+	
 	oldStringNoteId.reserve(NUMOFSTRINGS);
 	for (s = 0; s < NUMOFSTRINGS; s++)
 	{
 		oldStringNoteId.push(stringNoteId[s]);
 	}
+	
+	
+
 
 //	eventIds.setValue(notePlayed, notePlayedId);
 
 
 
+//Console.print("From the note engine: " + Globals.g_noteToPlayBufferData.inputtedNotesOnTime.length);
 
+for(i = 0; i < Globals.	g_noteToPlayBufferData.inputtedNotesOnTime.length; i++){
+
+
+	if(Globals.g_noteToPlayBufferData.inputtedNotesOnTime[0] != Globals.g_noteToPlayBufferData.inputtedNotesOnTime[i]){
+		Console.print("Notes don't match");
+	}
+}
 
 	detectKeySwitch(notePlayed);
 	
@@ -2227,6 +2278,8 @@ inline function randomAddOrSub(deviation){
 }
 function onNoteOff()
 {
+	
+	
     local releasedNote = Message.getNoteNumber();
     local releasedNoteId = Message.getEventId();
     local noteFound = false;
