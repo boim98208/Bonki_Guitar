@@ -45,7 +45,7 @@ if(Message.isArtificial()){
 		Globals.g_noteToPlayBufferData.inputtedNoteVelocities.push(noteVelocity);
 		Globals.g_noteToPlayBufferData.inputtedNoteProcessed.push(false);
 	
-		Console.print("[NoteBuffering] NoteOn: " + noteNumber + " vel=" + noteVelocity + " uptime=" + noteUpTime + " ts=" + Message.getTimestamp() + " bufLen=" + Globals.g_noteToPlayBufferData.inputtedNotes.length);
+	//	Console.print("[NoteBuffering] NoteOn: " + noteNumber + " vel=" + noteVelocity + " uptime=" + noteUpTime + " ts=" + Message.getTimestamp() + " bufLen=" + Globals.g_noteToPlayBufferData.inputtedNotes.length);
 	
 	//delayToGive = noteNumber - LOWESTNOTE + 1;
 	
