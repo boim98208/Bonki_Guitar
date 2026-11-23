@@ -52,56 +52,56 @@ sampleStartOffsets[LegatoDirection.LegatoUp][StringType.STRING8][63] = 16831; sa
 sampleStartOffsets[LegatoDirection.LegatoUp][StringType.STRING8][64] = 15886; sampleArrivalOffsets[LegatoDirection.LegatoUp][StringType.STRING8][64] = 16581; // D#3_E3
 
 // Hardcoded Downward Slide Transit Times for String 8 (LegatoDirection.LegatoDown = 1)
-transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][53] = 45.20; // F2_E2
-transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][54] = 42.67; // F#2_F2
-transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][55] = 31.78; // G2_F#2
-transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][56] = 30.00; // G#2_G2
-transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][57] = 36.02; // A2_G#2
-transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][58] = 34.00; // A#2_A2
-transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][59] = 33.90; // B2_A#2
-transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][60] = 32.00; // C3_B2
-transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][61] = 29.66; // C#3_C3
-transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][62] = 28.00; // D3_C#3
+transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][41] = 45.20; // F1_E1
+transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][42] = 42.67; // F#1_F1
+transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][43] = 31.78; // G1_F#1
+transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][44] = 30.00; // G#1_G1
+transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][45] = 36.02; // A1_G#1
+transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][46] = 34.00; // A#1_A1
+transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][47] = 33.90; // B1_A#1
+transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][48] = 32.00; // C2_B1
+transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][49] = 29.66; // C#2_C2
+transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][50] = 28.00; // D2_C#2
+transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][51] = 18.36; // D#2_D2
+transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][52] = 17.33; // E2_D#2
+transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][53] = 31.78; // F2_E2
+transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][54] = 30.00; // F#2_F2
+transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][55] = 46.62; // G2_F#2
+transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][56] = 44.00; // G#2_G2
+transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][57] = 33.20; // A2_G#2
+transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][58] = 31.33; // A#2_A2
+transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][59] = 16.25; // B2_A#2
+transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][60] = 15.33; // C3_B2
+transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][61] = 22.60; // C#3_C3
+transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][62] = 21.33; // D3_C#3
 transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][63] = 18.36; // D#3_D3
 transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][64] = 17.33; // E3_D#3
-transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][65] = 31.78; // F3_E3
-transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][66] = 30.00; // F#3_F3
-transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][67] = 46.62; // G3_F#3
-transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][68] = 44.00; // G#3_G3
-transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][69] = 33.20; // A3_G#3
-transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][70] = 31.33; // A#3_A3
-transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][71] = 16.25; // B3_A#3
-transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][72] = 15.33; // C4_B3
-transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][73] = 22.60; // C#4_C4
-transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][74] = 21.33; // D4_C#4
-transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][75] = 18.36; // D#4_D4
-transitDurations[LegatoDirection.LegatoDown][StringType.STRING8][76] = 17.33; // E4_D#4
 
 // Hardcoded Downward Sample Alignment Offsets for String 8
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][53] = 14229; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][53] = 16398; // F2_E2
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][54] = 13430; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][54] = 15478; // F#2_F2
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][55] = 15013; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][55] = 16538; // G2_F#2
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][56] = 14170; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][56] = 15610; // G#2_G2
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][57] = 14192; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][57] = 15921; // A2_G#2
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][58] = 13395; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][58] = 15027; // A#2_A2
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][59] = 14916; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][59] = 16544; // B2_A#2
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][60] = 14079; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][60] = 15615; // C3_B2
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][61] = 12741; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][61] = 14165; // C#3_C3
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][62] = 12026; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][62] = 13370; // D3_C#3
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][63] = 20143; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][63] = 21024; // D#3_D3
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][64] = 19012; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][64] = 19844; // E3_D#3
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][65] = 12607; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][65] = 14132; // F3_E3
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][66] = 11899; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][66] = 13339; // F#3_F3
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][67] = 12066; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][67] = 14304; // G3_F#3
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][68] = 11389; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][68] = 13501; // G#3_G3
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][69] = 9673; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][69] = 11266; // A3_G#3
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][70] = 9130; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][70] = 10634; // A#3_A3
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][71] = 9593; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][71] = 10373; // B3_A#3
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][72] = 9055; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][72] = 9791; // C4_B3
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][73] = 17389; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][73] = 18474; // C#4_C4
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][74] = 16413; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][74] = 17437; // D4_C#4
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][75] = 10376; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][75] = 11258; // D#4_D4
-sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][76] = 9794; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][76] = 10626; // E4_D#4
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][41] = 14229; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][41] = 16398; // F1_E1
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][42] = 13430; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][42] = 15478; // F#1_F1
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][43] = 15013; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][43] = 16538; // G1_F#1
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][44] = 14170; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][44] = 15610; // G#1_G1
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][45] = 14192; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][45] = 15921; // A1_G#1
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][46] = 13395; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][46] = 15027; // A#1_A1
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][47] = 14916; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][47] = 16544; // B1_A#1
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][48] = 14079; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][48] = 15615; // C2_B1
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][49] = 12741; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][49] = 14165; // C#2_C2
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][50] = 12026; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][50] = 13370; // D2_C#2
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][51] = 20143; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][51] = 21024; // D#2_D2
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][52] = 19012; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][52] = 19844; // E2_D#2
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][53] = 12607; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][53] = 14132; // F2_E2
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][54] = 11899; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][54] = 13339; // F#2_F2
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][55] = 12066; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][55] = 14304; // G2_F#2
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][56] = 11389; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][56] = 13501; // G#2_G2
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][57] = 9673; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][57] = 11266; // A2_G#2
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][58] = 9130; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][58] = 10634; // A#2_A2
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][59] = 9593; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][59] = 10373; // B2_A#2
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][60] = 9055; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][60] = 9791; // C3_B2
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][61] = 17389; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][61] = 18474; // C#3_C3
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][62] = 16413; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][62] = 17437; // D3_C#3
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][63] = 10376; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][63] = 11258; // D#3_D3
+sampleStartOffsets[LegatoDirection.LegatoDown][StringType.STRING8][64] = 9794; sampleArrivalOffsets[LegatoDirection.LegatoDown][StringType.STRING8][64] = 10626; // E3_D#3
 
 
 // String 7 Legato Data

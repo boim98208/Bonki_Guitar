@@ -4,7 +4,7 @@
 
 // Note buffer and chord voicing configuration
 var excludeOpenStringsFromFretSpread = false; // If true, exclude fret 0 from fret spread and leftmost fret calculation; if false, include it
-const var UPTIME_CHORD_THRESHOLD = 0.00002; // 20 microseconds buffer threshold
+var UPTIME_CHORD_THRESHOLD = 0.002; // 2 ms (0.002s) buffer threshold for simultaneous note detection. Can be tuned down to 0.001 (1 ms) or 0.00005 (50 microseconds)
 var chordArrivalCount = 0;
  
  
@@ -150,7 +150,7 @@ const var NUMOFKEYSWITCHES = 4;
  
  inline function setAllSamplersMuted(){
  
-	 for(i = 0; i < AllContainerMuters.length; i++){ 
+	 for(var i = 0; i < AllContainerMuters.length; i++){ 
 		if(AllContainerMuters[i] != -1){
 			for(var j = 0; j < AllContainerMuters[i].length; j++){
 				AllContainerMuters[i][j].setAttribute("Bypass", true);
@@ -163,7 +163,7 @@ const var NUMOFKEYSWITCHES = 4;
 	 if(AllContainerMuters[articulationIndex] == -1){
 		 Console.print("articulation doesn't have muter or doesn't exist");
 	 }else{
-		 for(i = 0; i < AllContainerMuters[articulationIndex].length; i++){
+		 for(var i = 0; i < AllContainerMuters[articulationIndex].length; i++){
 		 
 			 	AllContainerMuters[articulationIndex][i].setAttribute("Bypass", false);
 		 }
@@ -318,21 +318,24 @@ const var NUM_LEGATO_DIRECTIONS = 2;
 // Dimension 0: 0 = LegatoDirection.LegatoUp, 1 = LegatoDirection.LegatoDown
 // Dimension 1: string index 0..7
 // Dimension 2: note number 0..127
-const var transitDurations = [];
-transitDurations.reserve(NUM_LEGATO_DIRECTIONS);
+const var transitDurations = [
+    [ [], [], [], [], [], [], [], [] ],
+    [ [], [], [], [], [], [], [], [] ]
+];
 
-const var sampleStartOffsets = [];
-sampleStartOffsets.reserve(NUM_LEGATO_DIRECTIONS);
+const var sampleStartOffsets = [
+    [ [], [], [], [], [], [], [], [] ],
+    [ [], [], [], [], [], [], [], [] ]
+];
 
-const var sampleArrivalOffsets = [];
-sampleArrivalOffsets.reserve(NUM_LEGATO_DIRECTIONS);
+const var sampleArrivalOffsets = [
+    [ [], [], [], [], [], [], [], [] ],
+    [ [], [], [], [], [], [], [], [] ]
+];
 
-// Per-String State & Event ID Arrays (8 rows)
-const var eventIdArray = [];
-eventIdArray.reserve(NUMOFSTRINGS);
-
-const var slideStepNotes = [];
-slideStepNotes.reserve(NUMOFSTRINGS);
+// Per-String State & Event ID Arrays (8 distinct rows)
+const var eventIdArray = [ [], [], [], [], [], [], [], [] ];
+const var slideStepNotes = [ [], [], [], [], [], [], [], [] ];
 
 const var reachedLastNote = [];
 reachedLastNote.reserve(NUMOFSTRINGS);
@@ -354,48 +357,25 @@ stringNoteStartTime.reserve(NUMOFSTRINGS);
 
 for (var dIdx = 0; dIdx < NUM_LEGATO_DIRECTIONS; dIdx++)
 {
-    var tDir = [];
-    tDir.reserve(NUMOFSTRINGS);
-    var sStartDir = [];
-    sStartDir.reserve(NUMOFSTRINGS);
-    var sArrDir = [];
-    sArrDir.reserve(NUMOFSTRINGS);
-    
     for (var sIdx = 0; sIdx < NUMOFSTRINGS; sIdx++)
     {
-        var tRow = [];
-        tRow.reserve(128);
-        var sStartRow = [];
-        sStartRow.reserve(128);
-        var sArrRow = [];
-        sArrRow.reserve(128);
+        transitDurations[dIdx][sIdx].reserve(128);
+        sampleStartOffsets[dIdx][sIdx].reserve(128);
+        sampleArrivalOffsets[dIdx][sIdx].reserve(128);
         
         for (var cIdx = 0; cIdx < 128; cIdx++)
         {
-            tRow.push(DEFAULT_TRANSIT_MS);
-            sStartRow.push(0);
-            sArrRow.push(0);
+            transitDurations[dIdx][sIdx].push(DEFAULT_TRANSIT_MS);
+            sampleStartOffsets[dIdx][sIdx].push(0);
+            sampleArrivalOffsets[dIdx][sIdx].push(0);
         }
-        
-        tDir.push(tRow);
-        sStartDir.push(sStartRow);
-        sArrDir.push(sArrRow);
     }
-    
-    transitDurations.push(tDir);
-    sampleStartOffsets.push(sStartDir);
-    sampleArrivalOffsets.push(sArrDir);
 }
 
 for (var sIdx = 0; sIdx < NUMOFSTRINGS; sIdx++)
 {
-    var evRow = [];
-    evRow.reserve(128);
-    eventIdArray.push(evRow);
-    
-    var stepRow = [];
-    stepRow.reserve(128);
-    slideStepNotes.push(stepRow);
+    eventIdArray[sIdx].reserve(128);
+    slideStepNotes[sIdx].reserve(128);
     
     reachedLastNote.push(true);
     slideStartTimeSec.push(0.0);
@@ -437,8 +417,10 @@ inline function endSlide(stringIndex)
     local currentTimeSec = Engine.getUptime();
     local elapsedMS = (currentTimeSec - slideStartTimeSec[stringIndex]) * 1000.0;
     local destId = slideDestinationVoiceId[stringIndex];
+    local isAct = (destId != NO_NOTE) ? Synth.isArtificialEventActive(destId) : false;
     
-    reachedLastNote[stringIndex] = (destId != NO_NOTE) && ((elapsedMS >= slideTotalDurationMS[stringIndex]) || Synth.isArtificialEventActive(destId));
+    reachedLastNote[stringIndex] = (destId != NO_NOTE) && ((elapsedMS >= slideTotalDurationMS[stringIndex]) || isAct);
+    Console.print("[endSlide CALLED] str=" + stringIndex + " destId=" + destId + " isAct=" + isAct + " elapsedMS=" + elapsedMS + " totalMS=" + slideTotalDurationMS[stringIndex] + " reached=" + reachedLastNote[stringIndex]);
     
     local targetEvArray = eventIdArray[stringIndex];
     local evIdx;
@@ -448,7 +430,7 @@ inline function endSlide(stringIndex)
         // Reached destination note: fade out cleanly
         if (destId != NO_NOTE)
         {
-            if (Synth.isArtificialEventActive(destId))
+            if (isAct)
             {
                 Synth.addVolumeFade(destId, 25, -100);
                 Synth.noteOffDelayedByEventId(destId, Engine.getSamplesForMilliSeconds(25));
@@ -500,7 +482,7 @@ inline function endSlide(stringIndex)
 const var legatoMessageHolder = Engine.createMessageHolder();
 
 var LEGATO_MAX_DECAY_TIME_SEC = 7;
-var LEGATO_DECAY_FLOOR_DB = -10.0;
+var LEGATO_DECAY_FLOOR_DB = -15.0;
 var isRealisticSlideVolEnabled = true;
 
 
@@ -599,7 +581,9 @@ inline function triggerSlide(stringIndex, startNote, endNote, targetEventIdArray
     targetEventIdArray.clear();
     targetStepNoteArray.clear();
     
+    local baseTimestamp = Message.getTimestamp();
     local interval = endNote - effectiveStart;
+    Console.print("[triggerSlide] str=" + stringIndex + " (ch=" + slideChannel + ") start=" + startNote + " effStart=" + effectiveStart + " end=" + endNote + " interval=" + interval + " isUp=" + (interval > 0) + " numSteps=" + Math.abs(interval) + " baseTs=" + baseTimestamp);
     if (interval == 0)
         return;
         
@@ -642,7 +626,7 @@ inline function triggerSlide(stringIndex, startNote, endNote, targetEventIdArray
         legatoMessageHolder.setChannel(slideChannel);
         legatoMessageHolder.setNoteNumber(stepNote);
         legatoMessageHolder.setVelocity(velocity);
-        legatoMessageHolder.setTimestamp(currentOffsetSamples);
+        legatoMessageHolder.setTimestamp(baseTimestamp + currentOffsetSamples);
         
         if (isRealisticSlideVolEnabled)
         {
@@ -661,9 +645,12 @@ inline function triggerSlide(stringIndex, startNote, endNote, targetEventIdArray
         targetEventIdArray.push(voiceId);
         targetStepNoteArray.push(stepNote);
         
+        Console.print("  [triggerSlide step] str=" + stringIndex + " step=" + step + "/" + numSteps + " note=" + stepNote + " isLast=" + isLastStep + " ts=" + (baseTimestamp + currentOffsetSamples) + " durMS=" + stepDurMS + " voiceId=" + voiceId);
+        
         if (!isLastStep)
         {
             Synth.noteOffDelayedByEventId(voiceId, currentOffsetSamples + stepDurSamples + stepOverlapSamples);
+            Console.print("  [triggerSlide noteOffDelayed] voiceId=" + voiceId + " delaySamples=" + (currentOffsetSamples + stepDurSamples + stepOverlapSamples));
             currentOffsetSamples += stepDurSamples;
         }
         else
@@ -672,6 +659,7 @@ inline function triggerSlide(stringIndex, startNote, endNote, targetEventIdArray
             slideTotalDurationMS[stringIndex] = (currentOffsetSamples / Engine.getSampleRate()) * 1000.0;
             slideStartTimeSec[stringIndex] = Engine.getUptime();
             reachedLastNote[stringIndex] = false;
+            Console.print("  [triggerSlide DEST] str=" + stringIndex + " destVoiceId=" + voiceId + " destNote=" + stepNote + " totalDurMS=" + slideTotalDurationMS[stringIndex]);
         }
     }
 }
@@ -813,7 +801,7 @@ inline function getActiveRRPlayed(stringToPlay){
 }
 
 inline function noteOffStringSound(stringToOff, stringNotesToUpdate, stringIdsToUpdate){
-	
+	Console.print("[noteOffStringSound] str=" + stringToOff + " note=" + stringNotesToUpdate[stringToOff] + " id=" + stringIdsToUpdate[stringToOff] + " evLen=" + (stringToOff < NUMOFSTRINGS ? eventIdArray[stringToOff].length : -1));
 	Globals.g_stringActiveRRs[stringToOff] = NO_NOTE;
 	if (stringToOff < NUMOFSTRINGS && eventIdArray[stringToOff].length > 0)
 	{
@@ -1694,6 +1682,7 @@ inline function executeSlideOnString(strIdx, startNote, targetNote, targetVeloci
 {
 	local targetPerformance = isUp ? PerformanceType.LegatoUp : PerformanceType.LegatoDown;
 	
+	Console.print("[executeSlideOnString] str=" + strIdx + " start=" + startNote + " target=" + targetNote + " vel=" + targetVelocity + " isUp=" + isUp);
 	triggerSlide(strIdx, startNote, targetNote, eventIdArray[strIdx], targetVelocity);
 	
 	local destVoiceId = NO_NOTE;
@@ -1743,6 +1732,8 @@ inline function processBufferedLegato(targetNotes, targetVels)
 	
 	local M = activeNotes.length;
 	local K = targetNotes.length;
+	
+	Console.print("[processBufferedLegato] M=" + M + " activeNotes=" + activeNotes + " activeStrings=" + activeStrings + " | K=" + K + " targetNotes=" + targetNotes);
 	
 	// Case: No active notes currently sounding -> Play as normal sustain notes
 	if (M == 0)
@@ -2817,6 +2808,7 @@ inline function randomAddOrSub(deviation){
 	local didPlayOnNewString = false;
 	
 	local s;
+	local i;
 	oldStringNoteId.clear();
 	for (s = 0; s < NUMOFSTRINGS; s++)
 	{
@@ -2829,6 +2821,16 @@ inline function randomAddOrSub(deviation){
 		resetNotes();
 	
 	if(isBetweenIncl(notePlayed, LOWESTNOTE, HIGHESTNOTE)){
+
+		Console.print("[NoteEngines] onNoteOn: note=" + notePlayed + " vel=" + velocityPlayed + " uptime=" + Engine.getUptime() + " ts=" + Message.getTimestamp());
+		if (isDefined(Globals.g_noteToPlayBufferData))
+		{
+			Console.print("  Buffer count=" + Globals.g_noteToPlayBufferData.inputtedNotes.length);
+			for (i = 0; i < Globals.g_noteToPlayBufferData.inputtedNotes.length; i++)
+			{
+				Console.print("    buf[" + i + "]: note=" + Globals.g_noteToPlayBufferData.inputtedNotes[i] + " uptime=" + Globals.g_noteToPlayBufferData.inputtedNotesOnTime[i] + " proc=" + Globals.g_noteToPlayBufferData.inputtedNoteProcessed[i]);
+			}
+		}
 
 		// Buffer clustering check: find all unprocessed notes matching the current cluster uptime (<= 20 microseconds)
 		clusterIndices.clear();
@@ -2854,7 +2856,9 @@ inline function randomAddOrSub(deviation){
 				{
 					if (!Globals.g_noteToPlayBufferData.inputtedNoteProcessed[i])
 					{
-						if (Math.abs(Globals.g_noteToPlayBufferData.inputtedNotesOnTime[i] - clusterAnchorTime) <= UPTIME_CHORD_THRESHOLD)
+						local deltaSec = Math.abs(Globals.g_noteToPlayBufferData.inputtedNotesOnTime[i] - clusterAnchorTime);
+						Console.print("    check buf[" + i + "] note=" + Globals.g_noteToPlayBufferData.inputtedNotes[i] + " delta=" + deltaSec + " <= " + UPTIME_CHORD_THRESHOLD + " => " + (deltaSec <= UPTIME_CHORD_THRESHOLD));
+						if (deltaSec <= UPTIME_CHORD_THRESHOLD)
 						{
 							clusterIndices.push(i);
 						}
@@ -2863,6 +2867,8 @@ inline function randomAddOrSub(deviation){
 				clusterCount = clusterIndices.length;
 			}
 		}
+
+		Console.print("  clusterCount=" + clusterCount + " chordArrivalCount=" + chordArrivalCount);
 
 		if (clusterCount > 1)
 		{
@@ -2904,6 +2910,8 @@ inline function randomAddOrSub(deviation){
 			}
 
 			local isLegatoActiveChord = legatoKeySwitchPlaying || Synth.isKeyDown(LEGATOKEYSWITCHNOTE);
+
+			Console.print("  >>> CHORD FLOW TRIGGERED: notes=" + chordNotes + " legato=" + isLegatoActiveChord);
 
 			if (isLegatoActiveChord)
 			{
@@ -2967,6 +2975,8 @@ inline function randomAddOrSub(deviation){
 
 		local isLegatoActive = legatoKeySwitchPlaying || Synth.isKeyDown(LEGATOKEYSWITCHNOTE);
 
+		Console.print("  >>> SINGLE NOTE FLOW TRIGGERED: note=" + notePlayed + " legato=" + isLegatoActive);
+
 		if (isLegatoActive)
 		{
 			chordNotes.clear();
@@ -3018,6 +3028,7 @@ function onNoteOff()
 	
     local releasedNote = Message.getNoteNumber();
     local releasedNoteId = Message.getEventId();
+    Console.print("[onNoteOff] releasedNote=" + releasedNote + " releasedId=" + releasedNoteId);
     local noteFound = false;
     local noteFoundInLegato = false;
     local eventIdListIndexToRemoveId = 0;
