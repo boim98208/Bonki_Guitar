@@ -2,10 +2,10 @@
  Synth.setFixNoteOnAfterNoteOff(true);
  
 
-var numNoteBeingProcessed = NO_NOTE;
-reg numOfNotesToProcess = 1;
-var noteTimeToProcess = NO_NOTE;
-var noteBufferProcessed = false;
+// Note buffer and chord voicing configuration
+var excludeOpenStringsFromFretSpread = true; // If true, exclude fret 0 from fret spread and leftmost fret calculation; if false, include it
+const var UPTIME_CHORD_THRESHOLD = 0.00002; // 20 microseconds buffer threshold
+var chordArrivalCount = 0;
  
  
  Content.makeFrontInterface(800, 400);
@@ -27,6 +27,34 @@ var noteBufferProcessed = false;
 include("NoteRangeAndOpenStringNote.js");
 
 include("KeyswitchConstants.js");
+
+// Pre-reserved scratch arrays for audio thread chord buffering and voicing
+const var clusterIndices = [];
+clusterIndices.reserve(128);
+
+const var chordNotes = [];
+chordNotes.reserve(128);
+
+const var chordVelocities = [];
+chordVelocities.reserve(128);
+
+const var chordBestStrings = [];
+chordBestStrings.reserve(128);
+
+const var chordBestFrets = [];
+chordBestFrets.reserve(128);
+
+const var chordCandStrings = [];
+chordCandStrings.reserve(128);
+
+const var chordCandFrets = [];
+chordCandFrets.reserve(128);
+
+const var chordStrChoice = [];
+chordStrChoice.reserve(128);
+
+const var oldStringNoteId = [];
+oldStringNoteId.reserve(128);
 
 
 Globals.g_stringPerformance = [];
@@ -702,6 +730,30 @@ inline function playString(stringToPlay){
 	Message.setChannel(stringEnumToMidiChannel(stringToPlay));
 }
 
+inline function playChordString(stringToPlay, noteToPlay, velocityToPlay){
+	local stringChannelToSend = stringEnumToMidiChannel(stringToPlay);
+	lastStringPlayed = stringToPlay;
+	
+	if (stringToPlay < NUMOFSTRINGS && eventIdArray[stringToPlay].length > 0)
+	{
+		endSlide(stringToPlay);
+	}
+	
+	if(!Globals.g_strummingModeOn){
+		Globals.g_stringActiveRRs[stringToPlay] = getActiveRRPlayed(stringToPlay);
+		
+		if(stringChannelToSend < 1 || stringChannelToSend > 16){
+			return false;
+		}
+	
+		stringNoteId[stringToPlay] = Synth.addNoteOn(stringChannelToSend, noteToPlay, velocityToPlay, 0);
+		notePlayedMethod[stringToPlay] = StringPlayingMethod.pianoRoll;
+		incrementRR(stringToPlay);
+	}
+	
+	Globals.g_stringNotes[stringToPlay] = noteToPlay;
+}
+
 inline function incrementRR(stringToPlay){
 	if(Globals.g_currRRBehaviour == RRBehaviour.LINEAR){
 		linearRR_incrementSamplersRR(stringToPlay);
@@ -977,6 +1029,350 @@ inline function forceStringLogic(notePlayed, currentHandPos, fretSpaceToChange, 
 	
 }
 
+
+
+
+/*
+Natural chord fretting engine:
+Finds the chord voicing with the least fret spread across strictly ascending strings.
+Supports forced string, forced hand position, and open-string preference.
+*/
+inline function naturalChordFretting(chordNotes, chordVelocities, currentHandPos, currArticPlaying)
+{
+	local K = chordNotes.length;
+	if (K == 0)
+		return currentHandPos;
+		
+	if (K > NUMOFSTRINGS)
+		K = NUMOFSTRINGS;
+		
+	local i;
+	local j;
+	
+	// 1. Sort chord notes ascending by pitch, maintaining velocity alignment
+	for (i = 0; i < K - 1; i++)
+	{
+		for (j = 0; j < K - 1 - i; j++)
+		{
+			if (chordNotes[j] > chordNotes[j + 1])
+			{
+				local tempN = chordNotes[j];
+				chordNotes[j] = chordNotes[j + 1];
+				chordNotes[j + 1] = tempN;
+				
+				local tempV = chordVelocities[j];
+				chordVelocities[j] = chordVelocities[j + 1];
+				chordVelocities[j + 1] = tempV;
+			}
+		}
+	}
+	
+	// Best voicing candidate tracking using pre-reserved scratch arrays
+	chordBestStrings.clear();
+	chordBestFrets.clear();
+	local bestSpread = POSINFINITY;
+	local bestLeftmost = POSINFINITY;
+	local bestInWindow = -1;
+	local bestLeftSlant = POSINFINITY;
+	local bestRightSlant = -1;
+	local bestDistToHand = POSINFINITY;
+	local bestHasForcedString = false;
+	local foundVoicing = false;
+	
+	// Iterative search for all string assignments: s[0] > s[1] > ... > s[K-1]
+	// s[depth] in 0..7 (7 = String 8 lowest pitch, 0 = String 1 highest pitch)
+	chordStrChoice.clear();
+	for (i = 0; i < NUMOFSTRINGS; i++)
+		chordStrChoice.push(0);
+		
+	local depth = 0;
+	chordStrChoice[0] = NUMOFSTRINGS; // Will be decremented to 7 on first step
+	
+	while (depth >= 0)
+	{
+		chordStrChoice[depth]--;
+		local minAllowed = K - 1 - depth;
+		local foundValidForDepth = false;
+		
+		while (chordStrChoice[depth] >= minAllowed)
+		{
+			local s = chordStrChoice[depth];
+			local n = chordNotes[depth];
+			local fret = n - OPENSTRINGNOTES[s];
+			
+			// Check if note is playable on string s
+			local lowBound = OPENSTRINGNOTES[s] + articLowestFretOnString[s][currArticPlaying];
+			local highBound = OPENSTRINGNOTES[s] + articHighestFretOnString[s][currArticPlaying];
+			
+			if (n >= lowBound && n <= highBound && fret >= 0 && fret < NOTESPERSTRING && isStringEnabled[s])
+			{
+				foundValidForDepth = true;
+				break;
+			}
+			chordStrChoice[depth]--;
+		}
+		
+		if (foundValidForDepth)
+		{
+			if (depth == K - 1)
+			{
+				// Complete candidate voicing found! Evaluate it using pre-reserved scratch arrays:
+				chordCandStrings.clear();
+				chordCandFrets.clear();
+				
+				for (j = 0; j < K; j++)
+				{
+					local candS = chordStrChoice[j];
+					chordCandStrings.push(candS);
+					chordCandFrets.push(chordNotes[j] - OPENSTRINGNOTES[candS]);
+				}
+				
+				// Check forced string
+				local candHasForced = false;
+				if (Globals.g_forcedString != NO_STRING)
+				{
+					for (j = 0; j < K; j++)
+					{
+						if (chordCandStrings[j] == Globals.g_forcedString)
+						{
+							candHasForced = true;
+							break;
+						}
+					}
+				}
+				
+				// Measure fret spread and leftmost fret
+				local candMinFret = POSINFINITY;
+				local candMaxFret = -1;
+				local hasFrettedNote = false;
+				
+				for (j = 0; j < K; j++)
+				{
+					local f = chordCandFrets[j];
+					if (excludeOpenStringsFromFretSpread && f == 0)
+						continue;
+					hasFrettedNote = true;
+					if (f < candMinFret) candMinFret = f;
+					if (f > candMaxFret) candMaxFret = f;
+				}
+				
+				if (!hasFrettedNote)
+				{
+					candMinFret = 0;
+					candMaxFret = 0;
+				}
+				
+				local candSpread = candMaxFret - candMinFret;
+				local candLeftmost = candMinFret;
+				
+				// Slant calculation (guitar chord ergonomics: favor dots going up and to the right)
+				local candLeftSlant = 0;
+				local candRightSlant = 0;
+				local bassFret = chordCandFrets[0];
+				for (j = 1; j < K; j++)
+				{
+					local cf = chordCandFrets[j];
+					if (excludeOpenStringsFromFretSpread && cf == 0)
+						continue;
+					if (bassFret != 0)
+					{
+						if (cf < bassFret)
+							candLeftSlant += (bassFret - cf);
+						else if (cf > bassFret)
+							candRightSlant += (cf - bassFret);
+					}
+				}
+
+				// Count frets in forced hand position window [forcedFret, forcedFret + 5]
+				local candInWindow = 0;
+				if (Globals.g_forcedHandPositionFret != -1)
+				{
+					local winLow = Globals.g_forcedHandPositionFret;
+					local winHigh = winLow + 5;
+					for (j = 0; j < K; j++)
+					{
+						local cfWin = chordCandFrets[j];
+						if (cfWin >= winLow && cfWin <= winHigh)
+							candInWindow++;
+					}
+				}
+				
+				// Distance to hand position with - 2 bias (from naturalFretting: Math.abs((fret - 2) - handPos))
+				local targetHand = (Globals.g_forcedHandPositionFret != -1) ? Globals.g_forcedHandPositionFret : currentHandPos;
+				local candDist = Math.abs((candLeftmost - 2) - targetHand);
+
+				// Determine if cand is better than best
+				local isBetter = false;
+				
+				if (!foundVoicing)
+				{
+					isBetter = true;
+				}
+				else if (Globals.g_forcedString != NO_STRING && candHasForced != bestHasForcedString)
+				{
+					// Voicing with forced string takes priority
+					isBetter = candHasForced;
+				}
+				else if (Globals.g_forcedHandPositionFret != -1)
+				{
+					// 1. Most frets in [forcedFret, forcedFret + 5]
+					if (candInWindow > bestInWindow)
+					{
+						isBetter = true;
+					}
+					else if (candInWindow == bestInWindow)
+					{
+						// 2. Tie-breaker: least fret spread
+						if (candSpread < bestSpread)
+						{
+							isBetter = true;
+						}
+						else if (candSpread == bestSpread)
+						{
+							// 3. Avoid awkward backward reaches ("to the left and top left")
+							if (candLeftSlant < bestLeftSlant)
+							{
+								isBetter = true;
+							}
+							else if (candLeftSlant == bestLeftSlant)
+							{
+								// 4. Favor natural reaches ("up and to the right")
+								if (candRightSlant > bestRightSlant)
+								{
+									isBetter = true;
+								}
+								else if (candRightSlant == bestRightSlant)
+								{
+									// 5. Closest to forcedHandPositionFret with -2 bias
+									if (candDist < bestDistToHand)
+										isBetter = true;
+								}
+							}
+						}
+					}
+				}
+				else
+				{
+					// Normal mode: least fret spread, then least backward slant, then rightward slant, then closest to currentHandPos with -2 bias
+					if (candSpread < bestSpread)
+					{
+						isBetter = true;
+					}
+					else if (candSpread == bestSpread)
+					{
+						if (candLeftSlant < bestLeftSlant)
+						{
+							isBetter = true;
+						}
+						else if (candLeftSlant == bestLeftSlant)
+						{
+							if (candRightSlant > bestRightSlant)
+							{
+								isBetter = true;
+							}
+							else if (candRightSlant == bestRightSlant)
+							{
+								if (candDist < bestDistToHand)
+									isBetter = true;
+							}
+						}
+					}
+				}
+				
+				if (isBetter)
+				{
+					chordBestStrings.clear();
+					chordBestFrets.clear();
+					for (j = 0; j < K; j++)
+					{
+						chordBestStrings.push(chordCandStrings[j]);
+						chordBestFrets.push(chordCandFrets[j]);
+					}
+					bestSpread = candSpread;
+					bestLeftmost = candLeftmost;
+					bestInWindow = candInWindow;
+					bestLeftSlant = candLeftSlant;
+					bestRightSlant = candRightSlant;
+					bestDistToHand = candDist;
+					bestHasForcedString = candHasForced;
+					foundVoicing = true;
+				}
+			}
+			else
+			{
+				depth++;
+				chordStrChoice[depth] = chordStrChoice[depth - 1];
+			}
+		}
+		else
+		{
+			depth--;
+		}
+	}
+	
+	if (!foundVoicing)
+	{
+		// Fallback if no clean chord voicing found across ascending strings
+		for (i = 0; i < K; i++)
+		{
+			naturalFretting2_2_1(chordNotes[i], currentHandPos, currArticPlaying);
+		}
+		return currentHandPos;
+	}
+	
+	// Calculate newHandPos
+	// Change currentHandPos if voicing goes > currentHandPos + 5 or < currentHandPos - 2
+	local newHandPos = currentHandPos;
+	local minCheck = POSINFINITY;
+	local maxCheck = -1;
+	local hasAnyFretted = false;
+	
+	for (j = 0; j < K; j++)
+	{
+		local fretVal = chordBestFrets[j];
+		if (excludeOpenStringsFromFretSpread && fretVal == 0)
+			continue;
+		hasAnyFretted = true;
+		if (fretVal < minCheck) minCheck = fretVal;
+		if (fretVal > maxCheck) maxCheck = fretVal;
+	}
+	if (!hasAnyFretted)
+	{
+		minCheck = 0;
+		maxCheck = 0;
+	}
+	
+	if (maxCheck > currentHandPos + 5 || minCheck < currentHandPos - 2)
+	{
+		newHandPos = minCheck;
+	}
+	else
+	{
+		newHandPos = currentHandPos;
+	}
+	
+	if (Globals.g_forcedHandPositionFret != -1)
+	{
+		newHandPos = Globals.g_forcedHandPositionFret;
+	}
+	
+	if (newHandPos < 0)
+		newHandPos = 0;
+		
+	// Assign and sound all notes in winning voicing
+	for (j = 0; j < K; j++)
+	{
+		local st = chordBestStrings[j];
+		local nt = chordNotes[j];
+		local vl = chordVelocities[j];
+		
+		stringNote[st] = nt;
+		Globals.g_stringPerformance[st] = Globals.g_currArticulationPlaying;
+		playChordString(st, nt, vl);
+	}
+	
+	return newHandPos;
+}
 
 
 
@@ -2152,70 +2548,141 @@ inline function randomAddOrSub(deviation){
 	local didPlayOnNewString = false;
 	
 	local s;
-	local oldStringNoteId = [];
-	
-	
-	if(isBetweenIncl(notePlayed, LOWESTNOTE, HIGHESTNOTE) && noteBufferProcessed){
-		Message.ignoreEvent(true);
-		return;
-	}
-	
-	
-	if(isBetweenIncl(notePlayed, LOWESTNOTE, HIGHESTNOTE)){
-		local numOfBufferNotes = Globals.g_noteToPlayBufferData.inputtedNotesOnTime.length;
-		local noteUpTimeMatches = true;
-		noteTimeToProcess = Globals.g_noteToPlayBufferData.inputtedNotesOnTime[0];
-		
-		for(i = 1; i < numOfBufferNotes && noteUpTimeMatches; i++){
-			
-			if(noteTimeToProcess == Globals.g_noteToPlayBufferData.inputtedNotesOnTime[i]){
-			numOfNotesToProcess++;
-			}
-			else{
-			
-				noteUpTimeMatches = false;
-			}
-		}
-		
-	}
-	
-
-	
-	noteBufferProcessed = true;
-
-	
-	
-	
-	oldStringNoteId.reserve(NUMOFSTRINGS);
+	oldStringNoteId.clear();
 	for (s = 0; s < NUMOFSTRINGS; s++)
 	{
 		oldStringNoteId.push(stringNoteId[s]);
 	}
-	
-	
-
-
-//	eventIds.setValue(notePlayed, notePlayedId);
-
-
-
-//Console.print("From the note engine: " + Globals.g_noteToPlayBufferData.inputtedNotesOnTime.length);
-
-for(i = 0; i < Globals.	g_noteToPlayBufferData.inputtedNotesOnTime.length; i++){
-
-
-	if(Globals.g_noteToPlayBufferData.inputtedNotesOnTime[0] != Globals.g_noteToPlayBufferData.inputtedNotesOnTime[i]){
-		Console.print("Notes don't match");
-	}
-}
 
 	detectKeySwitch(notePlayed);
 	
 	if(Globals.g_resetNotes == true)
 		resetNotes();
 	
-	
 	if(isBetweenIncl(notePlayed, LOWESTNOTE, HIGHESTNOTE)){
+
+		// Buffer clustering check: find all unprocessed notes matching the current cluster uptime (<= 20 microseconds)
+		clusterIndices.clear();
+		local clusterCount = 0;
+		local isChord = false;
+
+		if (isDefined(Globals.g_noteToPlayBufferData) && Globals.g_noteToPlayBufferData.inputtedNotes.length > 0)
+		{
+			local clusterStartIdx = -1;
+			for (i = 0; i < Globals.g_noteToPlayBufferData.inputtedNoteProcessed.length; i++)
+			{
+				if (!Globals.g_noteToPlayBufferData.inputtedNoteProcessed[i])
+				{
+					clusterStartIdx = i;
+					break;
+				}
+			}
+
+			if (clusterStartIdx != -1)
+			{
+				local clusterAnchorTime = Globals.g_noteToPlayBufferData.inputtedNotesOnTime[clusterStartIdx];
+				for (i = clusterStartIdx; i < Globals.g_noteToPlayBufferData.inputtedNoteProcessed.length; i++)
+				{
+					if (!Globals.g_noteToPlayBufferData.inputtedNoteProcessed[i])
+					{
+						if (Math.abs(Globals.g_noteToPlayBufferData.inputtedNotesOnTime[i] - clusterAnchorTime) <= UPTIME_CHORD_THRESHOLD)
+						{
+							clusterIndices.push(i);
+						}
+					}
+				}
+				clusterCount = clusterIndices.length;
+			}
+		}
+
+		if (clusterCount > 1)
+		{
+			chordArrivalCount++;
+			if (chordArrivalCount < clusterCount)
+			{
+				// Stop callback for intermediate notes in the chord cluster
+				Message.ignoreEvent(true);
+				return;
+			}
+
+			// Final note callback of this simultaneous cluster -> process entire chord!
+			chordArrivalCount = 0;
+			isChord = true;
+		}
+		else
+		{
+			chordArrivalCount = 0;
+			isChord = false;
+		}
+
+		if (isChord)
+		{
+			// Mark all notes in this chord cluster as processed
+			for (i = 0; i < clusterCount; i++)
+			{
+				Globals.g_noteToPlayBufferData.inputtedNoteProcessed[clusterIndices[i]] = true;
+			}
+
+			chordNotes.clear();
+			chordVelocities.clear();
+			for (i = 0; i < clusterCount; i++)
+			{
+				chordNotes.push(Globals.g_noteToPlayBufferData.inputtedNotes[clusterIndices[i]]);
+				chordVelocities.push(Globals.g_noteToPlayBufferData.inputtedNoteVelocities[clusterIndices[i]]);
+			}
+
+			// Apply natural chord fretting algorithm
+			Globals.g_handPositionFret = naturalChordFretting(chordNotes, chordVelocities, Globals.g_handPositionFret, Globals.g_currArticulationPlaying);
+
+			for (i = 0; i < stringNote.length - 1; i++)
+			{
+				if (stringNote[i] != NO_NOTE)
+				{
+					eventIds.setValue(stringNote[i], stringNoteId[i]);
+				}
+			}
+
+			for (s = 0; s < NUMOFSTRINGS; s++)
+			{
+				if (stringNoteId[s] != oldStringNoteId[s])
+				{
+					stringNoteStartTime[s] = Engine.getUptime();
+				}
+			}
+
+			strumIfStrumKeyPressed(notePlayed, stringNoteId, stringNote, velocityPlayed);
+			individualNoteStrum(notePlayed, velocityPlayed, stringNote, stringNoteId, indivNoteStrumIds);
+
+			Globals.g_noteToPlayBufferData.inputtedNotes.clear();
+			Globals.g_noteToPlayBufferData.inputtedNotesOnTime.clear();
+			Globals.g_noteToPlayBufferData.inputtedNoteVelocities.clear();
+			Globals.g_noteToPlayBufferData.inputtedNoteProcessed.clear();
+
+			return;
+		}
+
+		// Single note flow: mark the single note as processed
+		if (clusterIndices.length > 0)
+		{
+			Globals.g_noteToPlayBufferData.inputtedNoteProcessed[clusterIndices[0]] = true;
+		}
+
+		local allProcessed = true;
+		for (i = 0; i < Globals.g_noteToPlayBufferData.inputtedNoteProcessed.length; i++)
+		{
+			if (!Globals.g_noteToPlayBufferData.inputtedNoteProcessed[i])
+			{
+				allProcessed = false;
+				break;
+			}
+		}
+		if (allProcessed)
+		{
+			Globals.g_noteToPlayBufferData.inputtedNotes.clear();
+			Globals.g_noteToPlayBufferData.inputtedNotesOnTime.clear();
+			Globals.g_noteToPlayBufferData.inputtedNoteVelocities.clear();
+			Globals.g_noteToPlayBufferData.inputtedNoteProcessed.clear();
+		}
 
 		local isLegatoActive = legatoKeySwitchPlaying || 
 		                       Synth.isKeyDown(LEGATOKEYSWITCHNOTE) || 
@@ -2249,11 +2716,6 @@ for(i = 0; i < Globals.	g_noteToPlayBufferData.inputtedNotesOnTime.length; i++){
 		}
 		
 	}
-	
-
-	
-	
-
 	
 	strumIfStrumKeyPressed(notePlayed, stringNoteId, stringNote, velocityPlayed);
 	
@@ -2295,15 +2757,19 @@ function onNoteOff()
 		
 	eventIdListIndexToRemoveId = eventIds.getIndex(releasedNoteId);
 			
-	for (var s = 0; s < NUMOFSTRINGS; s++)
+	if (isBetweenIncl(releasedNote, LOWESTNOTE, HIGHESTNOTE))
 	{
-	    if (stringNote[s] != NO_NOTE && !Synth.isKeyDown(stringNote[s]))
-	    {
-			if(notePlayedMethod[s] == StringPlayingMethod.pianoRoll){
-				noteOffStringSound(s, stringNote, stringNoteId);
-			}
-	        noteOffStringHolder(s, stringNote, stringNoteId);
-	    }
+		for (var s = 0; s < NUMOFSTRINGS; s++)
+		{
+		    if (stringNote[s] == releasedNote)
+		    {
+				if (notePlayedMethod[s] == StringPlayingMethod.pianoRoll)
+				{
+					noteOffStringSound(s, stringNote, stringNoteId);
+				}
+		        noteOffStringHolder(s, stringNote, stringNoteId);
+		    }
+		}
 	}
 			
 		//	eventIds.setValue(eventIdListIndexToRemoveId, NO_NOTE);

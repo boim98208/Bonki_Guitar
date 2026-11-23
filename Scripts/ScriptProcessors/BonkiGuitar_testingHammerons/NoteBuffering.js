@@ -5,13 +5,16 @@ include("NoteRangeAndOpenStringNote.js");
 global g_noteToPlayBufferData = {
 	inputtedNotes: [],
 	inputtedNotesOnTime: [],
+	inputtedNoteVelocities: [],
 	inputtedNoteProcessed: [],
 };
  	
 g_noteToPlayBufferData.inputtedNotes.reserve(128);
+g_noteToPlayBufferData.inputtedNotesOnTime.reserve(128);
+g_noteToPlayBufferData.inputtedNoteVelocities.reserve(128);
+g_noteToPlayBufferData.inputtedNoteProcessed.reserve(128);
 
- g_noteToPlayBufferData.inputtedNotesOnTime.reserve(128);
- g_noteToPlayBufferData.inputtedNoteProcessed.reserve(128);
+Globals.g_noteToPlayBufferData = g_noteToPlayBufferData;
  function onNoteOn()
 {
 	local noteNumber = Message.getNoteNumber();
@@ -29,8 +32,17 @@ if(Message.isArtificial()){
 	
 	if(noteNumber >= LOWESTNOTE && noteNumber <= HIGHESTNOTE){
 	
+		if (Globals.g_noteToPlayBufferData.inputtedNotes.length >= 120)
+		{
+			Globals.g_noteToPlayBufferData.inputtedNotes.clear();
+			Globals.g_noteToPlayBufferData.inputtedNotesOnTime.clear();
+			Globals.g_noteToPlayBufferData.inputtedNoteVelocities.clear();
+			Globals.g_noteToPlayBufferData.inputtedNoteProcessed.clear();
+		}
+	
 		Globals.g_noteToPlayBufferData.inputtedNotes.push(noteNumber);
 		Globals.g_noteToPlayBufferData.inputtedNotesOnTime.push(noteUpTime);
+		Globals.g_noteToPlayBufferData.inputtedNoteVelocities.push(noteVelocity);
 		Globals.g_noteToPlayBufferData.inputtedNoteProcessed.push(false);
 	
 	
@@ -58,7 +70,7 @@ if(Message.isArtificial()){
 	
 	if(noteReleased >= LOWESTNOTE && noteReleased <= HIGHESTNOTE){
 
-	local indexOfNoteReleased = Globals.g_noteToPlayBufferData.inputtedNotes.indexOf(noteReleased, 0, 1);
+	local indexOfNoteReleased = Globals.g_noteToPlayBufferData.inputtedNotes.indexOf(noteReleased);
 	
 
 	
@@ -66,9 +78,10 @@ if(Message.isArtificial()){
 		
 
 	
-	Globals.g_noteToPlayBufferData.inputtedNotes.removeElement(indexOfNoteReleased);
-	Globals.g_noteToPlayBufferData.inputtedNotesOnTime.removeElement(indexOfNoteReleased);
-	Globals.g_noteToPlayBufferData.inputtedNoteProcessed.removeElement(indexOfNoteReleased);
+	Globals.g_noteToPlayBufferData.inputtedNotes.remove(indexOfNoteReleased);
+	Globals.g_noteToPlayBufferData.inputtedNotesOnTime.remove(indexOfNoteReleased);
+	Globals.g_noteToPlayBufferData.inputtedNoteVelocities.remove(indexOfNoteReleased);
+	Globals.g_noteToPlayBufferData.inputtedNoteProcessed.remove(indexOfNoteReleased);
 	
 	}
 	

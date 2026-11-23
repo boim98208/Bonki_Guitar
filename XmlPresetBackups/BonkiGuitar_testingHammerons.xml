@@ -2969,7 +2969,7 @@
                       <ChildProcessors>
                         <Processor Type="AHDSR" ID="SusAHDSR" Bypassed="0" Monophonic="0.0" Retrigger="1.0"
                                    Intensity="1.0" AttackCurve="0.0" DecayCurve="0.0" Attack="12.80000019073486"
-                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="10.6899995803833"
+                                   AttackLevel="0.0" Hold="10.0" Decay="1.0" Sustain="0.0" Release="38.04982376098633"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -32008,10 +32008,6 @@
                 Start="0.0" End="127.0" FullStart="0.0" FullEnd="127.0" Skew="0.9887238386782449"
                 Interval="1.0" Converter="37.nT6K8CBGgC..VEFa0U1Pu4lckIGckIG.ADPXiQWZ1UF.ADf..."
                 Attribute="String2Fret15Marker" Inverted="0"/>
-    <Controller Controller="2" Channel="-1" Processor="Interface" MacroIndex="-1"
-                Start="0.0" End="127.0" FullStart="0.0" FullEnd="127.0" Skew="0.9887238386782449"
-                Interval="1.0" Converter="37.nT6K8CBGgC..VEFa0U1Pu4lckIGckIG.ADPXiQWZ1UF.ADf..."
-                Attribute="StrummingModeEnableBtn" Inverted="0"/>
     <Controller Controller="4" Channel="-1" Processor="Interface" MacroIndex="-1"
                 Start="-24.0" End="24.0" FullStart="-24.0" FullEnd="24.0" Skew="0.9421513914112677"
                 Interval="1.0" Converter="37.nT6K8CBGgC..VEFa0U1Pu4lckIGckIG.ADPXiQWZ1UF.ADf..."
