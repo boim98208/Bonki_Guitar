@@ -1,6 +1,15 @@
  Synth.deferCallbacks(false);
  Synth.setFixNoteOnAfterNoteOff(true);
- 
+
+const var DEBUGMODEENABLED = false;
+
+inline function debugPrint(msg)
+{
+	if (DEBUGMODEENABLED)
+	{
+		Console.print(msg);
+	}
+}
 
 // Note buffer and chord voicing configuration
 var excludeOpenStringsFromFretSpread = false; // If true, exclude fret 0 from fret spread and leftmost fret calculation; if false, include it
@@ -153,7 +162,7 @@ const var NUMOFKEYSWITCHES = 4;
 	 for(var i = 0; i < AllContainerMuters.length; i++){ 
 		if(AllContainerMuters[i] != -1){
 			for(var j = 0; j < AllContainerMuters[i].length; j++){
-				AllContainerMuters[i][j].setAttribute("Bypass", true);
+				AllContainerMuters[i][j].setAttribute(0, 1.0);
 			}
 		}
 	 }
@@ -161,20 +170,20 @@ const var NUMOFKEYSWITCHES = 4;
  
  inline function setSamplerUnmuted(articulationIndex){
 	 if(AllContainerMuters[articulationIndex] == -1){
-		 Console.print("articulation doesn't have muter or doesn't exist");
+		 if (DEBUGMODEENABLED) Console.print("articulation doesn't have muter or doesn't exist");
 	 }else{
 		 for(var i = 0; i < AllContainerMuters[articulationIndex].length; i++){
 		 
-			 	AllContainerMuters[articulationIndex][i].setAttribute("Bypass", false);
+			 	AllContainerMuters[articulationIndex][i].setAttribute(0, 0.0);
 		 }
 	 }
  }
  
  inline function setSamplerMuted(articulationIndex){
 	 if(AllContainerMuters[articulationIndex] != -1){
-		 for(var j = 0; j < AllContainerMuters[articulationIndex].length; j++){
+		 for(var i = 0; i < AllContainerMuters[articulationIndex].length; i++){
 		 
-			 	AllContainerMuters[articulationIndex][j].setAttribute("Bypass", true);
+			 	AllContainerMuters[articulationIndex][i].setAttribute(0, 1.0);
 		 }
 	 }
  }
@@ -352,6 +361,10 @@ slideStartFret.reserve(NUMOFSTRINGS);
 const var stringNoteStartTime = [];
 stringNoteStartTime.reserve(NUMOFSTRINGS);
 
+var isSustainPedalDown = false;
+const var pedalHeldStrings = [];
+pedalHeldStrings.reserve(NUMOFSTRINGS);
+
 for (var dIdx = 0; dIdx < NUM_LEGATO_DIRECTIONS; dIdx++)
 {
     transitDurations.push([]);
@@ -397,17 +410,18 @@ for (var sIdx = 0; sIdx < NUMOFSTRINGS; sIdx++)
     slideDestinationVoiceId.push(NO_NOTE);
     slideStartFret.push(NO_NOTE);
     stringNoteStartTime.push(0.0);
+    pedalHeldStrings.push(false);
 }
 
 // Startup verification to confirm independent array instances per string
 eventIdArray[0].push(-999);
 if (eventIdArray.length > 1 && eventIdArray[1].length > 0)
 {
-    Console.print("eventIdArray rows are aliased!");
+    if (DEBUGMODEENABLED) Console.print("eventIdArray rows are aliased!");
 }
 else
 {
-    Console.print("eventIdArray dynamically initialized for " + NUMOFSTRINGS + " strings (rows verified independent).");
+    if (DEBUGMODEENABLED) Console.print("eventIdArray dynamically initialized for " + NUMOFSTRINGS + " strings (rows verified independent).");
 }
 eventIdArray[0].clear();
 
@@ -433,6 +447,19 @@ inline function stringEnumToMidiChannel(stringEnum)
     return stringEnum + 1;
 }
 
+inline function handlePedalRelease()
+{
+    for (var s = 0; s < NUMOFSTRINGS; s++)
+    {
+        if (pedalHeldStrings[s])
+        {
+            pedalHeldStrings[s] = false;
+            noteOffStringSound(s, stringNote, stringNoteId);
+            noteOffStringHolder(s, stringNote, stringNoteId);
+        }
+    }
+}
+
 /**
  * Terminates all active and queued slide notes for a specific string.
  * Checks reachedLastNote for early-release vs normal release, fading out
@@ -447,6 +474,10 @@ inline function endSlide(stringIndex)
     
     reachedLastNote[stringIndex] = (destId != NO_NOTE) && ((elapsedMS >= slideTotalDurationMS[stringIndex]) || isAct);
 
+    if (DEBUGMODEENABLED)
+    {
+        Console.print("[endSlide CALLED] str=" + stringIndex + " destId=" + destId + " isAct=" + isAct + " elapsedMS=" + elapsedMS + " totalMS=" + slideTotalDurationMS[stringIndex] + " reached=" + reachedLastNote[stringIndex]);
+    }
     
     local targetEvArray = eventIdArray[stringIndex];
     local evIdx;
@@ -464,6 +495,16 @@ inline function endSlide(stringIndex)
             else
             {
                 Synth.noteOffByEventId(destId);
+            }
+        }
+
+        // Terminate any remaining intermediate step IDs
+        for (evIdx = 0; evIdx < targetEvArray.length; evIdx++)
+        {
+            local remId = targetEvArray[evIdx];
+            if (remId > 0 && remId != destId)
+            {
+                Synth.noteOffByEventId(remId);
             }
         }
     }
@@ -503,6 +544,7 @@ inline function endSlide(stringIndex)
     slideTotalDurationMS[stringIndex] = 0.0;
     slideStartTimeSec[stringIndex] = 0.0;
     stringNoteStartTime[stringIndex] = 0.0;
+    pedalHeldStrings[stringIndex] = false;
 }
 
 const var legatoMessageHolder = Engine.createMessageHolder();
@@ -609,7 +651,10 @@ inline function triggerSlide(stringIndex, startNote, endNote, targetEventIdArray
     
     local baseTimestamp = Message.getTimestamp();
     local interval = endNote - effectiveStart;
- //   Console.print("[triggerSlide] str=" + stringIndex + " (ch=" + slideChannel + ") start=" + startNote + " effStart=" + effectiveStart + " end=" + endNote + " interval=" + interval + " isUp=" + (interval > 0) + " numSteps=" + Math.abs(interval) + " baseTs=" + baseTimestamp);
+    if (DEBUGMODEENABLED)
+    {
+        Console.print("[triggerSlide] str=" + stringIndex + " (ch=" + slideChannel + ") start=" + startNote + " effStart=" + effectiveStart + " end=" + endNote + " interval=" + interval + " isUp=" + (interval > 0) + " numSteps=" + Math.abs(interval) + " baseTs=" + baseTimestamp);
+    }
     if (interval == 0)
         return;
         
@@ -671,12 +716,18 @@ inline function triggerSlide(stringIndex, startNote, endNote, targetEventIdArray
         targetEventIdArray.push(voiceId);
         targetStepNoteArray.push(stepNote);
         
-  //      Console.print("  [triggerSlide step] str=" + stringIndex + " step=" + step + "/" + numSteps + " note=" + stepNote + " isLast=" + isLastStep + " ts=" + (baseTimestamp + currentOffsetSamples) + " durMS=" + stepDurMS + " voiceId=" + voiceId);
+        if (DEBUGMODEENABLED)
+        {
+            Console.print("  [triggerSlide step] str=" + stringIndex + " step=" + step + "/" + numSteps + " note=" + stepNote + " isLast=" + isLastStep + " ts=" + (baseTimestamp + currentOffsetSamples) + " durMS=" + stepDurMS + " voiceId=" + voiceId);
+        }
         
         if (!isLastStep)
         {
             Synth.noteOffDelayedByEventId(voiceId, currentOffsetSamples + stepDurSamples + stepOverlapSamples);
-       //     Console.print("  [triggerSlide noteOffDelayed] voiceId=" + voiceId + " delaySamples=" + (currentOffsetSamples + stepDurSamples + stepOverlapSamples));
+            if (DEBUGMODEENABLED)
+            {
+                Console.print("  [triggerSlide noteOffDelayed] voiceId=" + voiceId + " delaySamples=" + (currentOffsetSamples + stepDurSamples + stepOverlapSamples));
+            }
             currentOffsetSamples += stepDurSamples;
         }
         else
@@ -685,7 +736,10 @@ inline function triggerSlide(stringIndex, startNote, endNote, targetEventIdArray
             slideTotalDurationMS[stringIndex] = (currentOffsetSamples / Engine.getSampleRate()) * 1000.0;
             slideStartTimeSec[stringIndex] = Engine.getUptime();
             reachedLastNote[stringIndex] = false;
-      //      Console.print("  [triggerSlide DEST] str=" + stringIndex + " destVoiceId=" + voiceId + " destNote=" + stepNote + " totalDurMS=" + slideTotalDurationMS[stringIndex]);
+            if (DEBUGMODEENABLED)
+            {
+                Console.print("  [triggerSlide DEST] str=" + stringIndex + " destVoiceId=" + voiceId + " destNote=" + stepNote + " totalDurMS=" + slideTotalDurationMS[stringIndex]);
+            }
         }
     }
 }
@@ -703,11 +757,13 @@ inline function resetNotes(){
 	}
 	for(var s = 0; s < NUMOFSTRINGS; s++){
 		stringNoteStartTime[s] = 0.0;
+		pedalHeldStrings[s] = false;
 		if (eventIdArray[s].length > 0)
 		{
 			endSlide(s);
 		}
 	}
+	isSustainPedalDown = false;
 }
 
 Message.setAllNotesOffCallback(resetNotes);
@@ -733,9 +789,18 @@ inline function playString(stringToPlay){
 	local stringChannelToSend = stringEnumToMidiChannel(stringToPlay);
 	lastStringPlayed = stringToPlay;
 	
-	if (stringToPlay < NUMOFSTRINGS && eventIdArray[stringToPlay].length > 0)
+	if (stringToPlay < NUMOFSTRINGS)
 	{
-		endSlide(stringToPlay);
+		pedalHeldStrings[stringToPlay] = false;
+		if (eventIdArray[stringToPlay].length > 0)
+		{
+			endSlide(stringToPlay);
+		}
+		else if (stringNoteId[stringToPlay] != NO_NOTE)
+		{
+			Synth.noteOffByEventId(stringNoteId[stringToPlay]);
+			stringNoteId[stringToPlay] = NO_NOTE;
+		}
 	}
 	 
 	// consider refactoring stringNote to be updated here rather than the melody fretting point
@@ -767,9 +832,18 @@ inline function playChordString(stringToPlay, noteToPlay, velocityToPlay){
 	local stringChannelToSend = stringEnumToMidiChannel(stringToPlay);
 	lastStringPlayed = stringToPlay;
 	
-	if (stringToPlay < NUMOFSTRINGS && eventIdArray[stringToPlay].length > 0)
+	if (stringToPlay < NUMOFSTRINGS)
 	{
-		endSlide(stringToPlay);
+		pedalHeldStrings[stringToPlay] = false;
+		if (eventIdArray[stringToPlay].length > 0)
+		{
+			endSlide(stringToPlay);
+		}
+		else if (stringNoteId[stringToPlay] != NO_NOTE)
+		{
+			Synth.noteOffByEventId(stringNoteId[stringToPlay]);
+			stringNoteId[stringToPlay] = NO_NOTE;
+		}
 	}
 	
 	if(!Globals.g_strummingModeOn){
@@ -827,7 +901,10 @@ inline function getActiveRRPlayed(stringToPlay){
 }
 
 inline function noteOffStringSound(stringToOff, stringNotesToUpdate, stringIdsToUpdate){
-//	Console.print("[noteOffStringSound] str=" + stringToOff + " note=" + stringNotesToUpdate[stringToOff] + " id=" + stringIdsToUpdate[stringToOff] + " evLen=" + (stringToOff < NUMOFSTRINGS ? eventIdArray[stringToOff].length : -1));
+	if (DEBUGMODEENABLED)
+	{
+		Console.print("[noteOffStringSound] str=" + stringToOff + " note=" + stringNotesToUpdate[stringToOff] + " id=" + stringIdsToUpdate[stringToOff] + " evLen=" + (stringToOff < NUMOFSTRINGS ? eventIdArray[stringToOff].length : -1));
+	}
 	Globals.g_stringActiveRRs[stringToOff] = NO_NOTE;
 	if (stringToOff < NUMOFSTRINGS && eventIdArray[stringToOff].length > 0)
 	{
@@ -1512,9 +1589,12 @@ inline function naturalFretting2_2_1(notePlayed, currentHandPos, currArticPlayin
 	}
 
 	
-	Console.print("~~  new start  ~~");
-	for(var j = 0; j < NUMOFSTRINGS; j++){
-		Console.print(stringNote[j]);
+	if (DEBUGMODEENABLED)
+	{
+		Console.print("~~  new start  ~~");
+		for(var j = 0; j < NUMOFSTRINGS; j++){
+			Console.print(stringNote[j]);
+		}
 	}
 	
 }
@@ -1708,7 +1788,10 @@ inline function executeSlideOnString(strIdx, startNote, targetNote, targetVeloci
 {
 	local targetPerformance = isUp ? PerformanceType.LegatoUp : PerformanceType.LegatoDown;
 	
-//	Console.print("[executeSlideOnString] str=" + strIdx + " start=" + startNote + " target=" + targetNote + " vel=" + targetVelocity + " isUp=" + isUp);
+	if (DEBUGMODEENABLED)
+	{
+		Console.print("[executeSlideOnString] str=" + strIdx + " start=" + startNote + " target=" + targetNote + " vel=" + targetVelocity + " isUp=" + isUp);
+	}
 	triggerSlide(strIdx, startNote, targetNote, eventIdArray[strIdx], targetVelocity);
 	
 	local destVoiceId = NO_NOTE;
@@ -1759,7 +1842,10 @@ inline function processBufferedLegato(targetNotes, targetVels)
 	local M = activeNotes.length;
 	local K = targetNotes.length;
 	
-//	Console.print("[processBufferedLegato] M=" + M + " activeNotes=" + activeNotes + " activeStrings=" + activeStrings + " | K=" + K + " targetNotes=" + targetNotes);
+	if (DEBUGMODEENABLED)
+	{
+		Console.print("[processBufferedLegato] M=" + M + " activeNotes=" + activeNotes + " activeStrings=" + activeStrings + " | K=" + K + " targetNotes=" + targetNotes);
+	}
 	
 	// Case: No active notes currently sounding -> Play as normal sustain notes
 	if (M == 0)
@@ -2848,13 +2934,16 @@ inline function randomAddOrSub(deviation){
 	
 	if(isBetweenIncl(notePlayed, LOWESTNOTE, HIGHESTNOTE)){
 
-//		Console.print("[NoteEngines] onNoteOn: note=" + notePlayed + " vel=" + velocityPlayed + " uptime=" + Engine.getUptime() + " ts=" + Message.getTimestamp());
-		if (isDefined(Globals.g_noteToPlayBufferData))
+		if (DEBUGMODEENABLED)
 		{
-//			Console.print("  Buffer count=" + Globals.g_noteToPlayBufferData.inputtedNotes.length);
-			for (i = 0; i < Globals.g_noteToPlayBufferData.inputtedNotes.length; i++)
+			Console.print("[NoteEngines] onNoteOn: note=" + notePlayed + " vel=" + velocityPlayed + " uptime=" + Engine.getUptime() + " ts=" + Message.getTimestamp());
+			if (isDefined(Globals.g_noteToPlayBufferData))
 			{
-	//			Console.print("    buf[" + i + "]: note=" + Globals.g_noteToPlayBufferData.inputtedNotes[i] + " uptime=" + Globals.g_noteToPlayBufferData.inputtedNotesOnTime[i] + " proc=" + Globals.g_noteToPlayBufferData.inputtedNoteProcessed[i]);
+				Console.print("  Buffer count=" + Globals.g_noteToPlayBufferData.inputtedNotes.length);
+				for (i = 0; i < Globals.g_noteToPlayBufferData.inputtedNotes.length; i++)
+				{
+					Console.print("    buf[" + i + "]: note=" + Globals.g_noteToPlayBufferData.inputtedNotes[i] + " uptime=" + Globals.g_noteToPlayBufferData.inputtedNotesOnTime[i] + " proc=" + Globals.g_noteToPlayBufferData.inputtedNoteProcessed[i]);
+				}
 			}
 		}
 
@@ -2883,7 +2972,10 @@ inline function randomAddOrSub(deviation){
 					if (!Globals.g_noteToPlayBufferData.inputtedNoteProcessed[i])
 					{
 						local deltaSec = Math.abs(Globals.g_noteToPlayBufferData.inputtedNotesOnTime[i] - clusterAnchorTime);
-		//				Console.print("    check buf[" + i + "] note=" + Globals.g_noteToPlayBufferData.inputtedNotes[i] + " delta=" + deltaSec + " <= " + UPTIME_CHORD_THRESHOLD + " => " + (deltaSec <= UPTIME_CHORD_THRESHOLD));
+						if (DEBUGMODEENABLED)
+						{
+							Console.print("    check buf[" + i + "] note=" + Globals.g_noteToPlayBufferData.inputtedNotes[i] + " delta=" + deltaSec + " <= " + UPTIME_CHORD_THRESHOLD + " => " + (deltaSec <= UPTIME_CHORD_THRESHOLD));
+						}
 						if (deltaSec <= UPTIME_CHORD_THRESHOLD)
 						{
 							clusterIndices.push(i);
@@ -2894,7 +2986,10 @@ inline function randomAddOrSub(deviation){
 			}
 		}
 
-//		Console.print("  clusterCount=" + clusterCount + " chordArrivalCount=" + chordArrivalCount);
+		if (DEBUGMODEENABLED)
+		{
+			Console.print("  clusterCount=" + clusterCount + " chordArrivalCount=" + chordArrivalCount);
+		}
 
 		if (clusterCount > 1)
 		{
@@ -2937,7 +3032,10 @@ inline function randomAddOrSub(deviation){
 
 			local isLegatoActiveChord = legatoKeySwitchPlaying || Synth.isKeyDown(LEGATOKEYSWITCHNOTE);
 
-		//	Console.print("  >>> CHORD FLOW TRIGGERED: notes=" + chordNotes + " legato=" + isLegatoActiveChord);
+			if (DEBUGMODEENABLED)
+			{
+				Console.print("  >>> CHORD FLOW TRIGGERED: notes=" + chordNotes + " legato=" + isLegatoActiveChord);
+			}
 
 			if (isLegatoActiveChord)
 			{
@@ -3001,7 +3099,10 @@ inline function randomAddOrSub(deviation){
 
 		local isLegatoActive = legatoKeySwitchPlaying || Synth.isKeyDown(LEGATOKEYSWITCHNOTE);
 
-	//	Console.print("  >>> SINGLE NOTE FLOW TRIGGERED: note=" + notePlayed + " legato=" + isLegatoActive);
+		if (DEBUGMODEENABLED)
+		{
+			Console.print("  >>> SINGLE NOTE FLOW TRIGGERED: note=" + notePlayed + " legato=" + isLegatoActive);
+		}
 
 		if (isLegatoActive)
 		{
@@ -3054,7 +3155,10 @@ function onNoteOff()
 	
     local releasedNote = Message.getNoteNumber();
     local releasedNoteId = Message.getEventId();
-   // Console.print("[onNoteOff] releasedNote=" + releasedNote + " releasedId=" + releasedNoteId);
+    if (DEBUGMODEENABLED)
+    {
+        Console.print("[onNoteOff] releasedNote=" + releasedNote + " releasedId=" + releasedNoteId);
+    }
     local noteFound = false;
     local noteFoundInLegato = false;
     local eventIdListIndexToRemoveId = 0;
@@ -3074,11 +3178,18 @@ function onNoteOff()
 		{
 		    if (stringNote[s] == releasedNote)
 		    {
-				if (notePlayedMethod[s] == StringPlayingMethod.pianoRoll)
-				{
-					noteOffStringSound(s, stringNote, stringNoteId);
-				}
-		        noteOffStringHolder(s, stringNote, stringNoteId);
+		        if (isSustainPedalDown)
+		        {
+		            pedalHeldStrings[s] = true;
+		        }
+		        else
+		        {
+					if (notePlayedMethod[s] == StringPlayingMethod.pianoRoll)
+					{
+						noteOffStringSound(s, stringNote, stringNoteId);
+					}
+			        noteOffStringHolder(s, stringNote, stringNoteId);
+		        }
 		    }
 		}
 	}
@@ -3119,7 +3230,24 @@ function onNoteOff()
 
 }function onController()
 {
+	local ccNum = Message.getControllerNumber();
+	local ccVal = Message.getControllerValue();
 	
+	if (ccNum == 64)
+	{
+		Message.ignoreEvent(true);
+		isSustainPedalDown = (ccVal >= 64);
+		
+		if (DEBUGMODEENABLED)
+		{
+			Console.print("[onController] CC64 val=" + ccVal + " pedalDown=" + isSustainPedalDown);
+		}
+		
+		if (!isSustainPedalDown)
+		{
+			handlePedalRelease();
+		}
+	}
 }
  function onTimer()
 {

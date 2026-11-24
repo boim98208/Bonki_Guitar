@@ -95,6 +95,9 @@ reg i = 0;
  	
  	// something isn't getting updated or some strings just wont update?
  
+ if(!isDefined(fretImg)){
+	 return;
+ }
  
  	if(Globals.g_stringPerformance[stringNum] == PerformanceType.SUSTAIN)
  	{
