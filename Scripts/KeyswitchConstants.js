@@ -36,6 +36,9 @@
  	const var LegatoDown = 6;
  	const var LegatoGeneral = 7;
  	
+ 	const var LEGATO = 7;
+ 	const var Legato = 7;
+ 	
  	const var NUMOFPERFORMANCES = 8;
  	//SFX will just be separate keys down low... maybe
  }
@@ -44,6 +47,8 @@
  {
 	 const var LegatoUp = 0;
 	 const var LegatoDown = 1;
+	 const var LegatoUpVel = 65;
+	 const var LegatoDownVel = 1;
  }
  
  

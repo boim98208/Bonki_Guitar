@@ -84,6 +84,42 @@ sortedTargetNotes.reserve(128);
 const var sortedTargetVels = [];
 sortedTargetVels.reserve(128);
 
+const var MAX_MATCH_TARGETS = 128;
+const var matchEdgeValid = [];
+const var matchEdgeCost = [];
+matchEdgeValid.reserve(NUMOFSTRINGS);
+matchEdgeCost.reserve(NUMOFSTRINGS);
+for (var mIdx = 0; mIdx < NUMOFSTRINGS; mIdx++)
+{
+    matchEdgeValid.push([]);
+    matchEdgeValid[mIdx].reserve(MAX_MATCH_TARGETS);
+    matchEdgeCost.push([]);
+    matchEdgeCost[mIdx].reserve(MAX_MATCH_TARGETS);
+    for (var tIdx = 0; tIdx < MAX_MATCH_TARGETS; tIdx++)
+    {
+        matchEdgeValid[mIdx].push(0);
+        matchEdgeCost[mIdx].push(0.0);
+    }
+}
+
+const var matchActiveToTarget = [];
+matchActiveToTarget.reserve(128);
+
+const var matchTargetToActive = [];
+matchTargetToActive.reserve(128);
+
+const var bfDistL = [];
+bfDistL.reserve(128);
+
+const var bfDistR = [];
+bfDistR.reserve(128);
+
+const var bfParentL = [];
+bfParentL.reserve(128);
+
+const var bfParentR = [];
+bfParentR.reserve(128);
+
 
 Globals.g_stringPerformance = [];
 Globals.g_stringPerformance.reserve(NUMOFSTRINGS * 2);
@@ -117,9 +153,7 @@ const var harmonicSamplerName = "Harmonic";
   
 const var tremoloSamplerName = "Tremolo";
 
-const var legatoUpSamplerName = "LegatoUp";
-
-const var legatoDownSamplerName = "LegatoDown";
+const var legatoSamplerName = "Legato";
 
  
  // skipping SFX samplers for now. Do later if it exists
@@ -127,8 +161,7 @@ const var legatoDownSamplerName = "LegatoDown";
 const var AllSusMuters = createAllMutersArray(susSamplerName);
 const var AllMuteMuters = createAllMutersArray(muteSamplerName);
 const var AllHarmonicMuters = createAllMutersArray(harmonicSamplerName);
-const var AllLegatoUpMuters = createAllMutersArray(legatoUpSamplerName);
-const var AllLegatoDownMuters = createAllMutersArray(legatoDownSamplerName);
+const var AllLegatoMuters = createAllMutersArray(legatoSamplerName);
 
 // I'll need to do some reworking for anything timestretching
 //const var AllTremoloMuters = createAllMutersArray(tremoloSamplerName);
@@ -150,8 +183,9 @@ AllContainerMuters[PerformanceType.SUSTAIN] = AllSusMuters;
 AllContainerMuters[PerformanceType.MUTE] = AllMuteMuters;
 AllContainerMuters[PerformanceType.HARMONIC] = AllHarmonicMuters;
 AllContainerMuters[PerformanceType.TREMOLO] = AllTremoloMuters;
-AllContainerMuters[PerformanceType.LEGATOUP] = AllLegatoUpMuters;
-AllContainerMuters[PerformanceType.LEGATODOWN] = AllLegatoDownMuters;
+AllContainerMuters[PerformanceType.LEGATOUP] = AllLegatoMuters;
+AllContainerMuters[PerformanceType.LEGATODOWN] = AllLegatoMuters;
+AllContainerMuters[PerformanceType.LEGATO] = AllLegatoMuters;
 
 
 const var NUMOFKEYSWITCHES = 4;
@@ -693,10 +727,11 @@ inline function triggerSlide(stringIndex, startNote, endNote, targetEventIdArray
         stepDurMS = transitDurations[direction][stringIndex][durLookupNote] * speedFactor;
         stepDurSamples = Engine.getSamplesForMilliSeconds(stepDurMS);
         
+        local dirVel = isUp ? LegatoDirection.LegatoUpVel : LegatoDirection.LegatoDownVel;
         legatoMessageHolder.setType(1); // 1 = NoteOn
         legatoMessageHolder.setChannel(slideChannel);
         legatoMessageHolder.setNoteNumber(stepNote);
-        legatoMessageHolder.setVelocity(127); // maybe later set velocity to the previously sustained note's velocity?
+        legatoMessageHolder.setVelocity(dirVel);
         legatoMessageHolder.setTimestamp(baseTimestamp + currentOffsetSamples);
         
         if (isRealisticSlideVolEnabled)
@@ -718,7 +753,7 @@ inline function triggerSlide(stringIndex, startNote, endNote, targetEventIdArray
         
         if (DEBUGMODEENABLED)
         {
-            Console.print("  [triggerSlide step] str=" + stringIndex + " step=" + step + "/" + numSteps + " note=" + stepNote + " isLast=" + isLastStep + " ts=" + (baseTimestamp + currentOffsetSamples) + " durMS=" + stepDurMS + " voiceId=" + voiceId);
+            Console.print("  [triggerSlide step] str=" + stringIndex + " step=" + step + "/" + numSteps + " note=" + stepNote + " vel=" + dirVel + " isLast=" + isLastStep + " ts=" + (baseTimestamp + currentOffsetSamples) + " durMS=" + stepDurMS + " voiceId=" + voiceId);
         }
         
         if (!isLastStep)
@@ -1737,17 +1772,8 @@ inline function melodyFretting1_0_0(notePlayed, currentHandPos)
 	local isUp = (notePlayed > startNote);
 	local targetPerformance = isUp ? PerformanceType.LegatoUp : PerformanceType.LegatoDown;
 	
-	// Unmute the appropriate sampler container and mute the other
-	if (isUp)
-	{
-		setSamplerMuted(PerformanceType.LegatoDown);
-		setSamplerUnmuted(PerformanceType.LegatoUp);
-	}
-	else
-	{
-		setSamplerMuted(PerformanceType.LegatoUp);
-		setSamplerUnmuted(PerformanceType.LegatoDown);
-	}
+	// Unmute unified legato container (samplemap direction selected via note velocity)
+	setSamplerUnmuted(PerformanceType.LEGATO);
 	
 	// Trigger the portamento slide on the closest string
 	triggerSlide(closestString, startNote, notePlayed, eventIdArray[closestString], velocityPlayed);
@@ -1814,12 +1840,13 @@ inline function executeSlideOnString(strIdx, startNote, targetNote, targetVeloci
  * Handles single notes and simultaneous chords when LEGATOKEYSWITCHNOTE is active.
  *
  * Rules:
- * 1. Match from highest active note onto highest target note descending.
- * 2. Single slide direction per buffered slide (based on highest target vs highest active).
- * 3. If target note exceeds range or mismatches direction, skip to next active string.
- * 4. Active strings not slid remain sustaining untouched.
- * 5. Incoming target notes that cannot slide play as normal sustain notes on available strings via fretting engine.
- * 6. If no active notes exist (M == 0), voice all notes as normal sustain.
+ * 1. Exact optimal bi-directional bipartite matching (Super-Source Bellman-Ford SSP):
+ *    maximizes the number of slid target notes regardless of direction, then minimizes
+ *    total semitone distance, breaking ties by closeness to g_handPositionFret and higher string.
+ * 2. Direction (up vs down) is handled per-string via velocity inside the unified Legato samplers.
+ * 3. Active strings not slid remain sustaining untouched.
+ * 4. Incoming target notes that cannot slide play as normal sustain notes on available strings via fretting engine.
+ * 5. If no active notes exist (M == 0), voice all notes as normal sustain.
  */
 inline function processBufferedLegato(targetNotes, targetVels)
 {
@@ -1841,6 +1868,8 @@ inline function processBufferedLegato(targetNotes, targetVels)
 	
 	local M = activeNotes.length;
 	local K = targetNotes.length;
+	if (K > MAX_MATCH_TARGETS)
+		K = MAX_MATCH_TARGETS;
 	
 	if (DEBUGMODEENABLED)
 	{
@@ -1850,6 +1879,8 @@ inline function processBufferedLegato(targetNotes, targetVels)
 	// Case: No active notes currently sounding -> Play as normal sustain notes
 	if (M == 0)
 	{
+		local wasLegatoState = (Globals.g_currArticulationPlaying == PerformanceType.LEGATO || Globals.g_currArticulationPlaying == PerformanceType.LEGATOGENERAL);
+		Globals.g_currArticulationPlaying = PerformanceType.SUSTAIN;
 		setSamplerUnmuted(PerformanceType.SUSTAIN);
 		if (K > 1)
 		{
@@ -1858,6 +1889,10 @@ inline function processBufferedLegato(targetNotes, targetVels)
 		else if (K == 1)
 		{
 			playNextNoteOnNewString(targetNotes[0], targetVels[0]);
+		}
+		if (wasLegatoState || legatoKeySwitchPlaying || Synth.isKeyDown(LEGATOKEYSWITCHNOTE))
+		{
+			Globals.g_currArticulationPlaying = PerformanceType.LEGATOGENERAL;
 		}
 		return;
 	}
@@ -1908,18 +1943,173 @@ inline function processBufferedLegato(targetNotes, targetVels)
 		}
 	}
 	
-	// Determine dominant slide direction from primary pair (highest target vs highest active)
-	local isUp = (sortedTargetNotes[0] >= activeNotes[0]);
-	
-	if (isUp)
+	// 1. Build bipartite cost matrix across all (active string i, target j) pairs regardless of direction
+	for (i = 0; i < M; i++)
 	{
-		setSamplerMuted(PerformanceType.LegatoDown);
-		setSamplerUnmuted(PerformanceType.LegatoUp);
+		local str = activeStrings[i];
+		local startN = activeNotes[i];
+		
+		for (j = 0; j < K; j++)
+		{
+			local targetN = sortedTargetNotes[j];
+			matchEdgeValid[i][j] = 0;
+			matchEdgeCost[i][j] = POSINFINITY;
+			
+			if (targetN == startN)
+				continue;
+				
+			local pairIsUp = (targetN > startN);
+			local targetArtic = pairIsUp ? PerformanceType.LegatoUp : PerformanceType.LegatoDown;
+			local fret = targetN - OPENSTRINGNOTES[str];
+			
+			if (!isStringEnabled[str])
+				continue;
+			if (fret < 0 || fret >= NOTESPERSTRING)
+				continue;
+			if (fret < articLowestFretOnString[str][PerformanceType.LEGATO] ||
+			    fret > articHighestFretOnString[str][PerformanceType.LEGATO])
+				continue;
+			if (fret < articLowestFretOnString[str][targetArtic] ||
+			    fret > articHighestFretOnString[str][targetArtic])
+				continue;
+				
+			local pitchDist = Math.abs(targetN - startN);
+			local handDist = Math.abs((fret - 2) - Globals.g_handPositionFret);
+			local costVal = (pitchDist * 10000000.0) + (handDist * 1000.0) + str;
+			
+			matchEdgeValid[i][j] = 1;
+			matchEdgeCost[i][j] = costVal;
+		}
 	}
-	else
+	
+	// 2. Super-Source Bellman-Ford Successive Shortest Path matching:
+	//    Strictly maximizes count of slid targets first, then minimizes total semitone distance + tie-break cost
+	matchActiveToTarget.clear();
+	for (i = 0; i < M; i++)
 	{
-		setSamplerMuted(PerformanceType.LegatoUp);
-		setSamplerUnmuted(PerformanceType.LegatoDown);
+		matchActiveToTarget.push(-1);
+	}
+	matchTargetToActive.clear();
+	for (j = 0; j < K; j++)
+	{
+		matchTargetToActive.push(-1);
+	}
+	
+	local totalVertices = M + K;
+	local augStep;
+	for (augStep = 0; augStep < M && augStep < K; augStep++)
+	{
+		bfDistL.clear();
+		bfParentL.clear();
+		for (i = 0; i < M; i++)
+		{
+			if (matchActiveToTarget[i] == -1)
+			{
+				bfDistL.push(0.0);
+				bfParentL.push(-1);
+			}
+			else
+			{
+				bfDistL.push(POSINFINITY);
+				bfParentL.push(-2);
+			}
+		}
+		
+		bfDistR.clear();
+		bfParentR.clear();
+		for (j = 0; j < K; j++)
+		{
+			bfDistR.push(POSINFINITY);
+			bfParentR.push(-1);
+		}
+		
+		local passIdx;
+		for (passIdx = 0; passIdx < totalVertices; passIdx++)
+		{
+			local improved = false;
+			
+			// Forward non-matching edges: active string i -> target j
+			for (i = 0; i < M; i++)
+			{
+				if (bfDistL[i] == POSINFINITY)
+					continue;
+				for (j = 0; j < K; j++)
+				{
+					if (matchEdgeValid[i][j] && matchActiveToTarget[i] != j)
+					{
+						local candDistR = bfDistL[i] + matchEdgeCost[i][j];
+						if (candDistR < bfDistR[j])
+						{
+							bfDistR[j] = candDistR;
+							bfParentR[j] = i;
+							improved = true;
+						}
+					}
+				}
+			}
+			
+			// Backward matching edges: target j -> matched active string matchedI
+			for (j = 0; j < K; j++)
+			{
+				if (bfDistR[j] == POSINFINITY)
+					continue;
+				local matchedI = matchTargetToActive[j];
+				if (matchedI != -1)
+				{
+					local candDistL = bfDistR[j] - matchEdgeCost[matchedI][j];
+					if (candDistL < bfDistL[matchedI])
+					{
+						bfDistL[matchedI] = candDistL;
+						bfParentL[matchedI] = j;
+						improved = true;
+					}
+				}
+			}
+			
+			if (!improved)
+				break;
+		}
+		
+		local bestTargetEnd = -1;
+		local bestPathCost = POSINFINITY;
+		for (j = 0; j < K; j++)
+		{
+			if (matchTargetToActive[j] == -1 && bfDistR[j] < bestPathCost)
+			{
+				bestPathCost = bfDistR[j];
+				bestTargetEnd = j;
+			}
+		}
+		
+		if (bestTargetEnd == -1)
+			break;
+			
+		local curR = bestTargetEnd;
+		while (curR != -1)
+		{
+			local curL = bfParentR[curR];
+			if (curL < 0)
+				break;
+			local prevR = bfParentL[curL];
+			matchTargetToActive[curR] = curL;
+			matchActiveToTarget[curL] = curR;
+			curR = prevR;
+		}
+	}
+	
+	local hasAnySlide = false;
+	for (i = 0; i < M; i++)
+	{
+		if (matchActiveToTarget[i] != -1)
+		{
+			hasAnySlide = true;
+			break;
+		}
+	}
+	
+	if (hasAnySlide)
+	{
+		setSamplerUnmuted(PerformanceType.LEGATO);
 	}
 	
 	targetSlid.clear();
@@ -1928,51 +2118,20 @@ inline function processBufferedLegato(targetNotes, targetVels)
 		targetSlid.push(false);
 	}
 	
-	usedActive.clear();
+	// Execute matched slides (each string independently uses up or down velocity)
 	for (i = 0; i < M; i++)
 	{
-		usedActive.push(false);
-	}
-	
-	// Match target notes from highest to lowest with active strings
-	for (j = 0; j < K; j++)
-	{
-		local targetN = sortedTargetNotes[j];
-		local targetV = sortedTargetVels[j];
-		
-		for (i = 0; i < M; i++)
+		local matchedJ = matchActiveToTarget[i];
+		if (matchedJ != -1)
 		{
-			if (usedActive[i])
-				continue;
-				
-			local str = activeStrings[i];
-			local startN = activeNotes[i];
+			local slideStr = activeStrings[i];
+			local slideStartN = activeNotes[i];
+			local slideTargetN = sortedTargetNotes[matchedJ];
+			local slideTargetV = sortedTargetVels[matchedJ];
+			local slideIsUp = (slideTargetN > slideStartN);
 			
-			if (targetN == startN)
-				continue;
-				
-			// Direction check: single direction per buffered slide
-			local pairIsUp = (targetN > startN);
-			if (pairIsUp != isUp)
-			{
-				continue; // Direction mismatch: skip to next active string
-			}
-			
-			// Range check on this string
-			local fret = targetN - OPENSTRINGNOTES[str];
-			local targetArtic = isUp ? PerformanceType.LegatoUp : PerformanceType.LegatoDown;
-			if (fret < articLowestFretOnString[str][targetArtic] || 
-			    fret > articHighestFretOnString[str][targetArtic] || 
-			    !isStringEnabled[str])
-			{
-				continue; // Out of range: skip to next active string
-			}
-			
-			// Valid match found: execute slide
-			usedActive[i] = true;
-			targetSlid[j] = true;
-			executeSlideOnString(str, startN, targetN, targetV, isUp);
-			break;
+			targetSlid[matchedJ] = true;
+			executeSlideOnString(slideStr, slideStartN, slideTargetN, slideTargetV, slideIsUp);
 		}
 	}
 	
@@ -1987,10 +2146,13 @@ inline function processBufferedLegato(targetNotes, targetVels)
 			
 			if (candStr != StringType.NOSTRING)
 			{
+				local prevArtic = Globals.g_currArticulationPlaying;
+				Globals.g_currArticulationPlaying = PerformanceType.SUSTAIN;
 				setSamplerUnmuted(PerformanceType.SUSTAIN);
 				stringNote[candStr] = unslidN;
 				Globals.g_stringPerformance[candStr] = PerformanceType.SUSTAIN;
 				playChordString(candStr, unslidN, unslidV);
+				Globals.g_currArticulationPlaying = prevArtic;
 			}
 		}
 	}
@@ -2030,13 +2192,13 @@ inline function processBufferedLegato(targetNotes, targetVels)
 	}
 	
 	// Preserve legato keyswitch state
-	if (legatoKeySwitchPlaying || Synth.isKeyDown(LEGATOKEYSWITCHNOTE) || Globals.g_currArticulationPlaying == PerformanceType.LEGATOGENERAL)
+	if (legatoKeySwitchPlaying || Synth.isKeyDown(LEGATOKEYSWITCHNOTE) || Globals.g_currArticulationPlaying == PerformanceType.LEGATOGENERAL || Globals.g_currArticulationPlaying == PerformanceType.LEGATO)
 	{
 		Globals.g_currArticulationPlaying = PerformanceType.LEGATOGENERAL;
 	}
 	else
 	{
-		Globals.g_currArticulationPlaying = isUp ? PerformanceType.LegatoUp : PerformanceType.LegatoDown;
+		Globals.g_currArticulationPlaying = PerformanceType.LEGATO;
 	}
 }
  
@@ -2123,11 +2285,8 @@ inline function createAllRightArticSamplerArray(articName, lowBound, highBound){
 
 
 
-const var legatoDownSamplerLowestStringNum = 1;
-const var legatoDownSamplerHighestStringNum = NUMOFSTRINGS;
-
-const var legatoUpSamplerLowestStringNum = 1;
-const var legatoUpSamplerHighestStringNum = NUMOFSTRINGS;
+const var legatoSamplerLowestStringNum = 1;
+const var legatoSamplerHighestStringNum = NUMOFSTRINGS;
 
 
 const var susSamplerLowestStringNum = 1;
@@ -2149,13 +2308,9 @@ const var AllSusLeftSamplers = createAllLeftArticSamplerArray(susSamplerName, su
 const var AllSusRightSamplers = createAllRightArticSamplerArray(susSamplerName, susSamplerLowestStringNum, susSamplerHighestStringNum);
 
  
-const var AllLegatoDownLeftSamplers = createAllLeftArticSamplerArray(legatoDownSamplerName, legatoDownSamplerLowestStringNum, legatoDownSamplerHighestStringNum);
+const var AllLegatoLeftSamplers = createAllLeftArticSamplerArray(legatoSamplerName, legatoSamplerLowestStringNum, legatoSamplerHighestStringNum);
 
-const var AllLegatoDownRightSamplers = createAllRightArticSamplerArray(legatoDownSamplerName, legatoDownSamplerLowestStringNum, legatoDownSamplerHighestStringNum);
-
-const var AllLegatoUpLeftSamplers = createAllLeftArticSamplerArray(legatoUpSamplerName, legatoUpSamplerLowestStringNum, legatoUpSamplerHighestStringNum);
-
-const var AllLegatoUpRightSamplers = createAllRightArticSamplerArray(legatoUpSamplerName, legatoUpSamplerLowestStringNum, legatoUpSamplerHighestStringNum);
+const var AllLegatoRightSamplers = createAllRightArticSamplerArray(legatoSamplerName, legatoSamplerLowestStringNum, legatoSamplerHighestStringNum);
 
 inline function concatArrays(arr1, arr2)
 {
@@ -2170,8 +2325,6 @@ inline function concatArrays(arr1, arr2)
     return result;
 }
 
-const var AllLegatoGeneralLeftSamplers = concatArrays(AllLegatoUpLeftSamplers, AllLegatoDownLeftSamplers)
-
  
  const var AllMuteLeftSamplers = createAllLeftArticSamplerArray(muteSamplerName, muteSamplerLowestStringNum, muteSamplerHighestStringNum);
  
@@ -2182,8 +2335,6 @@ const var AllLegatoGeneralLeftSamplers = concatArrays(AllLegatoUpLeftSamplers, A
  
  const var AllHarmonicRightSamplers = createAllRightArticSamplerArray(harmonicSamplerName, harmonicSamplerLowestStringNum, harmonicSamplerHighestStringNum);
  
-const var AllLegatoGeneralRightSamplers = concatArrays(AllLegatoUpRightSamplers, AllLegatoDownRightSamplers)
-
 
 //const var AllTremoloLeftSamplers = createAllLeftArticSamplerArray(tremoloSamplerName, tremoloSamplerLowestStringNum, tremoloSamplerHighestStringNum);
 
@@ -2207,9 +2358,9 @@ AllLeftSamplers[PerformanceType.SUSTAIN] = AllSusLeftSamplers;
 AllLeftSamplers[PerformanceType.MUTE] = AllMuteLeftSamplers;
 AllLeftSamplers[PerformanceType.HARMONIC] = AllHarmonicLeftSamplers;
 AllLeftSamplers[PerformanceType.TREMOLO] = AllTremoloLeftSamplers;
-AllLeftSamplers[PerformanceType.LEGATOUP] = AllLegatoUpLeftSamplers;
-AllLeftSamplers[PerformanceType.LEGATODOWN] = AllLegatoDownLeftSamplers;
-AllLeftSamplers[PerformanceType.LEGATOGENERAL] = AllLegatoGeneralLeftSamplers;
+AllLeftSamplers[PerformanceType.LEGATOUP] = AllLegatoLeftSamplers;
+AllLeftSamplers[PerformanceType.LEGATODOWN] = AllLegatoLeftSamplers;
+AllLeftSamplers[PerformanceType.LEGATO] = AllLegatoLeftSamplers;
 
 
 
@@ -2217,9 +2368,9 @@ AllRightSamplers[PerformanceType.SUSTAIN] = AllSusRightSamplers;
 AllRightSamplers[PerformanceType.MUTE] = AllMuteRightSamplers;
 AllRightSamplers[PerformanceType.HARMONIC] = AllHarmonicRightSamplers;
 AllRightSamplers[PerformanceType.TREMOLO] = AllTremoloRightSamplers;
-AllRightSamplers[PerformanceType.LEGATOUP] = AllLegatoUpRightSamplers;
-AllRightSamplers[PerformanceType.LEGATODOWN] = AllLegatoDownRightSamplers;
-AllRightSamplers[PerformanceType.LEGATOGENERAL] = AllLegatoGeneralRightSamplers;
+AllRightSamplers[PerformanceType.LEGATOUP] = AllLegatoRightSamplers;
+AllRightSamplers[PerformanceType.LEGATODOWN] = AllLegatoRightSamplers;
+AllRightSamplers[PerformanceType.LEGATO] = AllLegatoRightSamplers;
 
 
 // Need to disable round robin behaviour for randomization
@@ -2296,6 +2447,7 @@ numOfRRs[PerformanceType.MUTE] = 8;
 numOfRRs[PerformanceType.HARMONIC] = 1;
 numOfRRs[PerformanceType.LEGATOUP] = 1;
 numOfRRs[PerformanceType.LEGATODOWN] = 1;
+numOfRRs[PerformanceType.LEGATO] = 1;
 
 // Make sure any sampler that only has 1 RR does transposition trick to not go down to mono
 numOfRRs[PerformanceType.TREMOLO] = 1;
