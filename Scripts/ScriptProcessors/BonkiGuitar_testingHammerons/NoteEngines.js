@@ -588,7 +588,7 @@ inline function endSlide(stringIndex)
 const var legatoMessageHolder = Engine.createMessageHolder();
 
 var LEGATO_MAX_DECAY_TIME_SEC = 15;
-var LEGATO_DECAY_FLOOR_DB = -15.0;
+var LEGATO_DECAY_FLOOR_DB = -6.0;
 var isRealisticSlideVolEnabled = true;
 
 
