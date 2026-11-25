@@ -966,6 +966,7 @@ const var NeckBodyKnob = Content.getComponent("NeckBodyKnob");
 const var NeckToneKnob = Content.getComponent("NeckToneKnob");
 const var NeckBiteCutKnob = Content.getComponent("NeckBiteCutKnob");
 const var NeckResonanceKnob = Content.getComponent("NeckResonanceKnob");
+const var NeckGainKnob = Content.getComponent("NeckGainKnob");
 
 const var neckPickupFX = [
 	Synth.getEffect("LeftString1NeckPickup"),
@@ -1055,6 +1056,16 @@ inline function onNeckResonanceKnobControl(component, value)
 	}
 }
 NeckResonanceKnob.setControlCallback(onNeckResonanceKnobControl);
+
+inline function onNeckGainKnobControl(component, value)
+{
+	for (var i = 0; i < neckPickupFX.length; i++)
+	{
+		if (neckPickupFX[i])
+			neckPickupFX[i].setAttribute(2, value);
+	}
+}
+NeckGainKnob.setControlCallback(onNeckGainKnobControl);
  
  
  

@@ -12,7 +12,11 @@ inline function debugPrint(msg)
 }
 
 // Note buffer and chord voicing configuration
-var excludeOpenStringsFromFretSpread = false; // If true, exclude fret 0 from fret spread and leftmost fret calculation; if false, include it
+var excludeOpenStringsFromFretSpread = true; 
+
+// If true, exclude fret 0 from fret spread and leftmost fret calculation; if false, include it
+// basically true makes voicings that prefer an open string more
+
 var UPTIME_CHORD_THRESHOLD = 0.002; // 2 ms (0.002s) buffer threshold for simultaneous note detection. Can be tuned down to 0.001 (1 ms) or 0.00005 (50 microseconds)
 var chordArrivalCount = 0;
  
@@ -583,7 +587,7 @@ inline function endSlide(stringIndex)
 
 const var legatoMessageHolder = Engine.createMessageHolder();
 
-var LEGATO_MAX_DECAY_TIME_SEC = 7;
+var LEGATO_MAX_DECAY_TIME_SEC = 15;
 var LEGATO_DECAY_FLOOR_DB = -15.0;
 var isRealisticSlideVolEnabled = true;
 

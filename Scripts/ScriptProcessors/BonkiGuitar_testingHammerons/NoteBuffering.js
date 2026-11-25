@@ -31,6 +31,8 @@ if(Message.isArtificial()){
 
 	
 	if(noteNumber >= LOWESTNOTE && noteNumber <= HIGHESTNOTE){
+		
+	
 	
 		if (Globals.g_noteToPlayBufferData.inputtedNotes.length >= 120)
 		{

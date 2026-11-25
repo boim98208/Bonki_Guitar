@@ -163,8 +163,8 @@ template <int NV> struct neck_pickup: public data::base
                 lp_1 = lp_b1 * y_nk - lp_a1 * y_lp + lp_2;
                 lp_2 = lp_b2 * y_nk - lp_a2 * y_lp;
 
-                // Level Scaling: 0.38f ensures exact RMS match between dry and wet
-                float wet = y_lp * 0.38f * outGain;
+                // Level Scaling: 0.566f (-4.94 dB) level-matches dry bridge & real neck RMS
+                float wet = y_lp * 0.566f * outGain;
 
                 // Crossfade
                 channel[i] = dry * dryMix + wet * wetMix;
@@ -273,13 +273,13 @@ template <int NV> struct neck_pickup: public data::base
         {
             parameter::data p("BiteCut", { -12.0, 0.0 });
             registerCallback<7>(p);
-            p.setDefaultValue(-4.0);
+            p.setDefaultValue(-7.8);
             data.add(std::move(p));
         }
         {
             parameter::data p("Resonance", { 0.0, 8.0 });
             registerCallback<8>(p);
-            p.setDefaultValue(2.0);
+            p.setDefaultValue(2.4);
             data.add(std::move(p));
         }
     }
@@ -305,8 +305,8 @@ private:
     float paramCombDepth = 0.85f;
     float paramBodyWarmth = 0.0f;
     float paramTone = 8000.0f;
-    float paramBiteCut = -4.0f;
-    float paramResonance = 2.0f;
+    float paramBiteCut = -7.8f;
+    float paramResonance = 2.4f;
 
     float currentDelaySamples = 35.0f;
     float combDepth = 0.85f;
@@ -395,48 +395,42 @@ private:
         float f_open = 440.0f * std::pow(2.0f, (static_cast<float>(concertNote) - 69.0f) / 12.0f);
 
         // Multiscale 25.5" to 28.0" (0.648m to 0.711m)
-        float t = static_cast<float>(stringIdx) / 7.0f;
+        float t = juce::jlimit(0.0f, 1.0f, static_cast<float>(stringIdx) / 7.0f);
         float L_scale = 0.648f + t * (0.711f - 0.648f);
-        float d_neck  = (0.150f + t * (0.165f - 0.150f)) * paramPosition;
+        // Calibrated 24-fret neck pickup ratio (~19.85% treble to ~19.50% bass of scale length)
+        float d_neck  = L_scale * (0.1985f - t * 0.0035f) * paramPosition;
 
         // Wave speed on string: v = 2 * L * f_open
         float v = 2.0f * L_scale * f_open;
         float tau = (2.0f * d_neck) / v;
 
         // Tension adjustment on higher frets (slight shortening of period)
-        tau *= (1.0f - 0.0015f * static_cast<float>(fret));
+        tau *= (1.0f - 0.0009f * static_cast<float>(fret));
 
         currentDelaySamples = juce::jlimit(1.0f, static_cast<float>(MAX_DELAY_SAMPLES - 4), tau * sampleRate);
 
-        // Comb Depth: 0.83 on treble open to 0.92 on fret 12; 0.88 to 0.94 on bass, scaled by paramCombDepth
-        float baseDepth;
-        if (stringIdx <= 1)
-            baseDepth = 0.83f + (static_cast<float>(fret) / 12.0f) * 0.08f;
-        else
-            baseDepth = 0.88f + 0.005f * static_cast<float>(fret);
+        // Comb Depth: smooth multiscale + fret progression (~0.79 treble to ~0.86 high frets)
+        float baseDepth = (0.79f + t * 0.025f) + 0.004f * static_cast<float>(fret);
         combDepth = juce::jlimit(0.2f, 0.98f, baseDepth * (paramCombDepth / 0.85f));
 
-        // Low Shelf: Corner frequency tracks open string fundamental, offset by paramBodyWarmth
-        float shelfFreq = juce::jlimit(35.0f, 600.0f, 2.2f * f_open);
-        float baseShelfGain = (stringIdx >= 4) ? (16.0f - 0.25f * static_cast<float>(fret))
-                                               : (1.0f + (static_cast<float>(fret) / 12.0f) * 16.0f);
-        float shelfGain = juce::jlimit(0.0f, 24.0f, baseShelfGain + paramBodyWarmth);
+        // Low Shelf: continuous smooth fundamental warmth curve across all strings (no String 4 cliff)
+        float shelfFreq = juce::jlimit(35.0f, 900.0f, 1.75f * f_open);
+        float shelfBase = 9.7f + t * (14.0f - 9.7f);
+        float shelfFretSlope = 0.22f + t * (-0.25f - 0.22f);
+        float shelfGain = juce::jlimit(0.0f, 24.0f, shelfBase + shelfFretSlope * static_cast<float>(fret) + paramBodyWarmth);
         calcLowShelf(shelfGain, shelfFreq, 0.707f, shelf_b0, shelf_b1, shelf_b2, shelf_a1, shelf_a2);
 
-        // Bridge Bite Peaking Cut (~3.2 kHz)
-        calcPeaking(paramBiteCut, 3200.0f, 1.8f, eqBr_b0, eqBr_b1, eqBr_b2, eqBr_a1, eqBr_a2);
+        // Bridge Bite Peaking Cut (~3.38 kHz)
+        calcPeaking(paramBiteCut, 3380.0f, 1.5f, eqBr_b0, eqBr_b1, eqBr_b2, eqBr_a1, eqBr_a2);
 
-        // Neck Resonance Boost (~5.0 kHz)
-        float neckResGain = (stringIdx == 0) ? (paramResonance * 2.5f - (static_cast<float>(fret) / 12.0f) * (paramResonance * 2.5f)) : paramResonance;
-        neckResGain = std::max(neckResGain, 0.0f);
-        calcPeaking(neckResGain, 5000.0f, 1.5f, eqNk_b0, eqNk_b1, eqNk_b2, eqNk_a1, eqNk_a2);
+        // Neck Resonance Boost (~4.22 kHz coil resonance)
+        float neckResGain = std::max(paramResonance, 0.0f);
+        calcPeaking(neckResGain, 4220.0f, 1.4f, eqNk_b0, eqNk_b1, eqNk_b2, eqNk_a1, eqNk_a2);
 
-        // Low-pass Filter (2nd-order Butterworth Q=0.7071)
-        float stringOffset = (stringIdx == 0) ? 3000.0f : 0.0f;
-        float fretOffset = (stringIdx == 0) ? ((static_cast<float>(fret) / 12.0f) * 8000.0f) : (static_cast<float>(fret) * 350.0f);
-        float lpCutoff = paramTone + stringOffset - fretOffset;
+        // Low-pass Filter (2nd-order Q=0.75, tracking aperture speed vs string + fret)
+        float lpCutoff = (paramTone + 3600.0f - t * 3500.0f) - 170.0f * static_cast<float>(fret);
         lpCutoff = juce::jlimit(1500.0f, 18000.0f, lpCutoff);
-        calcLowpass(lpCutoff, 0.7071f, lp_b0, lp_b1, lp_b2, lp_a1, lp_a2);
+        calcLowpass(lpCutoff, 0.75f, lp_b0, lp_b1, lp_b2, lp_a1, lp_a2);
     }
 };
 
