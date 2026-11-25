@@ -1310,10 +1310,16 @@ inline function onPitchBendSmoothingKnobControl(component, value)
 
 Content.getComponent("PitchBendSmoothingKnob").setControlCallback(onPitchBendSmoothingKnobControl);
 
-
 const var SourceLegatoAHDSR = Synth.getModulator("SourceLegatoAHDSR");
 
 const var LegatoAHDSR = Synth.getAllModulators("LegatoAHDSR");
+
+const var SourceSusAHDSR = Synth.getModulator("SourceSusAHDSR");
+
+const var AllSusAHDSR = Synth.getAllModulators("SusAHDSR");
+
+copyModulatorParams(SourceSusAHDSR, AllSusAHDSR);
+
 
 copyModulatorParams(SourceLegatoAHDSR, LegatoAHDSR);
 

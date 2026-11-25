@@ -169,6 +169,7 @@ const var AllLegatoMuters = createAllMutersArray(legatoSamplerName);
 
 // I'll need to do some reworking for anything timestretching
 //const var AllTremoloMuters = createAllMutersArray(tremoloSamplerName);
+const var AllTremoloMuters = -1;
  
  
 
@@ -619,11 +620,11 @@ inline function getDecayGainDB(elapsedSec)
 }
 
 /**
- * Executes a multi-fret portamento slide (upwards or downwards) on a specific string.
- * Supports chaining where an in-flight or sustained destination note
- * becomes the starting note for the next legato note.
+ * Core portamento / destination-only legato engine for a specific string.
+ * When skipIntermediateSteps is true, accumulates in-between transit durations
+ * and triggers only the final destination note at that delayed timestamp.
  */
-inline function triggerSlide(stringIndex, startNote, endNote, targetEventIdArray, velocity)
+inline function triggerSlideInternal(stringIndex, startNote, endNote, targetEventIdArray, velocity, skipIntermediateSteps)
 {
     local slideChannel = stringEnumToMidiChannel(stringIndex);
     local prevVoiceId = stringNoteId[stringIndex];
@@ -637,7 +638,7 @@ inline function triggerSlide(stringIndex, startNote, endNote, targetEventIdArray
     local evIdx;
     
     // Check if an in-flight intermediate note in the queue is currently sounding
-    if (slideStartFret[stringIndex] != NO_NOTE)
+    if (!skipIntermediateSteps && slideStartFret[stringIndex] != NO_NOTE)
     {
         for (evIdx = 0; evIdx < targetEventIdArray.length; evIdx++)
         {
@@ -691,14 +692,15 @@ inline function triggerSlide(stringIndex, startNote, endNote, targetEventIdArray
     local interval = endNote - effectiveStart;
     if (DEBUGMODEENABLED)
     {
-        Console.print("[triggerSlide] str=" + stringIndex + " (ch=" + slideChannel + ") start=" + startNote + " effStart=" + effectiveStart + " end=" + endNote + " interval=" + interval + " isUp=" + (interval > 0) + " numSteps=" + Math.abs(interval) + " baseTs=" + baseTimestamp);
+        Console.print("[triggerSlide] str=" + stringIndex + " (ch=" + slideChannel + ") start=" + startNote + " effStart=" + effectiveStart + " end=" + endNote + " interval=" + interval + " isUp=" + (interval > 0) + " numSteps=" + Math.abs(interval) + " skipMid=" + skipIntermediateSteps + " baseTs=" + baseTimestamp);
     }
-    if (interval == 0)
+    if (interval == 0 && !skipIntermediateSteps)
         return;
         
-    local isUp = (interval > 0);
+    local isZeroStepFallback = (interval == 0);
+    local isUp = isZeroStepFallback ? false : (interval > 0);
     local direction = isUp ? LegatoDirection.LegatoUp : LegatoDirection.LegatoDown;
-    local numSteps = Math.abs(interval);
+    local numSteps = isZeroStepFallback ? 1 : Math.abs(interval);
     
     local currentOffsetSamples = 0;
     local speedFactor = linMap(velocity, 1, 127, 1.8, 0.55);
@@ -717,7 +719,9 @@ inline function triggerSlide(stringIndex, startNote, endNote, targetEventIdArray
     
     for (step = 0; step < numSteps; step++)
     {
-        if (isUp)
+        if (isZeroStepFallback)
+            stepNote = endNote;
+        else if (isUp)
             stepNote = effectiveStart + 1 + step;
         else
             stepNote = effectiveStart - 1 - step;
@@ -731,7 +735,28 @@ inline function triggerSlide(stringIndex, startNote, endNote, targetEventIdArray
         stepDurMS = transitDurations[direction][stringIndex][durLookupNote] * speedFactor;
         stepDurSamples = Engine.getSamplesForMilliSeconds(stepDurMS);
         
-        local dirVel = isUp ? LegatoDirection.LegatoUpVel : LegatoDirection.LegatoDownVel;
+        if (!isLastStep && skipIntermediateSteps)
+        {
+            if (DEBUGMODEENABLED)
+            {
+                Console.print("  [triggerSlide skipStep] str=" + stringIndex + " step=" + step + "/" + numSteps + " note=" + stepNote + " durMS=" + stepDurMS);
+            }
+            currentOffsetSamples += stepDurSamples;
+            continue;
+        }
+        
+        local dirVel = (isUp && !isZeroStepFallback) ? LegatoDirection.LegatoUpVel : LegatoDirection.LegatoDownVel;
+        if (isLastStep && skipIntermediateSteps)
+        {
+            if (stepNote <= OPENSTRINGNOTES[stringIndex])
+            {
+                dirVel = LegatoDirection.LegatoDownVel;
+            }
+            else if (stepNote >= OPENSTRINGNOTES[stringIndex] + NOTESPERSTRING - 1)
+            {
+                dirVel = LegatoDirection.LegatoUpVel;
+            }
+        }
         legatoMessageHolder.setType(1); // 1 = NoteOn
         legatoMessageHolder.setChannel(slideChannel);
         legatoMessageHolder.setNoteNumber(stepNote);
@@ -781,6 +806,16 @@ inline function triggerSlide(stringIndex, startNote, endNote, targetEventIdArray
             }
         }
     }
+}
+
+/**
+ * Executes a multi-fret portamento slide (upwards or downwards) on a specific string.
+ * Supports chaining where an in-flight or sustained destination note
+ * becomes the starting note for the next legato note.
+ */
+inline function triggerSlide(stringIndex, startNote, endNote, targetEventIdArray, velocity)
+{
+    triggerSlideInternal(stringIndex, startNote, endNote, targetEventIdArray, velocity, false);
 }
 
 
@@ -1812,18 +1847,10 @@ inline function melodyFretting1_0_0(notePlayed, currentHandPos)
 }
 
 /**
- * Executes a portamento slide on a specific string for a voice pair.
+ * Updates string tracking state after triggering a legato destination or slide sequence.
  */
-inline function executeSlideOnString(strIdx, startNote, targetNote, targetVelocity, isUp)
+inline function finalizeSlideVoiceState(strIdx, targetNote, targetPerformance)
 {
-	local targetPerformance = isUp ? PerformanceType.LegatoUp : PerformanceType.LegatoDown;
-	
-	if (DEBUGMODEENABLED)
-	{
-		Console.print("[executeSlideOnString] str=" + strIdx + " start=" + startNote + " target=" + targetNote + " vel=" + targetVelocity + " isUp=" + isUp);
-	}
-	triggerSlide(strIdx, startNote, targetNote, eventIdArray[strIdx], targetVelocity);
-	
 	local destVoiceId = NO_NOTE;
 	if (eventIdArray[strIdx].length > 0)
 	{
@@ -1840,6 +1867,38 @@ inline function executeSlideOnString(strIdx, startNote, targetNote, targetVeloci
 }
 
 /**
+ * Executes a portamento slide on a specific string for a voice pair.
+ */
+inline function executeSlideOnString(strIdx, startNote, targetNote, targetVelocity, isUp)
+{
+	local targetPerformance = isUp ? PerformanceType.LegatoUp : PerformanceType.LegatoDown;
+	
+	if (DEBUGMODEENABLED)
+	{
+		Console.print("[executeSlideOnString] str=" + strIdx + " start=" + startNote + " target=" + targetNote + " vel=" + targetVelocity + " isUp=" + isUp);
+	}
+	triggerSlide(strIdx, startNote, targetNote, eventIdArray[strIdx], targetVelocity);
+	finalizeSlideVoiceState(strIdx, targetNote, targetPerformance);
+}
+
+/**
+ * Plays a fallback unslid target note on the Legato sampler by accumulating the
+ * skipped slide duration from startNote (the closest currently held starting note)
+ * up/down to targetNote on strIdx.
+ */
+inline function executeSkippedSlideOnString(strIdx, startNote, targetNote, targetVelocity)
+{
+	local targetPerformance = (targetNote >= startNote) ? PerformanceType.LegatoUp : PerformanceType.LegatoDown;
+	
+	if (DEBUGMODEENABLED)
+	{
+		Console.print("[executeSkippedSlideOnString] str=" + strIdx + " start=" + startNote + " target=" + targetNote + " vel=" + targetVelocity);
+	}
+	triggerSlideInternal(strIdx, startNote, targetNote, eventIdArray[strIdx], targetVelocity, true);
+	finalizeSlideVoiceState(strIdx, targetNote, targetPerformance);
+}
+
+/**
  * Polyphonic buffered legato portamento engine.
  * Handles single notes and simultaneous chords when LEGATOKEYSWITCHNOTE is active.
  *
@@ -1849,7 +1908,9 @@ inline function executeSlideOnString(strIdx, startNote, targetNote, targetVeloci
  *    total semitone distance, breaking ties by closeness to g_handPositionFret and higher string.
  * 2. Direction (up vs down) is handled per-string via velocity inside the unified Legato samplers.
  * 3. Active strings not slid remain sustaining untouched.
- * 4. Incoming target notes that cannot slide play as normal sustain notes on available strings via fretting engine.
+ * 4. Incoming target notes that cannot slide skip intermediate slide steps and trigger only the
+ *    destination note on the Legato sampler delayed by the transit duration from the closest
+ *    currently held starting note to targetNote.
  * 5. If no active notes exist (M == 0), voice all notes as normal sustain.
  */
 inline function processBufferedLegato(targetNotes, targetVels)
@@ -2111,6 +2172,8 @@ inline function processBufferedLegato(targetNotes, targetVels)
 		}
 	}
 	
+	// Ensure non-legato samplers are muted when M > 0 (e.g. if M == 0 previously unmuted Sustain while keyswitch stayed held)
+	setAllSamplersMuted();
 	if (hasAnySlide)
 	{
 		setSamplerUnmuted(PerformanceType.LEGATO);
@@ -2139,7 +2202,8 @@ inline function processBufferedLegato(targetNotes, targetVels)
 		}
 	}
 	
-	// Handle unslid incoming target notes: voice as normal sustain on available strings
+	// Handle unslid incoming target notes: trigger only destination note on Legato sampler
+	// delayed by skipped-slide timing from the closest currently held starting note
 	for (j = 0; j < K; j++)
 	{
 		if (!targetSlid[j])
@@ -2150,13 +2214,23 @@ inline function processBufferedLegato(targetNotes, targetVels)
 			
 			if (candStr != StringType.NOSTRING)
 			{
-				local prevArtic = Globals.g_currArticulationPlaying;
-				Globals.g_currArticulationPlaying = PerformanceType.SUSTAIN;
-				setSamplerUnmuted(PerformanceType.SUSTAIN);
-				stringNote[candStr] = unslidN;
-				Globals.g_stringPerformance[candStr] = PerformanceType.SUSTAIN;
-				playChordString(candStr, unslidN, unslidV);
-				Globals.g_currArticulationPlaying = prevArtic;
+				local closestStartNote = activeNotes[0];
+				local bestPitchDist = Math.abs(unslidN - closestStartNote);
+				local bestStrDist = Math.abs(activeStrings[0] - candStr);
+				for (i = 1; i < M; i++)
+				{
+					local pitchDist = Math.abs(unslidN - activeNotes[i]);
+					local strDist = Math.abs(activeStrings[i] - candStr);
+					if (pitchDist < bestPitchDist || (pitchDist == bestPitchDist && strDist < bestStrDist))
+					{
+						bestPitchDist = pitchDist;
+						bestStrDist = strDist;
+						closestStartNote = activeNotes[i];
+					}
+				}
+				
+				setSamplerUnmuted(PerformanceType.LEGATO);
+				executeSkippedSlideOnString(candStr, closestStartNote, unslidN, unslidV);
 			}
 		}
 	}
@@ -2697,7 +2771,7 @@ inline function singleNoteStrum(notesToStrum, noteIdsToUpdate, noteVelocity)
 		
 			Synth.noteOffByEventId(noteIdsToUpdate[numOfStringToStrum]);
 		}
-		noteIdsToUpdate[numOfStringToStrum] = Synth.addNoteOn(midiChannelToPlay, noteToStrum, noteVelocity, 1);		
+		noteIdsToUpdate[numOfStringToStrum] = Synth.addNoteOn(midiChannelToPlay, noteToStrum, noteVelocity, 1);
 		
 }
 
