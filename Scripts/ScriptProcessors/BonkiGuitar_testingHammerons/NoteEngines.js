@@ -589,7 +589,7 @@ inline function endSlide(stringIndex)
 const var legatoMessageHolder = Engine.createMessageHolder();
 
 var LEGATO_MAX_DECAY_TIME_SEC = 15;
-var LEGATO_DECAY_FLOOR_DB = -6.0;
+var LEGATO_DECAY_FLOOR_DB = -15.0;
 var isRealisticSlideVolEnabled = true;
 
 
@@ -899,7 +899,7 @@ inline function playString(stringToPlay){
 	
 	// adding 1 because the enum starts on 0 but channels start on 1
 
-	Message.setChannel(stringEnumToMidiChannel(stringToPlay));
+	Message.setChannel(cap(stringEnumToMidiChannel(stringToPlay), 16));
 }
 
 inline function playChordString(stringToPlay, noteToPlay, velocityToPlay){
@@ -2772,6 +2772,7 @@ inline function singleNoteStrum(notesToStrum, noteIdsToUpdate, noteVelocity)
 			Synth.noteOffByEventId(noteIdsToUpdate[numOfStringToStrum]);
 		}
 		noteIdsToUpdate[numOfStringToStrum] = Synth.addNoteOn(midiChannelToPlay, noteToStrum, noteVelocity, 1);
+		stringNoteStartTime[numOfStringToStrum] = Engine.getUptime();
 		
 }
 
@@ -2845,6 +2846,8 @@ inline function upStrum(notesToStrum, noteIdsToUpdate, noteVelocity, playingStru
 			stringChannelToSendTo = stringEnumToMidiChannel(j);
 			
 			noteIdsToUpdate[j] = Synth.addNoteOn(stringChannelToSendTo, notesToStrum[j], randomizedNoteVelocity, indivNoteDelayRandomized);
+			
+			stringNoteStartTime[j] = Engine.getUptime();
 			
 			Globals.g_stringNotes[j] = notesToStrum[j];
 			Globals.g_stringActiveRRs[j] = getActiveRRPlayed(j);
@@ -2933,7 +2936,7 @@ inline function downStrum(notesToStrum, noteIdsToUpdate, noteVelocity, playingSt
 			stringChannelToSendTo = stringEnumToMidiChannel(j);
 			
 			noteIdsToUpdate[j] = Synth.addNoteOn(stringChannelToSendTo, notesToStrum[j], randomizedNoteVelocity, indivNoteDelayRandomized);
-			
+			stringNoteStartTime[j] = Engine.getUptime();
 			
 			Globals.g_stringNotes[j] = notesToStrum[j];
 			Globals.g_stringActiveRRs[j] = getActiveRRPlayed(j);

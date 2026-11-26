@@ -12,7 +12,7 @@ global g_noteToPlayBufferData = {
 g_noteToPlayBufferData.inputtedNotes.reserve(128);
 g_noteToPlayBufferData.inputtedNotesOnTime.reserve(128);
 g_noteToPlayBufferData.inputtedNoteVelocities.reserve(128);
-g_noteToPlayBufferData.inputtedNoteProcessed.reserve(128);
+g_noteToPlayBufferData.inputtedNoteProcessed.reserve(256);
 
 Globals.g_noteToPlayBufferData = g_noteToPlayBufferData;
  function onNoteOn()
