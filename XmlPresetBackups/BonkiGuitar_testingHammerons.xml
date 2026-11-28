@@ -9,15 +9,15 @@
         <Processor Type="ScriptProcessor" ID="Interface" Bypassed="0" NumAudioFiles="2">
           <ChildProcessors/>
           <Content>
-            <Control type="ScriptSlider" id="HandPositionFretForceKnob" value="-1"/>
-            <Control type="ScriptSlider" id="StringForceKnob" value="1.0"/>
+            <Control type="ScriptSlider" id="HandPositionFretForceKnob" value="1.0"/>
+            <Control type="ScriptSlider" id="StringForceKnob" value="8.0"/>
             <Control type="ScriptComboBox" id="FrettingEngineComboBox" value="1.0"/>
             <Control type="ScriptButton" id="ResetGlobalRRButton" value="0.0"/>
             <Control type="ScriptSlider" id="VibratoDepthKnob" value="0.0"/>
             <Control type="ScriptSlider" id="VibratoFreqKnob" value="8.5"/>
             <Control type="ScriptSlider" id="PitchBendRangeKnob" value="2.0"/>
-            <Control type="ScriptButton" id="DoubleTrackingBtn" value="1.0"/>
-            <Control type="ScriptButton" id="StrummingModeEnableBtn" value="1.0"/>
+            <Control type="ScriptButton" id="DoubleTrackingBtn" value="0.0"/>
+            <Control type="ScriptButton" id="StrummingModeEnableBtn" value="0.0"/>
             <Control type="ScriptSlider" id="StrumSpeedKnob" value="22.0"/>
             <Control type="ScriptButton" id="EnableStrumSpeedWithVelBtn" value="0.0"/>
             <Control type="ScriptSlider" id="IRMixKnob" value="0.0"/>
@@ -187,10 +187,10 @@
             <Control type="ScriptButton" id="btnSaveFXPreset" value="0.0"/>
             <Control type="ScriptButton" id="btnLoadFXPreset" value="0.0"/>
             <Control type="ScriptButton" id="btnDelayComp" value="0"/>
-            <Control type="ScriptButton" id="btnPreEQ" value="1.0"/>
+            <Control type="ScriptButton" id="btnPreEQ" value="0"/>
             <Control type="ScriptButton" id="btnBypassPreEQ" value="1.0"/>
-            <Control type="ScriptButton" id="btnPostEQ" value="1"/>
-            <Control type="ScriptButton" id="btnBypassPostEQ" value="0.0"/>
+            <Control type="ScriptButton" id="btnPostEQ" value="1.0"/>
+            <Control type="ScriptButton" id="btnBypassPostEQ" value="-24.0"/>
             <Control type="ScriptSlider" id="knbGateThreshold" value="-24.0"/>
             <Control type="ScriptSlider" id="knbGateAttack" value="1.0"/>
             <Control type="ScriptSlider" id="knbGateRelease" value="40.0"/>
@@ -223,10 +223,10 @@
                              height="54" parentComponent="StringFretMarkersPnl" itemColour="0"
                              itemColour2="0" textColour="16777215" bgColour="16777215">
                     <Component type="ScriptImage" id="String8Fret0Marker" x="193" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret1Marker" x="211" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret2Marker" x="250" y="20" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -268,22 +268,22 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret15Marker" x="582" y="25" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret16Marker" x="598" y="26" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret17Marker" x="614" y="26" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret18Marker" x="629" y="26" width="11"
-                               height="35" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="35" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret19Marker" x="643" y="26" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret20Marker" x="655" y="27" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String8FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String8Fret21Marker" x="667" y="27" width="11"
                                height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -320,10 +320,10 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret5Marker" x="351" y="22" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret6Marker" x="382" y="22" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret7Marker" x="409" y="23" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -338,7 +338,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret11Marker" x="503" y="23" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret12Marker" x="526" y="24" width="11"
                                height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -353,19 +353,19 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret16Marker" x="596" y="24" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret17Marker" x="612" y="25" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret18Marker" x="627" y="25" width="11"
-                               height="35" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="35" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret19Marker" x="641" y="25" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret20Marker" x="653" y="25" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String7FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String7Fret21Marker" x="665" y="25" width="11"
                                height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -390,7 +390,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret1Marker" x="215" y="19" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret2Marker" x="252" y="19" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -429,7 +429,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret14Marker" x="562" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret15Marker" x="579" y="21" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -438,16 +438,16 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret17Marker" x="611" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret18Marker" x="626" y="21" width="11"
-                               height="35" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="35" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret19Marker" x="640" y="21" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret20Marker" x="651" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String6FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String6Fret21Marker" x="663" y="21" width="11"
                                height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -475,10 +475,10 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret2Marker" x="254" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret3Marker" x="288" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret4Marker" x="321" y="21" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -499,13 +499,13 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret10Marker" x="481" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret11Marker" x="503" y="21" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret12Marker" x="524" y="21" width="11"
-                               height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret13Marker" x="543" y="21" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -514,13 +514,13 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret15Marker" x="578" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret16Marker" x="594" y="21" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret17Marker" x="609" y="21" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret18Marker" x="624" y="21" width="11"
                                height="35" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -535,7 +535,7 @@
                                height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret22Marker" x="674" y="21" width="11"
-                               height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String5FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String5Fret23Marker" x="685" y="21" width="11"
                                height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -557,10 +557,10 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret2Marker" x="255" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret3Marker" x="289" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret4Marker" x="322" y="20" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -572,16 +572,16 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret7Marker" x="409" y="19" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret8Marker" x="434" y="19" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret9Marker" x="459" y="18" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret10Marker" x="481" y="18" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret11Marker" x="502" y="18" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -590,10 +590,10 @@
                                height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret13Marker" x="541" y="18" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret14Marker" x="559" y="18" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret15Marker" x="576" y="18" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -611,7 +611,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret20Marker" x="648" y="17" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String4FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String4Fret21Marker" x="660" y="17" width="11"
                                height="17" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -633,13 +633,13 @@
                              height="54" parentComponent="StringFretMarkersPnl" itemColour="0"
                              itemColour2="0" textColour="16777215" bgColour="16777215">
                     <Component type="ScriptImage" id="String3Fret0Marker" x="200" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret1Marker" x="220" y="19" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret2Marker" x="257" y="19" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret3Marker" x="290" y="19" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -648,7 +648,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret5Marker" x="353" y="18" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret6Marker" x="382" y="18" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -657,7 +657,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret8Marker" x="434" y="17" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret9Marker" x="459" y="17" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -684,7 +684,7 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret17Marker" x="606" y="15" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String3FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String3Fret18Marker" x="621" y="15" width="11"
                                height="35" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -718,28 +718,28 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret1Marker" x="222" y="20" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret2Marker" x="258" y="20" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret3Marker" x="291" y="19" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret4Marker" x="323" y="19" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret5Marker" x="353" y="18" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret6Marker" x="382" y="18" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret7Marker" x="409" y="17" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret8Marker" x="434" y="17" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret9Marker" x="459" y="16" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -748,19 +748,19 @@
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret11Marker" x="502" y="16" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret12Marker" x="521" y="15" width="11"
                                height="27" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret13Marker" x="540" y="15" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret14Marker" x="557" y="15" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret15Marker" x="574" y="15" width="11"
-                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String2FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String2Fret16Marker" x="590" y="14" width="11"
                                height="12" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -797,16 +797,16 @@
                              height="54" parentComponent="StringFretMarkersPnl" itemColour="0"
                              itemColour2="0" textColour="16777215" bgColour="16777215">
                     <Component type="ScriptImage" id="String1Fret0Marker" x="204" y="20" width="11"
-                               height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatodown.png"
+                               height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String1Fret1Marker" x="225" y="19" width="11"
-                               height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String1Fret2Marker" x="260" y="18" width="11"
                                height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String1Fret3Marker" x="293" y="18" width="11"
-                               height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator_Legatoup.png"
+                               height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
                                parentComponent="String1FretMarkers" text="" visible="0"/>
                     <Component type="ScriptImage" id="String1Fret4Marker" x="324" y="17" width="11"
                                height="11" fileName="{PROJECT_FOLDER}PlayingMode_FretIndicator.png"
@@ -925,7 +925,8 @@
                              numStrips="9.0" scaleFactor="0.25" mouseSensitivity="0.699999988079071"
                              showValuePopup="Below"/>
                   <Component type="ScriptComboBox" id="FrettingEngineComboBox" x="230" y="122"
-                             max="2" items="Natural&#10;Melody" enableMidiLearn="1" parentComponent="PerformanceOptionsPanel"/>
+                             max="3" items="Natural&#10;Melody&#10;Chords" enableMidiLearn="1"
+                             parentComponent="PerformanceOptionsPanel"/>
                   <Component type="ScriptLabel" id="FrettingModeLabel" x="50" y="122" width="130"
                              height="30" text="Fretting Mode:" fontSize="28.0" parentComponent="PerformanceOptionsPanel"
                              visible="0" enabled="0"/>
@@ -1109,7 +1110,7 @@
                 <Component type="ScriptImage" id="NerdDetails_BG" x="3" y="3" width="597"
                            height="100" parentComponent="DebugPanel" fileName="{PROJECT_FOLDER}PlayingMode_NerdDetails_BG.png"/>
                 <Component type="ScriptLabel" id="handPositionFretLabel" x="388" y="9" width="39"
-                           fontSize="20.0" height="13" text="1" parentComponent="DebugPanel"
+                           fontSize="20.0" height="13" text="0" parentComponent="DebugPanel"
                            textColour="4278190080"/>
                 <Component type="ScriptLabel" id="String1RRLabel" x="498" y="50" width="100"
                            height="21" parentComponent="DebugPanel" text="-1" textColour="4278190080"
@@ -2175,7 +2176,7 @@
                   </Component>
                 </Component>
                 <Component type="ScriptPanel" id="pnlPreEQ" x="20" y="60" width="1000" height="198"
-                           itemColour="0" itemColour2="0" parentComponent="FXRackBG">
+                           itemColour="0" itemColour2="0" parentComponent="FXRackBG" visible="0">
                   <Component type="ScriptFloatingTile" id="fltPreEQ" x="0" y="0" width="960"
                              height="170" parentComponent="pnlPreEQ" ContentType="DraggableFilterPanel"
                              bgColour="16777215" itemColour="1946122793" itemColour2="4278190080"
@@ -2213,8 +2214,7 @@
                              text="20k" fontName="Shehroz" fontSize="25.0"/>
                 </Component>
                 <Component type="ScriptPanel" id="pnlPostEQ" x="20" y="60" width="1000"
-                           height="198" itemColour="0" itemColour2="0" parentComponent="FXRackBG"
-                           visible="0">
+                           height="198" itemColour="0" itemColour2="0" parentComponent="FXRackBG">
                   <Component type="ScriptFloatingTile" id="fltPostEQ" x="0" y="0" width="960"
                              height="170" parentComponent="pnlPostEQ" ContentType="DraggableFilterPanel"
                              bgColour="16777215" itemColour="1946122793" itemColour2="4278190080"
@@ -2420,11 +2420,11 @@
                    Module="0.0" ODMode="1.0" ODDrive="0.1000000014901161" ODTone="0.7899999618530273"
                    ODFoldAmount="1.0" ODBits="8.0" ODSRReduction="16.0" ODCircuitBend="0.0"
                    ODMix="0.3300000131130219" ODOutputGain="3.576278686523438e-7"
-                   ODMono="0.0" AmpMode="2.0" AmpInputGain="7.600000858306885" AmpLow="1.788139343261719e-7"
+                   ODMono="1.0" AmpMode="2.0" AmpInputGain="7.600000858306885" AmpLow="1.788139343261719e-7"
                    AmpMid="1.788139343261719e-7" AmpHigh="1.788139343261719e-7"
                    AmpPresence="0.0" AmpOutputGain="-8.59999942779541" AmpSlim="1.0"
                    AmpCleanToneStackMode="1.0" AmpDirtyToneStackMode="1.0" AmpDistortionMode="0.0"
-                   AmpMono="0.0" CabMix="0.0" CabAGain="0.0" CabAPan="0.0" CabAAxis="0.0"
+                   AmpMono="1.0" CabMix="0.0" CabAGain="0.0" CabAPan="0.0" CabAAxis="0.0"
                    CabADistance="20000.0" CabADelay="0.0" CabBGain="0.0" CabBPan="0.0"
                    CabBAxis="0.0" CabBDistance="20000.0" CabBDelay="0.0" CabDesignerBypass="0.0"
                    ReverbMode="0.0" ReverbMix="0.2800000011920929" ReverbPreDelay="0.0"
@@ -2465,11 +2465,11 @@
                    Module="0.0" ODMode="1.0" ODDrive="0.1000000014901161" ODTone="0.7899999618530273"
                    ODFoldAmount="1.0" ODBits="8.0" ODSRReduction="16.0" ODCircuitBend="0.0"
                    ODMix="0.3300000131130219" ODOutputGain="3.576278686523438e-7"
-                   ODMono="0.0" AmpMode="2.0" AmpInputGain="7.600000858306885" AmpLow="1.788139343261719e-7"
+                   ODMono="1.0" AmpMode="2.0" AmpInputGain="7.600000858306885" AmpLow="1.788139343261719e-7"
                    AmpMid="1.788139343261719e-7" AmpHigh="1.788139343261719e-7"
                    AmpPresence="0.0" AmpOutputGain="-8.59999942779541" AmpSlim="1.0"
                    AmpCleanToneStackMode="1.0" AmpDirtyToneStackMode="1.0" AmpDistortionMode="0.0"
-                   AmpMono="0.0" CabMix="0.0" CabAGain="0.0" CabAPan="0.0" CabAAxis="0.0"
+                   AmpMono="1.0" CabMix="0.0" CabAGain="0.0" CabAPan="0.0" CabAAxis="0.0"
                    CabADistance="20000.0" CabADelay="0.0" CabBGain="0.0" CabBPan="0.0"
                    CabBAxis="0.0" CabBDistance="20000.0" CabBDelay="0.0" CabDesignerBypass="0.0"
                    ReverbMode="0.0" ReverbMix="0.2800000011920929" ReverbPreDelay="0.0"
@@ -2510,11 +2510,11 @@
                    Module="0.0" ODMode="1.0" ODDrive="0.1000000014901161" ODTone="0.7899999618530273"
                    ODFoldAmount="1.0" ODBits="8.0" ODSRReduction="16.0" ODCircuitBend="0.0"
                    ODMix="0.3300000131130219" ODOutputGain="3.576278686523438e-7"
-                   ODMono="0.0" AmpMode="2.0" AmpInputGain="7.600000858306885" AmpLow="1.788139343261719e-7"
+                   ODMono="1.0" AmpMode="2.0" AmpInputGain="7.600000858306885" AmpLow="1.788139343261719e-7"
                    AmpMid="1.788139343261719e-7" AmpHigh="1.788139343261719e-7"
                    AmpPresence="0.0" AmpOutputGain="-8.59999942779541" AmpSlim="1.0"
                    AmpCleanToneStackMode="1.0" AmpDirtyToneStackMode="1.0" AmpDistortionMode="0.0"
-                   AmpMono="0.0" CabMix="0.0" CabAGain="0.0" CabAPan="0.0" CabAAxis="0.0"
+                   AmpMono="1.0" CabMix="0.0" CabAGain="0.0" CabAPan="0.0" CabAAxis="0.0"
                    CabADistance="20000.0" CabADelay="0.0" CabBGain="0.0" CabBPan="0.0"
                    CabBAxis="0.0" CabBDistance="20000.0" CabBDelay="0.0" CabDesignerBypass="0.0"
                    ReverbMode="0.0" ReverbMix="0.2800000011920929" ReverbPreDelay="0.0"
@@ -2555,10 +2555,10 @@
                    Module="0.0" ODMode="1.0" ODDrive="0.1000000014901161" ODTone="0.7899999618530273"
                    ODFoldAmount="1.0" ODBits="8.0" ODSRReduction="16.0" ODCircuitBend="0.0"
                    ODMix="0.3300000131130219" ODOutputGain="3.576278686523438e-7"
-                   ODMono="0.0" AmpMode="0.0" AmpInputGain="16.80000114440918" AmpLow="3.400000333786011"
+                   ODMono="1.0" AmpMode="0.0" AmpInputGain="16.80000114440918" AmpLow="3.400000333786011"
                    AmpMid="-1.700000047683716" AmpHigh="2.500000238418579" AmpPresence="0.0"
                    AmpOutputGain="-8.59999942779541" AmpSlim="1.0" AmpCleanToneStackMode="1.0"
-                   AmpDirtyToneStackMode="1.0" AmpDistortionMode="0.0" AmpMono="0.0"
+                   AmpDirtyToneStackMode="1.0" AmpDistortionMode="0.0" AmpMono="1.0"
                    CabMix="0.0" CabAGain="0.0" CabAPan="0.0" CabAAxis="0.0" CabADistance="20000.0"
                    CabADelay="0.0" CabBGain="0.0" CabBPan="0.0" CabBAxis="0.0" CabBDistance="20000.0"
                    CabBDelay="0.0" CabDesignerBypass="0.0" ReverbMode="0.0" ReverbMix="0.2800000011920929"
@@ -2600,10 +2600,10 @@
                    Module="0.0" ODMode="1.0" ODDrive="0.1000000014901161" ODTone="0.7899999618530273"
                    ODFoldAmount="1.0" ODBits="8.0" ODSRReduction="16.0" ODCircuitBend="0.0"
                    ODMix="0.3300000131130219" ODOutputGain="3.576278686523438e-7"
-                   ODMono="0.0" AmpMode="2.0" AmpInputGain="23.80000114440918" AmpLow="4.199999809265137"
+                   ODMono="1.0" AmpMode="2.0" AmpInputGain="23.80000114440918" AmpLow="4.199999809265137"
                    AmpMid="-1.700000047683716" AmpHigh="3.700000286102295" AmpPresence="1.788139343261719e-7"
                    AmpOutputGain="-3.799999475479126" AmpSlim="1.0" AmpCleanToneStackMode="1.0"
-                   AmpDirtyToneStackMode="1.0" AmpDistortionMode="0.0" AmpMono="0.0"
+                   AmpDirtyToneStackMode="1.0" AmpDistortionMode="0.0" AmpMono="1.0"
                    CabMix="0.5399999618530273" CabAGain="0.0" CabAPan="0.0" CabAAxis="0.0"
                    CabADistance="20000.0" CabADelay="0.0" CabBGain="1.490116119384766e-6"
                    CabBPan="0.0" CabBAxis="0.0" CabBDistance="6000.0" CabBDelay="0.0"
@@ -2645,10 +2645,10 @@
         <Processor Type="HardcodedMasterFX" ID="modularSlot5" Bypassed="0" Network="slot"
                    Module="0.0" ODMode="0.0" ODDrive="5.0" ODTone="0.0" ODFoldAmount="2.0"
                    ODBits="16.0" ODSRReduction="1.0" ODCircuitBend="0.0" ODMix="1.0"
-                   ODOutputGain="0.0" ODMono="0.0" AmpMode="1.0" AmpInputGain="0.0"
+                   ODOutputGain="0.0" ODMono="1.0" AmpMode="1.0" AmpInputGain="0.0"
                    AmpLow="0.0" AmpMid="0.0" AmpHigh="0.0" AmpPresence="0.0" AmpOutputGain="0.0"
                    AmpSlim="0.0" AmpCleanToneStackMode="0.0" AmpDirtyToneStackMode="0.0"
-                   AmpDistortionMode="0.0" AmpMono="0.0" CabMix="0.0" CabAGain="0.0"
+                   AmpDistortionMode="0.0" AmpMono="1.0" CabMix="0.0" CabAGain="0.0"
                    CabAPan="0.0" CabAAxis="0.0" CabADistance="20000.0" CabADelay="0.0"
                    CabBGain="0.0" CabBPan="0.0" CabBAxis="0.0" CabBDistance="20000.0"
                    CabBDelay="0.0" CabDesignerBypass="0.0" ReverbMode="3.0" ReverbMix="0.2800000011920929"
@@ -2689,10 +2689,10 @@
         <Processor Type="HardcodedMasterFX" ID="modularSlot6" Bypassed="0" Network="slot"
                    Module="0.0" ODMode="0.0" ODDrive="5.0" ODTone="0.0" ODFoldAmount="2.0"
                    ODBits="16.0" ODSRReduction="1.0" ODCircuitBend="0.0" ODMix="1.0"
-                   ODOutputGain="0.0" ODMono="0.0" AmpMode="1.0" AmpInputGain="0.0"
+                   ODOutputGain="0.0" ODMono="1.0" AmpMode="1.0" AmpInputGain="0.0"
                    AmpLow="0.0" AmpMid="0.0" AmpHigh="0.0" AmpPresence="0.0" AmpOutputGain="0.0"
                    AmpSlim="0.0" AmpCleanToneStackMode="0.0" AmpDirtyToneStackMode="0.0"
-                   AmpDistortionMode="0.0" AmpMono="0.0" CabMix="0.0" CabAGain="0.0"
+                   AmpDistortionMode="0.0" AmpMono="1.0" CabMix="0.0" CabAGain="0.0"
                    CabAPan="0.0" CabAAxis="0.0" CabADistance="20000.0" CabADelay="0.0"
                    CabBGain="0.0" CabBPan="0.0" CabBAxis="0.0" CabBDistance="20000.0"
                    CabBDelay="0.0" CabDesignerBypass="0.0" ReverbMode="3.0" ReverbMix="0.2800000011920929"
@@ -2733,10 +2733,10 @@
         <Processor Type="HardcodedMasterFX" ID="modularSlot7" Bypassed="0" Network="slot"
                    Module="0.0" ODMode="0.0" ODDrive="5.0" ODTone="0.0" ODFoldAmount="2.0"
                    ODBits="16.0" ODSRReduction="1.0" ODCircuitBend="0.0" ODMix="1.0"
-                   ODOutputGain="0.0" ODMono="0.0" AmpMode="1.0" AmpInputGain="0.0"
+                   ODOutputGain="0.0" ODMono="1.0" AmpMode="1.0" AmpInputGain="0.0"
                    AmpLow="0.0" AmpMid="0.0" AmpHigh="0.0" AmpPresence="0.0" AmpOutputGain="0.0"
                    AmpSlim="0.0" AmpCleanToneStackMode="0.0" AmpDirtyToneStackMode="0.0"
-                   AmpDistortionMode="0.0" AmpMono="0.0" CabMix="0.0" CabAGain="0.0"
+                   AmpDistortionMode="0.0" AmpMono="1.0" CabMix="0.0" CabAGain="0.0"
                    CabAPan="0.0" CabAAxis="0.0" CabADistance="20000.0" CabADelay="0.0"
                    CabBGain="0.0" CabBPan="0.0" CabBAxis="0.0" CabBDistance="20000.0"
                    CabBDelay="0.0" CabDesignerBypass="0.0" ReverbMode="3.0" ReverbMix="0.2800000011920929"
@@ -2778,11 +2778,11 @@
                    Module="0.0" ODMode="1.0" ODDrive="0.1000000014901161" ODTone="0.7899999618530273"
                    ODFoldAmount="1.0" ODBits="8.0" ODSRReduction="16.0" ODCircuitBend="0.0"
                    ODMix="0.3300000131130219" ODOutputGain="3.576278686523438e-7"
-                   ODMono="0.0" AmpMode="2.0" AmpInputGain="7.600000858306885" AmpLow="1.788139343261719e-7"
+                   ODMono="1.0" AmpMode="2.0" AmpInputGain="7.600000858306885" AmpLow="1.788139343261719e-7"
                    AmpMid="1.788139343261719e-7" AmpHigh="1.788139343261719e-7"
                    AmpPresence="0.0" AmpOutputGain="-8.59999942779541" AmpSlim="1.0"
                    AmpCleanToneStackMode="1.0" AmpDirtyToneStackMode="1.0" AmpDistortionMode="0.0"
-                   AmpMono="0.0" CabMix="0.0" CabAGain="0.0" CabAPan="0.0" CabAAxis="0.0"
+                   AmpMono="1.0" CabMix="0.0" CabAGain="0.0" CabAPan="0.0" CabAAxis="0.0"
                    CabADistance="20000.0" CabADelay="0.0" CabBGain="0.0" CabBPan="0.0"
                    CabBAxis="0.0" CabBDistance="20000.0" CabBDelay="0.0" CabDesignerBypass="0.0"
                    ReverbMode="0.0" ReverbMix="0.2800000011920929" ReverbPreDelay="0.0"
@@ -2819,7 +2819,7 @@
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
         </Processor>
-        <Processor Type="CurveEq" ID="postEQ" Bypassed="1" NumFilters="4" Band0="-24.0"
+        <Processor Type="CurveEq" ID="postEQ" Bypassed="0" NumFilters="4" Band0="-24.0"
                    Band1="2088.4638671875" Band2="6.624799728393555" Band3="1.0"
                    Band4="4.0" Band5="-3.287670135498047" Band6="5814.46875" Band7="0.4611840844154358"
                    Band8="1.0" Band9="4.0" Band10="-13.80822086334229" Band11="261.5600280761719"
@@ -2895,7 +2895,7 @@
             <Processor Type="EffectChain" ID="FX" Bypassed="0">
               <ChildProcessors>
                 <Processor Type="SimpleGain" ID="LeftGuitarGain" Bypassed="0" Gain="0.0"
-                           Delay="0.0" Width="100.0" Balance="-100.0" InvertPolarity="0.0">
+                           Delay="0.0" Width="100.0" Balance="0.0" InvertPolarity="0.0">
                   <ChildProcessors>
                     <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
                       <ChildProcessors/>
@@ -2982,7 +2982,7 @@
                         <Processor Type="AHDSR" ID="SourceSusAHDSR" Bypassed="0" Monophonic="0.0"
                                    Retrigger="1.0" Intensity="1.0" AttackCurve="0.4959999918937683"
                                    DecayCurve="0.0" Attack="14.22999954223633" AttackLevel="0.0"
-                                   Hold="10.0" Decay="1.0" Sustain="0.0" Release="38.04982376098633"
+                                   Hold="10.0" Decay="1.0" Sustain="0.0" Release="26.8799991607666"
                                    EcoMode="1.0">
                           <ChildProcessors>
                             <Processor Type="ModulatorChain" ID="Attack Time" Bypassed="0" Intensity="1.0">
@@ -10605,11 +10605,11 @@
                 <Processor Type="StreamingSampler" ID="LeftString7PowerChordSusSampler"
                            Bypassed="0" Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="16.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="PowerChordSus_String7">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -10744,11 +10744,11 @@
                 <Processor Type="StreamingSampler" ID="LeftString7PowerChordSusRelSampler"
                            Bypassed="0" Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="2.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String7_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -12587,11 +12587,11 @@
                 <Processor Type="StreamingSampler" ID="LeftString7PowerChordMuteSampler"
                            Bypassed="0" Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="16.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="PowerChordMute_String7">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -12726,11 +12726,11 @@
                 <Processor Type="StreamingSampler" ID="LeftString7PowerChordMuteRelSampler"
                            Bypassed="0" Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="2.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String7_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -16226,7 +16226,7 @@
                 <Processor Type="MidiMuter" ID="RightContainerMute" Bypassed="0">
                   <ChildProcessors/>
                   <Content>
-                    <Control type="ScriptButton" id="ignoreButton" value="0.0"/>
+                    <Control type="ScriptButton" id="ignoreButton" value="1.0"/>
                     <Control type="ScriptButton" id="fixStuckNotes" value="1.0"/>
                   </Content>
                 </Processor>
@@ -16247,7 +16247,7 @@
             </Processor>
             <Processor Type="EffectChain" ID="FX" Bypassed="0">
               <ChildProcessors>
-                <Processor Type="SimpleGain" ID="RightGuitarGain" Bypassed="0" Gain="0.0"
+                <Processor Type="SimpleGain" ID="RightGuitarGain" Bypassed="0" Gain="-100.0"
                            Delay="0.0" Width="100.0" Balance="100.0" InvertPolarity="0.0">
                   <ChildProcessors>
                     <Processor Type="ModulatorChain" ID="Gain Modulation" Bypassed="0" Intensity="1.0">
@@ -23956,11 +23956,11 @@
                 <Processor Type="StreamingSampler" ID="RightString7PowerChordSusSampler"
                            Bypassed="0" Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="16.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="PowerChordSus_String7">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -24095,11 +24095,11 @@
                 <Processor Type="StreamingSampler" ID="RightString7PowerChordSusRelSampler"
                            Bypassed="0" Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="2.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="Sustain_Rel_String7_Temp">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -25938,11 +25938,11 @@
                 <Processor Type="StreamingSampler" ID="RightString7PowerChordMuteSampler"
                            Bypassed="0" Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="16.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="PowerChordSus_String7">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>
@@ -26077,11 +26077,11 @@
                 <Processor Type="StreamingSampler" ID="RightString7PowerChordMuteRelSampler"
                            Bypassed="0" Gain="1.0" Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0"
                            IconColour="0" PreloadSize="8192.0" BufferSize="4096.0" VoiceAmount="256.0"
-                           SamplerRepeatMode="3.0" RRGroupAmount="1.0" PitchTracking="1.0"
+                           SamplerRepeatMode="3.0" RRGroupAmount="16.0" PitchTracking="1.0"
                            OneShot="0.0" CrossfadeGroups="0.0" Purged="0.0" Reversed="0.0"
                            NumChannels="1" UseStaticMatrix="0.0" LowPassEnvelopeOrder="0.0"
                            Group0Table="" Group1Table="" Group2Table="" Group3Table="" Group4Table=""
-                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="">
+                           Group5Table="" Group6Table="" Group7Table="" SampleMapID="PowerChordMute_String7">
                   <ChildProcessors>
                     <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
                       <ChildProcessors>

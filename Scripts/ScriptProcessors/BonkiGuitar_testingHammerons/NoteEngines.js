@@ -12,7 +12,7 @@ inline function debugPrint(msg)
 }
 
 // Note buffer and chord voicing configuration
-var excludeOpenStringsFromFretSpread = true; 
+var excludeOpenStringsFromFretSpread = false; 
 
 // If true, exclude fret 0 from fret spread and leftmost fret calculation; if false, include it
 // basically true makes voicings that prefer an open string more
@@ -159,6 +159,10 @@ const var tremoloSamplerName = "Tremolo";
 
 const var legatoSamplerName = "Legato";
 
+const var powerChordSusSamplerName = "PowerChordSus";
+
+const var powerChordMuteSamplerName = "PowerChordMute";
+
  
  // skipping SFX samplers for now. Do later if it exists
  
@@ -166,6 +170,8 @@ const var AllSusMuters = createAllMutersArray(susSamplerName);
 const var AllMuteMuters = createAllMutersArray(muteSamplerName);
 const var AllHarmonicMuters = createAllMutersArray(harmonicSamplerName);
 const var AllLegatoMuters = createAllMutersArray(legatoSamplerName);
+const var AllPowerChordSusMuters = createAllMutersArray(powerChordSusSamplerName);
+const var AllPowerChordMuteMuters = createAllMutersArray(powerChordMuteSamplerName);
 
 // I'll need to do some reworking for anything timestretching
 //const var AllTremoloMuters = createAllMutersArray(tremoloSamplerName);
@@ -191,6 +197,8 @@ AllContainerMuters[PerformanceType.TREMOLO] = AllTremoloMuters;
 AllContainerMuters[PerformanceType.LEGATOUP] = AllLegatoMuters;
 AllContainerMuters[PerformanceType.LEGATODOWN] = AllLegatoMuters;
 AllContainerMuters[PerformanceType.LEGATO] = AllLegatoMuters;
+AllContainerMuters[PerformanceType.POWERCHORDSUS] = AllPowerChordSusMuters;
+AllContainerMuters[PerformanceType.POWERCHORDMUTE] = AllPowerChordMuteMuters;
 
 
 const var NUMOFKEYSWITCHES = 4;
@@ -268,11 +276,14 @@ const var NUMOFKEYSWITCHES = 4;
 		 
 		 legatoKeySwitchPlaying = true;
 		 Globals.g_currArticulationPlaying = PerformanceType.LEGATOGENERAL;
-// for now do legato down because there's no samplers for LEGATOGENERAL. Later make it so that LEGATOGENERAL can be used and can still increment the things
 	 } else if(notePlayed == SFXKEYSWITCHNOTE){
 	 
 		 Globals.g_currArticulationPlaying = PerformanceType.SFX;
 		 
+	 }else if(notePlayed == POWERCHORDSUSKEYSWITCHNOTE){
+		 Globals.g_currArticulationPlaying = PerformanceType.POWERCHORDSUS;
+	 }else if(notePlayed == POWERCHORDMUTEKEYSWITCHNOTE){
+		 Globals.g_currArticulationPlaying = PerformanceType.POWERCHORDMUTE;
 	 }
 	 
  }
@@ -1567,11 +1578,8 @@ Will change fret position if polyphony leads to a really far fret
 */
 
 // the function returns the next fret for the algorithm and sets the message's midi channel
-inline function naturalFretting2_2_1(notePlayed, currentHandPos, currArticPlaying)
+inline function naturalFretting2_2_1Core(notePlayed, velocityPlayed, useMessageEvent, currentHandPos, currArticPlaying)
 {
-	
-	
-
 	local distBetweenNewFretAndAutoFret = 0;
 	local newFretFromPolyphony;
 	
@@ -1615,7 +1623,14 @@ inline function naturalFretting2_2_1(notePlayed, currentHandPos, currArticPlayin
 	stringNote[stringToPlay] = notePlayed;
 	Globals.g_stringPerformance[stringToPlay] = Globals.g_currArticulationPlaying;
 	
-	playString(stringToPlay);
+	if (useMessageEvent)
+	{
+		playString(stringToPlay);
+	}
+	else
+	{
+		playChordString(stringToPlay, notePlayed, velocityPlayed);
+	}
 	
 
 	
@@ -1671,6 +1686,16 @@ inline function naturalFretting2_2_1(notePlayed, currentHandPos, currArticPlayin
 		}
 	}
 	
+}
+
+inline function naturalFretting2_2_1(notePlayed, currentHandPos, currArticPlaying)
+{
+	return naturalFretting2_2_1Core(notePlayed, 0, true, currentHandPos, currArticPlaying);
+}
+
+inline function naturalFretting2_2_1ForNote(notePlayed, velocityPlayed, currentHandPos, currArticPlaying)
+{
+	return naturalFretting2_2_1Core(notePlayed, velocityPlayed, false, currentHandPos, currArticPlaying);
 }
 
 
@@ -1949,7 +1974,7 @@ inline function processBufferedLegato(targetNotes, targetVels)
 		setSamplerUnmuted(PerformanceType.SUSTAIN);
 		if (K > 1)
 		{
-			Globals.g_handPositionFret = naturalChordFretting(targetNotes, targetVels, Globals.g_handPositionFret, PerformanceType.SUSTAIN);
+			dispatchChordClusterToFrettingEngine(targetNotes, targetVels, PerformanceType.SUSTAIN);
 		}
 		else if (K == 1)
 		{
@@ -2283,12 +2308,55 @@ inline function processBufferedLegato(targetNotes, targetVels)
  
  // interfacing between different fretting engines
  
+ inline function dispatchChordClusterToFrettingEngine(notesArr, velsArr, articType)
+ {
+	local activeHandPos = (Globals.g_forcedHandPositionFret == -1) ? Globals.g_handPositionFret : Globals.g_forcedHandPositionFret;
+	
+	if (Globals.g_frettingEngine == FrettingEngine.CHORDS)
+	{
+		Globals.g_handPositionFret = naturalChordFretting(notesArr, velsArr, activeHandPos, articType);
+	}
+	else
+	{
+		// FrettingEngine.NATURAL (and MELODY fallback): sort cluster lowest-to-highest and pass sequentially
+		local k = notesArr.length;
+		local i;
+		local j;
+		for (i = 0; i < k - 1; i++)
+		{
+			for (j = 0; j < k - 1 - i; j++)
+			{
+				if (notesArr[j] > notesArr[j + 1])
+				{
+					local tmpN = notesArr[j];
+					notesArr[j] = notesArr[j + 1];
+					notesArr[j + 1] = tmpN;
+					
+					local tmpV = velsArr[j];
+					velsArr[j] = velsArr[j + 1];
+					velsArr[j + 1] = tmpV;
+				}
+			}
+		}
+		
+		for (i = 0; i < k; i++)
+		{
+			local curPos = (Globals.g_forcedHandPositionFret == -1) ? Globals.g_handPositionFret : Globals.g_forcedHandPositionFret;
+			Globals.g_handPositionFret = naturalFretting2_2_1ForNote(notesArr[i], velsArr[i], curPos, articType);
+			if (Globals.g_handPositionFret < 0)
+			{
+				Globals.g_handPositionFret = 0;
+			}
+		}
+	}
+ }
+ 
  inline function playNextNoteOnNewString(notePlayed, velocityPlayed){
 	 
 
  
 	 
- 	if(Globals.g_frettingEngine == FrettingEngine.NATURAL)
+ 	if(Globals.g_frettingEngine == FrettingEngine.NATURAL || Globals.g_frettingEngine == FrettingEngine.CHORDS)
  			{
  		
  				if(Globals.g_forcedHandPositionFret == -1)
@@ -2412,7 +2480,19 @@ inline function concatArrays(arr1, arr2)
  const var AllHarmonicLeftSamplers = createAllLeftArticSamplerArray(harmonicSamplerName, harmonicSamplerLowestStringNum, harmonicSamplerHighestStringNum);
  
  const var AllHarmonicRightSamplers = createAllRightArticSamplerArray(harmonicSamplerName, harmonicSamplerLowestStringNum, harmonicSamplerHighestStringNum);
- 
+
+
+const var powerChordSusSamplerLowestStringNum = NUMOFSTRINGS;
+const var powerChordSusSamplerHighestStringNum = NUMOFSTRINGS - 2;
+
+
+const var AllPowerChordSusLeftSamplers = createAllLeftArticSamplerArray(powerChordSusSamplerName, powerChordSusSamplerLowestStringNum, powerChordSusSamplerHighestStringNum);
+
+const var AllPowerChordSusRightSamplers = createAllRightArticSamplerArray(powerChordSusSamplerName, powerChordSusSamplerLowestStringNum, powerChordSusSamplerHighestStringNum); 
+
+Console.print(powerChordSusSamplerHighestStringNum);
+
+
 
 //const var AllTremoloLeftSamplers = createAllLeftArticSamplerArray(tremoloSamplerName, tremoloSamplerLowestStringNum, tremoloSamplerHighestStringNum);
 
@@ -2439,6 +2519,8 @@ AllLeftSamplers[PerformanceType.TREMOLO] = AllTremoloLeftSamplers;
 AllLeftSamplers[PerformanceType.LEGATOUP] = AllLegatoLeftSamplers;
 AllLeftSamplers[PerformanceType.LEGATODOWN] = AllLegatoLeftSamplers;
 AllLeftSamplers[PerformanceType.LEGATO] = AllLegatoLeftSamplers;
+AllLeftSamplers[PerformanceType.POWERCHORDSUS] = AllPowerChordSusLeftSamplers;
+AllLeftSamplers[PerformanceType.POWERCHORDMUTE] = AllPowerChordMuteLeftSamplers;
 
 
 
@@ -2449,6 +2531,10 @@ AllRightSamplers[PerformanceType.TREMOLO] = AllTremoloRightSamplers;
 AllRightSamplers[PerformanceType.LEGATOUP] = AllLegatoRightSamplers;
 AllRightSamplers[PerformanceType.LEGATODOWN] = AllLegatoRightSamplers;
 AllRightSamplers[PerformanceType.LEGATO] = AllLegatoRightSamplers;
+AllRightSamplers[PerformanceType.POWERCHORDSUS] = AllPowerChordSusRightSamplers;
+
+
+AllRightSamplers[PerformanceType.POWERCHORDMUTE] = AllPowerChordMuteRightSamplers;
 
 
 // Need to disable round robin behaviour for randomization
@@ -2517,7 +2603,7 @@ for(i = 0; i < PerformanceType.NUMOFPERFORMANCES; i++){
 
 
 
-// I'd rather do this manually but the functions are bugging out on me for some reason
+// I'd rather do this automatically but the functions are bugging out on me for some reason
 // will need to look into getNumActiveGroups and getRRGroupsForMessage
 
 numOfRRs[PerformanceType.SUSTAIN] = 8;
@@ -2526,6 +2612,8 @@ numOfRRs[PerformanceType.HARMONIC] = 1;
 numOfRRs[PerformanceType.LEGATOUP] = 1;
 numOfRRs[PerformanceType.LEGATODOWN] = 1;
 numOfRRs[PerformanceType.LEGATO] = 1;
+numOfRRs[PerformanceType.POWERCHORDSUS] = 16;
+numOfRRs[PerformanceType.POWERCHORDMUTE] = 16;
 
 // Make sure any sampler that only has 1 RR does transposition trick to not go down to mono
 numOfRRs[PerformanceType.TREMOLO] = 1;
@@ -2648,6 +2736,8 @@ inline function randomRR_incrementSamplersRR(stringPlaying){
 
 	
 	RRForRightSampler = (RRForLeftSampler % numOfRRs[currArticulation]) + 1;
+	
+
 	
 	rightSamplerToIncrement.asSampler().setActiveGroup(RRForRightSampler);
 	
@@ -3142,31 +3232,235 @@ inline function randomAddOrSub(deviation){
 	return (Math.random() - 0.5) * deviation * 2;
 }
  
- function onNoteOn()
+/**
+ * Snapshots currently sounding stringNoteIds before onNoteOn processes new voices.
+ */
+inline function snapshotPreviousStringNoteIds()
 {
-
-	local notePlayed = Message.getNoteNumber();
-	local velocityPlayed = Message.getVelocity();
-	local notePlayedId = Message.getEventId();
-	
-	local didPlayNoteLegato = false;
-	local didPlayOnNewString = false;
-	
 	local s;
-	local i;
 	oldStringNoteId.clear();
 	for (s = 0; s < NUMOFSTRINGS; s++)
 	{
 		oldStringNoteId.push(stringNoteId[s]);
 	}
+}
 
+/**
+ * Scans Globals.g_noteToPlayBufferData and fills clusterIndices with all unprocessed
+ * notes arriving within UPTIME_CHORD_THRESHOLD of the first unprocessed note.
+ * Returns the number of notes in the detected cluster.
+ */
+inline function collectSimultaneousNoteCluster()
+{
+	local i;
+	clusterIndices.clear();
+
+	if (!isDefined(Globals.g_noteToPlayBufferData) || Globals.g_noteToPlayBufferData.inputtedNotes.length == 0)
+	{
+		return 0;
+	}
+
+	local clusterStartIdx = -1;
+	for (i = 0; i < Globals.g_noteToPlayBufferData.inputtedNoteProcessed.length; i++)
+	{
+		if (!Globals.g_noteToPlayBufferData.inputtedNoteProcessed[i])
+		{
+			clusterStartIdx = i;
+			break;
+		}
+	}
+
+	if (clusterStartIdx == -1)
+	{
+		return 0;
+	}
+
+	local clusterAnchorTime = Globals.g_noteToPlayBufferData.inputtedNotesOnTime[clusterStartIdx];
+	for (i = clusterStartIdx; i < Globals.g_noteToPlayBufferData.inputtedNoteProcessed.length; i++)
+	{
+		if (!Globals.g_noteToPlayBufferData.inputtedNoteProcessed[i])
+		{
+			local deltaSec = Math.abs(Globals.g_noteToPlayBufferData.inputtedNotesOnTime[i] - clusterAnchorTime);
+			if (DEBUGMODEENABLED)
+			{
+				Console.print("    check buf[" + i + "] note=" + Globals.g_noteToPlayBufferData.inputtedNotes[i] + " delta=" + deltaSec + " <= " + UPTIME_CHORD_THRESHOLD + " => " + (deltaSec <= UPTIME_CHORD_THRESHOLD));
+			}
+			if (deltaSec <= UPTIME_CHORD_THRESHOLD)
+			{
+				clusterIndices.push(i);
+			}
+		}
+	}
+
+	return clusterIndices.length;
+}
+
+/**
+ * Tracks how many onNoteOn callbacks of a simultaneous cluster have arrived.
+ * Returns true only on the final note callback of the cluster (or for single notes)
+ * so fretting engines and string assignments run once per cluster.
+ */
+inline function isReadyToProcessCluster(clusterCount)
+{
+	if (DEBUGMODEENABLED)
+	{
+		Console.print("  clusterCount=" + clusterCount + " chordArrivalCount=" + chordArrivalCount);
+	}
+
+	if (clusterCount > 1)
+	{
+		chordArrivalCount++;
+		if (chordArrivalCount < clusterCount)
+		{
+			return false;
+		}
+
+		chordArrivalCount = 0;
+		return true;
+	}
+
+	chordArrivalCount = 0;
+	return true;
+}
+
+/**
+ * Clears Globals.g_noteToPlayBufferData once every buffered note has been processed.
+ */
+inline function clearBufferIfAllProcessed()
+{
+	local i;
+	for (i = 0; i < Globals.g_noteToPlayBufferData.inputtedNoteProcessed.length; i++)
+	{
+		if (!Globals.g_noteToPlayBufferData.inputtedNoteProcessed[i])
+		{
+			return;
+		}
+	}
+
+	Globals.g_noteToPlayBufferData.inputtedNotes.clear();
+	Globals.g_noteToPlayBufferData.inputtedNotesOnTime.clear();
+	Globals.g_noteToPlayBufferData.inputtedNoteVelocities.clear();
+	Globals.g_noteToPlayBufferData.inputtedNoteProcessed.clear();
+}
+
+/**
+ * Copies the simultaneous cluster notes/velocities into chordNotes/chordVelocities
+ * and marks their buffer slots processed.
+ */
+inline function extractClusterNotes(clusterCount)
+{
+	local i;
+	chordNotes.clear();
+	chordVelocities.clear();
+	for (i = 0; i < clusterCount; i++)
+	{
+		local bufIdx = clusterIndices[i];
+		Globals.g_noteToPlayBufferData.inputtedNoteProcessed[bufIdx] = true;
+		chordNotes.push(Globals.g_noteToPlayBufferData.inputtedNotes[bufIdx]);
+		chordVelocities.push(Globals.g_noteToPlayBufferData.inputtedNoteVelocities[bufIdx]);
+	}
+	clearBufferIfAllProcessed();
+}
+
+/**
+ * Marks a single buffered note as processed and clears the buffer if empty.
+ */
+inline function consumeSingleBufferedNote()
+{
+	if (clusterIndices.length > 0)
+	{
+		Globals.g_noteToPlayBufferData.inputtedNoteProcessed[clusterIndices[0]] = true;
+		clearBufferIfAllProcessed();
+	}
+}
+
+/**
+ * Routes a simultaneous chord cluster into either legato slides or the active fretting engine.
+ */
+inline function routeChordCluster(notesArr, velsArr)
+{
+	local isLegatoActiveChord = legatoKeySwitchPlaying || Synth.isKeyDown(LEGATOKEYSWITCHNOTE);
+
+	if (DEBUGMODEENABLED)
+	{
+		Console.print("  >>> CHORD FLOW TRIGGERED: notes=" + notesArr + " legato=" + isLegatoActiveChord);
+	}
+
+	if (isLegatoActiveChord)
+	{
+		processBufferedLegato(notesArr, velsArr);
+	}
+	else
+	{
+		dispatchChordClusterToFrettingEngine(notesArr, velsArr, Globals.g_currArticulationPlaying);
+	}
+}
+
+/**
+ * Routes a single note into either legato slides or single-note fretting.
+ */
+inline function routeSingleNote(notePlayed, velocityPlayed)
+{
+	local isLegatoActive = legatoKeySwitchPlaying || Synth.isKeyDown(LEGATOKEYSWITCHNOTE);
+
+	if (DEBUGMODEENABLED)
+	{
+		Console.print("  >>> SINGLE NOTE FLOW TRIGGERED: note=" + notePlayed + " legato=" + isLegatoActive);
+	}
+
+	if (isLegatoActive)
+	{
+		chordNotes.clear();
+		chordVelocities.clear();
+		chordNotes.push(notePlayed);
+		chordVelocities.push(velocityPlayed);
+
+		processBufferedLegato(chordNotes, chordVelocities);
+	}
+	else
+	{
+		playNextNoteOnNewString(notePlayed, velocityPlayed);
+	}
+}
+
+/**
+ * Syncs eventIds table and updates stringNoteStartTime for any string whose active voice ID changed.
+ */
+inline function syncEventIdsAndVoiceStartTimes()
+{
+	local i;
+	local s;
+	for (i = 0; i < stringNote.length - 1; i++)
+	{
+		if (stringNote[i] != NO_NOTE)
+		{
+			eventIds.setValue(stringNote[i], stringNoteId[i]);
+		}
+	}
+
+	for (s = 0; s < NUMOFSTRINGS; s++)
+	{
+		if (stringNoteId[s] != oldStringNoteId[s])
+		{
+			stringNoteStartTime[s] = Engine.getUptime();
+		}
+	}
+}
+
+function onNoteOn()
+{
+	local notePlayed = Message.getNoteNumber();
+	local velocityPlayed = Message.getVelocity();
+	local i;
+
+	snapshotPreviousStringNoteIds();
 	detectKeySwitch(notePlayed);
-	
-	if(Globals.g_resetNotes == true)
-		resetNotes();
-	
-	if(isBetweenIncl(notePlayed, LOWESTNOTE, HIGHESTNOTE)){
 
+	if (Globals.g_resetNotes == true)
+		resetNotes();
+
+	if (isBetweenIncl(notePlayed, LOWESTNOTE, HIGHESTNOTE))
+	{
 		if (DEBUGMODEENABLED)
 		{
 			Console.print("[NoteEngines] onNoteOn: note=" + notePlayed + " vel=" + velocityPlayed + " uptime=" + Engine.getUptime() + " ts=" + Message.getTimestamp());
@@ -3180,207 +3474,35 @@ inline function randomAddOrSub(deviation){
 			}
 		}
 
-		// Buffer clustering check: find all unprocessed notes matching the current cluster uptime (<= 20 microseconds)
-		clusterIndices.clear();
-		local clusterCount = 0;
-		local isChord = false;
-
-		if (isDefined(Globals.g_noteToPlayBufferData) && Globals.g_noteToPlayBufferData.inputtedNotes.length > 0)
+		local clusterCount = collectSimultaneousNoteCluster();
+		if (!isReadyToProcessCluster(clusterCount))
 		{
-			local clusterStartIdx = -1;
-			for (i = 0; i < Globals.g_noteToPlayBufferData.inputtedNoteProcessed.length; i++)
-			{
-				if (!Globals.g_noteToPlayBufferData.inputtedNoteProcessed[i])
-				{
-					clusterStartIdx = i;
-					break;
-				}
-			}
-
-			if (clusterStartIdx != -1)
-			{
-				local clusterAnchorTime = Globals.g_noteToPlayBufferData.inputtedNotesOnTime[clusterStartIdx];
-				for (i = clusterStartIdx; i < Globals.g_noteToPlayBufferData.inputtedNoteProcessed.length; i++)
-				{
-					if (!Globals.g_noteToPlayBufferData.inputtedNoteProcessed[i])
-					{
-						local deltaSec = Math.abs(Globals.g_noteToPlayBufferData.inputtedNotesOnTime[i] - clusterAnchorTime);
-						if (DEBUGMODEENABLED)
-						{
-							Console.print("    check buf[" + i + "] note=" + Globals.g_noteToPlayBufferData.inputtedNotes[i] + " delta=" + deltaSec + " <= " + UPTIME_CHORD_THRESHOLD + " => " + (deltaSec <= UPTIME_CHORD_THRESHOLD));
-						}
-						if (deltaSec <= UPTIME_CHORD_THRESHOLD)
-						{
-							clusterIndices.push(i);
-						}
-					}
-				}
-				clusterCount = clusterIndices.length;
-			}
-		}
-
-		if (DEBUGMODEENABLED)
-		{
-			Console.print("  clusterCount=" + clusterCount + " chordArrivalCount=" + chordArrivalCount);
+			// Intermediate note in a simultaneous cluster: wait for the final note callback
+			Message.ignoreEvent(true);
+			return;
 		}
 
 		if (clusterCount > 1)
 		{
-			chordArrivalCount++;
-			if (chordArrivalCount < clusterCount)
-			{
-				// Stop callback for intermediate notes in the chord cluster
-				Message.ignoreEvent(true);
-				return;
-			}
-
-			// Final note callback of this simultaneous cluster -> process entire chord!
-			chordArrivalCount = 0;
-			isChord = true;
-		}
-		else
-		{
-			chordArrivalCount = 0;
-			isChord = false;
-		}
-
-		if (isChord)
-		{
-			// Final note callback of chord cluster: ignore original event so only artificial voices sound
+			// Final note of cluster: suppress raw event and pass entire cluster to fretting/legato
 			Message.ignoreEvent(true);
-
-			// Mark all notes in this chord cluster as processed
-			for (i = 0; i < clusterCount; i++)
-			{
-				Globals.g_noteToPlayBufferData.inputtedNoteProcessed[clusterIndices[i]] = true;
-			}
-
-			chordNotes.clear();
-			chordVelocities.clear();
-			for (i = 0; i < clusterCount; i++)
-			{
-				chordNotes.push(Globals.g_noteToPlayBufferData.inputtedNotes[clusterIndices[i]]);
-				chordVelocities.push(Globals.g_noteToPlayBufferData.inputtedNoteVelocities[clusterIndices[i]]);
-			}
-
-			local isLegatoActiveChord = legatoKeySwitchPlaying || Synth.isKeyDown(LEGATOKEYSWITCHNOTE);
-
-			if (DEBUGMODEENABLED)
-			{
-				Console.print("  >>> CHORD FLOW TRIGGERED: notes=" + chordNotes + " legato=" + isLegatoActiveChord);
-			}
-
-			if (isLegatoActiveChord)
-			{
-				processBufferedLegato(chordNotes, chordVelocities);
-			}
-			else
-			{
-				// Apply natural chord fretting algorithm
-				Globals.g_handPositionFret = naturalChordFretting(chordNotes, chordVelocities, Globals.g_handPositionFret, Globals.g_currArticulationPlaying);
-			}
-
-			for (i = 0; i < stringNote.length - 1; i++)
-			{
-				if (stringNote[i] != NO_NOTE)
-				{
-					eventIds.setValue(stringNote[i], stringNoteId[i]);
-				}
-			}
-
-			for (s = 0; s < NUMOFSTRINGS; s++)
-			{
-				if (stringNoteId[s] != oldStringNoteId[s])
-				{
-					stringNoteStartTime[s] = Engine.getUptime();
-				}
-			}
+			extractClusterNotes(clusterCount);
+			routeChordCluster(chordNotes, chordVelocities);
+			syncEventIdsAndVoiceStartTimes();
 
 			strumIfStrumKeyPressed(notePlayed, stringNoteId, stringNote, velocityPlayed);
 			individualNoteStrum(notePlayed, velocityPlayed, stringNote, stringNoteId, indivNoteStrumIds);
-
-			Globals.g_noteToPlayBufferData.inputtedNotes.clear();
-			Globals.g_noteToPlayBufferData.inputtedNotesOnTime.clear();
-			Globals.g_noteToPlayBufferData.inputtedNoteVelocities.clear();
-			Globals.g_noteToPlayBufferData.inputtedNoteProcessed.clear();
-
 			return;
 		}
 
-		// Single note flow: mark the single note as processed
-		if (clusterIndices.length > 0)
-		{
-			Globals.g_noteToPlayBufferData.inputtedNoteProcessed[clusterIndices[0]] = true;
-		}
-
-		local allProcessed = true;
-		for (i = 0; i < Globals.g_noteToPlayBufferData.inputtedNoteProcessed.length; i++)
-		{
-			if (!Globals.g_noteToPlayBufferData.inputtedNoteProcessed[i])
-			{
-				allProcessed = false;
-				break;
-			}
-		}
-		if (allProcessed)
-		{
-			Globals.g_noteToPlayBufferData.inputtedNotes.clear();
-			Globals.g_noteToPlayBufferData.inputtedNotesOnTime.clear();
-			Globals.g_noteToPlayBufferData.inputtedNoteVelocities.clear();
-			Globals.g_noteToPlayBufferData.inputtedNoteProcessed.clear();
-		}
-
-		local isLegatoActive = legatoKeySwitchPlaying || Synth.isKeyDown(LEGATOKEYSWITCHNOTE);
-
-		if (DEBUGMODEENABLED)
-		{
-			Console.print("  >>> SINGLE NOTE FLOW TRIGGERED: note=" + notePlayed + " legato=" + isLegatoActive);
-		}
-
-		if (isLegatoActive)
-		{
-			chordNotes.clear();
-			chordVelocities.clear();
-			chordNotes.push(notePlayed);
-			chordVelocities.push(velocityPlayed);
-
-			processBufferedLegato(chordNotes, chordVelocities);
-		}
-		else
-		{
-			playNextNoteOnNewString(notePlayed, velocityPlayed);
-		}
-
-		for (i = 0; i < stringNote.length - 1; i++)
-		{
-			if (stringNote[i] != NO_NOTE)
-			{
-				eventIds.setValue(stringNote[i], stringNoteId[i]);
-			}
-		}
-
+		consumeSingleBufferedNote();
+		routeSingleNote(notePlayed, velocityPlayed);
+		syncEventIdsAndVoiceStartTimes();
 	}
 
 	strumIfStrumKeyPressed(notePlayed, stringNoteId, stringNote, velocityPlayed);
-
 	individualNoteStrum(notePlayed, velocityPlayed, stringNote, stringNoteId, indivNoteStrumIds);
-
-	for (s = 0; s < NUMOFSTRINGS; s++)
-	{
-		if (stringNoteId[s] != oldStringNoteId[s])
-		{
-			stringNoteStartTime[s] = Engine.getUptime();
-		}
-	}
-	
-	
-	
-/*	for(i = 0; i < NoteIdLabels.length; i++){
-		NoteIdLabels[i].set("text", stringNoteId[i]);
-	}*/
-
-
-	
+	syncEventIdsAndVoiceStartTimes();
 }
 function onNoteOff()
 {

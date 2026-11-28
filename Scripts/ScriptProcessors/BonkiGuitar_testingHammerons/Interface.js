@@ -315,6 +315,10 @@ inline function changeFrettingEngine(notePlayed){
 		Globals.g_frettingEngine = FrettingEngine.MELODY;
 		FrettingEngineComboBox.setValue(FrettingEngine.MELODY);
 		return true;
+	}else if(notePlayed == FrettingEngineKeySwitch.CHORDS){
+		Globals.g_frettingEngine = FrettingEngine.CHORDS;
+		FrettingEngineComboBox.setValue(FrettingEngine.CHORDS);
+		return true;
 	}else{
 		return false;
 	}
@@ -358,6 +362,10 @@ for(i = 0; i < NUMOFSTRINGS; i++){
  			CurrArticulationPlayingLabel.set("text", "Slide");
  	else if(Globals.g_currArticulationPlaying == PerformanceType.LEGATOGENERAL)
  			CurrArticulationPlayingLabel.set("text", "Slide");
+ 	else if(Globals.g_currArticulationPlaying == PerformanceType.POWERCHORDSUS)
+ 			CurrArticulationPlayingLabel.set("text", "Power Chord Sustain");
+ 	else if(Globals.g_currArticulationPlaying == PerformanceType.POWERCHORDMUTE)
+ 			CurrArticulationPlayingLabel.set("text", "Power Chord Mute");
  }
  
  
@@ -794,7 +802,7 @@ inline function distributeFretMarkersVertically(stringToDistribute, fretImages){
  		lowFret = capLow(0, fretPos);
  	}
  		
- 	if(Globals.g_frettingEngine == FrettingEngine.NATURAL){
+ 	if(Globals.g_frettingEngine == FrettingEngine.NATURAL || Globals.g_frettingEngine == FrettingEngine.CHORDS){
  	highFret = lowFret + 5;
  	}else if(Globals.g_frettingEngine == FrettingEngine.MELODY){
  	// make this match the fretSpaceToChange in melodyFretting in NoteEngines.js

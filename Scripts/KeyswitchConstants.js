@@ -1,9 +1,13 @@
  //keyswitches
  const var SUSTAINKEYSWITCHNOTE = 24; //C3 in cakewalk
  const var MUTEKEYSWITCHNOTE = 25;
- const var HARMONICKEYSWITCHNOTE = 26;
- const var TREMOLOKEYSWITCHNOTE = 27;
- const var SFXKEYSWITCHNOTE = 28;
+ const var POWERCHORDSUSKEYSWITCHNOTE = 26;
+ const var POWERCHORDMUTEKEYSWITCHNOTE = 27;
+ 
+ 
+ const var HARMONICKEYSWITCHNOTE = 29;
+ const var TREMOLOKEYSWITCHNOTE = 28;
+ const var SFXKEYSWITCHNOTE = 30;
  
  const var LEGATOKEYSWITCHNOTE = 37; //Db4 in cakewalk
  
@@ -39,7 +43,10 @@
  	const var LEGATO = 7;
  	const var Legato = 7;
  	
- 	const var NUMOFPERFORMANCES = 8;
+ 	const var POWERCHORDSUS = 8;
+ 	const var POWERCHORDMUTE = 9;	
+ 	
+ 	const var NUMOFPERFORMANCES = 10;
  	//SFX will just be separate keys down low... maybe
  }
  
@@ -81,13 +88,15 @@
  
  	const var NATURAL = 1;
  	const var MELODY = 2;
+ 	const var CHORDS = 3;
  }
  
  namespace FrettingEngineKeySwitch{
 	const var NATURAL = 0;
 	const var MELODY = 1;
+	const var CHORDS = 2;
 	const var FIRSTENGINE = FrettingEngineKeySwitch.NATURAL;
-	const var LASTENGINE = FrettingEngineKeySwitch.MELODY;
+	const var LASTENGINE = FrettingEngineKeySwitch.CHORDS;
  }
  
  

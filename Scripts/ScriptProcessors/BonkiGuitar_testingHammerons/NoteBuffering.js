@@ -40,6 +40,8 @@ if(Message.isArtificial()){
 			Globals.g_noteToPlayBufferData.inputtedNotesOnTime.clear();
 			Globals.g_noteToPlayBufferData.inputtedNoteVelocities.clear();
 			Globals.g_noteToPlayBufferData.inputtedNoteProcessed.clear();
+		}else if(Globals.g_noteToPlayBufferData.inputtedNoteProcessed.length >= 127){
+			Globals.g_noteToPlayBufferData.inputtedNoteProcessed.clear();
 		}
 	
 		Globals.g_noteToPlayBufferData.inputtedNotes.push(noteNumber);
